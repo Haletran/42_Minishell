@@ -37,7 +37,8 @@ As beautiful as a shell..
 
 ## To keep if needed
 
-
+<details><summary>CODE</summary>
+	
  ```C
 else if (!ft_strncmp(input, "&&", 2) || !ft_strncmp(input, "& ", 2))
 {
@@ -78,3 +79,5 @@ t_com	*init_stack(t_com *com, char **str)
 }
 
 ```
+
+ </details>
