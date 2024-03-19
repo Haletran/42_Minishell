@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 17:16:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:48:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,27 @@ int	check_if_pipe(char **str)
 	return (0);
 }
 
-char **sort_in_ascii(char **arr)
+char	**sort_in_ascii(char **arr)
 {
-    int i;
-    int j;
-    char *tmp;
+	int		i;
+	int		j;
+	char	*tmp;
 
-    i = 0;
-    while (arr[i] != NULL)
-    {
-        j = i + 1;
-        while (arr[j] != NULL)
-        {
-            if (ft_strcmp(arr[i], arr[j]) > 0)
-            {
-                tmp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = tmp;
-            }
-            j++;
-        }
-        i++;
-    }
-    return (arr);
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		j = i + 1;
+		while (arr[j] != NULL)
+		{
+			if (ft_strcmp(arr[i], arr[j]) > 0)
+			{
+				tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (arr);
 }
-
