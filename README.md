@@ -85,3 +85,5 @@ t_com	*init_stack(t_com *com, char **str)
 ```
 
  </details>
+
+test
