@@ -2,6 +2,10 @@
 
 As beautiful as a shell..
 
+```bash
+git switch THE_BRANCH
+```
+
 
 <details><summary>TODO</summary>
 
