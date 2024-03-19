@@ -8,7 +8,7 @@ As beautiful as a shell..
 ## TO-FIX
 
 - [x] Fix when there is space and then enter is press
-- [x] Fix double prompt if CTRL+C during command execution
+- [ ] Fix double prompt if CTRL+C during command execution
 - [x] The MAKE command not working properly
 - [x] Exit code to store and can echo with $?
 - [x] Make command path working
@@ -18,13 +18,13 @@ As beautiful as a shell..
 - [ ] Add pipe (IN CONSTRUCTION)
 - [ ] Redirections
 - [ ] Parsing
-- [x] Sort in ascii when exporting a variable
+- [ ] Sort in ascii when exporting a variable
 - [x] Sort in ascii if export without args
 - [x] Unset command
 - [x] Segfault if $$
-- [] Exit code and exit function fix 
-- [] Quotes and double quotes
-- [] Cd with ~
+- [ ] Exit code and exit function fix 
+- [ ] Quotes and double quotes
+- [ ] Cd with ~
 
 //use open in a fork
 
@@ -37,7 +37,8 @@ As beautiful as a shell..
 
 ## To keep if needed
 
-
+<details><summary>CODE</summary>
+	
  ```C
 else if (!ft_strncmp(input, "&&", 2) || !ft_strncmp(input, "& ", 2))
 {
@@ -78,3 +79,5 @@ t_com	*init_stack(t_com *com, char **str)
 }
 
 ```
+
+ </details>
