@@ -13,7 +13,6 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "../includes/minishell.h"
 # include "../includes/struct.h"
 # include <stdlib.h>
 

@@ -16,7 +16,7 @@ MAKEFLAGS += --no-print-directory --silent
 endif
 
 NAME := minishell
-CC := cc 
+CC := clang 
 CFLAGS := -Wextra -Wall -Werror -g -Wno-unused-command-line-argument -lreadline 
 DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
 

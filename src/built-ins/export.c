@@ -60,10 +60,8 @@ char	*make_str(char **src)
 void	add_var_no_input(t_lst *args, char **str)
 {
 	int	len_env;
-	int	i;
 
 	len_env = 0;
-	i = 0;
 	while (args->env_cpy[len_env])
 		len_env++;
 	args->env_cpy[len_env] = str[1];
