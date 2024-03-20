@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 17:53:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:41:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 /**
  * @Main function
  *
+ * @comments 		// commands = ft_split(input, ' ');
+					// show_token(commands, com);
  * @param ac
  * @param av
  * @brief allocate t_lst, handle signal, handle prompt print and history
@@ -43,8 +45,6 @@ int	main(int ac, char **av, char **envp)
 			exit(g_value);
 		}
 		add_history(input);
-		// commands = ft_split(input, ' ');
-		// show_token(commands, com);
 		choose(input, commands, args);
 		free(input);
 	}

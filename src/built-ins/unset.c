@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 18:45:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:39:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int delete(t_lst *args, int len)
+int	delete(t_lst *args, int len)
 {
 	int		i;
 	int		after_len;
@@ -43,7 +43,7 @@ int delete(t_lst *args, int len)
 int	ft_unset(char **str, t_lst *args)
 {
 	int	len;
-	int i;
+	int	i;
 
 	len = 0;
 	i = 1;
