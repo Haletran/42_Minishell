@@ -17,7 +17,7 @@ As beautiful as a shell..
 - [x] Make env var working
 - [ ] Add pipe (IN CONSTRUCTION)
 - [ ] Redirections
-- [ ] Parsing
+- [ ] Parsing (lexer, tokenisation)
 - [x] Sort in ascii when exporting a variable
 - [x] Sort in ascii if export without args
 - [x] Unset command
@@ -37,6 +37,8 @@ As beautiful as a shell..
 
 ## To keep if needed
 
+
+<details><summary></summary>
 
  ```C
 else if (!ft_strncmp(input, "&&", 2) || !ft_strncmp(input, "& ", 2))
@@ -78,3 +80,5 @@ t_com	*init_stack(t_com *com, char **str)
 }
 
 ```
+
+</details>

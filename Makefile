@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/19 20:11:44 by baptiste         ###   ########.fr        #
+#    Updated: 2024/03/20 14:58:14 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS := -Wextra -Wall -Werror -g -Wno-unused-command-line-argument -lreadline
 DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
 
 SRCS	= src/main.c \
+		  src/execution/redirections.c \
 		  src/built-ins/echo.c \
 		  src/built-ins/cd.c \
 		  src/utils/utils.c \

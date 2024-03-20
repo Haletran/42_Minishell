@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/19 15:38:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:59:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	search_path(char *str, t_lst *args)
 	char	**var;
 
 	i = 0;
+	if (!str)
+		return (ERROR);
 	while (args->env_var[i])
 	{
 		if (!ft_strncmp(args->env_var[i], str, ft_strlen(str)))

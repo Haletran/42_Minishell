@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 11:30:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:49:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	}
 	signal(CTRL_C, sig_command_is_running);
 	waitpid(pid, &g_value, 0);
+	
 	return (SUCCESS);
 }
 
@@ -120,6 +121,7 @@ int	exec(char **str, t_lst *args)
 			return (127);
 		}
 	}
+	ft_redirection(str, args);
 	if (check_commands(str, args) == NOT_FOUND)
 	{
 		full_path = check_path(str, args, 0);
