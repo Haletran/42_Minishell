@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 14:31:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:13:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_cd(char **str, t_lst *lst)
 {
 	int		valid;
 	char	*old_path;
+	char	*tilde_path;
 	char	curr_path[1024];
 
 	old_path = getenv("OLDPWD");
@@ -26,6 +27,12 @@ int	ft_cd(char **str, t_lst *lst)
 	{
 		printf("cd : too many arguments\n");
 		return (ERROR);
+	}
+	else if (!ft_strncmp(str[1], "~", 1))
+	{
+		str[1] = ft_strrchr(str[1], '~');
+		tilde_path = ft_strjoin(lst->home_path, str[1]);
+		valid = chdir(tilde_path);
 	}
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
 	{

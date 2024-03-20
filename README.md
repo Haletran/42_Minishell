@@ -22,9 +22,9 @@ As beautiful as a shell..
 - [x] Sort in ascii if export without args
 - [x] Unset command
 - [x] Segfault if $$
-- [] Exit code and exit function fix 
-- [] Quotes and double quotes
-- [] Cd with ~
+- [ ] Exit code and exit function fix 
+- [ ] Quotes and double quotes
+- [x] Cd with ~
 
 //use open in a fork
 
