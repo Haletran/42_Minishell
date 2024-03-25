@@ -6,39 +6,59 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 11:38:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:19:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	piping(char **str, t_lst *args, char *full_path, int *prev, int fd[2])
+//	ouvrir les fds
+//	deniere commande sortie standard
+// 	sinon redirection
+// 	exec avec boucle
+//
+
+void	piping(char **str, t_lst **args)
 {
 	pid_t	pid;
+	int		i;
+	int		back;
 
-	pipe(fd);
+	back = 0;
+	signal(CTRL_C, sig_command_is_running);
+	signal(CTRL_BACKSLACH, sig_ctrl_back);
+	//(*args)->fd[0] = open((*args)->fd[1], O_RDONLY, 0777);
+	//(*args)->fd[1] = open((*args)->fd[1], O_CREAT | O_RDWR | O_TRUNC, 0777);
+	i = 0;
+	if (pipe((*args)->fd) == -1)
+		return ;
 	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
 	if (pid == 0)
 	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
-		close(fd[1]);
-		dup2(*prev, STDIN_FILENO);
-		close(*prev);
-		if (execve(full_path, str, args->env_var) == -1)
+		dup2(back, 0);
+		dup2((*args)->fd[1], 1);
+		close((*args)->fd[0]);
+		if (execve((*args)->path_command, str, (*args)->env_var) == -1)
 		{
-			perror(full_path);
+			perror((*args)->path_command);
+			g_value = 127;
+			free_tab(str);
 			exit(127);
 		}
 	}
-	close(fd[1]);
-	close(*prev);
-	*prev = fd[0];
-	signal(SIGINT, sig_command_is_running);
-	return (0);
+	else
+	{
+		close((*args)->fd[1]);
+		back = (*args)->fd[0];
+	}
 }
 
-int	test_exec(char **str, t_lst **args, int *prev, int fd[2])
+int	get_path(char **str, t_lst **args)
 {
 	char	*full_path;
 	char	*tmp;
@@ -65,32 +85,33 @@ int	test_exec(char **str, t_lst **args, int *prev, int fd[2])
 	{
 		full_path = check_path(str, *args, 0);
 		if (full_path == NULL)
-			return (1);
+			return (ERROR);
 	}
-	piping(str, *args, full_path, prev, fd);
-	return (0);
+	(*args)->path_command = full_path;
+	return (SUCCESS);
 }
 
 int	exec_pipe(char **str, t_lst *args)
 {
-	int		fd[2];
 	int		i;
 	char	**tab;
-	int		prev;
 
 	i = 0;
-	prev = dup(STDIN_FILENO);
 	while (str[i])
 	{
 		tab = ft_split(str[i], ' ');
-		test_exec(tab, &args, &prev, fd);
-		free_tab(tab);
-		tab = NULL;
-		i++;
+		if (get_path(tab, &args) == SUCCESS)
+		{
+			piping(tab, &args);
+			free_tab(tab);
+			free(args->path_command);
+			tab = NULL;
+			i++;
+		}
+		else
+			return (ERROR);
 	}
-	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	// close(prev);
+	waitpid(-1, &g_value, 0);
+	waitpid(-1, &g_value, 0);
 	return (0);
 }
