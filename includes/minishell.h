@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 14:57:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:27:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # include <sys/wait.h>
 # include <termios.h> // tcsetattr, tcgetattr
 # include <unistd.h>  // write, access, close, fork, execve, dup, dup2, pipe
-# include <unistd.h>  // unlink, chdir, getcwd
 
 static int	g_value = 0;
 # define RESET_SIG SIG_IGN
@@ -49,7 +48,7 @@ static int	g_value = 0;
 int			check_space(char *str);
 char		*str_capitalizer(char *str);
 char		*ft_join(char *s1, char *s2);
-void		free_list(t_lst **lst);
+void		free_list(t_lst *lst);
 void		free_tab(char **str);
 int			exec(char **str, t_lst *args);
 void		print_commands(char **src);
@@ -86,5 +85,6 @@ int			ft_unset(char **str, t_lst *args);
 int			ft_heredoc(char **str);
 void		sig_command_is_running(int signum);
 void		ft_redirection(char **str, t_lst *args);
+void sig_ctrl_back(int signum);
 
 #endif

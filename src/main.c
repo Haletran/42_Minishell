@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 14:51:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:35:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,23 @@ int	main(int ac, char **av, char **envp)
 	if (ac > 1)
 		return (0);
 	args = malloc(sizeof(t_lst));
-	*args = malloc(sizeof(t_lst *) * 100);
+	*args = malloc(sizeof(t_lst *) * 10);
 	init_lst(args, envp);
 	while (1)
 	{
 		handle_sig(0);
-		input = readline(BOLDCYAN"MINISHELL $> "RESET);
+		input = readline(BOLDCYAN "MINISHELL $> " RESET);
 		if (!input)
 		{
 			g_value = 0;
+			free(input);
+			input = NULL;
 			exit(g_value);
 		}
 		add_history(input);
 		choose(input, commands, args);
 		free(input);
+		input = NULL;
 	}
 	return (0);
 }

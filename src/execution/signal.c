@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 15:32:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:04:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void	heredoc_handler(int signum)
 	exit(1);
 }
 
+void sig_ctrl_back(int signum)
+{
+	(void)signum;
+	ft_putstr_fd("Quit (core dumped)\n", 1);
+	rl_replace_line("", 1);
+	rl_redisplay();
+}
+
 /**
  * @brief Handle CTRL+C and CTRL+\ signal
  *
@@ -44,7 +52,9 @@ void	handle_sig(int check)
 {
 	if (check == 1)
 		signal(CTRL_C, heredoc_handler);
-	else
+	else if (check == 0)
+	{
 		signal(CTRL_C, sig_ctrl_c);
-	signal(CTRL_BACKSLACH, RESET_SIG);
+		signal(CTRL_BACKSLACH, RESET_SIG);
+	}
 }

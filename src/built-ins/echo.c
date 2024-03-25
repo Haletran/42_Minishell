@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 14:59:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/21 09:43:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	search_path(char *str, t_lst *args)
 {
 	int		i;
-	char	**var;
+	char	**var = NULL;
 
 	i = 0;
 	if (!str)
@@ -27,6 +27,8 @@ static int	search_path(char *str, t_lst *args)
 			if (getenv(str) != NULL)
 			{
 				printf("%s", getenv(str));
+				free_tab(var);
+				var = NULL;
 				return (SUCCESS);
 			}
 			else
@@ -108,6 +110,10 @@ int	ft_echo(char **str, t_lst *args)
 			printf("%s ", str[i]);
 		i++;
 	}
+	free_tab(var);
+	free_tab(str);
+	str = NULL;
+	var = NULL;
 	if (flag == 0)
 		printf("\n");
 	return (SUCCESS);

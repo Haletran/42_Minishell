@@ -25,6 +25,7 @@ As beautiful as a shell..
 - [ ] Exit code and exit function fix 
 - [ ] Quotes and double quotes
 - [x] Cd with ~
+- [x] Signals working as expected
 
 //use open in a fork
 

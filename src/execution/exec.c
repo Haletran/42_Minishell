@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 15:49:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:02:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*check_path(char **str, t_lst *args, int nb)
  */
 int	exec_command(char **str, t_lst *args, char *full_path)
 {
+	signal(CTRL_C, sig_command_is_running);
+	signal(CTRL_BACKSLACH, sig_ctrl_back);
 	pid_t	pid;
 
 	pid = fork();
@@ -72,9 +74,7 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 			exit(127);
 		}
 	}
-	signal(CTRL_C, sig_command_is_running);
 	waitpid(pid, &g_value, 0);
-	
 	return (SUCCESS);
 }
 
@@ -96,7 +96,7 @@ int	exec(char **str, t_lst *args)
 	if (!ft_strncmp(str[i], "./", 2))
 	{
 		if (access(str[i], F_OK) == 0)
-		{
+		{ 
 			full_path = str[i];
 			str[i] = ft_strrchr(str[i], '/');
 		}
