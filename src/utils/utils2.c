@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 15:49:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:38:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	check_if_pipe(char **str)
 	}
 	return (0);
 }
+
+
 
 char	**sort_in_ascii(char **arr)
 {

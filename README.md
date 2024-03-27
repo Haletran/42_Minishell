@@ -26,6 +26,7 @@ As beautiful as a shell..
 - [ ] Quotes and double quotes
 - [x] Cd with ~
 - [x] Signals working as expected
+- [ ] Env command parsing (OK : env env FAIL : env rjsdgjsdg)
 
 //use open in a fork
 

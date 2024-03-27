@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/25 11:35:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:33:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av, char **envp)
 			g_value = 0;
 			free(input);
 			input = NULL;
+			printf("exit\n");
 			exit(g_value);
 		}
 		add_history(input);
