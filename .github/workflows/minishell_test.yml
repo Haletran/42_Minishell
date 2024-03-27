@@ -1,0 +1,23 @@
+name: C Code Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build C code
+      run: make
+
+    - name: Run tests
+      run: ./run_tests.sh
