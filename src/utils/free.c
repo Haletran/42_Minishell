@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/25 13:20:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:11:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,10 @@ void	free_tab(char **str)
 		free(str[i]);
 		i++;
 	}
-	//free(str);
+	// free(str);
 }
 
 /* void	free_list(t_lst **lst)
 {
 	free(*lst);
 } */
-
-
-

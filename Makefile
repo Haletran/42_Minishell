@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/20 17:15:05 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/27 15:21:41 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,10 @@ norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
 	@norminette $(SRCS) includes libft get_next_line ft_printf
 
+tester:
+	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/thallard/minishell_tester.git; fi
+	@cd minishell_tester && bash test.sh
+
 clean:
 	rm -rf $(OBJS_DIR)
 	make -C $(LIBFT_DIR) clean
@@ -69,6 +73,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	make -C $(LIBFT_DIR) fclean
+	rm -rf minishell_tester
 	echo "\033[41m$(NAME) cleaned\033[0m"
 
 re: fclean all

@@ -27,6 +27,8 @@ As beautiful as a shell..
 - [x] Cd with ~
 - [x] Signals working as expected
 - [ ] Env command parsing (OK : env env FAIL : env rjsdgjsdg)
+- [ ] Export add valid charset
+- [ ] Prompt erasing if color is used and prompt too long
 
 //use open in a fork
 

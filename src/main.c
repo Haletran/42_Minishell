@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/26 11:33:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:05:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av, char **envp)
 	while (1)
 	{
 		handle_sig(0);
-		input = readline(BOLDCYAN "MINISHELL $> " RESET);
+		input = readline(BOLDCYAN"MINISHELL $> "RESET);
 		if (!input)
 		{
 			g_value = 0;

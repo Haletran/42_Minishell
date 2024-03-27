@@ -6,22 +6,26 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 17:13:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:02:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
-int	check_if_alpha(char *str)
+int check_if_alpha(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isalnum(str[i]))
+		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-' &&
+			str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
+		{
+			printf("str[i] = %c\n", str[i]);
 			return (ERROR);
+		}
 		i++;
 	}
 	return (SUCCESS);
