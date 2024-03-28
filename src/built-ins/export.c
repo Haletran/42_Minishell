@@ -6,22 +6,22 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 17:39:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:18:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
-int check_if_alpha(char *str)
+int	check_if_alpha(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-' &&
-			str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
+		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-'
+			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
 			return (ERROR);
 		i++;
 	}
@@ -100,6 +100,26 @@ void	add_var(t_lst *args, char **str)
 	}
 }
 
+int	already_exist(t_lst *args, char **str)
+{
+	int		i;
+	char	**tmp;
+
+	i = 0;
+	tmp = ft_split(str[1], '=');
+	while (args->env_var[i])
+	{
+		if (!ft_strncmp(args->env_var[i], tmp[0], ft_strlen(tmp[1])))
+		{
+			printf("already exist\n");
+			return (i);
+		}
+		i++;
+	}
+	// free_tab(tmp);
+	return (0);
+}
+
 int	ft_export(t_lst *args, char **str)
 {
 	int	i;
@@ -121,8 +141,18 @@ int	ft_export(t_lst *args, char **str)
 		return (ERROR);
 	}
 	if (!ft_strchr(str[1], '='))
+	{
+		i = already_exist(args, str);
+		if (i >= 1)
+			delete (args, i);
 		add_var_no_input(args, str);
+	}
 	else
+	{
+		i = already_exist(args, str);
+		if (i >= 1)
+			delete (args, i);
 		add_var(args, str);
+	}
 	return (SUCCESS);
 }

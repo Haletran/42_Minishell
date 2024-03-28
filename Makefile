@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/28 19:51:19 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/28 22:25:13 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 
 NAME := minishell
 CC := clang 
-CFLAGS := -Wextra -Wall -Werror -g -Wno-unused-command-line-argument -lreadline 
+CFLAGS := -Wextra -Wall -Werror -g
 DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
 
 SRCS	= src/main.c \
@@ -54,7 +54,7 @@ $(OBJS_DIR)/%.o: %.c
 
 $(NAME): $(OBJS)
 	@make -C libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline 
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 

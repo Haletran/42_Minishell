@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/27 16:08:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:18:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 static int	search_path(char *str, t_lst *args)
 {
 	int		i;
-	char	**var = NULL;
+	char	**var;
 
+	var = NULL;
 	i = 0;
 	if (!str)
 		return (ERROR);
@@ -24,21 +25,11 @@ static int	search_path(char *str, t_lst *args)
 	{
 		if (!ft_strncmp(args->env_var[i], str, ft_strlen(str)))
 		{
-			if (getenv(str) != NULL)
-			{
-				printf("%s", getenv(str));
-				free_tab(var);
-				var = NULL;
-				return (SUCCESS);
-			}
-			else
-			{
-				var = ft_split(args->env_var[i], '=');
-				printf("%s", var[1]);
-				free_tab(var);
-				var = NULL;
-				return (SUCCESS);
-			}
+			var = ft_split(args->env_var[i], '=');
+			printf("%s", var[1]);
+			free_tab(var);
+			var = NULL;
+			return (SUCCESS);
 		}
 		i++;
 	}

@@ -6,11 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 19:09:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:32:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	g_var = 0;
 
 static void	sig_ctrl_c(int signum)
 {
@@ -34,7 +36,8 @@ void	heredoc_handler(int signum)
 	(void)signum;
 	signal(CTRL_C, RESET_SIG);
 	signal(CTRL_BACKSLACH, RESET_SIG);
-	exit(EXIT_SUCCESS);
+	g_var = 1;
+	//exit(EXIT_SUCCESS);
 }
 
 void sig_ctrl_back(int signum)

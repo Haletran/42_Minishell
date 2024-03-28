@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 11:39:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 21:00:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	delete(t_lst *args, int len)
 	return (SUCCESS);
 }
 
-int	ft_unset(char **str, t_lst *args)
+int	ft_unset(char **str, t_lst **args)
 {
 	int	len;
 	int	i;
@@ -50,13 +50,13 @@ int	ft_unset(char **str, t_lst *args)
 	while (str[i])
 	{
 		len = 0;
-		while (args->env_var[len])
+		while ((*args)->env_var[len])
 		{
-			if (!ft_strncmp(args->env_var[len], str[i], ft_strlen(str[1])))
+			if (!ft_strncmp((*args)->env_var[len], str[i], ft_strlen(str[1])))
 				break ;
 			len++;
 		}
-		delete (args, len);
+		delete ((*args), len);
 		i++;
 	}
 	return (SUCCESS);

@@ -30,6 +30,7 @@ As beautiful as a shell..
 - [ ] Export add valid charset
 - [ ] Prompt erasing if color is used and prompt too long
 - [ ] Need to fix Heredoc
+- [ ] Re-do export
 
 // use open in a fork
 // file for heredoc

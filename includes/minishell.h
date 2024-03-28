@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 17:36:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:32:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 # include <termios.h> // tcsetattr, tcgetattr
 # include <unistd.h>  // write, access, close, fork, execve, dup, dup2, pipe
 
-static int	g_value = 0;
+static sig_atomic_t	g_value = 0;
+extern int	    g_var;
 # define RESET_SIG SIG_IGN
 # define CTRL_C SIGINT
 # define CTRL_BACKSLACH SIGQUIT
@@ -79,7 +80,7 @@ int			ft_echo(char **str, t_lst *args);
 int			ft_exit(char *exit, t_lst *args);
 int			ft_env(char **envp, char **str);
 int			ft_export(t_lst *args, char **str);
-int			ft_unset(char **str, t_lst *args);
+int			ft_unset(char **str, t_lst **args);
 
 /*BASH_UTILITIES*/
 int			ft_heredoc(char **str);
@@ -88,5 +89,6 @@ void		ft_redirection(char **str, t_lst *args);
 void		sig_ctrl_back(int signum);
 void		heredoc_handler(int signum);
 int			check_if_alpha(char *str);
+int delete (t_lst *args, int len);
 
 #endif
