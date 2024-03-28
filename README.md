@@ -31,7 +31,8 @@ As beautiful as a shell..
 - [ ] Prompt erasing if color is used and prompt too long
 - [ ] Need to fix Heredoc
 
-//use open in a fork
+// use open in a fork
+// file for heredoc
 
 ## BONUS
 
