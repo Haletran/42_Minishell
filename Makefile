@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/28 18:17:04 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/28 19:39:18 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,13 +62,9 @@ norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
 	@norminette $(SRCS) includes libft get_next_line ft_printf
 
-tester:
-	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/thallard/minishell_tester.git; fi
-	@cd minishell_tester && bash test.sh --diff
-
-tester2: all
-	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/LucasKuhn/minishell_tester.git; fi
-	@cd minishell_tester && ./tester builtins
+tester: fclean all
+	@[ -d "minishell_tester" ] || git clone https://github.com/LucasKuhn/minishell_tester.git
+	@(cd minishell_tester && ./tester builtins)
 
 clean:
 	rm -rf $(OBJS_DIR)
