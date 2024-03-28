@@ -17,8 +17,14 @@ jobs:
     - name: Compilation
       run: make
 
-    - name: Run tester
+    - name: Run Premier tester
       run: make tester
+    
+    - name: Cleaning after first tester
+      run: make fclean
 
-    - name: Run Clean
+    - name: Run Deuxieme tester
+      run: make tester2
+
+    - name: Cleaning after second tester
       run: make fclean
