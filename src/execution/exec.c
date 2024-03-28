@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 16:42:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:16:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	exec(char **str, t_lst *args)
 		{
 			if (!ft_strncmp(str[0], "/", 1) && ft_strlen(str[0]) == 1)
 			{
-				chdir(str[0]);
+				printf("minishell: %s: Is a directory\n", str[i]);
 				return (ERROR);
 			}
 			full_path = str[i];
