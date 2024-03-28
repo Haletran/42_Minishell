@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/28 17:02:07 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/28 17:05:26 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ tester:
 tester2:
 	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/LucasKuhn/minishell_tester.git; fi
 	@make
-	@cd minishell_tester && ./tester
+	@cd minishell_tester && ./tester builtins
 
 clean:
 	rm -rf $(OBJS_DIR)
