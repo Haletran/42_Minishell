@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 17:11:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:26:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_cd(char **str, t_lst *lst)
 		return (ERROR);
 	else if (!str[1] || !ft_strncmp(str[1], "--", -1))
 		chdir(lst->home_path);
-	else if (!ft_strncmp(str[1], "~", 1))
+	else if (!ft_strncmp(str[1], "~", 1) && ft_strlen(str[1]) >= 1)
 		valid = handle_tilde(str, lst);
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
 		handle_old_path(curr_path, old_path);

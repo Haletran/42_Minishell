@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/28 17:05:26 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/28 17:27:14 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,9 +66,8 @@ tester:
 	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/thallard/minishell_tester.git; fi
 	@cd minishell_tester && bash test.sh
 
-tester2:
+tester2: all
 	@if ! [ -d "minishell_tester" ]; then git clone https://github.com/LucasKuhn/minishell_tester.git; fi
-	@make
 	@cd minishell_tester && ./tester builtins
 
 clean:
