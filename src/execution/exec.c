@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/27 11:52:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:42:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,12 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 		args->pid = &pid;
 		if (execve(full_path, str, args->env_var) == -1)
 		{
-			perror(full_path);
+			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
+				printf("minishell: syntax error near unexpected token `;'\n");
+			else if (!ft_strncmp(str[0], "|", 1) && ft_strlen(str[0]) == 1)
+				printf("minishell: syntax error near unexpected token `|'\n");
+			else
+				printf("minishell: %s: command not found\n", str[0]);
 			g_value = 127;
 			free_tab(str);
 			exit(127);
@@ -108,6 +113,11 @@ int	exec(char **str, t_lst *args)
 	{
 		if (access(str[i], F_OK) == 0)
 		{
+			if (!ft_strncmp(str[0], "/", 1) && ft_strlen(str[0]) == 1)
+			{
+				chdir(str[0]);
+				return (ERROR);
+			}
 			full_path = str[i];
 			tmp = ft_strrchr(str[i], '/');
 			str[i] = ft_strdup(tmp);
