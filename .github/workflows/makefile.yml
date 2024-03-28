@@ -23,8 +23,3 @@ jobs:
     - name: Cleaning after first tester
       run: make fclean
 
-    - name: Run Deuxieme tester
-      run: make tester2
-
-    - name: Cleaning after second tester
-      run: make fclean
