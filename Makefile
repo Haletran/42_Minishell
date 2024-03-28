@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/03/28 19:39:18 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/03/28 19:41:52 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,7 @@ norm:
 	@norminette $(SRCS) includes libft get_next_line ft_printf
 
 tester: fclean all
-	@[ -d "minishell_tester" ] || git clone https://github.com/LucasKuhn/minishell_tester.git
-	@(cd minishell_tester && ./tester builtins)
+	bash tester.sh
 
 clean:
 	rm -rf $(OBJS_DIR)
