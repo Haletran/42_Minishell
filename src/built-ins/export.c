@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/27 16:02:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:39:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ int check_if_alpha(char *str)
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-' &&
 			str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
-		{
-			printf("str[i] = %c\n", str[i]);
 			return (ERROR);
-		}
 		i++;
 	}
 	return (SUCCESS);
