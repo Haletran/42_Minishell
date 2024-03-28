@@ -29,6 +29,7 @@ As beautiful as a shell..
 - [ ] Env command parsing (OK : env env FAIL : env rjsdgjsdg)
 - [ ] Export add valid charset
 - [ ] Prompt erasing if color is used and prompt too long
+- [ ] Need to fix Heredoc
 
 //use open in a fork
 
