@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 11:19:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:04:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	sig_command_is_running(int signum)
 	ft_putstr_fd("\n", 1);
 	rl_replace_line("", 1);
 	rl_redisplay();
+	g_var = 1;
 }
 
 void	heredoc_handler(int signum)
@@ -65,5 +66,10 @@ void	handle_sig(int check)
 	{
 		signal(CTRL_C, sig_ctrl_c);
 		signal(CTRL_BACKSLACH, RESET_SIG);
+	}
+	else if (check == 2)
+	{
+		signal(CTRL_C, sig_command_is_running);
+		signal(CTRL_BACKSLACH, sig_ctrl_back);
 	}
 }
