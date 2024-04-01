@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 15:25:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:28:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int delete (t_lst *args, int len)
 {
 	int		j;
-	int		i;
 	char	**tmp;
 
 	j = 0;
-	i = 0;
 	tmp = malloc(sizeof(char *) * (get_nbargs(args->env_var) + 1));
 	while (j < len)
 	{
