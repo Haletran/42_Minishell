@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 11:04:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:34:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	check_number_of_heredoc(char **input)
 	j = 0;
 	while (input[i])
 	{
-		if (!ft_strncmp(input[i], "<<", 2))
-			j++;
+		if (!ft_strncmp(input[i], "<<", 2) && !input[i + 1])
+			break;
 		i++;
 	}
-	return (j);
+	return (i - 1);
 }
 
 int	ft_heredoc(char **str)
@@ -62,13 +62,14 @@ int	ft_heredoc(char **str)
 			{
 				free(input);
 				printf("warning: here-document at line \
-					%d delimited by end-of-file (wanted %s)\n", count, str[1]);
+%d delimited by end-of-file (wanted %s)\n",
+						count,
+						str[i]);
 				exit(STOPPED);
 			}
 			if (g_var == 1)
 			{
 				free(input);
-				rl_redisplay();
 				exit(ERROR);
 			}
 			if (!ft_strncmp(input, str[i], ft_strlen(str[i]))

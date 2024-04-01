@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 10:58:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:19:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	heredoc_handler(int signum)
 	(void)signum;
 	signal(CTRL_C, RESET_SIG);
 	signal(CTRL_BACKSLACH, RESET_SIG);
+	ft_putstr_fd("^C", 0);
 	g_var = 1;
 	close(0);
 }
