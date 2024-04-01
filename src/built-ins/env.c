@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:59:39 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 18:06:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:23:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	ft_env(char **envp, char **str)
 		g_value = 127;
 		return (ERROR);
 	}
-	else
-		if (ft_strlen(str[1]) == 0)
-			print_tab(envp);
+	else if (ft_strlen(str[1]) == 0)
+		print_tab(envp);
 	return (SUCCESS);
 }

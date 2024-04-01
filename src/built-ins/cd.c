@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 17:26:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:23:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ static void	handle_old_path(char *curr_path, char *old_path)
 	chdir(old_path);
 }
 
+static char	*search_path(char *str, t_lst *lst)
+{
+	int		i;
+	char	**var;
+
+	var = NULL;
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (lst->env_var[i])
+	{
+		if (!ft_strncmp(lst->env_var[i], str, ft_strlen(str))
+			&& lst->env_var[i][ft_strlen(str)] == '=')
+		{
+			var = ft_split(lst->env_var[i], '=');
+			break ;
+		}
+		i++;
+	}
+	return (var[1]);
+}
+
 static int	handle_arguments(char **str)
 {
 	if (get_nbargs(str) > 2)
@@ -44,6 +66,7 @@ static int	handle_arguments(char **str)
 int	ft_cd(char **str, t_lst *lst)
 {
 	int		valid;
+	char	**var;
 	char	*old_path;
 	char	curr_path[1024];
 
@@ -57,6 +80,13 @@ int	ft_cd(char **str, t_lst *lst)
 		valid = handle_tilde(str, lst);
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
 		handle_old_path(curr_path, old_path);
+	else if (!ft_strncmp(str[1], "$", 1) && ft_strlen(str[1]) >= 1)
+	{
+		var = ft_split(str[1], '$');
+		valid = chdir(search_path(var[0], lst));
+		free_tab(var);
+		var = NULL;
+	}
 	else
 	{
 		getcwd(curr_path, 1024);
