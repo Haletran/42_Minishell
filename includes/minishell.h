@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 15:11:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:53:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ char				*ft_join(char *s1, char *s2);
 void				free_list(t_lst *lst);
 void				free_tab(char **str);
 int					exec(char **str, t_lst *args);
-void				print_commands(char **src);
+void				print_tab(char **src);
 int					check_commands(char **str, t_lst *args);
 int					get_nbargs(char **str);
 char				*strjoin(char *s1, char *s2);
 void				init_lst(t_lst **args, char **envp);
 char				*check_path(char **str, t_lst *args, int nb);
 void				get_exit_code(t_lst *args);
-void				print_commands(char **src);
+void				print_tab(char **src);
 int					get_len(char **str);
 int					exec_pipe(char **str, t_lst *args);
 int					check_if_pipe(char **str);
@@ -76,6 +76,7 @@ char				**sort_in_ascii(char **arr);
 int					check_if_alpha(char *str);
 void				free_char_double_pointer(char **ptr);
 char				**cpy(char **src, char **dest);
+void				ft_cpy(char **dest, char **src);
 
 /*BUILTS-INS*/
 int					pwd(t_lst *args);

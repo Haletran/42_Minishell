@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 13:53:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:29:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	search_path(char *str, t_lst *args)
 		return (ERROR);
 	while (args->env_var[i])
 	{
-		if (!ft_strncmp(args->env_var[i], str, ft_strlen(str)))
+		if (!ft_strncmp(args->env_var[i], str, ft_strlen(str))
+			&& args->env_var[i][ft_strlen(str)] == '=')
 		{
 			var = ft_split(args->env_var[i], '=');
 			printf("%s", var[1]);
@@ -33,7 +34,6 @@ static int	search_path(char *str, t_lst *args)
 		}
 		i++;
 	}
-	printf("\n");
 	return (ERROR);
 }
 

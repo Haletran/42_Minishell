@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 15:18:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:55:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,17 @@ int	check_if_alpha(char *str)
 	return (SUCCESS);
 }
 
+void	ft_cpy(char **dest, char **src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = strdup(src[i]);
+		i++;
+	}
+}
 
 char	**cpy(char **src, char **dest)
 {

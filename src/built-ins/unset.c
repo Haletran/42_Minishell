@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 15:51:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:55:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int delete (t_lst *args, int len)
+int	delete(t_lst *args, int len)
 {
 	int		j;
 	char	**tmp;

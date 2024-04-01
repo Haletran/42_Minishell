@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 09:09:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/18 17:19:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:45:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_commands(char **src)
+void	print_tab(char **src)
 {
 	int	i;
 

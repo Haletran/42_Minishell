@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/20 11:40:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:45:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	show_token(char **commands, t_com **com)
 		}
 		(*com) = head;
 	} */
-	print_commands(commands);
+	print_tab(commands);
 }
