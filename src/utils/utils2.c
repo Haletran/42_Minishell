@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 18:13:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:18:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,44 @@ char	**sort_in_ascii(char **arr)
 		i++;
 	}
 	return (arr);
+}
+
+//[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
+int	check_if_alpha(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-'
+			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+
+char	**cpy(char **src, char **dest)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	if (!dest || !src)
+		return (NULL);
+	while (src[len] != NULL)
+		len++;
+	dest = malloc((len + 1) * sizeof(char *));
+	if (!dest)
+		return (NULL);
+	while (src[i] != NULL)
+	{
+		dest[i] = strdup(src[i]);
+		i++;
+	}
+	dest[i] = NULL;
+	return (dest);
 }

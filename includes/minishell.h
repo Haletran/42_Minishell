@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 10:32:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:11:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ extern int			g_var;
 # define NOT_FOUND -5
 # define ERROR -1
 # define SUCCESS 0
-#define STOPPED 1
+# define STOPPED 1
 
 /*FUNCTIONS*/
 int					check_space(char *str);
@@ -73,6 +73,9 @@ void				handle_sig(int check);
 void				choose(char *input, char **commands, t_lst **args);
 void				show_token(char **commands, t_com **com);
 char				**sort_in_ascii(char **arr);
+int					check_if_alpha(char *str);
+void				free_char_double_pointer(char **ptr);
+char				**cpy(char **src, char **dest);
 
 /*BUILTS-INS*/
 int					pwd(t_lst *args);

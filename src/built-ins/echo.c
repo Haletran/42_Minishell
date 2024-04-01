@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 22:18:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:53:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ int	ft_echo(char **str, t_lst *args)
 	}
 	free_tab(var);
 	free_tab(str);
-	str = NULL;
-	var = NULL;
 	if (flag == 0)
 		printf("\n");
 	return (SUCCESS);

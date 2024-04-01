@@ -6,37 +6,38 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 21:00:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:25:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	delete(t_lst *args, int len)
+int delete (t_lst *args, int len)
 {
+	int		j;
 	int		i;
-	int		after_len;
-	char	**cpy;
+	char	**tmp;
 
-	after_len = len;
+	j = 0;
 	i = 0;
-	while (args->env_var[after_len])
-		after_len++;
-	cpy = malloc(sizeof(cpy) * (len + after_len) + 1);
-	while (i < len)
+	tmp = malloc(sizeof(char *) * (get_nbargs(args->env_var) + 1));
+	while (j < len)
 	{
-		cpy[i] = args->env_var[i];
-		i++;
+		tmp[j] = args->env_var[j];
+		j++;
 	}
-	len++;
-	while (len < after_len)
+	j++;
+	while (args->env_var[j])
 	{
-		cpy[i] = args->env_var[len];
-		len++;
-		i++;
+		tmp[j - 1] = args->env_var[j];
+		j++;
 	}
-	args->env_var = cpy;
-	args->env_cpy = cpy;
+	free(args->env_var);
+	free(args->env_cpy);
+	tmp[j - 1] = NULL;
+	args->env_var = cpy(tmp, args->env_var);
+	args->env_cpy = cpy(tmp, args->env_cpy);
+	free(tmp);
 	return (SUCCESS);
 }
 
@@ -50,9 +51,10 @@ int	ft_unset(char **str, t_lst **args)
 	while (str[i])
 	{
 		len = 0;
+		str[i] = ft_strjoin(str[i], "=");
 		while ((*args)->env_var[len])
 		{
-			if (!ft_strncmp((*args)->env_var[len], str[i], ft_strlen(str[1])))
+			if (!ft_strncmp((*args)->env_var[len], str[i], ft_strlen(str[i])))
 				break ;
 			len++;
 		}

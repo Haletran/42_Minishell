@@ -6,27 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 13:13:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:50:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-//[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
-int	check_if_alpha(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalnum(str[i]) && str[i] != '=' && str[i] != '-'
-			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
-}
 
 char	*make_str(char **src)
 {
@@ -110,9 +94,7 @@ int	already_exist(t_lst *args, char **str)
 	while (args->env_var[i])
 	{
 		if (!ft_strncmp(args->env_var[i], tmp[0], ft_strlen(tmp[1])))
-		{
 			return (i);
-		}
 		i++;
 	}
 	free(tmp);
