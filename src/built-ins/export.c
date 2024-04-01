@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/03/28 22:18:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 13:13:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,11 @@ int	already_exist(t_lst *args, char **str)
 	{
 		if (!ft_strncmp(args->env_var[i], tmp[0], ft_strlen(tmp[1])))
 		{
-			printf("already exist\n");
 			return (i);
 		}
 		i++;
 	}
-	// free_tab(tmp);
+	free(tmp);
 	return (0);
 }
 
@@ -136,7 +135,7 @@ int	ft_export(t_lst *args, char **str)
 	}
 	if (check_if_alpha(str[1]) == ERROR)
 	{
-		printf("not a valid identifier\n");
+		printf("minishell : %s not a valid identifier\n", str[1]);
 		g_value = 1;
 		return (ERROR);
 	}
