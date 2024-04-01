@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 09:54:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 15:12:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 15:26:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
  */
 void	init_lst(t_lst **args, char **envp)
 {
-	int	i;
-
-	i = 0;
 	(*args)->home_path = getenv("HOME");
 	(*args)->username = getenv("USER");
 	(*args)->env_path = getenv("PATH");
