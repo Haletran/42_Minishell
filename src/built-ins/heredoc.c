@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 11:34:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:35:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	check_number_of_heredoc(char **input)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (input[i])
 	{
 		if (!ft_strncmp(input[i], "<<", 2) && !input[i + 1])
