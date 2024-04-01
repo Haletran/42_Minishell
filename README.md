@@ -15,7 +15,7 @@ As beautiful as a shell..
 - [x] PWD command not working properly
 - [ ] Return value not valid sometimes
 - [x] Make env var working
-- [ ] Add pipe (IN CONSTRUCTION)
+- [ ] Add pipe (IN CONSTRUCTION) / multi-command
 - [ ] Redirections
 - [ ] Parsing (lexer, tokenisation)
 - [x] Sort in ascii when exporting a variable
