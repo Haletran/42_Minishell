@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/01 10:28:45 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 16:09:45 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,12 +66,17 @@ tester: fclean all
 	@if [ ! -d "minishell-tester" ]; then git clone https://github.com/RubenPin90/minishell-tester.git ; fi
 	@cd minishell-tester && bash tester.sh
 
+tester2: fclean
+	@pip3 install -r tester/requirements.txt
+	@python3 tester/src/__main__.py ./
+
 clean:
 	rm -rf $(OBJS_DIR)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf tester/src/__pycache__
 	make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
 	echo "\033[41m$(NAME) cleaned\033[0m"

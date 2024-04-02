@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 17:58:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:36:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,23 +119,15 @@ int	ft_export(t_lst *args, char **str)
 	}
 	if (check_if_alpha(str[1]) == ERROR)
 	{
-		printf("minishell : %s not a valid identifier\n", str[1]);
+		ft_printf_fd(2, "minishell : %s not a valid identifier\n", str[1]);
 		g_value = 1;
 		return (ERROR);
 	}
-	if (!ft_strchr(str[1], '='))
-	{
-		i = already_exist(args, str);
-		if (i >= 1)
-			delete(args, i);
-		add_var_no_input(args, str);
-	}
-	else
-	{
-		i = already_exist(args, str);
-		if (i >= 1)
-			delete(args, i);
+	if (ft_strchr(str[1], '=') && !already_exist(args, str))
 		add_var(args, str);
-	}
+	else if (!ft_strchr(str[1], '=') && !already_exist(args, str))
+		add_var_no_input(args, str);
+	else
+		printf("minishell : %s already exist\n", str[1]);
 	return (SUCCESS);
 }
