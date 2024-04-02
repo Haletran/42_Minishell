@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_Bloody.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 23:58:42 by aska              #+#    #+#             */
-/*   Updated: 2024/02/27 20:28:20 by aska             ###   ########.fr       */
+/*   Updated: 2024/04/02 22:24:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASCII_ALLIGATOR_H
-# define ASCII_ALLIGATOR_H
+#ifndef ASCII_BLOODY_H
+# define ASCII_BLOODY_H
 
 # define FONT_ROW 10
 # define A \
