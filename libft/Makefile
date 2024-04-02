@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 11:10:06 by ygaiffie          #+#    #+#              #
-#    Updated: 2024/04/02 22:08:57 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 22:33:26 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,11 +56,11 @@ dummy: $(MAIN_SRC)
 	@echo -e "$(BOLD)$@$(NC) is located in $(BOLD)$(shell find . -iname "$@")$(NC) !"
 
 clean:
-	@rm -fr $(OBJS) $(OBJ_DIR) && printf "Cleaning: $(OBJS)\n"
+	@rm -fr $(OBJS) $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME) dummy && printf "Cleaning: $(NAME)\n"
-
+	@rm -f $(NAME) dummy
+	
 re: 
 	@$(MAKE) fclean
 	@$(MAKE) all
