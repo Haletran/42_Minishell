@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 18:24:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 19:37:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,6 @@ int	already_exist(t_lst *args, char **str)
 
 int	ft_export(t_lst *args, char **str)
 {
-	int	i;
-
-	i = 0;
 	if (!str[1])
 	{
 		if (!args->env_cpy_lst)
