@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/02 17:30:16 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 23:34:47 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,12 +61,12 @@ $(NAME): $(OBJS)
 
 norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
-	@norminette $(SRCS) includes libft src
+	@norminette $(SRCS) includes libft src | grep -v "Notice: GLOBAL_VAR_DETECTED"
 
 norminette:
 	@python3 -m pip install --upgrade pip setuptools
 	@python3 -m pip install norminette
-	@-norminette
+	@-norminette 
 	
 tester: fclean all
 	@if [ ! -d "minishell-tester" ]; then git clone https://github.com/RubenPin90/minishell-tester.git ; fi
