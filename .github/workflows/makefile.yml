@@ -17,6 +17,9 @@ jobs:
     - name: Compilation
       run: make
 
+    - name: Norminette
+      run: make norminette
+
     - name: Run Premier tester
       run: make tester
     
