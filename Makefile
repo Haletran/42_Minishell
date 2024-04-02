@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/02 16:25:55 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 16:28:03 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ norm:
 norminette:
 	@python3 -m pip install --upgrade pip setuptools
 	@python3 -m pip install norminette
-	@norminette
+	@-norminette
 	
 tester: fclean all
 	@if [ ! -d "minishell-tester" ]; then git clone https://github.com/RubenPin90/minishell-tester.git ; fi
