@@ -5,76 +5,72 @@
 #                                                     +:+ +:+         +:+      #
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/30 14:41:26 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/02 15:04:45 by bapasqui         ###   ########.fr        #
+#    Created: 2023/10/31 11:10:06 by ygaiffie          #+#    #+#              #
+#    Updated: 2024/04/02 22:08:57 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-OBJS = $(SRCS:.c=.o)
+ifndef VERBOSE
+MAKEFLAGS += --no-print-directory --silent
+endif
 
-CC = cc
+SHELL			:=	/bin/bash
 
-CFLAGS = -Wall -Wextra -Werror
+RED				:= \033[0;31m
+BRED			:= \033[1;31m
+BLINK_GREEN		:= \033[5;32m
+BGREEN			:= \033[1;32m
+BHYEL			:= \033[1;93m
+BOLD			:= \033[1m
+NC				:= \033[0m
 
-NAME = libft.a
+SRC_DIR 		:=	./src/
+OBJ_DIR 		:=	./obj/
 
-
-SRCS =		ft_isalpha.c	\
-			ft_isdigit.c	\
-			ft_isalnum.c	\
-			ft_isascii.c	\
-			ft_isprint.c	\
-			ft_strlen.c		\
-			ft_memset.c		\
-			ft_bzero.c		\
-			ft_memcpy.c		\
-			ft_memmove.c	\
-			ft_strlcpy.c	\
-			ft_strlcat.c	\
-			ft_toupper.c	\
-			ft_tolower.c	\
-			ft_strchr.c		\
-			ft_strrchr.c	\
-			ft_strncmp.c	\
-			ft_memchr.c		\
-			ft_memcmp.c		\
-			ft_strnstr.c	\
-			ft_atoi.c		\
-			ft_calloc.c		\
-			ft_strdup.c		\
-			ft_substr.c		\
-			ft_strjoin.c	\
-			ft_strtrim.c	\
-			ft_split.c		\
-			ft_itoa.c		\
-			ft_lstnew.c		\
-			ft_strmapi.c	\
-			ft_striteri.c	\
-			ft_putchar_fd.c	\
-			ft_putstr_fd.c	\
-			ft_putendl_fd.c	\
-			ft_strcpy.c		\
-			ft_lstnew.c		\
-			ft_lst_add_back.c \
-			ft_lst_add_front.c \
-			ft_lst_size.c \
-			ft_strcmp.c \
-			ft_printf_fd.c \
-			ft_putnbr_fd.c
+CC 				:= 	clang
+CFLAGS 			:= 	-Wall -Werror -Wextra
 
 
-all: $(NAME)
+SRCS			:= 	$(shell find ./src -iname "*.c")
+OBJS			:= 	$(sort $(SRCS:$(SRC_DIR)%.c=$(OBJ_DIR)%.o))
+MAIN_SRC		:=	main.c
+MAIN_OBJ		:=	$(OBJ_DIR)main.o
+
+NAME 			:= 	libft.a
+HEADERS			:=	-I libft.h
+
+all: init $(NAME)
+	@echo -e "\t$(BLINK_GREEN)$(NAME) = COMPILATION FINISHED !$(NC)"
+	@echo -e "$(BOLD)$(NAME)$(NC) is located in $(BOLD)$(shell find . -iname "$(NAME)")$(NC) !\n"
+	
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && echo -e "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+
 
 $(NAME): $(OBJS)
-	echo "Compiling\033[1m\033[32m libft \033[0m"
-	ar rc $(NAME) $(OBJS)
+	@ar rcs -o $@ $^ && echo -e "$(BGREEN)[✔]$(NC)\tArchiving:\t$(BOLD)$@\n"
+
+dummy: $(MAIN_SRC)
+	@$(CC) $(CFLAGS) $< -o $@ $(NAME) && echo -e "$(BGREEN)[✔]$(NC)\tLinking Exe:\t$(BOLD)$@"
+	@echo -e "\t$(BLINK_BGREEN)$@ = COMPILATION FINISHED !$(NC)"
+	@echo -e "$(BOLD)$@$(NC) is located in $(BOLD)$(shell find . -iname "$@")$(NC) !"
 
 clean:
-	rm -rf $(OBJS)
+	@rm -fr $(OBJS) $(OBJ_DIR) && printf "Cleaning: $(OBJS)\n"
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -f $(NAME) dummy && printf "Cleaning: $(NAME)\n"
 
-re: fclean all
+re: 
+	@$(MAKE) fclean
+	@$(MAKE) all
 
-.PHONY: all clean fclean re
+init:
+	@echo -e ""
+	@echo -e "\t\t$(BHYEL)┍━━━━━━━━━━━»•» 🌸 «•«━┑$(NC)"
+	@echo -e "\t\t$(BHYEL) LIBFT MAKE COMPILATION $(NC)"
+	@echo -e "\t\t$(BHYEL)┕━»•» 🌸 «•«━━━━━━━━━━━┙$(NC)"
+	@echo -e ""
+	@mkdir -p $(OBJ_DIR)
+	
+.PHONY: clean fclean all re init
