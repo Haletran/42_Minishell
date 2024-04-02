@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/02 16:28:03 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 17:30:16 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS	= src/main.c \
 		  src/built-ins/pwd.c \
 		  src/built-ins/heredoc.c \
 		  src/utils/free.c \
+		  src/utils/lst_utils.c \
 		  src/parse/parse.c \
 		  src/execution/exec_and.c \
 		  src/execution/exec_pipe.c \

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:40:33 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 15:04:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:08:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	**ft_split(char const *s, char c);
 void	*ft_lstnew(int content);
 char	*get_next_line(int fd);
 char	*ft_strcpy(char *dest, char *src);
-void	*ft_lstadd_back(t_com *lst, int value);
+void	*ft_lstadd_back(t_env *lst, int value);
 void	ft_lst_add_front(t_com **a, t_com *new);
 int		ft_lst_size(t_com *a);
 void	*ft_lst_new(int content, int index);

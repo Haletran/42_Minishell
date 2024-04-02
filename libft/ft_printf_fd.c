@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:00:13 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 15:05:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:09:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int	ft_printf_fd(int fd, const char *format, ...)
 	va_start(pointer, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && (format[i + 1] == 's' || format[i + 1] == 'd'))
+		if (format[i] == '%')
 		{
 			i++;
 			if (format[i] == 's')
 				len += ft_putstr_fd(va_arg(pointer, char *), fd);
 			else if (format[i] == 'd')
 				len += ft_putnbr_fd(va_arg(pointer, int), fd);
+            else if (format[i] == 'c')
+                len += ft_putchar_fd(va_arg(pointer, int), 1);
 		}
 		else
 			len += write(fd, &format[i], 1);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 15:36:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:24:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,12 @@ int	ft_export(t_lst *args, char **str)
 	int	i;
 
 	i = 0;
-	if (!args->env_var)
-		return (ERROR);
 	if (!str[1])
 	{
-		if (!args->env_cpy)
+		if (!args->env_cpy_lst)
 			return (ERROR);
-		sort_in_ascii(args->env_cpy);
-		while (args->env_cpy[i])
-			printf("declare -x %s\n", args->env_cpy[i++]);
+		sort_in_ascii(*args->env_cpy_lst);
+		print_list_export(args);
 		return (1);
 	}
 	if (check_if_alpha(str[1]) == ERROR)

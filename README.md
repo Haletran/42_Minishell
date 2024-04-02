@@ -34,6 +34,7 @@ As beautiful as a shell..
 
 // use open in a fork
 // file for heredoc
+// removeif for unset
 
 ## BONUS
 

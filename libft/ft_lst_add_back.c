@@ -6,15 +6,15 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:20:08 by codespace         #+#    #+#             */
-/*   Updated: 2024/03/12 14:02:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:08:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_lstadd_back(t_com *lst, int value)
+void	*ft_lstadd_back(t_env *lst, int value)
 {
-	t_com	*head;
+	t_env	*head;
 
 	head = lst;
 	if (lst == NULL)

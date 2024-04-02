@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "minishell.h": "c",
-        "curses.h": "c"
+        "curses.h": "c",
+        "lexer.h": "c"
     }
 }

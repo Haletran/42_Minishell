@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 17:55:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:23:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,29 @@ int	check_if_pipe(char **str)
 	return (0);
 }
 
-char	**sort_in_ascii(char **arr)
+t_env	*sort_in_ascii(t_env *list)
 {
-	int		i;
-	int		j;
-	char	*tmp;
+	t_env	*current;
+	t_env	*index;
+	char	*tmp_key;
 
-	i = 0;
-	while (arr[i] != NULL)
+	current = list;
+	while (current != NULL)
 	{
-		j = i + 1;
-		while (arr[j] != NULL)
+		index = current->next;
+		while (index != NULL)
 		{
-			if (ft_strcmp(arr[i], arr[j]) > 0)
+			if (ft_strcmp(current->key, index->key) > 0)
 			{
-				tmp = arr[i];
-				arr[i] = arr[j];
-				arr[j] = tmp;
+				tmp_key = current->key;
+				current->key = index->key;
+				index->key = tmp_key;
 			}
-			j++;
+			index = index->next;
 		}
-		i++;
+		current = current->next;
 	}
-	return (arr);
+	return (list);
 }
 
 //[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
