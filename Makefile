@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/02 16:09:45 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/02 16:20:21 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,8 @@ tester: fclean all
 	@cd minishell-tester && bash tester.sh
 
 tester2: fclean
+	@python3 -m pip install --upgrade pip setuptools
+	@python3 -m pip install norminette
 	@pip3 install -r tester/requirements.txt
 	@python3 tester/src/__main__.py ./
 
