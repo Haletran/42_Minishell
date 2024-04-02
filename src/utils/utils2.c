@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 18:23:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:06:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_env	*sort_in_ascii(t_env *list)
 	t_env	*current;
 	t_env	*index;
 	char	*tmp_key;
+	char	*tmp_value;
 
 	current = list;
 	while (current != NULL)
@@ -64,8 +65,11 @@ t_env	*sort_in_ascii(t_env *list)
 			if (ft_strcmp(current->key, index->key) > 0)
 			{
 				tmp_key = current->key;
+				tmp_value = current->value;
 				current->key = index->key;
+				current->value = index->value;
 				index->key = tmp_key;
+				index->value = tmp_value;
 			}
 			index = index->next;
 		}
@@ -73,6 +77,9 @@ t_env	*sort_in_ascii(t_env *list)
 	}
 	return (list);
 }
+
+
+
 
 //[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
 int	check_if_alpha(char *str)
