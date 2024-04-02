@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 23:07:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/02 23:47:42 by aska             ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../includes/minishell.h"
 
@@ -22,7 +22,7 @@ void	render_prompt(t_lst **args, char **commands)
 	char	*input;
 
 	handle_sig(0);
-	input = readline("MINISHELL $> ");
+	input = readline("MINISHELL $ " BGRN "> " CRESET);
 	if (!input)
 	{
 		g_value = 0;
@@ -52,6 +52,7 @@ int	main(int ac, char **av, char **envp)
 	t_lst	**args;
 	char	**commands;
 
+	title_screen("minishell", HGRN);
 	commands = NULL;
 	(void)av;
 	if (ac != 1)
