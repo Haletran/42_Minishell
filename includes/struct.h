@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 11:13:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:18:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ typedef struct s_env
 //? https://www.linux.org/threads/bash-03-%E2%80%93-command-line-processing.38676/
 
 // TODO Struct For Variables
-// TODO Brace, Parameter, Arithmetic, Command Substitution, Tilde,
-	Word Splitting, Globbing
+// TODO Brace, Parameter, Arithmetic, Command Substitution, Tilde, Word Splitting, Globbing
 
 typedef struct s_token
 {
