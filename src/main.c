@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 10:55:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:04:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ int	main(int ac, char **av, char **envp)
 	t_lst	**args;
 	char	**commands;
 
-	title_screen("minishell", HGRN);
 	commands = NULL;
-	(void)av;
-	if (ac != 1)
-		return (0);
+	(void)ac;
 	args = malloc(sizeof(t_lst));
 	init_lst(args, envp);
+	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1) 
+		title_screen("minishell", HGRN);
 	while (1)
 		render_prompt(args, commands);
 	return (0);
