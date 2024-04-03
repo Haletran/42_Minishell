@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 12:03:10 by aska             ###   ########.fr       */
+/*   Updated: 2024/04/03 12:07:45 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -120,7 +120,7 @@ typedef struct s_meta
 
 typedef struct s_operator
 {
-	char				*meta;
+	char				*operator;
 	int					index;
 	struct s_operator	*next;
 	struct s_operator	*prev;
