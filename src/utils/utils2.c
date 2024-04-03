@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 20:06:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:12:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ t_env	*sort_in_ascii(t_env *list)
 	}
 	return (list);
 }
-
-
-
 
 //[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
 int	check_if_alpha(char *str)
