@@ -6,11 +6,26 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 09:54:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 10:53:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:49:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int check_if_path(char **envp)
+{
+	int i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp(envp[i], "PATH=", 5))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 
 /**
  * @brief Init different path value
@@ -19,10 +34,14 @@
  */
 void	init_lst(t_lst **args, char **envp)
 {
+	if (!envp || !*envp || check_if_path(envp) == 0)
+	{
+		printf("Error: No environment variable found\n");
+		exit(1);
+	}
 	*args = malloc(sizeof(t_lst *) * 12);
 	(*args)->home_path = getenv("HOME");
 	(*args)->username = getenv("USER");
-	(*args)->env_path = getenv("PATH");
 	(*args)->env_var = malloc(sizeof(char) * get_len(envp));
 	(*args)->env_var_lst = malloc(sizeof(char) * get_len(envp));
 	(*args)->env_cpy_lst = malloc(sizeof(char) * get_len(envp));
@@ -47,6 +66,8 @@ void	init_stack(t_env **env, char **str)
 
 	head = NULL;
 	tmp = 0;
+	if (!str)
+		return ;
 	while (tmp != get_nbargs(str))
 	{
 		if (!(*env))

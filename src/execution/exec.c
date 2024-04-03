@@ -6,11 +6,27 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 19:35:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:39:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+
+void find_path(t_env *env, t_lst *args)
+{
+	while (env)
+	{
+		if (!ft_strncmp(env->key, "PATH", 4))
+		{
+			args->env_path = ft_strdup(env->value);
+			break ;
+		}
+		else
+			env = env->next;
+	}
+}
+
 
 /**
  * @brief Path check if access is ok and loop until it test all path available
@@ -25,9 +41,11 @@ char	*check_path(char **str, t_lst *args, int nb)
 	char	*cmd;
 	char	**path;
 	char	*full_path;
+	t_env *env = *args->env_var_lst;
 
 	cmd = str[nb];
 	path = NULL;
+	find_path(env, args);
 	path = ft_split(args->env_path, ':');
 	*path = ft_join(*path, "/");
 	full_path = ft_join(*path, cmd);
@@ -42,7 +60,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 		}
 		path++;
 	}
-	// free_tab(path);
+	free_tab(path);
 	return (full_path);
 }
 
