@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 20:09:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:35:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	print_list_export(t_lst *args)
 	current = *args->env_cpy_lst;
 	while (current)
 	{
-		ft_printf_fd(1, "declare -x %s=\"%s\"\n", current->key, current->value);
+		if (current->value)
+			ft_printf_fd(1, "declare -x %s=\"%s\"\n", current->key, current->value);
+		else
+			ft_printf_fd(1, "declare -x %s\n", current->key);
 		current = current->next;
 	}
 }

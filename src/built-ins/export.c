@@ -6,98 +6,105 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 20:09:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:41:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*make_str(char **src)
+void replace_var(t_lst *args, char **str)
 {
-	char	*dest;
-	int		i;
-	int		k;
-	int		j;
+	t_env	*env;
+	char	**tmp;
 
-	i = 0;
-	k = 0;
-	j = 0;
-	dest = malloc(sizeof(dest) * get_nbargs(src));
-	while (src[i][j])
+	tmp = ft_split(str[1], '=');
+	env = *args->env_var_lst;
+	while (env)
 	{
-		dest[k] = src[i][j];
-		k++;
-		j++;
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
+			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
+		{
+			free(env->value);
+			env->value = ft_strdup(tmp[1]);
+			free_tab(tmp);
+			return ;
+		}
+		env = env->next;
 	}
-	j = 0;
-	i++;
-	dest[k++] = '=';
-	while (src[i][j])
-	{
-		dest[k] = src[i][j];
-		k++;
-		j++;
-	}
-	dest[k] = '\0';
-	return (dest);
+	free_tab(tmp);
 }
+
+void replace_var_cpy(t_lst *args, char **str)
+{
+	t_env *env;
+	char **tmp;
+	
+	tmp = ft_split(str[1], '=');
+	env = *args->env_cpy_lst;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
+			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
+		{
+			free(env->value);
+			env->value = ft_strdup(tmp[1]);
+			free_tab(tmp);
+			return ;
+		}
+		env = env->next;
+	}
+	free_tab(tmp);
+}
+
 
 void	add_var_no_input(t_lst *args, char **str)
 {
-	int	len_env;
+	t_env	*env;
 
-	len_env = 0;
-	while (args->env_cpy[len_env])
-		len_env++;
-	args->env_cpy[len_env] = str[1];
+	env = *args->env_cpy_lst;
+	while (env->next)
+		env = env->next;
+	env->next = malloc(sizeof(t_env));
+	env->next->key = ft_strdup(str[1]);
+	env->next->value = NULL;
+	env->next->next = NULL;
 	return ;
 }
 
 void	add_var(t_lst *args, char **str)
 {
-	char	**to_add;
-	char	*stock;
-	int		len_env;
-	int		args_len;
-	int		len_env_cpy;
-	int		i;
+	t_env	*env;
+	char **tmp;
 
-	i = 1;
-	len_env_cpy = 0;
-	len_env = 0;
-	while (args->env_var[len_env])
-		len_env++;
-	while (args->env_cpy[len_env_cpy])
-		len_env_cpy++;
-	while (str[i])
-	{
-		to_add = ft_split(str[i], '=');
-		args_len = 0;
-		while (to_add[args_len])
-			args_len++;
-		stock = make_str(to_add);
-		args->env_var[len_env] = stock;
-		args->env_cpy[len_env_cpy] = stock;
-		len_env++;
-		len_env_cpy++;
-		i++;
-	}
+	tmp = ft_split(str[1], '=');
+	env = *args->env_var_lst;
+	while (env->next)
+		env = env->next;
+	env->next = malloc(sizeof(t_env));
+	env->next->key = ft_strdup(tmp[0]);
+	env->next->value = ft_strdup(tmp[1]);
+	env->next->next = NULL;
+	free_tab(tmp);
+	return ;
 }
 
 int	already_exist(t_lst *args, char **str)
 {
-	int		i;
+	t_env	*env;
 	char	**tmp;
 
-	i = 0;
 	tmp = ft_split(str[1], '=');
-	while (args->env_var[i])
+	env = *args->env_var_lst;
+	while (env)
 	{
-		if (!ft_strncmp(args->env_var[i], tmp[0], ft_strlen(tmp[1])))
-			return (i);
-		i++;
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1])))
+		{
+			free_tab(tmp);
+			return (1);
+		}
+		env = env->next;
 	}
-	free(tmp);
+	free_tab(tmp);
 	return (0);
 }
 
@@ -122,6 +129,9 @@ int	ft_export(t_lst *args, char **str)
 	else if (!ft_strchr(str[1], '=') && !already_exist(args, str))
 		add_var_no_input(args, str);
 	else
-		printf("minishell : %s already exist\n", str[1]);
+	{
+		replace_var(args, str);
+		replace_var_cpy(args, str);
+	}
 	return (SUCCESS);
 }

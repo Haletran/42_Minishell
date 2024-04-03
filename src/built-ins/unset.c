@@ -6,58 +6,77 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 14:47:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:51:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	delete(t_lst *args, int len)
+void	delete_var_cpy(t_lst *args, char *str)
 {
-	int		j;
-	char	**tmp;
+	t_env	*env;
+	t_env	*prev;
 
-	j = 0;
-	tmp = malloc(sizeof(char *) * (get_nbargs(args->env_var) + 1));
-	while (j < len)
+	env = *args->env_cpy_lst;
+	prev = NULL;
+	while (env)
 	{
-		tmp[j] = args->env_var[j];
-		j++;
+		if (!ft_strncmp(env->key, str, ft_strlen(str))
+			&& ft_strlen(env->key) == ft_strlen(str))
+		{
+			free(env->key);
+			free(env->value);
+			if (prev)
+				prev->next = env->next;
+			else
+				*args->env_cpy_lst = env->next;
+			free(env);
+			free(prev);
+			break;
+		}
+		prev = env;
+		env = env->next;
 	}
-	j++;
-	while (args->env_var[j])
-	{
-		tmp[j - 1] = args->env_var[j];
-		j++;
-	}
-	free(args->env_var);
-	free(args->env_cpy);
-	tmp[j - 1] = NULL;
-	args->env_var = cpy(tmp, args->env_var);
-	args->env_cpy = cpy(tmp, args->env_cpy);
-	free(tmp);
-	return (SUCCESS);
 }
+
+
+void	delete_var(t_lst *args, char *str)
+{
+	t_env	*env;
+	t_env	*prev;
+
+	env = *args->env_var_lst;
+	prev = NULL;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, str, ft_strlen(str))
+			&& ft_strlen(env->key) == ft_strlen(str))
+		{
+			free(env->key);
+			free(env->value);
+			if (prev)
+				prev->next = env->next;
+			else
+				*args->env_var_lst = env->next;
+			free(env);
+			free(prev);
+			break;
+		}
+		prev = env;
+		env = env->next;
+	}
+}
+
 
 int	ft_unset(char **str, t_lst **args)
 {
-	int	len;
-	int	i;
+	int i;
 
-	len = 0;
 	i = 1;
 	while (str[i])
 	{
-		len = 0;
-		str[i] = ft_strjoin(str[i], "=");
-		while ((*args)->env_var[len])
-		{
-			if (!ft_strncmp((*args)->env_var[len], str[i], ft_strlen(str[i])))
-				break ;
-			len++;
-		}
-		delete ((*args), len);
-		i++;
+		delete_var(*args, str[i++]);	
+		delete_var_cpy(*args, str[i]);
 	}
 	return (SUCCESS);
 }

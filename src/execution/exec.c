@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 11:39:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:03:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 		if (execve(full_path, str, args->env_var) == -1)
 		{
 			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
-				printf("minishell: syntax error near unexpected token `;'\n");
+				ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
 			else if (!ft_strncmp(str[0], "|", 1) && ft_strlen(str[0]) == 1)
-				printf("minishell: syntax error near unexpected token `|'\n");
+				ft_printf_fd(2,"minishell: syntax error near unexpected token `|'\n");
 			else
-				printf("minishell: %s: command not found\n", str[0]);
+				ft_printf_fd(2, "minishell: %s: command not found\n", str[0]);
 			g_value = 127;
 			free_tab(str);
 			free(full_path);
@@ -133,7 +133,7 @@ int	exec(char **str, t_lst *args)
 		{
 			if (!ft_strncmp(str[0], "/", 1) && !ft_isalpha(str[0][1]))
 			{
-				printf("minishell: %s: Is a directory\n", str[i]);
+				ft_printf_fd(2, "minishell: %s: Is a directory\n", str[i]);
 				return (ERROR);
 			}
 			full_path = str[i];

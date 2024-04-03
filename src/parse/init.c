@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 09:54:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 11:49:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:06:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_lst(t_lst **args, char **envp)
 {
 	if (!envp || !*envp || check_if_path(envp) == 0)
 	{
-		printf("Error: No environment variable found\n");
+		ft_printf_fd(2, "Error: No environment variable found\n");
 		exit(1);
 	}
 	*args = malloc(sizeof(t_lst *) * 12);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 18:23:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:06:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,30 @@ static void	handle_old_path(char *curr_path, char *old_path)
 	chdir(old_path);
 }
 
-static char	*search_path(char *str, t_lst *lst)
+char	*search_path(char *str, t_lst *lst)
 {
 	int		i;
-	char	**var;
+	t_env	*env;
 
-	var = NULL;
+	env = *lst->env_var_lst;
 	i = 0;
 	if (!str)
 		return (NULL);
-	while (lst->env_var[i])
+	while (env)
 	{
-		if (!ft_strncmp(lst->env_var[i], str, ft_strlen(str))
-			&& lst->env_var[i][ft_strlen(str)] == '=')
-		{
-			var = ft_split(lst->env_var[i], '=');
+		if (!ft_strncmp(env->key, str, ft_strlen(str)) \
+			&& ft_strlen(env->key) == ft_strlen(str))
 			break ;
-		}
-		i++;
+		env = env->next;
 	}
-	return (var[1]);
+	return (env->value);
 }
 
 static int	handle_arguments(char **str)
 {
 	if (get_nbargs(str) > 2)
 	{
-		printf("cd : too many arguments\n");
+		ft_printf_fd(2,"cd : too many arguments\n");
 		return (ERROR);
 	}
 	return (0);

@@ -6,36 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 18:23:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:16:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static int	search_path(char *str, t_lst *args)
-{
-	int		i;
-	char	**var;
-
-	var = NULL;
-	i = 0;
-	if (!str)
-		return (ERROR);
-	while (args->env_var[i])
-	{
-		if (!ft_strncmp(args->env_var[i], str, ft_strlen(str))
-			&& args->env_var[i][ft_strlen(str)] == '=')
-		{
-			var = ft_split(args->env_var[i], '=');
-			printf("%s", var[1]);
-			free_tab(var);
-			var = NULL;
-			return (SUCCESS);
-		}
-		i++;
-	}
-	return (ERROR);
-}
 
 static void	print_current(void)
 {
@@ -80,29 +55,27 @@ int	ft_echo(char **str, t_lst *args)
 	while (str[i])
 	{
 		if (!ft_strncmp(str[i], "$?", 2))
-			printf("%d", g_value);
+			ft_printf_fd(1, "%d", g_value);
 		else if (!ft_strncmp(str[i], "$", 1))
 		{
 			var = ft_split(str[i], '$');
 			if (ft_strlen(str[1]) > 1)
 			{
 				if (var[0])
-					search_path(var[0], args);
+					print_path(var[0], args, 0);
 			}
 			else
-				printf("$");
-			break ;
+				ft_printf_fd(1, "$");
 		}
 		else if (!ft_strncmp(str[i], "*", 1))
 			print_current();
 		else if (str[i + 1] == NULL)
-			printf("%s", str[i]);
+			ft_printf_fd(1, "%s", str[i]);
 		else
-			printf("%s ", str[i]);
+			ft_printf_fd(1, "%s ", str[i]);
 		i++;
 	}
-	free_tab(var);
-	free_tab(str);
+	//free_tab(var);
 	if (flag == 0)
 		printf("\n");
 	return (SUCCESS);
