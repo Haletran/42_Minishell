@@ -6,7 +6,7 @@
 /*   By: aska <aska@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 00:38:12 by aska             ###   ########.fr       */
+/*   Updated: 2024/04/03 12:03:10 by aska             ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -61,8 +61,45 @@ typedef struct s_env
 //? https://www.linux.org/threads/bash-02-%E2%80%93-variables-and-such.38200/
 //? https://www.linux.org/threads/bash-03-%E2%80%93-command-line-processing.38676/
 
-//TODO Struct For Variables
 //TODO Brace, Parameter, Arithmetic, Command Substitution, Tilde, Word Splitting, Globbing
+//TODO Possible add order variable in dlst
+
+typedef struct s_variable
+{
+	char			*key;
+	char			*value;
+	char			*com_expansion;
+	int				index;
+	struct s_variable	*next;
+	struct s_variable	*prev;
+}					t_variable;
+
+typedef struct s_com_sub
+{
+	char			*key;
+	t_cli			*command;
+	char			*value;
+	int				index;
+	struct s_com_sub	*next;
+	struct s_com_sub	*prev;
+}					t_com_sub;
+
+typedef struct s_integer
+{
+	int					*value;
+	int					*distri;
+	struct s_integer	*next;
+	struct s_integer	*prev;
+}						t_integer;
+
+typedef struct s_math
+{
+	struct s_integer	*integer;
+	char				*operator;
+	int					index;
+	struct s_com_sub	*next;
+	struct s_com_sub	*prev;
+}					t_math;
 
 typedef struct s_token
 {
@@ -110,7 +147,8 @@ typedef struct s_cli
 	t_meta			*meta;
 	t_operator		*operator;
 	t_brace			*brace;
+	struct s_cli	*next;
+	struct s_cli	*prev;
 }					t_cli;
-
 
 #endif
