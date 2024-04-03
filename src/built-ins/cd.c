@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:06:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:24:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ static void	handle_old_path(char *curr_path, char *old_path)
 
 char	*search_path(char *str, t_lst *lst)
 {
-	int		i;
 	t_env	*env;
 
 	env = *lst->env_var_lst;
-	i = 0;
 	if (!str)
 		return (NULL);
 	while (env)
