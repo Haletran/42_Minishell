@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 12:41:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:39:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ void	add_var_no_input(t_lst *args, char **str)
 	return ;
 }
 
+
+void	add_var2(t_lst *args, char **str)
+{
+	t_env	*env;
+	char **tmp;
+
+	tmp = ft_split(str[1], '=');
+	env = *args->env_cpy_lst;
+	while (env->next)
+		env = env->next;
+	env->next = malloc(sizeof(t_env));
+	env->next->key = ft_strdup(tmp[0]);
+	env->next->value = ft_strdup(tmp[1]);
+	env->next->next = NULL;
+	return ;
+}
+
 void	add_var(t_lst *args, char **str)
 {
 	t_env	*env;
@@ -84,9 +101,10 @@ void	add_var(t_lst *args, char **str)
 	env->next->key = ft_strdup(tmp[0]);
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
-	free_tab(tmp);
+	add_var2(args, str);
 	return ;
 }
+
 
 int	already_exist(t_lst *args, char **str)
 {

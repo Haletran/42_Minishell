@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 14:51:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:50:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ void	delete_var_cpy(t_lst *args, char *str)
 				prev->next = env->next;
 			else
 				*args->env_cpy_lst = env->next;
-			free(env);
-			free(prev);
-			break;
 		}
 		prev = env;
 		env = env->next;
@@ -58,9 +55,6 @@ void	delete_var(t_lst *args, char *str)
 				prev->next = env->next;
 			else
 				*args->env_var_lst = env->next;
-			free(env);
-			free(prev);
-			break;
 		}
 		prev = env;
 		env = env->next;
@@ -75,8 +69,9 @@ int	ft_unset(char **str, t_lst **args)
 	i = 1;
 	while (str[i])
 	{
-		delete_var(*args, str[i++]);	
+		delete_var(*args, str[i]);	
 		delete_var_cpy(*args, str[i]);
+		i++;
 	}
 	return (SUCCESS);
 }

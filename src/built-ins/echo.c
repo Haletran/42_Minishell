@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:16:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:39:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_echo(char **str, t_lst *args)
 	while (str[i])
 	{
 		if (!ft_strncmp(str[i], "$?", 2))
-			ft_printf_fd(1, "%d", g_value);
+			ft_printf_fd(1, "%d", args->exit_code);
 		else if (!ft_strncmp(str[i], "$", 1))
 		{
 			var = ft_split(str[i], '$');

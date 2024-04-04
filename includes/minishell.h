@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 15:34:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:42:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ extern int			g_var;
 int					check_space(char *str);
 char				*str_capitalizer(char *str);
 char				*ft_join(char *s1, char *s2);
-void				free_list(t_lst *lst);
+void				free_list(t_env **lst);
 void				free_tab(char **str);
 int					exec(char **str, t_lst *args);
 void				print_tab(char **src);
@@ -72,7 +72,6 @@ void				choose(char *input, char **commands, t_lst **args);
 void				show_token(char **commands, t_com **com);
 t_env				*sort_in_ascii(t_env *list);
 int					check_if_alpha(char *str);
-void				free_char_double_pointer(char **ptr);
 char				**cpy(char **src, char **dest);
 void				ft_cpy(char **dest, char **src);
 void				init_stack(t_env **env, char **str);
@@ -102,6 +101,6 @@ void				*ft_lstadd_back_2(t_env *lst, char *value);
 void				print_list_export(t_lst *args);
 void				print_list_env(char *string, t_lst *args);
 int					print_path(char *str, t_lst *args, int choose);
-char	*search_path(char *str, t_lst *lst);
+char				*search_path(char *str, t_lst *lst);
 
 #endif

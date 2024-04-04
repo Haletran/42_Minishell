@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 12:35:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:04:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ void	*ft_lst_new_2(char *index)
 	if (!new)
 		return (NULL);
 	tmp = ft_split(index, '=');
-	new->key = tmp[0];
-	new->value = tmp[1];
+	new->key = ft_strdup(tmp[0]);
+	new->value = ft_strdup(tmp[1]);
 	new->next = NULL;
+	free_tab(tmp);
 	return (new);
 }
 
