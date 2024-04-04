@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:26:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:30:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	print_path(char *str, t_lst *args, int choose)
 			if (choose == 0)
 				ft_printf_fd(1, "%s ", env->value);
 			else if (choose == 1)
-				ft_printf_fd(1, "minishell : %s : No such file or directory\n",
+				ft_printf_fd(2, "minishell : %s : No such file or directory\n",
 					env->value);
 			return (SUCCESS);
 		}
