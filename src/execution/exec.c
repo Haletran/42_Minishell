@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 15:23:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:15:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 	full_path = ft_join(*path, cmd);
 	while (*path)
 	{
-		if (access(full_path, F_OK | R_OK) == 0)
+		if (access(full_path, F_OK | R_OK) != -1)
 			break ;
 		else
 		{
@@ -58,6 +58,13 @@ char	*check_path(char **str, t_lst *args, int nb)
 			full_path = ft_join(*path, cmd);
 		}
 		path++;
+	}
+	if (access(full_path, F_OK | R_OK) == -1)
+	{
+		perror(cmd);
+		args->exit_code = 127;
+		//free(full_path);
+		return (NULL);
 	}
 	//free_tab(path);
 	return (full_path);
@@ -83,6 +90,7 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	else if (pid == 0)
 	{
 		args->pid = &pid;
+		printf("full_path: %s\n", full_path);
 		if (execve(full_path, str, args->env_var) == -1)
 		{
 			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
