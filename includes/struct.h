@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 14:57:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:25:23 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,6 @@ typedef struct s_variable
 	struct s_variable	*prev;
 }						t_variable;
 
-typedef struct s_com_sub
-{
-	char				*key;
-	t_cli				*command;
-	char				*value;
-	int					index;
-	struct s_com_sub	*next;
-	struct s_com_sub	*prev;
-}						t_com_sub;
-
 typedef struct s_integer
 {
 	int					*value;
@@ -149,5 +139,15 @@ typedef struct s_cli
 	struct s_cli		*next;
 	struct s_cli		*prev;
 }						t_cli;
+
+typedef struct s_com_sub
+{
+	char				*key;
+	t_cli				*command;
+	char				*value;
+	int					index;
+	struct s_com_sub	*next;
+	struct s_com_sub	*prev;
+}						t_com_sub;
 
 #endif
