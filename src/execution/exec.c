@@ -6,14 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 15:03:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:23:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
-void find_path(t_env *env, t_lst *args)
+void	find_path(t_env *env, t_lst *args)
 {
 	while (env)
 	{
@@ -26,7 +25,6 @@ void find_path(t_env *env, t_lst *args)
 			env = env->next;
 	}
 }
-
 
 /**
  * @brief Path check if access is ok and loop until it test all path available
@@ -41,10 +39,11 @@ char	*check_path(char **str, t_lst *args, int nb)
 	char	*cmd;
 	char	**path;
 	char	*full_path;
-	t_env *env = *args->env_var_lst;
+	t_env	*env;
 
+	env = *args->env_var_lst;
 	cmd = str[nb];
-	path = NULL;
+	path = ft_calloc(1, 1);
 	find_path(env, args);
 	path = ft_split(args->env_path, ':');
 	*path = ft_join(*path, "/");
@@ -60,7 +59,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 		}
 		path++;
 	}
-	free_tab(path);
+	//free_tab(path);
 	return (full_path);
 }
 
@@ -87,17 +86,20 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 		if (execve(full_path, str, args->env_var) == -1)
 		{
 			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
+				ft_printf_fd(2,
+					"minishell: syntax error near unexpected token `;'\n");
 			else if (!ft_strncmp(str[0], "|", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2,"minishell: syntax error near unexpected token `|'\n");
+				ft_printf_fd(2,
+					"minishell: syntax error near unexpected token `|'\n");
 			else
 				ft_printf_fd(2, "minishell: %s: command not found\n", str[0]);
-			g_value = 127;
+			args->exit_code = 127;
 			free_tab(str);
 			free(full_path);
 			exit(127);
 		}
 	}
+	get_exit_code(args);
 	waitpid(pid, &g_value, 0);
 	return (SUCCESS);
 }
@@ -145,7 +147,7 @@ int	exec(char **str, t_lst *args)
 		else
 		{
 			perror(str[i]);
-			g_value = 127;
+			args->exit_code = 127;
 			// free_tab(str);
 			return (127);
 		}

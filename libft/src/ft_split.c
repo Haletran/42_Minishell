@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:07:45 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/02 22:15:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:10:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_split(char const *s, char c)
 	x = 0;
 	if (!s)
 		return (NULL);
-	dest = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	dest = ft_calloc(sizeof(char *) * (count_words(s, c) + 1), 1);
 	if (!dest)
 		return (NULL);
 	while (*s)
