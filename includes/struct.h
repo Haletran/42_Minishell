@@ -55,13 +55,51 @@ typedef struct s_env
 //* 																		*//
 //* *********************************************************************** *//
 //* *********************************************************************** *//
+
 //? https://www.gnu.org/software/bash/manual/bash.html
 //? https://www.linux.org/threads/bash-01-script-basics.37797/#post-143818
 //? https://www.linux.org/threads/bash-02-%E2%80%93-variables-and-such.38200/
 //? https://www.linux.org/threads/bash-03-%E2%80%93-command-line-processing.38676/
 
-// TODO Struct For Variables
-// TODO Brace, Parameter, Arithmetic, Command Substitution, Tilde, Word Splitting, Globbing
+// TODO Parameter, Tilde, Word Splitting,Globbing
+// TODO Possible add order variable in dlst
+
+typedef struct s_variable
+{
+	char				*key;
+	char				*value;
+	char				*com_expansion;
+	int					index;
+	struct s_variable	*next;
+	struct s_variable	*prev;
+}						t_variable;
+
+typedef struct s_com_sub
+{
+	char				*key;
+	t_cli				*command;
+	char				*value;
+	int					index;
+	struct s_com_sub	*next;
+	struct s_com_sub	*prev;
+}						t_com_sub;
+
+typedef struct s_integer
+{
+	int					*value;
+	int					*distri;
+	struct s_integer	*next;
+	struct s_integer	*prev;
+}						t_integer;
+
+typedef struct s_math
+{
+	struct s_integer	*integer;
+	char				*operator;
+	int					index;
+	struct s_com_sub	*next;
+	struct s_com_sub	*prev;
+}						t_math;
 
 typedef struct s_token
 {
@@ -82,7 +120,7 @@ typedef struct s_meta
 
 typedef struct s_operator
 {
-	char				*meta;
+	char				*operator;
 	int					index;
 	struct s_operator	*next;
 	struct s_operator	*prev;
@@ -103,10 +141,13 @@ typedef struct s_cli
 	unsigned int		n_meta;
 	unsigned int		n_operator;
 	unsigned int		n_brace;
+	t_math				*math;
 	t_token				*token;
 	t_meta				*meta;
 	t_operator			*operator;
 	t_brace				*brace;
+	struct s_cli		*next;
+	struct s_cli		*prev;
 }						t_cli;
 
 #endif
