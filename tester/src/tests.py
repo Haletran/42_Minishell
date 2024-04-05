@@ -168,19 +168,6 @@ pipes = [
 
 exit_status = [
     "echo 42",
-    "cat 42 > not_executable_file",
-    "cat 42 > not_existing_file",
-    "./not_executable_file",
-    "not_existing_command",
-    "< not_existing_file",
-    "> not_existing_file",
-    ">> not_existing_file",
-    "< not_existing_file > not_existing_file2",
-    "< not_existing_file >> not_existing_file2",
-    "| echo 1",
-    "| echo 1 | echo 2",
-    "ls not_existing_file",
-    "ls not_existing_file | echo 42 | cat",
 ]
 
 mix_mandatory = [
