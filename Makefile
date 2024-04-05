@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/04 14:27:37 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/05 01:46:57 by baptiste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ MAKEFLAGS += --no-print-directory --silent
 endif
 
 NAME := minishell
-CC := clang 
+CC := clang
 CFLAGS := -Wextra -Wall -Werror -g
 DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
 

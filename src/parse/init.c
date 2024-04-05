@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 09:54:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 14:57:35 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
+/*   Updated: 2024/04/05 02:17:10 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_lst(t_lst **args, char **envp)
 		ft_printf_fd(2, "Error: No environment variable found\n");
 		exit(1);
 	}
-	*args = ft_calloc(sizeof(t_lst *) * 12, 1);
+	*args = ft_calloc(sizeof(t_lst *) * 15, 1);
 	(*args)->home_path = getenv("HOME");
 	(*args)->username = getenv("USER");
 	(*args)->env_var = ft_calloc(sizeof(char) * get_len(envp), 1);
@@ -85,4 +85,3 @@ void	init_stack(t_env **env, char **str)
 	}
 	(*env) = head;
 }
-

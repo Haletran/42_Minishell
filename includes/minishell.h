@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 17:13:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/05 01:50:00 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,8 @@ void				print_list_env(char *string, t_lst *args);
 int					print_path(char *str, t_lst *args, int choose);
 char				*search_path(char *str, t_lst *lst);
 void				find_path(t_env *env, t_lst *args);
+
+/*PIPES*/
+int	exec_command(char **str, t_lst *args, char *full_path);
 
 #endif
