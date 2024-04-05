@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 15:04:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:36:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	render_prompt(t_lst **args, char **commands)
 	char	*input;
 
 	handle_sig(0);
-	input = readline(BRED "[~] " CRESET"MINISHELL $ " BGRN "> " CRESET);
+	input = readline(BRED "[~] " CRESET "MINISHELL $ " BGRN "> " CRESET);
 	if (!input)
 	{
 		free(input);
@@ -58,7 +58,7 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	args = ft_calloc(sizeof(t_lst), 1);
 	init_lst(args, envp);
-	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1) 
+	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1)
 		title_screen("Minishell", HGRN);
 	while (1)
 		render_prompt(args, commands);
