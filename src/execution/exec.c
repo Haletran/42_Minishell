@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 18:15:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:35:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 	path = ft_calloc(1, 1);
 	find_path(env, args);
 	path = ft_split(args->env_path, ':');
-	*path = ft_join(*path, "/");
+	*path = ft_strjoin(*path, "/");
 	full_path = ft_join(*path, cmd);
 	while (*path)
 	{
@@ -63,10 +63,9 @@ char	*check_path(char **str, t_lst *args, int nb)
 	{
 		perror(cmd);
 		args->exit_code = 127;
-		//free(full_path);
+		free(full_path);
 		return (NULL);
 	}
-	//free_tab(path);
 	return (full_path);
 }
 
@@ -109,6 +108,8 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	}
 	get_exit_code(args);
 	waitpid(pid, &g_value, 0);
+	free_tab(str);
+	free(full_path);
 	return (SUCCESS);
 }
 
@@ -156,11 +157,10 @@ int	exec(char **str, t_lst *args)
 		{
 			perror(str[i]);
 			args->exit_code = 127;
-			// free_tab(str);
+			free_tab(str);
 			return (127);
 		}
 	}
-	ft_redirection(str, args);
 	if (check_commands(str, args) == NOT_FOUND)
 	{
 		full_path = check_path(str, args, 0);

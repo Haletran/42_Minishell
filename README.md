@@ -36,6 +36,11 @@ As beautiful as a shell..
 // file for heredoc
 // removeif for unset
 
+
+// IF NO PATH : 
+// ADD OLDPWD - PWD 
+// ADD PATH = /usr/bin/
+
 ## BONUS
 
 - [x] && and & working properly

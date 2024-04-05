@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 02:13:07 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:06:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	choose(char *input, char **commands, t_lst **args)
 		{
 			printf("PIPE\n");
 			free_tab(commands);
-			commands = NULL;
+			commands = ft_calloc(sizeof(char *), 1);
 			commands = ft_split(input, '|');
 			int i = 0;
 			while(commands[i])

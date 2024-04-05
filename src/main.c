@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 15:02:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:04:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,18 @@
 void	render_prompt(t_lst **args, char **commands)
 {
 	char	*input;
-	int code;
 
 	handle_sig(0);
 	input = readline(BRED "[~] " CRESET"MINISHELL $ " BGRN "> " CRESET);
 	if (!input)
 	{
-		code = 0;
 		free(input);
+		input = NULL;
 		free_list((*args)->env_var_lst);
 		free_list((*args)->env_cpy_lst);
 		free_tab((*args)->env_var);
-		input = NULL;
-		printf("exit\n");
-		exit(code);
+		ft_printf_fd(1, "exit\n");
+		exit((*args)->exit_code);
 	}
 	add_history(input);
 	choose(input, commands, args);
@@ -58,10 +56,10 @@ int	main(int ac, char **av, char **envp)
 
 	commands = NULL;
 	(void)ac;
-	args = malloc(sizeof(t_lst));
+	args = ft_calloc(sizeof(t_lst), 1);
 	init_lst(args, envp);
 	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1) 
-		title_screen("minishell", HGRN);
+		title_screen("Minishell", HGRN);
 	while (1)
 		render_prompt(args, commands);
 	return (0);

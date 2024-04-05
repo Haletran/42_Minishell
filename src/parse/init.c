@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/05 02:17:10 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:01:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,14 @@ void	init_lst(t_lst **args, char **envp)
 		ft_printf_fd(2, "Error: No environment variable found\n");
 		exit(1);
 	}
-	*args = ft_calloc(sizeof(t_lst *) * 15, 1);
+	*args = ft_calloc(sizeof(t_lst *) * 11, 1);
 	(*args)->home_path = getenv("HOME");
-	(*args)->username = getenv("USER");
 	(*args)->env_var = ft_calloc(sizeof(char) * get_len(envp), 1);
 	(*args)->env_var_lst = ft_calloc(sizeof(char) * get_len(envp), 1);
 	(*args)->env_cpy_lst = ft_calloc(sizeof(char) * get_len(envp), 1);
 	init_stack(((*args)->env_var_lst), envp);
 	init_stack(((*args)->env_cpy_lst), envp);
 	ft_cpy((*args)->env_var, envp);
-	//(*args)->prompt = ft_join((*args)->username, "$> ");
 	(*args)->exit_code = 0;
 }
 
