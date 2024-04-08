@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 22:36:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:46:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	render_prompt(t_lst **args, char **commands)
 	input = readline(BRED "[~] " CRESET "MINISHELL $ " BGRN "> " CRESET);
 	if (!input)
 	{
-		free(input);
-		input = NULL;
+		if (input)
+		{
+			free(input);
+			input = NULL;
+		}
 		free_list((*args)->env_var_lst);
 		free_list((*args)->env_cpy_lst);
 		free_tab((*args)->env_var);
@@ -35,7 +38,7 @@ void	render_prompt(t_lst **args, char **commands)
 	}
 	add_history(input);
 	choose(input, commands, args);
-	free(input);
+	//free(input);
 	input = NULL;
 }
 

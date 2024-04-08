@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/05 12:36:06 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/08 11:41:19 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ endif
 
 NAME := minishell
 CC := clang
-CFLAGS := -Wextra -Wall -Werror -g
+CFLAGS := -Wextra -Wall -Werror -gdwarf-4
 DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
 
 SRCS	= src/main.c \
