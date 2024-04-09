@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 15:35:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:33:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 	char	*full_path;
 	t_env	*env;
 
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	cmd = str[nb];
 	path = ft_calloc(1, 1);
 	find_path(env, args);

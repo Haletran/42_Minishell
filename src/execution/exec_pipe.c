@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/08 17:10:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:36:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	exec_pipe(char **str, t_lst *args)
 	dup2(STDOUT_FILENO, args->backup[1]);
 	//Need to have a backup of the standard input and output
 	i = 0;
-	char **tmp = ft_calloc(sizeof(char *), 1);
+	char **tmp = ft_calloc(1, sizeof(char *));
 	while (str[i])
 	{
 		tmp = ft_split(str[i], ' ');

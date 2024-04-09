@@ -3,5 +3,6 @@
         "minishell.h": "c",
         "curses.h": "c",
         "lexer.h": "c"
-    }
+    },
+    "functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h"
 }

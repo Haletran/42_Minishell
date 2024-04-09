@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/08 11:41:19 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/09 11:42:07 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRCS	= src/main.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
 		  src/utils/utils3.c \
+		  src/dlst_parse/dlst_env_set.c \
+		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
 
 OBJS_DIR := obj

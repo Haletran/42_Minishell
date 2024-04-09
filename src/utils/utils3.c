@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:30:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:33:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	print_path(char *str, t_lst *args, int choose)
 {
 	t_env	*env;
 
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	if (!str)
 		return (ERROR);
 	while (env)

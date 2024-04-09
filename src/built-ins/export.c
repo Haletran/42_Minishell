@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/08 17:50:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:33:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*expand_var(t_lst *args, char *str)
 	t_env	*env;
 	char **tmp;
 
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	tmp = ft_calloc(2, sizeof(char *));
 	tmp = ft_split(str, '$');
 	if (!str)
@@ -42,7 +42,7 @@ void	replace_var(t_lst *args, char **str)
 	char	**tmp;
 
 	tmp = ft_split(str[1], '=');
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
@@ -64,7 +64,7 @@ void	replace_var_cpy(t_lst *args, char **str)
 	char	**tmp;
 
 	tmp = ft_split(str[1], '=');
-	env = *args->env_cpy_lst;
+	env = args->env_cpy_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
@@ -84,7 +84,7 @@ void	add_var_no_input(t_lst *args, char **str)
 {
 	t_env	*env;
 
-	env = *args->env_cpy_lst;
+	env = args->env_cpy_lst;
 	while (env->next)
 		env = env->next;
 	env->next = malloc(sizeof(t_env));
@@ -100,7 +100,7 @@ void	add_var2(t_lst *args, char **str)
 	char	**tmp;
 
 	tmp = ft_split(str[1], '=');
-	env = *args->env_cpy_lst;
+	env = args->env_cpy_lst;
 	while (env->next)
 		env = env->next;
 	env->next = malloc(sizeof(t_env));
@@ -122,7 +122,7 @@ void	add_var(t_lst *args, char **str)
 	char	**tmp;
 
 	tmp = ft_split(str[1], '=');
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	while (env->next)
 		env = env->next;
 	env->next = malloc(sizeof(t_env));
@@ -146,7 +146,7 @@ int	already_exist(t_lst *args, char **str)
 	char	**tmp;
 
 	tmp = ft_split(str[1], '=');
-	env = *args->env_var_lst;
+	env = args->env_var_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1])))
@@ -166,7 +166,7 @@ int	ft_export(t_lst *args, char **str)
 	{
 		if (!args->env_cpy_lst)
 			return (ERROR);
-		sort_in_ascii(*args->env_cpy_lst);
+		sort_in_ascii(args->env_cpy_lst);
 		print_list_export(args);
 		return (1);
 	}

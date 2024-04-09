@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:24:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:32:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*search_path(char *str, t_lst *lst)
 {
 	t_env	*env;
 
-	env = *lst->env_var_lst;
+	env = lst->env_var_lst;
 	if (!str)
 		return (NULL);
 	while (env)

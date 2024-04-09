@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/08 13:23:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:31:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_lst
 	char				*env_path;
 	int					*pid;
 	char				**env_var;
-	struct s_env		**env_var_lst;
-	struct s_env		**env_cpy_lst;
+	struct s_env		*env_var_lst;
+	struct s_env		*env_cpy_lst;
 	int					exit_code;
 	char				*path_command;
 	int					fd[2];
@@ -44,14 +44,15 @@ typedef struct s_env
 	char				*key;
 	char				*value;
 	struct s_env		*next;
+	struct s_env		*prev;
 }						t_env;
 
 typedef struct s_path
 {
-	char *path;
-	char *command;
-	struct s_env *next;
-}	t_path;
+	char				*path;
+	char				*command;
+	struct s_env		*next;
+}						t_path;
 
 //* *********************************************************************** *//
 //* *********************************************************************** *//
