@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 10:46:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:49:11 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	choose(char *input, char **commands, t_lst **args)
 {
+	int i;
+	
+	i = 0;
 	if (input[0] == '\0' || check_space(input))
 		rl_on_new_line();
 	else if (input[0] == '$')
@@ -26,9 +29,7 @@ void	choose(char *input, char **commands, t_lst **args)
 		{
 			printf("PIPE\n");
 			free_tab(commands);
-			//commands = ft_calloc(1, sizeof(char *));
 			commands = ft_split(input, '|');
-			int i = 0;
 			while(commands[i])
 			{
 				commands[i] = ft_strtrim(commands[i], " ");
@@ -42,6 +43,11 @@ void	choose(char *input, char **commands, t_lst **args)
 			free(input);
 			exec(commands, *args);
 		}
+	}
+	else
+	{
+		free(input);
+		free_tab(commands);
 	}
 }
 

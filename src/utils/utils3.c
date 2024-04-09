@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 11:33:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:03:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,23 @@ int	print_path(char *str, t_lst *args, int choose)
 	}
 	return (ERROR);
 }
+
+char *get_env(char *str, t_lst *args)
+{
+	t_env	*env;
+
+	env = args->env_var_lst;
+	if (!str)
+		return (NULL);
+	while (env)
+	{
+		if (!ft_strncmp(env->key, str, ft_strlen(str))
+			&& ft_strlen(env->key) == ft_strlen(str))
+			return (env->value);
+		else
+			env = env->next;
+	}
+	return (NULL);
+}
+
+

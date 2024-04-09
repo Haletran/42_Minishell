@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/09 15:21:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:05:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	init_lst(t_lst *args, char **envp)
 		ft_printf_fd(2, "Error: No environment variable found\n");
 		exit(1);
 	}
-	args->home_path = getenv("HOME");
 	args->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
 	args->env_var_lst = init_stack(args->env_var_lst, envp);
 	args->env_cpy_lst = init_stack(args->env_cpy_lst, envp);
