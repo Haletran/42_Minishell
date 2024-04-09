@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 15:20:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:32:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	global_free(t_lst *args, char **str)
 	// free((*args)->home_path);
 	free(args->current_path);
 	free(args->path_command);
-	free(args->backup);
 	free(args);
 	// free(*args);
 	// free(*args);
