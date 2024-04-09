@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 11:33:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:55:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	else if (pid == 0)
 	{
 		args->pid = &pid;
-		printf("full_path: %s\n", full_path);
 		if (execve(full_path, str, args->env_var) == -1)
 		{
 			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
