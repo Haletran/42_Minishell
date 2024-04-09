@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/09 12:32:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:21:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ void	init_lst(t_lst *args, char **envp)
 	}
 	args->home_path = getenv("HOME");
 	args->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
-	args->env_var_lst = NULL;
-	args->env_cpy_lst = NULL;
-	init_stack(&args->env_var_lst, envp);
-	init_stack(&args->env_cpy_lst, envp);
-	//ft_cpy(args->env_var, envp);
+	args->env_var_lst = init_stack(args->env_var_lst, envp);
+	args->env_cpy_lst = init_stack(args->env_cpy_lst, envp);
+	ft_cpy(args->env_var, envp);
 	args->exit_code = 0;
 }
 
@@ -55,26 +53,28 @@ void	init_lst(t_lst *args, char **envp)
  * @param str
  * @return t_env*
  */
-void	init_stack(t_env **env, char **str)
+t_env *init_stack(t_env *env, char **str)
 {
 	char **tmp;
-	char *key;
 	char *value;
+	char *key;
 	int i;
 	
 	i = 0;
 	if (!str)
-		return ;
-	while (i != get_nbargs(str))
+		return (NULL);
+	while (str[i])
 	{
 		tmp = ft_split(str[i], '=');
-		key = ft_strdup(tmp[0]);
 		value = ft_strdup(tmp[1]);
-		insert_env_end(env, key, value);
+		key = ft_strdup(tmp[0]);
+		insert_env_end(&env, key, value);
+		i++;
 		free_tab(tmp);
 		free(value);
 		free(key);
-		i++;
 	}
-	// free_tab(tmp);
+	return (env);
 }
+
+

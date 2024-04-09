@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 12:26:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:57:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_env				*sort_in_ascii(t_env *list);
 int					check_if_alpha(char *str);
 char				**cpy(char **src, char **dest);
 void				ft_cpy(char **dest, char **src);
-void				init_stack(t_env **env, char **str);
+t_env *init_stack(t_env *env, char **str);
 void				print_list(char *string, t_env *env);
 
 /*BUILTS-INS*/

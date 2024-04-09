@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/09 12:22:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:20:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	delete_node_env(t_env **head, t_env *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	if (del_node->key)
-		free(del_node->key);
-	if (del_node->value)
-		free(del_node->value);
+	free(del_node->key);
+	free(del_node->value);
 	free(del_node);
 }
 
@@ -42,7 +40,7 @@ void	delete_all_nodes_env(t_env **head)
 	while (*head != NULL)
 	{
 		tmp = (*head)->next;
-		free(*head);
+		delete_node_env(head, *head);
 		*head = tmp;
 	}
 }
@@ -83,8 +81,8 @@ void	insert_env_end(t_env **head, char *key, char *value)
 
 	tmp_node = *head;
 	new_node = (t_env *)malloc(sizeof(t_env));
-	new_node->key = key;
-	new_node->value = value;
+	new_node->key = ft_strdup(key);
+	new_node->value = ft_strdup(value);
 	new_node->next = NULL;
 	if (*head == NULL)
 	{
