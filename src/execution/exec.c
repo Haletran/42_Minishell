@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 12:05:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:23:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,52 @@ void	find_path(t_env *env, t_lst *args)
  *
  * @param str
  * @param args
- * @param nb
+ * @param nb 
  * @return char*
  */
 char	*check_path(char **str, t_lst *args, int nb)
 {
 	char	*cmd;
 	char	**path;
+	int i = 0;
+	char *tmp;
 	char	*full_path;
 	t_env	*env;
 
 	env = args->env_var_lst;
 	cmd = str[nb];
-	path = ft_calloc(1, 1);
 	find_path(env, args);
 	path = ft_split(args->env_path, ':');
-	*path = ft_strjoin(*path, "/");
-	full_path = ft_join(*path, cmd);
-	while (*path)
+	tmp = ft_strjoin(path[i], "/");
+	full_path = ft_strjoin(tmp, cmd);
+	while (path[i])
 	{
 		if (access(full_path, F_OK | R_OK) != -1)
 			break ;
 		else
 		{
-			*path = ft_join(*path, "/");
-			full_path = ft_join(*path, cmd);
+			free_char(full_path);
+			free_char(tmp);
+			tmp = ft_strjoin(path[i], "/");
+			full_path = ft_strjoin(tmp, cmd);
 		}
-		path++;
+		i++;
 	}
 	if (access(full_path, F_OK | R_OK) == -1)
 	{
 		perror(cmd);
+		free_char(tmp);
+		free_tab(path);
+		free_char(full_path);
 		args->exit_code = 127;
-		free(full_path);
 		return (NULL);
 	}
+	free_char(tmp);
+	free_tab(path);
 	return (full_path);
 }
+
+
 
 /**
  * @brief Execute the command after checking the path
@@ -107,7 +116,7 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	}
 	get_exit_code(args);
 	waitpid(pid, &g_value, 0);
-	//free_tab(str);
+	// free_tab(str);
 	free(full_path);
 	return (SUCCESS);
 }
@@ -164,7 +173,10 @@ int	exec(char **str, t_lst *args)
 	{
 		full_path = check_path(str, args, 0);
 		if (full_path == NULL)
+		{
+			free_char(full_path);
 			return (ERROR);
+		}
 		exec_command(str, args, full_path);
 	}
 	return (SUCCESS);
