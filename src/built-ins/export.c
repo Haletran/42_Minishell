@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 11:33:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:15:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ char	*expand_var(t_lst *args, char *str)
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(tmp[0]))
 			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
 		{
-			//free_tab(tmp);
+			free_tab(tmp);
 			return(env->value);
 		}
 		else
 			env = env->next;
 	}
+	free_tab(tmp);
 	return (NULL);
 }
 
@@ -106,13 +107,14 @@ void	add_var2(t_lst *args, char **str)
 	env->next = malloc(sizeof(t_env));
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
-		env->next->value = expand_var(args, tmp[1]);
+		env->next->value = expand_var(args, ft_strdup(tmp[1]));
 		env->next->next = NULL;
 		return ;
 	}
 	env->next->key = ft_strdup(tmp[0]);
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
+	free_tab(tmp);
 	return ;
 }
 
@@ -129,7 +131,7 @@ void	add_var(t_lst *args, char **str)
 	env->next->key = ft_strdup(tmp[0]);
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
-		env->next->value = expand_var(args, tmp[1]);
+		env->next->value = expand_var(args, ft_strdup(tmp[1]));
 		env->next->next = NULL;
 		add_var2(args, str);
 		return ;
@@ -137,6 +139,7 @@ void	add_var(t_lst *args, char **str)
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
 	add_var2(args, str);
+	free_tab(tmp);
 	return ;
 }
 

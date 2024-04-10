@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 17:19:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:27:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_lst
 	char				*path_command;
 	int					fd[2];
 	int					prev_fd[2];
-	int pipe_count;
+	int					pipe_count;
 }						t_lst;
 
 typedef struct s_com

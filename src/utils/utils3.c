@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 16:03:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:30:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@ char *get_env(char *str, t_lst *args)
 			env = env->next;
 	}
 	return (NULL);
+}
+
+int count_pipe(char **str)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (!ft_strncmp(str[i], "|", 1))
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 

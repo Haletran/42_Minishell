@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 16:56:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:05:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 	}
 	get_exit_code(args);
 	waitpid(pid, &g_value, 0);
-	free_tab(str);
+	//free_tab(str);
 	free(full_path);
 	return (SUCCESS);
 }

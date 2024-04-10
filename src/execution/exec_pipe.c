@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 17:30:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:00:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,8 @@ void execute_last_command(char **str, t_lst *args, int i)
 	waitpid(-1, &args->exit_code, 0);
 	close(args->fd[0]);
 	close(args->fd[1]);
-	//dup2(args->backup[1], STDOUT_FILENO);
-	//close(args->backup[0]);
 }
 
-int count_pipe(char **str)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (!ft_strncmp(str[i], "|", 1))
-			count++;
-		i++;
-	}
-	return (count);
-}
 
 int exec_pipe(char **str, t_lst *args)
 {

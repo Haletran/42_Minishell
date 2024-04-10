@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 13:39:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:44:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_echo(char **str, t_lst *args)
 	i = 1;
 	check = 1;
 	flag = 0;
-	var = malloc(sizeof(char **));
+	var = NULL;
 	if (!ft_strncmp(str[i], "-n", 2))
 	{
 		while (str[1][check] == 'n')
@@ -58,9 +58,9 @@ int	ft_echo(char **str, t_lst *args)
 			ft_printf_fd(1, "%d", args->exit_code);
 		else if (!ft_strncmp(str[i], "$", 1))
 		{
-			var = ft_split(str[i], '$');
 			if (ft_strlen(str[1]) > 1)
 			{
+				var = ft_split(str[i], '$');
 				if (var[0])
 					print_path(var[0], args, 0);
 			}
@@ -75,7 +75,8 @@ int	ft_echo(char **str, t_lst *args)
 			ft_printf_fd(1, "%s ", str[i]);
 		i++;
 	}
-	//free_tab(var);
+	if (var)
+		free_tab(var);
 	if (flag == 0)
 		printf("\n");
 	return (SUCCESS);

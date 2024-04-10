@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 17:32:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:33:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_tab(char **str)
 		i++;
 	}
 	free(str);
+	str = NULL;
 }
 
 void	free_list(t_env **lst)
@@ -52,10 +53,17 @@ void	global_free(t_lst *args, char **str)
 	delete_all_nodes_env(&args->env_var_lst);
 	free_tab(args->env_var);
 	free(args->env_path);
-	// free((*args)->home_path);
 	free(args->current_path);
 	free(args->path_command);
 	free(args);
-	// free(*args);
-	// free(*args);
 }
+
+void free_char(char *str)
+{
+	if (str)
+	{
+		free(str);
+		str = NULL;
+	}
+}
+
