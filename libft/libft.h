@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:09:49 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/03 12:20:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:29:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -338,7 +338,7 @@ void					delete_all_alphanodes(t_alphanode **head);
 
 /**
 
-	* @brief The title_triage() function triages the characters to create the title.
+	* @brief The title_triage() function triages
  *
  * @param c Character to triage.
  * @param chara Chain list of letters.

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/03 17:24:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:07:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,25 @@ static int	handle_tilde(char **str, t_lst *lst)
 	char	*tilde_path;
 	int		valid;
 
-	str[1] = ft_strrchr(str[1], '~');
-	tilde_path = ft_strjoin(lst->home_path, str[1]);
-	valid = chdir(tilde_path);
-	free(tilde_path);
+	valid = 0;
+	lst->home_path = get_env("HOME", lst);
+	if (ft_strlen(str[1]) == 1)
+	{
+		lst->home_path = get_env("HOME", lst);
+		if (!lst->home_path)
+		{
+			ft_printf_fd(2, "minishell : cd : HOME not set\n");
+			return (ERROR);
+		}
+		chdir(lst->home_path);
+	}
+	else
+	{
+		str[1] = ft_strtrim(str[1], "~");
+		tilde_path = ft_strjoin(lst->home_path, str[1]);
+		valid = chdir(tilde_path);
+		free(tilde_path);
+	}
 	return (valid);
 }
 
@@ -35,7 +50,7 @@ char	*search_path(char *str, t_lst *lst)
 {
 	t_env	*env;
 
-	env = *lst->env_var_lst;
+	env = lst->env_var_lst;
 	if (!str)
 		return (NULL);
 	while (env)
@@ -70,9 +85,17 @@ int	ft_cd(char **str, t_lst *lst)
 	if (handle_arguments(str) == ERROR)
 		return (ERROR);
 	else if (!str[1] || !ft_strncmp(str[1], "--", -1))
+	{
+		lst->home_path = get_env("HOME", lst);
+		if (!lst->home_path)
+		{
+			ft_printf_fd(2, "minishell : cd : HOME not set\n");
+			return (ERROR);
+		}
 		chdir(lst->home_path);
+	}
 	else if (!ft_strncmp(str[1], "~", 1) && ft_strlen(str[1]) >= 1)
-		valid = handle_tilde(str, lst);
+		handle_tilde(str, lst);
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
 		handle_old_path(curr_path, old_path);
 	else if (!ft_strncmp(str[1], "$", 1) && ft_strlen(str[1]) >= 1)
@@ -84,11 +107,14 @@ int	ft_cd(char **str, t_lst *lst)
 	}
 	else
 	{
-		getcwd(curr_path, 1024);
-		ft_strcpy(old_path, curr_path);
+		//getcwd(curr_path, 1024);
+		//ft_strcpy(old_path, curr_path);
 		valid = chdir(str[1]);
 	}
 	if (valid)
+	{
 		perror(str[1]);
+		return (ERROR);
+	}
 	return (SUCCESS);
 }

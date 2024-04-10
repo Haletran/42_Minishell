@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 15:06:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:18:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	choose(char *input, char **commands, t_lst **args)
 {
+	int i;
+	
+	i = 0;
 	if (input[0] == '\0' || check_space(input))
 		rl_on_new_line();
 	else if (input[0] == '$')
@@ -24,21 +27,16 @@ void	choose(char *input, char **commands, t_lst **args)
 		commands = ft_split(input, ' ');
 		if (check_if_pipe(commands))
 		{
-			printf("PIPE\n");
 			free_tab(commands);
-			commands = ft_calloc(sizeof(char *), 1);
 			commands = ft_split(input, '|');
-			int i = 0;
-			while(commands[i])
-			{
-				commands[i] = ft_strtrim(commands[i], " ");
-				i++;
-			}
 			free(input);
+			while(commands[i++])
+				commands[i] = ft_strtrim(commands[i], " ");
 			exec_pipe(commands, *args);
+			free_tab(commands);
 		}
-		else
-			exec(commands, *args);
+		exec(commands, *args);
+		free_tab(commands);
 	}
 }
 
@@ -65,7 +63,7 @@ int	check_commands(char **str, t_lst *args)
 	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
 		return (ft_env(args, str));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
-		return (ft_exit(str[1], args));
+		return (ft_exit(str[1], args, str));
 	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
 		return (ft_heredoc(str));
 	return (NOT_FOUND);

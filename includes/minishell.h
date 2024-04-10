@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/05 01:50:00 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:33:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ extern int			g_var;
 # define STOPPED 1
 
 /*FUNCTIONS*/
+void				print_dlst(t_env *head);
+void free_char(char *str);
+void				delete_node_env(t_env **head, t_env *del_node);
+void				delete_all_nodes_env(t_env **head);
+void				insert_env_front(t_env **head, char *key, char *value);
+void				insert_env_after(t_env *prev_node, char *key, char *value);
+void				insert_env_end(t_env **head, char *key, char *value);
 int					check_space(char *str);
 char				*str_capitalizer(char *str);
 char				*ft_join(char *s1, char *s2);
@@ -56,7 +63,7 @@ void				print_tab(char **src);
 int					check_commands(char **str, t_lst *args);
 int					get_nbargs(char **str);
 char				*strjoin(char *s1, char *s2);
-void				init_lst(t_lst **args, char **envp);
+void				init_lst(t_lst *args, char **envp);
 char				*check_path(char **str, t_lst *args, int nb);
 void				get_exit_code(t_lst *args);
 void				print_tab(char **src);
@@ -74,14 +81,16 @@ t_env				*sort_in_ascii(t_env *list);
 int					check_if_alpha(char *str);
 char				**cpy(char **src, char **dest);
 void				ft_cpy(char **dest, char **src);
-void				init_stack(t_env **env, char **str);
+t_env				*init_stack(t_env *env, char **str);
 void				print_list(char *string, t_env *env);
+char				*get_env(char *str, t_lst *args);
+int					count_pipe(char **str);
 
 /*BUILTS-INS*/
 int					pwd(t_lst *args);
 int					ft_cd(char **str, t_lst *lst);
 int					ft_echo(char **str, t_lst *args);
-int					ft_exit(char *exit, t_lst *args);
+int					ft_exit(char *code, t_lst *args, char **str);
 int					ft_env(t_lst *args, char **str);
 int					ft_export(t_lst *args, char **str);
 int					ft_unset(char **str, t_lst **args);
@@ -93,7 +102,8 @@ void				ft_redirection(char **str, t_lst *args);
 void				sig_ctrl_back(int signum);
 void				heredoc_handler(int signum);
 int					check_if_alpha(char *str);
-int delete (t_lst *args, int len);
+void				global_free(t_lst *args, char **str);
+int					delete(t_lst *args, int len);
 
 /*LST*/
 void				*ft_lst_new_2(char *index);
@@ -105,6 +115,8 @@ char				*search_path(char *str, t_lst *lst);
 void				find_path(t_env *env, t_lst *args);
 
 /*PIPES*/
-int	exec_command(char **str, t_lst *args, char *full_path);
+int					exec_command(char **str, t_lst *args, char *full_path);
+
+/* FUNCTIONS */
 
 #endif

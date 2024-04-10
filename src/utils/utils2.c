@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/08 17:14:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:23:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_cpy(char **dest, char **src)
 	i = 0;
 	while (src[i])
 	{
-		dest[i] = strdup(src[i]);
+		dest[i] = ft_strdup(src[i]);
 		i++;
 	}
 }

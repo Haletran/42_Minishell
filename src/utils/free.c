@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 15:14:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:18:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	free_tab(char **str)
 	while (str[i])
 	{
 		free(str[i]);
+		str[i] = NULL;
 		i++;
 	}
 	free(str);
+	str = NULL;
 }
 
 void	free_list(t_env **lst)
@@ -43,3 +45,26 @@ void	free_list(t_env **lst)
 	}
 	*lst = NULL;
 }
+
+void	global_free(t_lst *args, char **str)
+{
+	if (str)
+		free_tab(str);
+	delete_all_nodes_env(&args->env_cpy_lst);
+	delete_all_nodes_env(&args->env_var_lst);
+	free_tab(args->env_var);
+	free(args->env_path);
+	free(args->current_path);
+	free(args->path_command);
+	free(args);
+}
+
+void free_char(char *str)
+{
+	if (str)
+	{
+		free(str);
+		str = NULL;
+	}
+}
+
