@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 11:36:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:19:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	render_prompt(t_lst *args, char **commands)
 	}
 	add_history(input);
 	choose(input, commands, &args);
-	free_tab(commands);
-	free(input);
-	input = NULL;
 }
 
 /**
