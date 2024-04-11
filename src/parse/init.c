@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/09 16:05:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:47:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_lst(t_lst *args, char **envp)
 	args->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
 	args->env_var_lst = init_stack(args->env_var_lst, envp);
 	args->env_cpy_lst = init_stack(args->env_cpy_lst, envp);
-	ft_cpy(args->env_var, envp);
+	//ft_cpy(args->env_var, envp);
 	args->exit_code = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 15:18:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:45:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ void piping(char **str, t_lst *args, int i)
         }
         close(args->fd[0]);
         if (execve(args->path_command, str, args->env_var) == -1)
-            ft_printf_fd(2, "execve failed\n");
-        exit(0);
+			exit(1);
+		free_char(args->path_command);
+		free_tab(str);
+        //exit(0);
     }
     else
     {
-        if (i != args->pipe_count - 1) {
+        if (i != args->pipe_count - 1) 
             close(args->fd[1]);
-        }
     }
 }
 
@@ -73,14 +74,15 @@ void execute_last_command(char **str, t_lst *args, int i)
 			dup2(args->prev_fd[0], STDIN_FILENO);
 		else 
 			dup2(args->prev_fd[1], STDOUT_FILENO);
-		close(args->fd[1]);
+		//close(args->fd[1]);
 		if (execve(args->path_command, str, args->env_var) == -1)
-			ft_printf_fd(2, "execve failed\n");
+			exit(1);
+		free_char(args->path_command);
+		free_tab(str);
 		exit(0);
 	}
 	waitpid(pid, &args->exit_code, 0);
 	close(args->fd[0]);
-	close(args->fd[1]);
 	dup2(args->backup[0], STDIN_FILENO);
 	dup2(args->backup[1], STDOUT_FILENO);
 }
@@ -100,8 +102,6 @@ int exec_pipe(char **str, t_lst *args)
 	{
 		tmp = ft_split(str[i], ' ');
 		args->path_command = check_path(tmp, args, 0);
-		if (!args->path_command)
-			break;
 		if (i != 0)
 			args->prev_fd[0] = args->fd[0];
 		if (i != args->pipe_count - 1)
@@ -110,11 +110,9 @@ int exec_pipe(char **str, t_lst *args)
 			execute_last_command(tmp, args, i);
 		else
 			piping(tmp, args, i);
-		//free_char(args->path_command);
-		//free_tab(tmp);
 		i++;
 	}
 	free_tab(tmp);
-	return (0);
+	return (SUCCESS);
 }
 

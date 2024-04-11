@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 15:05:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:56:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 		return (NULL);
 	}
 	free_char(tmp);
+	free_char(args->env_path);
 	free_tab(path);
 	return (full_path);
 }
