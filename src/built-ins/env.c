@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:59:39 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/02 18:14:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:13:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ int	ft_env(t_lst *args, char **str)
 		print_list_env("=", args);
 	return (SUCCESS);
 }
-
