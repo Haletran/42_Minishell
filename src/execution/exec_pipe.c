@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/12 11:50:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:19:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,8 @@ void execute_last_command(char **str, t_lst *args, int i)
     waitpid(pid, &args->exit_code, 0);
     close(args->fd[0]);
     close(args->fd[1]);
-    close(args->prev_fd[0]);
-    close(args->prev_fd[1]);
     dup2(args->backup[0], STDIN_FILENO);
-    close(args->backup[0]);
     dup2(args->backup[1], STDOUT_FILENO);
-    close(args->backup[1]);
 }
 
 int exec_pipe(char **str, t_lst *args)
@@ -93,6 +89,11 @@ int exec_pipe(char **str, t_lst *args)
     int i;
     char **tmp;
 
+	// Infile and outfile
+	// check if infile exist and open 640
+	// 0_RDONLY 
+	// check if outfile exist but if not exist create it and open 640
+	// 0_RDWR O_CREAT O_TRUNC
     args->backup[0] = dup(STDIN_FILENO);
     args->backup[1] = dup(STDOUT_FILENO);
     i = 0;
