@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/12 12:19:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:59:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void piping(char **str, t_lst *args, int i)
             close(args->fd[1]);
         }
         close(args->fd[0]);
-        if (execve(args->path_command, str, args->env_var) == -1)
+		if (check_commands(str, args) == SUCCESS)
+			exit(0);
+    	else if (execve(args->path_command, str, args->env_var) == -1)
             exit(1);
         free_char(args->path_command);
         free_tab(str);
@@ -71,7 +73,9 @@ void execute_last_command(char **str, t_lst *args, int i)
             dup2(args->prev_fd[1], STDOUT_FILENO);
             close(args->prev_fd[1]);
         }
-        if (execve(args->path_command, str, args->env_var) == -1)
+		if (check_commands(str, args) == SUCCESS)
+			exit(0);
+    	else if (execve(args->path_command, str, args->env_var) == -1)
             exit(1);
         free_char(args->path_command);
         free_tab(str);

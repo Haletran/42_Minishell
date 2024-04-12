@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 16:13:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:29:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,3 +73,24 @@ int	check_commands(char **str, t_lst *args)
 		return (ft_heredoc(str, args));
 	return (NOT_FOUND);
 }
+
+/* void	check_commands(char **str, t_lst *args)
+{
+	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
+		pwd(args);
+	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
+		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
+		ft_echo(str, args);
+	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
+		ft_cd(str, args);
+	else if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
+		ft_export(args, str);
+	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
+		ft_unset(str, &args);
+	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
+		ft_env(args, str);
+	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
+		ft_exit(str[1], args, str);
+	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
+		ft_heredoc(str, args);
+} */
