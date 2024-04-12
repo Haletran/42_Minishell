@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 15:18:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:13:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	choose(char *input, char **commands, t_lst **args)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	if (input[0] == '\0' || check_space(input))
 		rl_on_new_line();
@@ -30,14 +30,19 @@ void	choose(char *input, char **commands, t_lst **args)
 			free_tab(commands);
 			commands = ft_split(input, '|');
 			free(input);
-			while(commands[i++])
+			while (commands[i++])
 				commands[i] = ft_strtrim(commands[i], " ");
 			exec_pipe(commands, *args);
 			free_tab(commands);
 		}
-		exec(commands, *args);
-		free_tab(commands);
+		else
+		{
+			exec(commands, *args);
+			free_tab(commands);
+			free_char(input);
+		}
 	}
+	return ;
 }
 
 /**
@@ -51,7 +56,7 @@ int	check_commands(char **str, t_lst *args)
 {
 	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
 		return (pwd(args));
-	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4) \
+	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
 		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
 		return (ft_echo(str, args));
 	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
@@ -65,6 +70,6 @@ int	check_commands(char **str, t_lst *args)
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
 		return (ft_exit(str[1], args, str));
 	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
-		return (ft_heredoc(str));
+		return (ft_heredoc(str, args));
 	return (NOT_FOUND);
 }

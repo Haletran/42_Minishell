@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/09 11:33:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:32:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	delete_var_cpy(t_lst *args, char *str)
 	}
 }
 
-
 void	delete_var(t_lst *args, char *str)
 {
 	t_env	*env;
@@ -61,15 +60,14 @@ void	delete_var(t_lst *args, char *str)
 	}
 }
 
-
 int	ft_unset(char **str, t_lst **args)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (str[i])
 	{
-		delete_var(*args, str[i]);	
+		delete_var(*args, str[i]);
 		delete_var_cpy(*args, str[i]);
 		i++;
 	}

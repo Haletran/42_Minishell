@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/04 19:59:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:12:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_number_of_heredoc(char **input)
 	return (i - 1);
 }
 
-int	ft_heredoc(char **str)
+int	ft_heredoc(char **str, t_lst *args)
 {
 	char	*input;
 	int		i;
@@ -34,7 +34,9 @@ int	ft_heredoc(char **str)
 	int		count;
 
 	count = 0;
+	(void)args;
 	i = 0;
+	input = NULL;
 	if (!str[1])
 	{
 		printf("heredoc: syntax error\n");
@@ -44,12 +46,16 @@ int	ft_heredoc(char **str)
 	if (check_number_of_heredoc(str) >= 16)
 	{
 		printf("minishell : maximum here-document count exceeded\n");
+		free_tab(str);
 		return (ERROR);
 	}
 	i = check_number_of_heredoc(str);
 	pid = fork();
 	if (pid == -1)
+	{
+		free_tab(str);
 		return (ERROR);
+	}
 	else if (pid == 0)
 	{
 		handle_sig(1);
@@ -58,29 +64,33 @@ int	ft_heredoc(char **str)
 			input = readline("> ");
 			if (!input && g_var == 0)
 			{
-				free(input);
 				printf("warning: here-document at line \
 %d delimited by end-of-file (wanted %s)\n",
 						count,
 						str[i]);
+				free_tab(str);
+				free_char(input);
 				exit(STOPPED);
 			}
 			if (g_var == 1)
 			{
-				free(input);
+				free_char(input);
+				free_tab(str);
 				exit(ERROR);
 			}
 			if (!ft_strncmp(input, str[i], ft_strlen(str[i]))
 				&& ft_strlen(str[i]) == ft_strlen(input))
 			{
-				free(input);
+				free_char(input);
+				free_tab(str);
 				break ;
 			}
 			count++;
-			free(input);
+			free_char(input);
 		}
 		exit(SUCCESS);
 	}
 	waitpid(pid, &g_value, 0);
+	free_char(input);
 	return (SUCCESS);
 }

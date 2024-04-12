@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 15:23:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:36:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,27 @@ void	find_path(t_env *env, t_lst *args)
  *
  * @param str
  * @param args
- * @param nb 
+ * @param nb
  * @return char*
  */
 char	*check_path(char **str, t_lst *args, int nb)
 {
 	char	*cmd;
 	char	**path;
-	int i = 0;
-	char *tmp;
+	int		i;
+	char	*tmp;
 	char	*full_path;
 	t_env	*env;
 
+	i = 0;
 	env = args->env_var_lst;
 	cmd = str[nb];
 	find_path(env, args);
+	if (!args->env_path)
+	{
+		ft_printf_fd(2, "%s: No such file or directory\n", cmd);
+		return (NULL);
+	}
 	path = ft_split(args->env_path, ':');
 	tmp = ft_strjoin(path[i], "/");
 	full_path = ft_strjoin(tmp, cmd);
@@ -72,11 +78,10 @@ char	*check_path(char **str, t_lst *args, int nb)
 		return (NULL);
 	}
 	free_char(tmp);
+	free_char(args->env_path);
 	free_tab(path);
 	return (full_path);
 }
-
-
 
 /**
  * @brief Execute the command after checking the path

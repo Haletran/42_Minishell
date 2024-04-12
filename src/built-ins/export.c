@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 12:15:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:11:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*expand_var(t_lst *args, char *str)
 {
 	t_env	*env;
-	char **tmp;
+	char	**tmp;
 
 	env = args->env_var_lst;
 	tmp = ft_calloc(2, sizeof(char *));
@@ -28,7 +28,7 @@ char	*expand_var(t_lst *args, char *str)
 			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
 		{
 			free_tab(tmp);
-			return(env->value);
+			return (env->value);
 		}
 		else
 			env = env->next;

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/10 12:07:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:11:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*search_path(char *str, t_lst *lst)
 		return (NULL);
 	while (env)
 	{
-		if (!ft_strncmp(env->key, str, ft_strlen(str)) \
+		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 			break ;
 		env = env->next;
@@ -67,7 +67,7 @@ static int	handle_arguments(char **str)
 {
 	if (get_nbargs(str) > 2)
 	{
-		ft_printf_fd(2,"cd : too many arguments\n");
+		ft_printf_fd(2, "cd : too many arguments\n");
 		return (ERROR);
 	}
 	return (0);
@@ -107,8 +107,8 @@ int	ft_cd(char **str, t_lst *lst)
 	}
 	else
 	{
-		//getcwd(curr_path, 1024);
-		//ft_strcpy(old_path, curr_path);
+		// getcwd(curr_path, 1024);
+		// ft_strcpy(old_path, curr_path);
 		valid = chdir(str[1]);
 	}
 	if (valid)
