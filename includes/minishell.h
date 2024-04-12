@@ -46,6 +46,7 @@ extern int			g_var;
 # define STOPPED 1
 
 /*FUNCTIONS*/
+int	check_if_fork(char **str, t_lst *args);
 void				print_dlst(t_env *head);
 void free_char(char *str);
 void				delete_node_env(t_env **head, t_env *del_node);

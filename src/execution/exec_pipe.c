@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/12 12:59:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:35:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,40 @@ void piping(char **str, t_lst *args, int i)
     pid_t pid;
 
     (void)i;
-    pid = fork();
-    if (pid == -1)
-    {
-        ft_printf_fd(2, "fork failed\n");
-        exit(1);
-    }
-    else if (pid == 0)
-    {
-        if (i != 0)
-        {
-            dup2(args->prev_fd[0], STDIN_FILENO);
-            close(args->prev_fd[0]);
-        }
-        if (i != args->pipe_count - 1)
-        {
-            dup2(args->fd[1], STDOUT_FILENO);
-            close(args->fd[1]);
-        }
-        close(args->fd[0]);
-		if (check_commands(str, args) == SUCCESS)
-			exit(0);
-    	else if (execve(args->path_command, str, args->env_var) == -1)
-            exit(1);
-        free_char(args->path_command);
-        free_tab(str);
-    }
-    else
-    {
-        if (i != args->pipe_count - 1)
-            close(args->fd[1]);
-    }
+	if (check_if_fork(str, args) == NOT_FOUND)
+	{
+    	pid = fork();
+    	if (pid == -1)
+    	{
+    	    ft_printf_fd(2, "fork failed\n");
+    	    exit(1);
+    	}
+    	else if (pid == 0)
+    	{
+    	    if (i != 0)
+    	    {
+    	        dup2(args->prev_fd[0], STDIN_FILENO);
+    	        close(args->prev_fd[0]);
+    	    }
+    	    if (i != args->pipe_count - 1)
+    	    {
+    	        dup2(args->fd[1], STDOUT_FILENO);
+    	        close(args->fd[1]);
+    	    }
+    	    close(args->fd[0]);
+			if (check_commands(str, args) == SUCCESS)
+				exit(0);
+    		else if (execve(args->path_command, str, args->env_var) == -1)
+    	        exit(1);
+    	    free_char(args->path_command);
+    	    free_tab(str);
+    	}
+		else
+    	{
+        	if (i != args->pipe_count - 1)
+            	close(args->fd[1]);
+    	}
+	}
 }
 
 void execute_last_command(char **str, t_lst *args, int i)
@@ -55,33 +58,36 @@ void execute_last_command(char **str, t_lst *args, int i)
     pid_t pid;
 
     (void)i;
-    pid = fork();
-    if (pid == -1)
-    {
-        ft_printf_fd(2, "fork failed\n");
-        exit(1);
-    }
-    else if (pid == 0)
-    {
-        if (args->prev_fd[0] != 0)
-        {
-            dup2(args->prev_fd[0], STDIN_FILENO);
-            close(args->prev_fd[0]);
-        }
-        else
-        {
-            dup2(args->prev_fd[1], STDOUT_FILENO);
-            close(args->prev_fd[1]);
-        }
-		if (check_commands(str, args) == SUCCESS)
-			exit(0);
-    	else if (execve(args->path_command, str, args->env_var) == -1)
-            exit(1);
-        free_char(args->path_command);
-        free_tab(str);
-        exit(0);
-    }
-    waitpid(pid, &args->exit_code, 0);
+	if (check_if_fork(str, args) == NOT_FOUND)
+	{
+    	pid = fork();
+    	if (pid == -1)
+    	{
+    	    ft_printf_fd(2, "fork failed\n");
+    	    exit(1);
+    	}
+    	else if (pid == 0)
+    	{
+    	    if (args->prev_fd[0] != 0)
+    	    {
+    	        dup2(args->prev_fd[0], STDIN_FILENO);
+    	        close(args->prev_fd[0]);
+    	    }
+    	    else
+    	    {
+    	        dup2(args->prev_fd[1], STDOUT_FILENO);
+    	        close(args->prev_fd[1]);
+    	    }
+			if (check_commands(str, args) == SUCCESS)
+				exit(0);
+    		else if (execve(args->path_command, str, args->env_var) == -1)
+    	        exit(1);
+    	    free_char(args->path_command);
+    	    free_tab(str);
+    	    exit(0);
+    	}
+		waitpid(pid, &args->exit_code, 0);
+	}
     close(args->fd[0]);
     close(args->fd[1]);
     dup2(args->backup[0], STDIN_FILENO);
