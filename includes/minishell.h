@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 07:39:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:25:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ extern int			g_var;
 # define STOPPED 1
 
 /*FUNCTIONS*/
+int	check_if_path_needed(char **str);
 int					check_if_fork(char **str, t_lst *args);
 void				print_dlst(t_env *head);
 void				free_char(char *str);

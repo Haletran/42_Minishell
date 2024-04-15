@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 09:57:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:44:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	piping(char **str, t_lst *args, int i)
 			if (i != args->pipe_count - 1)
 				close(args->fd[1]);
 		}
+		waitpid(pid, &args->exit_code, 0);
 	}
 }
 
@@ -135,12 +136,13 @@ int	exec_pipe(char **str, t_lst *args)
 	i = 0;
 	if (check_infile_outfile(args) == ERROR)
 		return (ERROR);
-	args->pipe_count = count_pipe(str);
+	args->pipe_count = count_pipe(str);	
 	handle_sig(2);
 	while (str[i])
 	{
 		tmp = ft_split(str[i], ' ');
-		args->path_command = check_path(tmp, args, 0);
+		if (check_if_path_needed(tmp) == NOT_FOUND)
+			args->path_command = check_path(tmp, args, 0);
 		if (i != 0)
 			args->prev_fd[0] = args->fd[0];
 		if (i != args->pipe_count - 1)

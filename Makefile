@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/15 08:17:27 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/15 13:14:34 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
 endif
 
+
+
 NAME := minishell
 CC := clang
 CFLAGS := -Wextra -Wall -Werror -gdwarf-4
-DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
+DEBUG_FLAGS := -Wextra -Wall -Werror -gdwarf-4 -fsanitize=address
 
 SRCS	= src/main.c \
 		  src/execution/redirections.c \
@@ -44,6 +46,7 @@ SRCS	= src/main.c \
 		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
 
+DEBUG := 0
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBFT_DIR = libft
@@ -53,11 +56,12 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+
 
 $(NAME): $(OBJS)
 	@make -C libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline 
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
