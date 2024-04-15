@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:28:43 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 07:55:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 08:19:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	pwd(t_lst *args)
 {
-	args->current_path = getcwd(args->current_path, 1024);
-	ft_printf_fd(1, "%s\n", args->current_path);
+	char *path;
+
+	path = ft_strdup(search_path("PWD", args));
+	printf("%s\n", path);
+	free_char(path);
 	return (SUCCESS);
 }

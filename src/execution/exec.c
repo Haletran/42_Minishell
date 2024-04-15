@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/12 13:46:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 08:11:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 	}
 	if (access(full_path, F_OK | R_OK) == -1)
 	{
-		//perror(cmd);
+		perror(cmd);
 		free_char(tmp);
 		free_tab(path);
 		free_char(full_path);
