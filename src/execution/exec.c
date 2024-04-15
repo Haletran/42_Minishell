@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 08:11:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:11:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char	*check_path(char **str, t_lst *args, int nb)
 		perror(cmd);
 		free_char(tmp);
 		free_tab(path);
+		free_char(args->env_path);
 		free_char(full_path);
 		args->exit_code = 127;
 		return (NULL);
@@ -114,14 +115,12 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 			else
 				ft_printf_fd(2, "minishell: %s: command not found\n", str[0]);
 			args->exit_code = 127;
-			free_tab(str);
 			free(full_path);
 			exit(127);
 		}
 	}
 	get_exit_code(args);
 	waitpid(pid, &g_value, 0);
-	// free_tab(str);
 	free(full_path);
 	return (SUCCESS);
 }

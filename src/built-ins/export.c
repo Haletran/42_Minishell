@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 16:11:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:46:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,36 @@ int	already_exist(t_lst *args, char **str)
 	return (0);
 }
 
+int add_back(t_lst *args, char **str)
+{
+	t_env	*env;
+	char *value;
+	char *to_keep;
+	char	**tmp;
+
+	tmp = ft_split(str[1], '+');
+	to_keep = ft_strtrim(tmp[1], "=");
+	env = args->env_var_lst;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1])))
+		{
+			value = ft_strdup(env->value);
+			free_char(env->value);
+			env->value = ft_strjoin(value, to_keep);
+			free_char(value);
+			free_char (to_keep);
+			free_tab(tmp);
+			return (SUCCESS);
+		}
+		env = env->next;
+	}
+	free_tab(tmp);
+	return (ERROR);
+}
+
+
+
 int	ft_export(t_lst *args, char **str)
 {
 	if (!str[1])
@@ -179,7 +209,9 @@ int	ft_export(t_lst *args, char **str)
 		g_value = 1;
 		return (ERROR);
 	}
-	if (ft_strchr(str[1], '=') && !already_exist(args, str))
+	if (ft_strchr(str[1], '+'))
+		add_back(args, str);
+	else if (ft_strchr(str[1], '=') && !already_exist(args, str))
 		add_var(args, str);
 	else if (!ft_strchr(str[1], '=') && !already_exist(args, str))
 		add_var_no_input(args, str);

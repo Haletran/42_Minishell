@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 08:20:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 09:01:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,24 @@ char	*search_path(char *str, t_lst *lst)
 		return (NULL);
 	while (env)
 	{
+		if (!env)
+			break;
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 			break ;
 		env = env->next;
 	}
+	if (!env)
+		return (ft_strdup(getcwd(NULL, 1024)));
 	return (env->value);
 }
 
-static int	handle_arguments(char **str)
+static int	handle_arguments(char **str, t_lst *lst)
 {
 	if (get_nbargs(str) > 2)
 	{
 		ft_printf_fd(2, "cd : too many arguments\n");
+		lst->exit_code = 1;
 		return (ERROR);
 	}
 	return (0);
@@ -111,7 +116,7 @@ int	ft_cd(char **str, t_lst *lst)
 
 	valid = 0;
 	old_path = ft_strdup(search_path("PWD", lst));
-	if (handle_arguments(str) == ERROR)
+	if (handle_arguments(str, lst) == ERROR)
 		return (ERROR);
 	else if (!str[1] || !ft_strncmp(str[1], "--", -1))
 	{
@@ -119,6 +124,7 @@ int	ft_cd(char **str, t_lst *lst)
 		if (!lst->home_path)
 		{
 			ft_printf_fd(2, "minishell : cd : HOME not set\n");
+			lst->exit_code = 1;
 			return (ERROR);
 		}
 		chdir(lst->home_path);
@@ -139,9 +145,11 @@ int	ft_cd(char **str, t_lst *lst)
 	if (valid)
 	{
 		perror(str[1]);
+		lst->exit_code = 1;
 		return (ERROR);
 	}
 	update_path(lst, old_path);
 	free_char(old_path);
+	lst->exit_code = 0;
 	return (SUCCESS);
 }

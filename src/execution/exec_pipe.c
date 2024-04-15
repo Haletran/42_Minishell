@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 07:37:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 09:57:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	piping(char **str, t_lst *args, int i)
 				exit(1);
 			free_char(args->path_command);
 			free_tab(str);
+			waitpid(pid, &args->exit_code, 0);
+			exit(0);
 		}
 		else
 		{
@@ -149,6 +151,7 @@ int	exec_pipe(char **str, t_lst *args)
 			piping(tmp, args, i);
 		i++;
 	}
+	waitpid(-1, &args->exit_code, 0);
 	free_tab(tmp);
 	return (SUCCESS);
 }
