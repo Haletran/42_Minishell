@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 12:51:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 07:39:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ extern int			g_var;
 # define STOPPED 1
 
 /*FUNCTIONS*/
-int	check_if_fork(char **str, t_lst *args);
+int					check_if_fork(char **str, t_lst *args);
 void				print_dlst(t_env *head);
-void free_char(char *str);
+void				free_char(char *str);
 void				delete_node_env(t_env **head, t_env *del_node);
 void				delete_all_nodes_env(t_env **head);
 void				insert_env_front(t_env **head, char *key, char *value);
@@ -97,14 +97,14 @@ int					ft_export(t_lst *args, char **str);
 int					ft_unset(char **str, t_lst **args);
 
 /*BASH_UTILITIES*/
-int	ft_heredoc(char **str, t_lst *args);
+int					ft_heredoc(char **str, t_lst *args);
 void				sig_command_is_running(int signum);
 void				ft_redirection(char **str, t_lst *args);
 void				sig_ctrl_back(int signum);
 void				heredoc_handler(int signum);
 int					check_if_alpha(char *str);
 void				global_free(t_lst *args, char **str);
-int					delete(t_lst *args, int len);
+int delete (t_lst *args, int len);
 
 /*LST*/
 void				*ft_lst_new_2(char *index);

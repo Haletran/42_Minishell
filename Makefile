@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/09 11:42:07 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/15 07:39:33 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,8 @@ fclean: clean
 	rm -rf tester/src/__pycache__
 	make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
+	rm -rf outfile
+	rm -rf infile
 	echo "\033[41m$(NAME) cleaned\033[0m"
 
 re: fclean all

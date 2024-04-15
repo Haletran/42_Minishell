@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 16:11:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 08:06:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,41 @@ static int	handle_tilde(char **str, t_lst *lst)
 	return (valid);
 }
 
-static void	handle_old_path(char *curr_path, char *old_path)
+static void	cd_old_path(t_lst *lst)
 {
-	getcwd(curr_path, 1024);
-	printf("%s\n", old_path);
-	chdir(old_path);
+	t_env *env;
+
+	env = lst->env_var_lst;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, "OLDPWD", 6))
+			break ;
+		env = env->next;
+	}
+	chdir(env->value);
+}
+
+static void update_path(t_lst *lst, char *old_path)
+{
+	t_env	*env;
+	char	curr_path[1024];
+
+	env = lst->env_var_lst;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, "OLDPWD", 6))
+		{
+			free(env->value);
+			env->value = ft_strdup(old_path);
+		}
+		else if (!ft_strncmp(env->key, "PWD", 3))
+		{
+			getcwd(curr_path, 1024);
+			free(env->value);
+			env->value = ft_strdup(curr_path);
+		}
+		env = env->next;
+	}
 }
 
 char	*search_path(char *str, t_lst *lst)
@@ -78,10 +108,9 @@ int	ft_cd(char **str, t_lst *lst)
 	int		valid;
 	char	**var;
 	char	*old_path;
-	char	curr_path[1024];
 
-	old_path = getenv("OLDPWD");
 	valid = 0;
+	old_path = ft_strdup(search_path("PWD", lst));
 	if (handle_arguments(str) == ERROR)
 		return (ERROR);
 	else if (!str[1] || !ft_strncmp(str[1], "--", -1))
@@ -97,7 +126,7 @@ int	ft_cd(char **str, t_lst *lst)
 	else if (!ft_strncmp(str[1], "~", 1) && ft_strlen(str[1]) >= 1)
 		handle_tilde(str, lst);
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
-		handle_old_path(curr_path, old_path);
+		cd_old_path(lst);
 	else if (!ft_strncmp(str[1], "$", 1) && ft_strlen(str[1]) >= 1)
 	{
 		var = ft_split(str[1], '$');
@@ -106,15 +135,13 @@ int	ft_cd(char **str, t_lst *lst)
 		var = NULL;
 	}
 	else
-	{
-		// getcwd(curr_path, 1024);
-		// ft_strcpy(old_path, curr_path);
 		valid = chdir(str[1]);
-	}
 	if (valid)
 	{
 		perror(str[1]);
 		return (ERROR);
 	}
+	update_path(lst, old_path);
+	free_char(old_path);
 	return (SUCCESS);
 }
