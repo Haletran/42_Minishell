@@ -16,7 +16,7 @@ As beautiful as a shell..
 - [ ] Return value not valid sometimes
 - [x] Make env var working
 - [x] Add pipe (IN CONSTRUCTION) / multi-command
-- [ ] Redirections
+- [ ] Redirections (parsing needed)
 - [x] Parsing (lexer, tokenisation)
 - [x] Sort in ascii when exporting a variable
 - [x] Sort in ascii if export without args

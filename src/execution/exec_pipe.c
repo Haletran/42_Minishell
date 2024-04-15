@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 13:44:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:40:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void execute_last_command(char **str, t_lst *args, int i)
 
 int	check_infile_outfile(t_lst *args)
 {
-	//args->outfile = "test_outfile";
 	args->backup[0] = dup(STDIN_FILENO);
 	args->backup[1] = dup(STDOUT_FILENO);
 	if (args->infile)
@@ -134,9 +133,10 @@ int	exec_pipe(char **str, t_lst *args)
 	char	**tmp;
 
 	i = 0;
+	// add infile and outfile support
 	if (check_infile_outfile(args) == ERROR)
 		return (ERROR);
-	args->pipe_count = count_pipe(str);	
+	args->pipe_count = count_pipe(str);
 	handle_sig(2);
 	while (str[i])
 	{
