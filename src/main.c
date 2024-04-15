@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 12:34:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:57:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render_prompt(t_lst *args, char **commands)
 	input = readline(BRED "[~] " CRESET "MINISHELL $ " BGRN "> " CRESET);
 	if (!input)
 	{
-		free(input);
+		free_char(input);
 		global_free(args, commands);
 		ft_printf_fd(1, "exit\n");
 		exit(0);

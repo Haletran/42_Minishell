@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 14:40:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:03:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	piping(char **str, t_lst *args, int i)
 				exit(0);
 			else if (execve(args->path_command, str, args->env_var) == -1)
 				exit(1);
-			free_char(args->path_command);
 			free_tab(str);
+			free_char(args->path_command);
 			waitpid(pid, &args->exit_code, 0);
 			exit(0);
 		}
@@ -52,6 +52,8 @@ void	piping(char **str, t_lst *args, int i)
 			if (i != args->pipe_count - 1)
 				close(args->fd[1]);
 		}
+		if (args->path_command != NULL)
+			free_char(args->path_command);
 		waitpid(pid, &args->exit_code, 0);
 	}
 }
@@ -86,12 +88,14 @@ void execute_last_command(char **str, t_lst *args, int i)
 				exit(0);
 			else if (execve(args->path_command, str, args->env_var) == -1)
 				exit(1);
-			free_char(args->path_command);
 			free_tab(str);
+			free_char(args->path_command);
 			exit(0);
 		}
 		waitpid(pid, &args->exit_code, 0);
-	}
+	}		
+	if (args->path_command != NULL)
+			free_char(args->path_command);
 	close(args->fd[0]);
 	close(args->fd[1]);
 	dup2(args->backup[0], STDIN_FILENO);
@@ -151,9 +155,10 @@ int	exec_pipe(char **str, t_lst *args)
 			execute_last_command(tmp, args, i);
 		else
 			piping(tmp, args, i);
+		if (tmp != NULL)
+			free_tab(tmp);
 		i++;
 	}
 	waitpid(-1, &args->exit_code, 0);
-	free_tab(tmp);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 10:46:01 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:47:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	add_var_no_input(t_lst *args, char **str)
 	env = args->env_cpy_lst;
 	while (env->next)
 		env = env->next;
-	env->next = malloc(sizeof(t_env));
+	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[1]);
 	env->next->value = NULL;
 	env->next->next = NULL;
@@ -104,11 +104,12 @@ void	add_var2(t_lst *args, char **str)
 	env = args->env_cpy_lst;
 	while (env->next)
 		env = env->next;
-	env->next = malloc(sizeof(t_env));
+	env->next = ft_calloc(1, sizeof(t_env));
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
 		env->next->value = expand_var(args, ft_strdup(tmp[1]));
 		env->next->next = NULL;
+		free_tab(tmp);
 		return ;
 	}
 	env->next->key = ft_strdup(tmp[0]);
@@ -127,19 +128,20 @@ void	add_var(t_lst *args, char **str)
 	env = args->env_var_lst;
 	while (env->next)
 		env = env->next;
-	env->next = malloc(sizeof(t_env));
+	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(tmp[0]);
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
 		env->next->value = expand_var(args, ft_strdup(tmp[1]));
 		env->next->next = NULL;
 		add_var2(args, str);
+		free_tab(tmp);
 		return ;
 	}
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
-	add_var2(args, str);
 	free_tab(tmp);
+	add_var2(args, str);
 	return ;
 }
 
@@ -188,6 +190,7 @@ int add_back(t_lst *args, char **str)
 		env = env->next;
 	}
 	free_tab(tmp);
+	free_char(to_keep);
 	return (ERROR);
 }
 

@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 15:16:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:17:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	choose(char *input, char **commands, t_lst **args)
+void choose(char *input, char **commands, t_lst **args)
 {
 	int	i;
 
@@ -29,21 +29,20 @@ void	choose(char *input, char **commands, t_lst **args)
 		{
 			free_tab(commands);
 			commands = ft_split(input, '|');
-			free(input);
 			while (commands[i++])
 				commands[i] = ft_strtrim(commands[i], " ");
 			exec_pipe(commands, *args);
-			free_tab(commands);
 		}
 		else
-		{
 			exec(commands, *args);
-			free_tab(commands); // error if ./minishell
-			free_char(input);
-		}
 	}
+	free_tab(commands);
+	free_char(input);
 	return ;
 }
+
+
+
 
 /**
  * @brief Associate commands to built-ins if needed
