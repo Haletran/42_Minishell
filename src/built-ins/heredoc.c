@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 16:12:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 06:36:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,12 @@ int	ft_heredoc(char **str, t_lst *args)
 	if (check_number_of_heredoc(str) >= 16)
 	{
 		printf("minishell : maximum here-document count exceeded\n");
-		free_tab(str);
 		return (ERROR);
 	}
 	i = check_number_of_heredoc(str);
 	pid = fork();
 	if (pid == -1)
-	{
-		free_tab(str);
 		return (ERROR);
-	}
 	else if (pid == 0)
 	{
 		handle_sig(1);
