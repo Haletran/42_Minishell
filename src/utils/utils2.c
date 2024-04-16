@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 18:04:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 07:37:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	check_if_pipe(char **str)
 			return (1);
 		i++;
 	}
-	free_tab(str);
 	return (0);
 }
 

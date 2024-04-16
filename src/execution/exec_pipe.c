@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 07:20:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 07:40:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	check_infile_outfile(t_lst *args)
 				args->infile);
 			return (ERROR);
 		}
+		dup2(args->file_fd[0], STDIN_FILENO);
 	}
 	if (args->outfile)
 	{

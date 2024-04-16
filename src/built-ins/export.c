@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 15:47:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 08:19:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ char	*expand_var(t_lst *args, char *str)
 	return (NULL);
 }
 
-void	replace_var(t_lst *args, char **str)
+void	replace_var(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '=');
+	tmp = ft_split(str[i], '=');
 	env = args->env_var_lst;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
 			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
 		{
 			free(env->value);
@@ -59,16 +59,16 @@ void	replace_var(t_lst *args, char **str)
 	free_tab(tmp);
 }
 
-void	replace_var_cpy(t_lst *args, char **str)
+void	replace_var_cpy(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '=');
+	tmp = ft_split(str[i], '=');
 	env = args->env_cpy_lst;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1]))
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
 			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
 		{
 			free(env->value);
@@ -81,7 +81,7 @@ void	replace_var_cpy(t_lst *args, char **str)
 	free_tab(tmp);
 }
 
-void	add_var_no_input(t_lst *args, char **str)
+void	add_var_no_input(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 
@@ -89,18 +89,18 @@ void	add_var_no_input(t_lst *args, char **str)
 	while (env->next)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
-	env->next->key = ft_strdup(str[1]);
+	env->next->key = ft_strdup(str[i]);
 	env->next->value = NULL;
 	env->next->next = NULL;
 	return ;
 }
 
-void	add_var2(t_lst *args, char **str)
+void	add_var2(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '=');
+	tmp = ft_split(str[i], '=');
 	env = args->env_cpy_lst;
 	while (env->next)
 		env = env->next;
@@ -119,12 +119,12 @@ void	add_var2(t_lst *args, char **str)
 	return ;
 }
 
-void	add_var(t_lst *args, char **str)
+void	add_var(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '=');
+	tmp = ft_split(str[i], '=');
 	env = args->env_var_lst;
 	while (env->next)
 		env = env->next;
@@ -134,27 +134,27 @@ void	add_var(t_lst *args, char **str)
 	{
 		env->next->value = expand_var(args, ft_strdup(tmp[1]));
 		env->next->next = NULL;
-		add_var2(args, str);
+		add_var2(args, str, i);
 		free_tab(tmp);
 		return ;
 	}
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
 	free_tab(tmp);
-	add_var2(args, str);
+	add_var2(args, str, i);
 	return ;
 }
 
-int	already_exist(t_lst *args, char **str)
+int	already_exist(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '=');
+	tmp = ft_split(str[i], '=');
 	env = args->env_var_lst;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1])))
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
 		{
 			free_tab(tmp);
 			return (1);
@@ -165,19 +165,19 @@ int	already_exist(t_lst *args, char **str)
 	return (0);
 }
 
-int add_back(t_lst *args, char **str)
+int add_back(t_lst *args, char **str, int i)
 {
 	t_env	*env;
 	char *value;
 	char *to_keep;
 	char	**tmp;
 
-	tmp = ft_split(str[1], '+');
+	tmp = ft_split(str[i], '+');
 	to_keep = ft_strtrim(tmp[1], "=");
 	env = args->env_var_lst;
 	while (env)
 	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[1])))
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
 		{
 			value = ft_strdup(env->value);
 			free_char(env->value);
@@ -198,6 +198,9 @@ int add_back(t_lst *args, char **str)
 
 int	ft_export(t_lst *args, char **str)
 {
+	int i;
+
+	i = 0;
 	if (!str[1])
 	{
 		if (!args->env_cpy_lst)
@@ -206,22 +209,26 @@ int	ft_export(t_lst *args, char **str)
 		print_list_export(args);
 		return (1);
 	}
-	if (check_if_alpha(str[1]) == ERROR)
+	while (str[i])
 	{
-		ft_printf_fd(2, "minishell : %s not a valid identifier\n", str[1]);
-		g_value = 1;
-		return (ERROR);
-	}
-	if (ft_strchr(str[1], '+'))
-		add_back(args, str);
-	else if (ft_strchr(str[1], '=') && !already_exist(args, str))
-		add_var(args, str);
-	else if (!ft_strchr(str[1], '=') && !already_exist(args, str))
-		add_var_no_input(args, str);
-	else
-	{
-		replace_var(args, str);
-		replace_var_cpy(args, str);
+		if (check_if_alpha(str[i]) == ERROR)
+		{
+			ft_printf_fd(2, "minishell : %s not a valid identifier\n", str[1]);
+			g_value = 1;
+			return (ERROR);
+		}
+		if (ft_strchr(str[i], '+'))
+			add_back(args, str, i);
+		else if (ft_strchr(str[i], '=') && !already_exist(args, str, i))
+			add_var(args, str, i);
+		else if (!ft_strchr(str[i], '=') && !already_exist(args, str, i))
+			add_var_no_input(args, str, i);
+		else
+		{
+			replace_var(args, str, i);
+			replace_var_cpy(args, str, i);
+		}
+		i++;
 	}
 	return (SUCCESS);
 }
