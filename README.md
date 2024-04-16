@@ -4,7 +4,6 @@ As beautiful as a shell..
 
 ![80%](https://progress-bar.dev/80)
 
-
 ## TO_FIX
 - Leaks if ./minishell is launched in minishell
 - heredoc with pipes (looping indefinitely)
@@ -15,3 +14,4 @@ As beautiful as a shell..
 - Exit code of commands
 - Right exit error message (instead of error)
 - Env built-in parsing
+
