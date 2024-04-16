@@ -4,17 +4,6 @@ As beautiful as a shell..
 
 ![80%](https://progress-bar.dev/80)
 
-## FIX
-- Leaks in almost all functions 
-- Unset and export working as expected
-- Pipes accurate to reality
-- Working with our own env
-- Add builtins to pipes (mostly ok)
-- Infile and outfile for pipes (code ready for implementation)
-- Unset path not SIGSEV
-- Export += option
-- PWD and OLDPWD updating in our env
-
 ## TO_FIX
 - Leaks if ./minishell is launched in minishell
 - heredoc with pipes (looping indefinitely)
