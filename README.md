@@ -25,5 +25,5 @@ exemple : cat Makefile
     /usr/bin/cat (check_path function)
     cat Makefile
 
-
+- Commande du demon : ls | echo $PATH | cat
 

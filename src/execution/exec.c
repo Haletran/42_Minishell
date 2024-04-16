@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 17:02:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:17:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,6 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 		args->pid = &pid;
 		if (execve(full_path, str, args->env_var) == -1)
 		{
-			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2,
-					"minishell: syntax error near unexpected token `;'\n");
-			else if (!ft_strncmp(str[0], "|", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2,
-					"minishell: syntax error near unexpected token `|'\n");
-			else
-				ft_printf_fd(2, "minishell: %s: command not found\n", str[0]);
 			args->exit_code = 127;
 			free(full_path);
 			exit(127);

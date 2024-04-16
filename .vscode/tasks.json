@@ -5,15 +5,12 @@
             "label": "Compile C code",
             "type": "shell",
             "command": "make",
-            "args": [
-                "re",
-            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "presentation": {
-                "reveal": "silent"
+                "reveal": "never"
             }
         }
     ]
