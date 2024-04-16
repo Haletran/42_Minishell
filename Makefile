@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/09 11:42:07 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/15 13:14:34 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,12 @@ ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
 endif
 
+
+
 NAME := minishell
 CC := clang
 CFLAGS := -Wextra -Wall -Werror -gdwarf-4
-DEBUG_FLAGS := -Wextra -Wall -Werror -g -fsanitize=address
+DEBUG_FLAGS := -Wextra -Wall -Werror -gdwarf-4 -fsanitize=address
 
 SRCS	= src/main.c \
 		  src/execution/redirections.c \
@@ -36,7 +38,6 @@ SRCS	= src/main.c \
 		  src/utils/free.c \
 		  src/utils/lst_utils.c \
 		  src/parse/parse.c \
-		  src/execution/exec_and.c \
 		  src/execution/exec_pipe.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
@@ -45,6 +46,7 @@ SRCS	= src/main.c \
 		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
 
+DEBUG := 0
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBFT_DIR = libft
@@ -54,11 +56,12 @@ all: $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+
 
 $(NAME): $(OBJS)
 	@make -C libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline 
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
@@ -90,6 +93,8 @@ fclean: clean
 	rm -rf tester/src/__pycache__
 	make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
+	rm -rf outfile
+	rm -rf infile
 	echo "\033[41m$(NAME) cleaned\033[0m"
 
 re: fclean all

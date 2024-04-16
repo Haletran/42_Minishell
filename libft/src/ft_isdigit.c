@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:13:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/02 22:14:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:15:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool	ft_isdigit(int c)
 {
-	if (c > 47 && c < 58)
+	if ((c > 47 && c < 58) || (c == 45 || c == 43))
 		return (TRUE);
 	return (FALSE);
 }

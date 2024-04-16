@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/11 17:32:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 08:09:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	delete_var_cpy(t_lst *args, char *str)
 {
 	t_env	*env;
 	t_env	*prev;
+	t_env	*temp;
 
 	env = args->env_cpy_lst;
 	prev = NULL;
@@ -24,22 +25,30 @@ void	delete_var_cpy(t_lst *args, char *str)
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 		{
-			free(env->key);
-			free(env->value);
+			free_char(env->key);
+			free_char(env->value);
+			temp = env->next;
+			free(env);
 			if (prev)
-				prev->next = env->next;
+				prev->next = temp;
 			else
-				args->env_cpy_lst = env->next;
+				args->env_var_lst = temp;
+			env = temp;
 		}
-		prev = env;
-		env = env->next;
+		else
+		{
+			prev = env;
+			env = env->next;
+		}
 	}
 }
+
 
 void	delete_var(t_lst *args, char *str)
 {
 	t_env	*env;
 	t_env	*prev;
+	t_env	*temp;
 
 	env = args->env_var_lst;
 	prev = NULL;
@@ -48,17 +57,25 @@ void	delete_var(t_lst *args, char *str)
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 		{
-			free(env->key);
-			free(env->value);
+			free_char(env->key);
+			free_char(env->value);
+			temp = env->next;
+			free(env);
 			if (prev)
-				prev->next = env->next;
+				prev->next = temp;
 			else
-				args->env_var_lst = env->next;
+				args->env_var_lst = temp;
+			env = temp;
 		}
-		prev = env;
-		env = env->next;
+		else
+		{
+			prev = env;
+			env = env->next;
+		}
 	}
 }
+
+
 
 int	ft_unset(char **str, t_lst **args)
 {

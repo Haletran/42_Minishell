@@ -1,4 +1,10 @@
 {
+    "triggerTaskOnSave.tasks": {
+        "Compile C code": [
+          "*.c"
+        ],
+      },
+
     "files.associations": {
         "minishell.h": "c",
         "curses.h": "c",
