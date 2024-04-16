@@ -18,5 +18,12 @@ As beautiful as a shell..
 
 ## TO_DO
 
-check.c : 
+For execve :
+    - need a have the path of the command
+    - need to have the command with his args
+exemple : cat Makefile
+    /usr/bin/cat (check_path function)
+    cat Makefile
+
+
 
