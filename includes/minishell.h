@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 12:57:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:06:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int					check_commands(char **str, t_lst *args);
 int					get_nbargs(char **str);
 char				*strjoin(char *s1, char *s2);
 void				init_lst(t_lst *args, char **envp);
-char				*check_path(char **str, t_lst *args, int nb);
+char				*check_path(char **str, t_lst *args);
 void				get_exit_code(t_lst *args);
 void				print_tab(char **src);
 int					get_len(char **str);
@@ -77,7 +77,7 @@ char				**ft_split2(char *str, char *delim);
 int					check_if_and(char **str);
 int					exec_and(char **str, t_lst *args);
 void				handle_sig(int check);
-void				choose(char *input, char **commands, t_lst **args);
+void				choose(t_cli *cli, char **commands, t_lst **args);
 void				show_token(char **commands, t_com **com);
 t_env				*sort_in_ascii(t_env *list);
 int					check_if_alpha(char *str);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 12:58:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:53:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render_prompt(t_lst *args, char **commands, t_cli *cli)
 	}
 	add_history(cli->input);
 	parsing_organiser(cli);
-	choose(cli->input, commands, &args);
+	choose(cli, commands, &args);
 	delete_all_nodes_token(&cli->token);
 }
 
