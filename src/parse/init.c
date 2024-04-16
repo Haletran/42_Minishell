@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/16 08:33:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:52:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,11 @@ t_env	*init_stack(t_env *env, char **str)
 		free(key);
 	}
 	return (env);
+}
+
+void	init_meta_and_operat(t_cli **cli)
+{
+	(*cli)->meta = ft_split(META_LIST, ',');
+	(*cli)->redirect = ft_split(REDICRECT_OPERAT_LIST, ',');
+	(*cli)->control = ft_split(CONTROL_OPERAT_LIST, ',');
 }

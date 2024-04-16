@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 11:23:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:28:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	child_process(char **str, t_lst *args)
 	int		i;
 	int		count;
 
-	count = 0;
+	count = 1;
 	i = 1;
 	input = NULL;
 	handle_sig(1);
@@ -58,7 +58,7 @@ void	child_process(char **str, t_lst *args)
 		if (!input && g_var == 0)
 		{
 			printf("warning: here-document at line \
-%d delimited by end-of-file (wanted %s)\n",
+%d delimited by end-of-file (wanted '%s')\n",
 					count,
 					str[i]);
 			free_char(input);
@@ -103,9 +103,7 @@ int	ft_heredoc(char **str, t_lst *args)
 		return (ERROR);
 	}
 	else if (pid == 0)
-	{
 		child_process(str, args);
-	}
 	waitpid(pid, &g_value, 0);
 	free_char(input);
 	return (SUCCESS);

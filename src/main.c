@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 10:59:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:58:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,22 @@
  *
  * @param args
  */
-void	render_prompt(t_lst *args, char **commands)
+void	render_prompt(t_lst *args, char **commands, t_cli *cli)
 {
-	char	*input;
-
 	handle_sig(0);
-	input = readline(BRED "[~] " CRESET "MINISHELL $ " BGRN "> " CRESET);
-	if (!input)
+	cli->input = readline(BRED "[~] " CRESET "MINISHELL $ " BGRN "> " CRESET);
+	if (!cli->input)
 	{
-		free_char(input);
+		free_char(cli->input);
 		global_free(args, commands);
+		free_cli(cli);
 		ft_printf_fd(1, "exit\n");
 		exit(0);
 	}
-	add_history(input);
-	choose(input, commands, &args);
+	add_history(cli->input);
+	parsing_organiser(cli);
+	choose(cli->input, commands, &args);
+	delete_all_nodes_token(&cli->token);
 }
 
 /**
@@ -47,15 +48,18 @@ void	render_prompt(t_lst *args, char **commands)
 int	main(int ac, char **av, char **envp)
 {
 	t_lst	*args;
+	t_cli	*cli;
 	char	**commands;
 
 	commands = NULL;
 	(void)ac;
 	args = ft_calloc(1, sizeof(t_lst));
+	cli = ft_calloc(1, sizeof(t_cli));
 	init_lst(args, envp);
+	init_meta_and_operat(&cli);
 	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1)
 		title_screen("Minishell", HGRN);
 	while (1)
-		render_prompt(args, commands);
+		render_prompt(args, commands, cli);
 	return (0);
 }

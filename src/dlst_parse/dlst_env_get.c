@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/10 12:30:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:17:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,17 @@ char	*get_key_from_value(t_env *head, char *value)
 	return (NULL);
 }
 
-void	print_dlst(t_env *head)
+void print_dlst(t_env *head)
 {
-	t_env	*tmp;
-
+	t_env *tmp;
+	
 	tmp = head;
-	while (tmp)
+	while (tmp->next)
 	{
-		ft_printf("key: %s\n", tmp->key);
-		ft_printf("value: %s\n", tmp->value);
+		ft_printf( "key: %s\n", tmp->key);
+		ft_printf( "value: %s\n", tmp->value);
 		tmp = tmp->next;
 	}
+	ft_printf_fd(1, "key: %s\n", tmp->key);
+	ft_printf_fd(1, "value: %s\n", tmp->value);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 10:53:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:02:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,16 @@ void free_char(char *str)
 		free(str);
 		str = NULL;
 	}
+}
+
+void	free_cli(t_cli *cli)
+{
+	//free(cli->input);
+	if (cli->token)
+		delete_all_nodes_token(&cli->token);
+	free_tab(cli->meta);
+	free_tab(cli->redirect);
+	free_tab(cli->control);
+	free(cli);
 }
 
