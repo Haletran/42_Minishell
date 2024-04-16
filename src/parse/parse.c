@@ -6,31 +6,14 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/01 17:45:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:53:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	show_token(char **commands, t_com **com)
+void	parsing_organiser(t_cli *cli)
 {
-	(void)com;
-	/* 	int i;
-
-		i = 0;
-		t_com *head;
-		com = malloc(1000);
-		head = (*com);
-
-		while (commands[i])
-		{
-			*com = malloc(100);
-
-			printf("%c TOKEN IS %d", input[i], (*com)->token);
-			(*com) = (*com)->next;
-			i++;
-		}
-		(*com) = head;
-	} */
-	print_tab(commands);
+	split_into_token(cli);
+	print_all_in_cli(cli);
 }

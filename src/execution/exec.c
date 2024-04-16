@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 09:39:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:31:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,7 @@ int	exec(char **str, t_lst *args)
 		}
 		else
 			perror(str[i]);
-		if (args->check_if_freed == 0)
-			free_tab(str);
+		free_tab(str);
 		return (SUCCESS);
 	}
 	else if (ft_strchr(str[i], '/'))

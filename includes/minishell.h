@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 13:25:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 12:57:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,28 @@ void				find_path(t_env *env, t_lst *args);
 /*PIPES*/
 int					exec_command(char **str, t_lst *args, char *full_path);
 
-/* FUNCTIONS */
+/*PARSING*/
+void				parsing_organiser(t_cli *cli);
+char				*get_token_from_index(t_token *head, int index);
+int					get_type_from_token(t_token *head, char *token);
+void				delete_node_token(t_token **head, t_token *del_node);
+void				delete_all_nodes_token(t_token **head);
+void				insert_token_front(t_token **head, char *token,
+						t_token_type type, int index);
+void				insert_token_after(t_token *prev_node, char *token,
+						t_token_type type, int index);
+void				insert_token_end(t_token **head, char *token,
+						t_token_type type, int index);
+int ft_ismeta(char c);
+int ft_iscontrol(char *token, t_cli *cli);
+int ft_isredirect(char *token, t_cli *cli);
+int	get_last_index(t_token *head);
+void print_dlst_token(t_token *head);
+
+
+/*DEBUG*/
+
+void    print_all_in_cli(t_cli *cli);
+void    print_all_token(t_token *token);
 
 #endif

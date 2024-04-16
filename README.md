@@ -14,4 +14,4 @@ As beautiful as a shell..
 - Exit code of commands
 - Right exit error message (instead of error)
 - Env built-in parsing
-
+- Fix heredoc not one after the others
