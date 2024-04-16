@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/16 12:51:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:59:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_position_of_next_meta(char *input)
 	
 	i = 0;
 	minus_position = -1;
-	while(input[i++])
+	while(input[i])
 	{
 		if (ft_ismeta(input[i]))
 		{
@@ -31,6 +31,7 @@ int	get_position_of_next_meta(char *input)
 			if (input[i] == 0)
 				minus_position = i;
 		}
+        i++;
 	}
 	if (minus_position == -1)
 		minus_position = i;
@@ -49,7 +50,7 @@ t_token_type	token_type_discovery(char *token, t_cli *cli)
 		if (ft_strcmp(token, cli->redirect[i++]) == 0)
 			return (REDIRECTION_OPERATOR);
 	}
-	i =0;
+	i = 0;
 	while (cli->control[i])
 		if (ft_strcmp(token, cli->control[i++]) == 0)
 			return (CONTROLE_OPERATOR);
@@ -99,6 +100,8 @@ void	split_into_token(t_cli *cli)
 	{
 		if (cli->input[cursor] == ' ' || cli->input[cursor] == '\t' || cli->input[cursor] == '\n')
 			cursor++;
+        if (cli->input[cursor] == 0)
+            break;
 		offset = ft_isstroperator(cli->input + cursor, cli);
 		if (offset == 0)
 			offset = get_position_of_next_meta(cli->input + cursor);
@@ -106,7 +109,7 @@ void	split_into_token(t_cli *cli)
 		if (token_tmp == NULL)
 			return ;
 		insert_token_end(&cli->token, ft_strtrim(token_tmp, " "), token_type_discovery(token_tmp, cli), iter++);
-		free(token_tmp);
+        free_char(token_tmp);
 		cursor += offset;
 	}
 	cli->n_token = iter;

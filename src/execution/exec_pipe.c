@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 11:25:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:10:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ int	exec_pipe(char **str, t_lst *args)
 	{
 		tmp = ft_split(str[i], ' ');
 		if (check_if_path_needed(tmp) == NOT_FOUND)
-			args->path_command = check_path(tmp, args, 0);
+			args->path_command = check_path(tmp, args);
 		if (i != 0)
 			args->prev_fd[0] = args->fd[0];
 		if (i != args->pipe_count - 1)

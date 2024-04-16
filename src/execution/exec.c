@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 12:31:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:03:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void	find_path(t_env *env, t_lst *args)
 	}
 }
 
+int ft_error_path(char **str, char **path, t_lst *args, char *full_path)
+{
+	if (access(full_path, F_OK | R_OK) == -1)
+	{
+		perror(str[0]);
+		free_tab(path);
+		free_char(args->env_path);
+		free_char(full_path);
+		args->exit_code = 127;
+		return (EXIT_FAILURE);
+	}
+	free_char(args->env_path);
+	free_tab(path);
+	return (EXIT_SUCCESS);
+}
+
+
 /**
  * @brief Path check if access is ok and loop until it test all path available
  *
@@ -34,53 +51,31 @@ void	find_path(t_env *env, t_lst *args)
  * @param nb
  * @return char*
  */
-char	*check_path(char **str, t_lst *args, int nb)
+char	*check_path(char **str, t_lst *args)
 {
-	char	*cmd;
 	char	**path;
 	int		i;
-	char	*tmp;
 	char	*full_path;
-	t_env	*env;
 
 	i = 0;
-	env = args->env_var_lst;
-	cmd = str[nb];
-	find_path(env, args);
+	find_path(args->env_var_lst, args);
 	if (!args->env_path)
 	{
-		ft_printf_fd(2, "%s: No such file or directory\n", cmd);
+		ft_printf_fd(2, "%s: No such file or directory\n", str[0]);
 		return (NULL);
 	}
 	path = ft_split(args->env_path, ':');
-	tmp = ft_strjoin(path[i], "/");
-	full_path = ft_strjoin(tmp, cmd);
+	full_path = ft_strjoin_f(ft_strjoin(path[i], "/"), str[0]);
 	while (path[i])
 	{
 		if (access(full_path, F_OK | R_OK) != -1)
 			break ;
-		else
-		{
-			free_char(full_path);
-			free_char(tmp);
-			tmp = ft_strjoin(path[i], "/");
-			full_path = ft_strjoin(tmp, cmd);
-		}
+		free_char(full_path);
+		full_path = ft_strjoin_f(ft_strjoin(path[i], "/"), str[0]);
 		i++;
 	}
-	if (access(full_path, F_OK | R_OK) == -1)
-	{
-		perror(cmd);
-		free_char(tmp);
-		free_tab(path);
-		free_char(args->env_path);
-		free_char(full_path);
-		args->exit_code = 127;
+	if (ft_error_path(str, path, args, full_path) == EXIT_FAILURE)
 		return (NULL);
-	}
-	free_char(tmp);
-	free_char(args->env_path);
-	free_tab(path);
 	return (full_path);
 }
 
@@ -180,7 +175,7 @@ int	exec(char **str, t_lst *args)
 	}
 	if (check_commands(str, args) == NOT_FOUND)
 	{
-		full_path = check_path(str, args, 0);
+		full_path = check_path(str, args);
 		if (full_path == NULL)
 		{
 			free_char(full_path);

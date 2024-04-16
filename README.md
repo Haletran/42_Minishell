@@ -15,3 +15,8 @@ As beautiful as a shell..
 - Right exit error message (instead of error)
 - Env built-in parsing
 - Fix heredoc not one after the others
+
+## TO_DO
+
+check.c : 
+
