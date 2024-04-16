@@ -2,96 +2,16 @@
 
 As beautiful as a shell..
 
-
-<details><summary>TODO</summary>
-
-## TO-FIX
-
-- [x] Fix when there is space and then enter is press
-- [x] Fix double prompt if CTRL+C during command execution
-- [x] The MAKE command not working properly
-- [x] Exit code to store and can echo with $?
-- [x] Make command path working
-- [x] PWD command not working properly
-- [ ] Return value not valid sometimes
-- [x] Make env var working
-- [x] Add pipe (IN CONSTRUCTION) / multi-command
-- [ ] Redirections (parsing needed)
-- [x] Parsing (lexer, tokenisation)
-- [x] Sort in ascii when exporting a variable
-- [x] Sort in ascii if export without args
-- [x] Unset command
-- [x] Segfault if $$
-- [ ] Exit code and exit function fix 
-- [ ] Quotes and double quotes
-- [x] Cd with ~
-- [x] Signals working as expected
-- [ ] Env command parsing (OK : env env FAIL : env rjsdgjsdg)
-- [ ] Export add valid charset
-- [ ] Prompt erasing if color is used and prompt too long
-- [x] Need to fix Heredoc
-- [x] Re-do export
-
-// use open in a fork
-// file for heredoc
-// removeif for unset
+![80%](https://progress-bar.dev/80)
 
 
-// IF NO PATH : 
-// ADD OLDPWD - PWD 
-// ADD PATH = /usr/bin/
-
-## BONUS
-
-- [x] && and & working properly
-- [x] wildcard for echo working (echo *)
-
- </details>
-
-## To keep if needed
-
-
-<details><summary></summary>
-
- ```C
-else if (!ft_strncmp(input, "&&", 2) || !ft_strncmp(input, "& ", 2))
-{
-	if (!ft_strncmp(input, " & ", 3))
-		commands = ft_split(input, '&');
-	else if (!ft_strncmp(input, " && ", 4))
-		commands = ft_split2(input, "&&");
-	exec_and(commands, *args);
-}
- ```
-
-
-```C
-t_com	*init_stack(t_com *com, char **str)
-{
-	t_com	*head;
-	int		tmp;
-
-	head = NULL;
-	tmp = 0;
-	while (tmp != get_nbargs(str))
-	{
-		if (!com)
-		{
-			com = ft_lst_new(ft_atoi(str[tmp]), 0);
-			head = com;
-		}
-		else
-		{
-			while (com && com->next != NULL)
-				com = com->next;
-			ft_lstadd_back(com, ft_atoi(str[tmp]));
-		}
-		tmp++;
-	}
-	com = head;
-	return (com);
-}
-
-```
-
-</details>
+## TO_FIX
+- Leaks if ./minishell is launched in minishell
+- heredoc with pipes (looping indefinitely)
+- Need to do the redirections of output and input
+- Simple quotes and double quotes
+- Echo built-ins might need to change to accomodate parsing
+- Parsing to get better input and output
+- Exit code of commands
+- Right exit error message (instead of error)
+- Env built-in parsing

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 07:32:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:15:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_lst
 	int					pipe_count;
 	char				*infile;
 	char				*outfile;
+	int					check_if_freed;
 	int 				file_fd[2];
 }						t_lst;
 
