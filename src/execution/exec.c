@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 07:36:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 09:39:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,13 @@ int	exec(char **str, t_lst *args)
 		{
 			full_path = str[i];
 			str[i] = ft_strrchr(str[i], '/');
+			exec_command(str, args, full_path);
+			args->check_if_freed = 1;
 		}
-		exec_command(str, args, full_path);
+		else
+			perror(str[i]);
+		if (args->check_if_freed == 0)
+			free_tab(str);
 		return (SUCCESS);
 	}
 	else if (ft_strchr(str[i], '/'))
@@ -163,6 +168,7 @@ int	exec(char **str, t_lst *args)
 			tmp = ft_strrchr(str[i], '/');
 			str[i] = ft_strdup(tmp);
 			exec_command(str, args, full_path);
+			free_tab(str);
 			return (SUCCESS);
 		}
 		else
@@ -179,9 +185,11 @@ int	exec(char **str, t_lst *args)
 		if (full_path == NULL)
 		{
 			free_char(full_path);
+			free_tab(str);
 			return (ERROR);
 		}
 		exec_command(str, args, full_path);
 	}
+	free_tab(str);
 	return (SUCCESS);
 }

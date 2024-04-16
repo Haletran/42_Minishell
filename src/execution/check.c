@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 07:33:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 08:55:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void choose(char *input, char **commands, t_lst **args)
 	int	i;
 
 	i = 0;
+	(*args)->exit_code = 0;
+	(*args)->check_if_freed = 0;
 	if (input[0] == '\0' || check_space(input))
 		rl_on_new_line();
 	else if (input[0] == '$')
@@ -36,7 +38,6 @@ void choose(char *input, char **commands, t_lst **args)
 		else
 			exec(commands, *args);
 	}
-	free_tab(commands);
 	free_char(input);
 	return ;
 }
