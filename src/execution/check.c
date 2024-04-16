@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 15:46:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:08:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	choose(t_cli *cli, char **commands, t_lst **args)
 	int	i;
 
 	i = 0;
-	printf("input = %s\n", cli->input);
 	(*args)->exit_code = 0;
 	if (!cli->token)
 		rl_on_new_line();
