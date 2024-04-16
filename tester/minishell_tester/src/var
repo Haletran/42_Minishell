@@ -1,0 +1,53 @@
+echo $PATH
+echo $USER
+echo ''
+echo ""
+echo "$USER"
+echo "'$USER'"
+echo '"'$USER'"'
+echo "'"$USER"'"
+echo "'a"$USER"'$USER"
+echo "$USER'"$USER"'"
+echo """"$USER""""
+echo ''''$USER''''
+echo ""$USER""
+echo ''$USER''
+echo '"$USER"'
+echo '"q'$USER'"'
+echo '"'$USER'"q'
+echo '"$USER'$USER'"q'
+echo '"'$USER'$USER"q'
+"ls"
+'ls'
+'ls' | ls
+'ls' | 'ls'
+"ls" | ls
+"ls" | "ls"
+"ls" | "cat"
+echo b ">" ./outfiles/out
+ls | echo $PATH
+ls | echo $USER
+ls | echo "$USER"
+ls | echo "'$USER'"
+ls | echo '"'$USER'"'
+ls | echo ""$USER""
+ls | echo ''$USER''
+ls | echo '"$USER"'
+ls | echo $PATH | cat
+ls | echo $USER | cat
+ls | echo "$USER" | cat
+ls | echo "'$USER'" | cat
+ls | echo '"'$USER'"' | cat
+ls | echo ""$USER"" | cat
+ls | echo ''$USER'' | cat
+ls | echo '"$USER"' | cat
+echo $PATH | cat
+echo $USER | cat
+echo "$USER" | cat
+echo "'$USER'" | cat
+echo '"'$USER'"' | cat
+echo ""$USER"" | cat
+echo ''$USER'' | cat
+echo '"$USER"' | cat
+export test="echo b" | $test
+export xd="x"
