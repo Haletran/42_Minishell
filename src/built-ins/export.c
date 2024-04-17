@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 10:00:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:23:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,6 @@ int	ft_export(t_lst *args, char **str)
 		if (check_if_alpha(str[i]) == ERROR)
 		{
 			ft_printf_fd(2, "minishell : %s not a valid identifier\n", str[1]);
-			g_value = 1;
 			return (ERROR);
 		}
 		if (ft_strchr(str[i], '+'))
