@@ -34,4 +34,5 @@ exemple : cat Makefile
     - >commands > outfile
 
 - Add syntax error
+- Exit code a mettre a chaque fin d'exec pour bien faire correspondre
 
