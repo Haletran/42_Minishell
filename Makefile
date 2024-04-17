@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/16 16:57:02 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/17 16:52:14 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,13 @@ ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
 endif
 
-
+RED				:= \033[0;31m
+BRED			:= \033[1;31m
+BLINK_GREEN		:= \033[5;32m
+BGREEN			:= \033[1;32m
+BHYEL			:= \033[1;93m
+BOLD			:= \033[1m
+NC				:= \033[0m
 
 NAME := minishell
 CC := clang
@@ -52,23 +58,24 @@ SRCS	= src/main.c \
 		  src/execution/exec.c
 
 DEBUG := 0
+SRC_DIR := src
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBFT_DIR = libft
 LIBFT_TARGET = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
+	@echo "\n\t$(BGREEN)$(NAME) = COMPILATION FINISHED !$(NC)\n"
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)  && echo "$(BGREEN)[✔]$(NC)\tCompiling:\t$(BOLD)$(notdir $<)$(NC)"
+	
+$(LIBFT_TARGET):
+	make -C $(LIBFT_DIR)
 
-
-$(NAME): $(OBJS)
-	@make -C libft
+$(NAME): $(LIBFT_TARGET) init $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
-	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
-	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
@@ -100,6 +107,13 @@ fclean: clean
 	rm -rf outfile
 	rm -rf infile
 	echo "\033[41m$(NAME) cleaned\033[0m"
+
+init:
+	@echo ""
+	@echo "\t\t$(BHYEL)┍━━━━━━━━━━━»•» 🌸  «•«━┑$(NC)"
+	@echo "\t\t$(BHYEL) MINISHELL COMPILATION $(NC)"
+	@echo "\t\t$(BHYEL)┕━»•» 🌸  «•«━━━━━━━━━━━┙$(NC)"
+	@echo ""
 
 re: fclean all
 
