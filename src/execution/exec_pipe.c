@@ -6,56 +6,55 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 17:04:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:11:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	piping(char **str, t_lst *args, int i)
+void    piping(char **str, t_lst *args, int i)
 {
-	pid_t	pid;
+    pid_t  pid;
 
-	(void)i;
-	if (check_if_fork(str, args) == NOT_FOUND)
-	{
-		pid = fork();
-		if (pid == -1)
-		{
-			ft_printf_fd(2, "fork failed\n");
-			exit(1);
-		}
-		else if (pid == 0)
-		{
-			if (i != 0)
-			{
-				dup2(args->prev_fd[0], STDIN_FILENO);
-				close(args->prev_fd[0]);
-			}
-			if (i != args->pipe_count - 1)
-			{
-				dup2(args->fd[1], STDOUT_FILENO);
-				close(args->fd[1]);
-			}
-			close(args->fd[0]);
-			if (check_commands(str, args) == SUCCESS)
-				exit(0);
-			else if (execve(args->path_command, str, args->env_var) == -1)
-				exit(1);
-			free_tab(str);
-			free_char(args->path_command);
-			waitpid(pid, &args->exit_code, 0);
-			exit(0);
-		}
-		else
-		{
-			if (i != args->pipe_count - 1)
-				close(args->fd[1]);
-		}
-		if (args->path_command != NULL)
-			free_char(args->path_command);
-		waitpid(pid, &args->exit_code, 0);
-	}
+    (void)i;
+    if (check_if_fork(str, args) == NOT_FOUND)
+    {
+        pid = fork();
+        if (pid == -1)
+        {
+            ft_printf_fd(2, "fork failed\n");
+            exit(1);
+        }
+        else if (pid == 0)
+        {
+            if (i != 0)
+            {
+                dup2(args->prev_fd[0], STDIN_FILENO);
+                close(args->prev_fd[0]);
+            }
+            if (i != args->pipe_count - 1)
+            {
+                dup2(args->fd[1], STDOUT_FILENO);
+                close(args->fd[1]);
+            }
+            close(args->fd[0]);
+            if (check_commands(str, args) == SUCCESS)
+                exit(0);
+            else if (execve(args->path_command, str, args->env_var) == -1)
+                exit(1);
+            free_tab(str);
+            free_char(args->path_command);
+            exit(0);
+        }
+        else
+        {
+            if (i != args->pipe_count - 1)
+                close(args->fd[1]);
+        }
+        if (args->path_command != NULL)
+            free_char(args->path_command);
+        waitpid(pid, &args->exit_code, 0);
+    }
 }
 
 void execute_last_command(char **str, t_lst *args, int i)
@@ -84,6 +83,10 @@ void execute_last_command(char **str, t_lst *args, int i)
 			}
 			if (args->outfile)
 				dup2(args->file_fd[1], STDOUT_FILENO);
+			close(args->fd[0]);
+			close(args->fd[1]);
+			close(args->backup[0]);
+			close(args->backup[1]);
 			if (check_commands(str, args) == SUCCESS)
 				exit(0);
 			else if (execve(args->path_command, str, args->env_var) == -1)
