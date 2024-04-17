@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 16:25:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:36:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	ft_heredoc(char **str, t_lst *args)
 	else if (pid == 0)
 		child_process(str, args);
 	waitpid(pid, &args->exit_code, 0);
+	if (str[2] && ft_strncmp(str[2], "<<", 2))
+		exec_command(str + 2, args, check_path(str + 2, args));
 	free_char(input);
 	return (SUCCESS);
 }

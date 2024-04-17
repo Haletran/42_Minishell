@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 16:11:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:39:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void execute_last_command(char **str, t_lst *args, int i)
 		}
 		waitpid(pid, &args->exit_code, 0);
 	}		
-	if (args->path_command != NULL)
-			free_char(args->path_command);
+/* 	if (args->path_command != NULL)
+			free_char(args->path_command); */
 	close(args->fd[0]);
 	close(args->fd[1]);
 	dup2(args->backup[0], STDIN_FILENO);
@@ -125,12 +125,7 @@ int	check_infile_outfile(t_lst *args)
 	if (args->outfile)
 	{
 		args->file_fd[1] = open(args->outfile, O_RDWR | O_CREAT | O_TRUNC, 0640);
-		if (args->file_fd[1] == -1)
-		{
-			ft_printf_fd(2, "minishell: %s: No such file or directory\n",
-				args->outfile);
-			return (ERROR);
-		}
+		dup2(args->file_fd[1], STDOUT_FILENO);
 	}
 	return (SUCCESS);
 }

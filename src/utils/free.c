@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 13:02:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:02:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_list(t_env **lst)
 void	global_free(t_lst *args, char **str)
 {
 	free_tab(str);
-	//rl_clear_history();
+	rl_clear_history();
 	delete_all_nodes_env(&args->env_cpy_lst);
 	delete_all_nodes_env(&args->env_var_lst);
 	free_tab(args->env_var);
@@ -69,8 +69,8 @@ void free_char(char *str)
 void	free_cli(t_cli *cli)
 {
 	//free(cli->input);
-	if (cli->token)
-		delete_all_nodes_token(&cli->token);
+/* 	if (cli->token->token)
+		delete_all_nodes_token(&cli->token); */
 	free_tab(cli->meta);
 	free_tab(cli->redirect);
 	free_tab(cli->control);

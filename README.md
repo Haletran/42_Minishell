@@ -12,9 +12,8 @@ As beautiful as a shell..
 - Echo built-ins might need to change to accomodate parsing
 - Parsing to get better input and output
 - Exit code of commands
-- Right exit error message (instead of error)
+- Right exit error message (instead of perror)
 - Env built-in parsing
-- Fix heredoc not one after the others
 
 ## TO_DO
 
@@ -26,4 +25,13 @@ exemple : cat Makefile
     cat Makefile
 
 - Commande du demon : ls | echo $PATH | cat
+- Fix des pipes avec le heredoc, exemple de fail : << ls | cat
+- heredoc avec commands derriere, exemple : << ls cat (copy the output into a file and use it instead of an infile)
+- toutes les redirections de merdes du style : 
+    - <infile commands > outfile
+    - <<del commands > outfile
+    - <<del commands
+    - >commands > outfile
+
+- Add syntax error
 

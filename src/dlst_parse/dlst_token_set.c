@@ -23,6 +23,7 @@ void	delete_node_token(t_token **head, t_token *del_node)
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
 	free(del_node->token);
+	del_node->token = NULL;
 	free(del_node);
 }
 

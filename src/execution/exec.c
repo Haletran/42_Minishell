@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 16:24:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:54:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int ft_error_path(char **str, char **path, t_lst *args, char *full_path)
 {
 	if (access(full_path, F_OK | R_OK) == -1)
 	{
-		perror(str[0]);
+		ft_printf_fd(2, "%s : command not found\n", str[0]);
 		free_tab(path);
 		free_char(args->env_path);
 		free_char(full_path);
