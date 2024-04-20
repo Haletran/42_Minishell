@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/17 15:43:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:29:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ int	check_if_path(char **envp)
 	return (0);
 }
 
+void historique(t_lst *args)
+{
+	char *line;
+	int fd;
+
+	fd = dup(args->history_fd);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		add_history(line);
+		free(line);
+	}
+	close(fd);
+}
+
+
+
 /**
  * @brief Init different path value
  *
@@ -41,6 +60,16 @@ void	init_lst(t_lst *args, char **envp)
 	args->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
 	args->env_var_lst = init_stack(args->env_var_lst, envp);
 	args->env_cpy_lst = init_stack(args->env_cpy_lst, envp);
+	if (access(".mini_history", F_OK | R_OK) != -1)
+	{
+	   args->history_fd = open(".mini_history", O_RDWR | O_APPEND, 0640);
+	   historique(args);
+	}
+	else
+	{
+	   printf("Dont exist\n");
+	   args->history_fd = open(".mini_history", O_RDWR | O_CREAT | O_TRUNC, 0640);
+	}
 	ft_cpy(args->env_var, envp);
 	args->exit_code = 0;
 }

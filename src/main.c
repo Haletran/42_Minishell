@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 18:02:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:33:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	render_prompt(t_lst *args, char **commands, t_cli *cli)
 		exit(0);
 	}
 	add_history(cli->input);
+	ft_printf_fd(args->history_fd, "%s%s", cli->input, "\0");
 	parsing_organiser(cli);
 	choose(cli, commands, &args);
 	if (cli->token->token)

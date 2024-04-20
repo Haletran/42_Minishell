@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 18:16:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:55:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	choose(t_cli *cli, char **commands, t_lst **args)
 	//(*args)->exit_code = 0;
 	if (!cli->token)
 		rl_on_new_line();
+	else if (cli->input[0] == ',')
+	{
+		perror(",");
+		(*args)->exit_code = 2;
+	}
 	else if (cli->input[0] == ';')
 	{
 		ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
