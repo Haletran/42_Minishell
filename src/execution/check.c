@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 16:08:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 11:55:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,44 @@ void	choose(t_cli *cli, char **commands, t_lst **args)
 	int	i;
 
 	i = 0;
-	(*args)->exit_code = 0;
+	//(*args)->exit_code = 0;
 	if (!cli->token)
 		rl_on_new_line();
+	else if (cli->input[0] == ',')
+	{
+		perror(",");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == ';')
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == '[' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: [: missing `]'\n");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == '|' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `|'\n");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == '|' && cli->input[1] == '|' && ft_strlen(cli->input) <= 2)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `||'\n");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == '>' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
+		(*args)->exit_code = 2;
+	}
+	else if (cli->input[0] == '<' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
+		(*args)->exit_code = 2;
+	}
 	else if (cli->input[0] == '$')
 		print_path(cli->input + 1, *args, 1);
 	else if (cli->input[0] != '\0')
@@ -77,8 +112,6 @@ int	check_if_fork(char **str, t_lst *args)
 		return (ft_heredoc(str, args));
 	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
 		return (ft_unset(str, &args));
-	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
-		return (ft_env(args, str));
 	return (NOT_FOUND);
 }
 

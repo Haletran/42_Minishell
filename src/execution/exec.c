@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 17:02:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:54:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int ft_error_path(char **str, char **path, t_lst *args, char *full_path)
 {
 	if (access(full_path, F_OK | R_OK) == -1)
 	{
-		perror(str[0]);
+		ft_printf_fd(2, "%s : command not found\n", str[0]);
 		free_tab(path);
 		free_char(args->env_path);
 		free_char(full_path);
@@ -102,21 +102,13 @@ int	exec_command(char **str, t_lst *args, char *full_path)
 		args->pid = &pid;
 		if (execve(full_path, str, args->env_var) == -1)
 		{
-			if (!ft_strncmp(str[0], ";", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2,
-					"minishell: syntax error near unexpected token `;'\n");
-			else if (!ft_strncmp(str[0], "|", 1) && ft_strlen(str[0]) == 1)
-				ft_printf_fd(2,
-					"minishell: syntax error near unexpected token `|'\n");
-			else
-				ft_printf_fd(2, "minishell: %s: command not found\n", str[0]);
 			args->exit_code = 127;
 			free(full_path);
 			exit(127);
 		}
 	}
 	get_exit_code(args);
-	waitpid(pid, &g_value, 0);
+	waitpid(pid, &args->exit_code, 0);
 	free(full_path);
 	return (SUCCESS);
 }

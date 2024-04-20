@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 12:29:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:28:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ int	ft_echo(char **str, t_lst *args)
 	check = 1;
 	flag = 0;
 	var = NULL;
+	if (!str[1])
+	{
+		printf("\n");
+		return (SUCCESS);
+	}
 	if (!ft_strncmp(str[i], "-n", 2))
 	{
 		while (str[1][check] == 'n')

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 11:28:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/17 17:36:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	check_heredoc_error(char **str)
 	if (!str[1])
 	{
 		printf("heredoc: syntax error\n");
-		g_value = 2;
 		return (ERROR);
 	}
 	if (check_number_of_heredoc(str) >= 16)
@@ -95,7 +94,10 @@ int	ft_heredoc(char **str, t_lst *args)
 
 	input = NULL;
 	if (check_heredoc_error(str) == ERROR)
+	{
+		args->exit_code = 1;
 		return (ERROR);
+	}
 	pid = fork();
 	if (pid == -1)
 	{
@@ -104,7 +106,9 @@ int	ft_heredoc(char **str, t_lst *args)
 	}
 	else if (pid == 0)
 		child_process(str, args);
-	waitpid(pid, &g_value, 0);
+	waitpid(pid, &args->exit_code, 0);
+	if (str[2] && ft_strncmp(str[2], "<<", 2))
+		exec_command(str + 2, args, check_path(str + 2, args));
 	free_char(input);
 	return (SUCCESS);
 }

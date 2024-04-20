@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlst_token_set.c                                     :+:      :+:    :+:   */
+/*   dlst_variable_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	delete_node_token(t_token **head, t_token *del_node)
+void	delete_node_variable(t_variable **head, t_variable *del_node)
 {
 	if (*head == NULL || del_node == NULL)
 		return ;
@@ -22,36 +22,37 @@ void	delete_node_token(t_token **head, t_token *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	free(del_node->token);
-	del_node->token = NULL;
+	free(del_node->key);
+	free(del_node->variable);
 	free(del_node);
 }
 
-void	delete_all_nodes_token(t_token **head)
+void	delete_all_nodes_variable(t_variable **head)
 {
-	t_token	*tmp;
+	t_variable	*tmp;
 
 	if (*head == NULL)
 	{
-		display_error("head is null, deletion is not possible", NULL,
-			DEBUG_MODE);
+		// display_error("head is null, deletion is not possible", NULL,
+		//	DEBUG_MODE);
 		return ;
 	}
 	while (*head != NULL)
 	{
 		tmp = (*head)->next;
-		delete_node_token(head, *head);
+		delete_node_variable(head, *head);
 		*head = tmp;
 	}
 }
 
-void	insert_token_front(t_token **head, char *token, t_token_type type, int index)
+void	insert_variable_front(t_variable **head, char *key, char *variable,
+		int index)
 {
-	t_token	*new_node;
+	t_variable	*new_node;
 
-	new_node = (t_token *)malloc(sizeof(t_token));
-	new_node->token = token;
-	new_node->type = type;
+	new_node = (t_variable *)malloc(sizeof(t_variable));
+	new_node->variable = variable;
+	new_node->key = key;
 	new_node->index = index;
 	new_node->next = (*head);
 	new_node->prev = NULL;
@@ -60,15 +61,16 @@ void	insert_token_front(t_token **head, char *token, t_token_type type, int inde
 	(*head) = new_node;
 }
 
-void	insert_token_after(t_token *prev_node, char *token, t_token_type type, int index)
+void	insert_variable_after(t_variable *prev_node, char *key, char *variable,
+		int index)
 {
-	t_token	*new_node;
+	t_variable	*new_node;
 
 	if (prev_node == NULL)
 		display_error("Previous node cannot be null", NULL, DEBUG_MODE);
-	new_node = (t_token *)malloc(sizeof(t_token));
-	new_node->token = token;
-	new_node->type = type;
+	new_node = (t_variable *)malloc(sizeof(t_variable));
+	new_node->variable = variable;
+	new_node->key = key;
 	new_node->index = index;
 	new_node->next = prev_node->next;
 	new_node->prev = prev_node;
@@ -76,15 +78,16 @@ void	insert_token_after(t_token *prev_node, char *token, t_token_type type, int 
 		new_node->next->prev = new_node;
 }
 
-void	insert_token_end(t_token **head, char *token, t_token_type type, int index)
+void	insert_variable_end(t_variable **head, char *key, char *variable,
+		int index)
 {
-	t_token	*new_node;
-	t_token	*tmp_node;
+	t_variable	*new_node;
+	t_variable	*tmp_node;
 
 	tmp_node = *head;
-	new_node = (t_token *)malloc(sizeof(t_token));
-	new_node->token = token;
-	new_node->type = type;
+	new_node = (t_variable *)malloc(sizeof(t_variable));
+	new_node->variable = variable;
+	new_node->key = key;
 	new_node->index = index;
 	new_node->next = NULL;
 	if (*head == NULL)
