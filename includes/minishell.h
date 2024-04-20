@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 11:39:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:16:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int					print_path(char *str, t_lst *args, int choose);
 char				*search_path(char *str, t_lst *lst);
 void				find_path(t_env *env, t_lst *args);
 
-/*PIPES*/
 int					exec_command(char **str, t_lst *args, char *full_path);
 
 /*PARSING*/
@@ -130,16 +129,43 @@ void				insert_token_after(t_token *prev_node, char *token,
 						t_token_type type, int index);
 void				insert_token_end(t_token **head, char *token,
 						t_token_type type, int index);
-int ft_ismeta(char c);
-int ft_iscontrol(char *token, t_cli *cli);
-int ft_isredirect(char *token, t_cli *cli);
-int	get_last_index(t_token *head);
-void print_dlst_token(t_token *head);
+int					ft_ismeta(char c);
+int					ft_iscontrol(char *token, t_cli *cli);
+int					ft_isredirect(char *token, t_cli *cli);
+int					get_last_index(t_token *head);
+void				print_dlst_token(t_token *head);
 
+char				*get_value_from_key(t_env *head, char *key);
+
+void				delete_node_variable(t_variable **head,
+						t_variable *del_node);
+void				delete_all_nodes_variable(t_variable **head);
+void				insert_variable_front(t_variable **head, char *key,
+						char *value, int index);
+void				insert_variable_after(t_variable *prev_node, char *key,
+						char *value, int index);
+void				insert_variable_end(t_variable **head, char *key,
+						char *value, int index);
+char				*get_variable_from_key(t_variable *head, char *key);
+char				*get_key_from_variable(t_variable *head, char *variable);
+int					get_last_index_var(t_variable *head);
+void				print_dlst_variable(t_variable *head);
+
+void				init_meta_and_operat(t_cli **cli);
+void				split_into_token(t_cli *cli);
+int					ft_lenstrtype(char *token, t_cli *cli);
+t_token_type		token_type_discover(char *token, t_cli *cli);
+int					get_position_of_next_meta(char *input);
+void				free_cli(t_cli *cli);
+char				*ft_strtrim_f(char *s1, char *set);
+void				input_reader(t_cli *cli);
+void				tilde_expansion(t_cli *cli);
+void				parameter_expansion(t_cli *cli);
+void				varloc_creation(t_cli *cli);
 
 /*DEBUG*/
 
-void    print_all_in_cli(t_cli *cli);
-void    print_all_token(t_token *token);
+void				print_all_in_cli(t_cli *cli);
+void				print_all_token(t_token *token);
 
 #endif

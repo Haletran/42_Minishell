@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/20 12:29:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:22:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ t_env	*init_stack(t_env *env, char **str)
 
 void	init_meta_and_operat(t_cli **cli)
 {
-	(*cli)->meta = ft_split(META_LIST, ',');
 	(*cli)->redirect = ft_split(REDICRECT_OPERAT_LIST, ',');
 	(*cli)->control = ft_split(CONTROL_OPERAT_LIST, ',');
+	(*cli)->quote = ft_split(QUOTE_LIST, ',');
+	(*cli)->bracket = ft_split(BRACKET_LIST, ',');
 }

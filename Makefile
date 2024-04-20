@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/17 16:52:14 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/04/20 14:25:31 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,15 @@ SRCS	= src/main.c \
 		  src/utils/utils3.c \
 		  src/debug.c \
 		  src/utils/ft_is.c \
+		  src/command_line/split_into_tokens.c \
+		  src/command_line/input_reader.c \
+		  src/command_line/tilde_expansion.c \
+		  src/command_line/parameter_expansion.c \
+		  src/command_line/varloc_creation.c \
 		  src/dlst_parse/dlst_token_get.c \
 		  src/dlst_parse/dlst_token_set.c \
-		  src/command_line/split_into_tokens.c \
+		  src/dlst_parse/dlst_variable_get.c \
+		  src/dlst_parse/dlst_variable_set.c \
 		  src/dlst_parse/dlst_env_set.c \
 		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
