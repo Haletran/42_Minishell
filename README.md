@@ -37,6 +37,9 @@ exemple : cat Makefile
 - ./minishell in minishell does not work anymore
 - bash lt tous les infiles outfiles
 
+## Diagram
+
+<img src="diagram.png" style="width:500px" alt="diagram"></img>
 
 ## Links 
 
