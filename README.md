@@ -36,42 +36,11 @@ exemple : cat Makefile
 - Add syntax error
 - Exit code a mettre a chaque fin d'exec pour bien faire correspondre
 
-```c
-	else if (cli->input[0] == ',')
-	{
-		perror(",");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == ';')
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '[' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: [: missing `]'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '|' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `|'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '|' && cli->input[1] == '|' && ft_strlen(cli->input) <= 2)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `||'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '>' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '<' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
-		(*mnsh)->exit_code = 2;
-	}
-	else if (cli->input[0] == '$')
-		print_path(cli->input + 1, *mnsh, 1);
-```
+## Links 
+
+- https://www.gnu.org/software/bash/manual/html_node/Builtin-Index.html
+- https://www.gnu.org/software/bash/manual/bash.html
+- https://www.linux.org/threads/bash-01-script-basics.37797/#post-143818
+- https://www.linux.org/threads/bash-02-%E2%80%93-variables-and-such.38200/
+- https://www.linux.org/threads/bash-03-%E2%80%93-command-line-processing.38676/
+- https://se.ifmo.ru/~ad/Documentation/Bash_Shell/bash3-CHP-7-SECT-3.html

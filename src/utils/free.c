@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:11:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:33:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	global_free(t_lst *mnsh, char **str)
 	free(mnsh);
 }
 
-char *free_char(char *str)
+char	*free_char(char *str)
 {
 	if (str != NULL)
 	{

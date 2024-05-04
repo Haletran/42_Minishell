@@ -1,23 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   varloc_creation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 10:28:10 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/02 22:44:23 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:31:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 int	varloc_creation(t_cli *cli)
 {
-	t_bool		ret;
-	t_token		*tmp;
-	char		*var_line;
-	char		*key_line;
+	t_bool	ret;
+	t_token	*tmp;
+	char	*var_line;
+	char	*key_line;
 
 	ret = STOPPED;
 	tmp = cli->token;
@@ -38,19 +38,19 @@ int	varloc_creation(t_cli *cli)
 	return (ret);
 }
 
-int	varloc_modify(t_cli *cli,char *key_line, char *var_line)
+int	varloc_modify(t_cli *cli, char *key_line, char *var_line)
 {
-	t_variable		*tmp;
-	int				i;
-	static int		index = 0;
-	
+	t_variable	*tmp;
+	int			i;
+	static int	index = 0;
+
 	tmp = cli->variable;
 	if (tmp == NULL)
-		return(varloc_attrib(cli, key_line, var_line, index++));
+		return (varloc_attrib(cli, key_line, var_line, index++));
 	while (ft_strcmp(tmp->key, key_line) != 0 || tmp != NULL)
 	{
 		if (tmp->next == NULL)
-			break;
+			break ;
 		tmp = tmp->next;
 	}
 	if (ft_strcmp(tmp->key, key_line) == 0)
@@ -61,19 +61,20 @@ int	varloc_modify(t_cli *cli,char *key_line, char *var_line)
 		return (SUCCESS);
 	}
 	else
-		return(varloc_attrib(cli, key_line, var_line, index++));
+		return (varloc_attrib(cli, key_line, var_line, index++));
 	return (STOPPED);
 }
 
-int varloc_attrib(t_cli *cli, char *key_line, char *var_line, int index)
+int	varloc_attrib(t_cli *cli, char *key_line, char *var_line, int index)
 {
 	insert_variable_end(&cli->variable, ft_strdup(key_line),
-			ft_strdup(var_line), index);
+		ft_strdup(var_line), index);
 	if (cli->variable == NULL)
 		return (STOPPED);
 	return (SUCCESS);
 }
-char *key_from_token(char *token)
+
+char	*key_from_token(char *token)
 {
 	char	*key;
 	int		i;
@@ -85,7 +86,7 @@ char *key_from_token(char *token)
 	return (key);
 }
 
-char *variable_from_token(char *token)
+char	*variable_from_token(char *token)
 {
 	char	*variable;
 	int		i;
@@ -95,6 +96,6 @@ char *variable_from_token(char *token)
 	while (token[i] != '=')
 		i++;
 	j = ft_strlen_endc(token + i + 1, 0);
-	variable = ft_substr(token, i+1, j);
+	variable = ft_substr(token, i + 1, j);
 	return (variable);
 }

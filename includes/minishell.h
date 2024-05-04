@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:11:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:47:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_lst *mnsh);
 void			sig_ctrl_back(int signum);
 void			heredoc_handler(int signum);
-int delete (t_lst *mnsh, int len);
+int				delete(t_lst *mnsh, int len);
 void			historyze(t_cli *cli);
 
 /*LST*/

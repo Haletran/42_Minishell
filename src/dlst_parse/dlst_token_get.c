@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dlst_token_get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/12 14:12:22 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:26:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -25,7 +25,6 @@ char	*get_token_from_index(t_token *head, int index)
 	return (NULL);
 }
 
-
 int	get_type_from_token(t_token *head, char *token)
 {
 	if (!head || !token)
@@ -39,7 +38,7 @@ int	get_type_from_token(t_token *head, char *token)
 	return (-1);
 }
 
-int		get_last_index(t_token *head)
+int	get_last_index(t_token *head)
 {
 	if (!head)
 		return (-1);
@@ -48,22 +47,19 @@ int		get_last_index(t_token *head)
 	return (head->index);
 }
 
-
-
-void print_dlst_token(t_token *head)
+void	print_dlst_token(t_token *head)
 {
-	t_token *tmp;
-	
+	t_token	*tmp;
+
 	tmp = head;
 	while (tmp->next)
 	{
-		ft_printf( "token: %s\n", tmp->token);
-		ft_printf( "type: %s\n", tmp->type);
-		ft_printf( "index: %d\n", tmp->index);
+		ft_printf("token: %s\n", tmp->token);
+		ft_printf("type: %s\n", tmp->type);
+		ft_printf("index: %d\n", tmp->index);
 		tmp = tmp->next;
 	}
 	ft_printf_fd(1, "token: %s\n", tmp->token);
 	ft_printf_fd(1, "type: %s\n", tmp->type);
-	ft_printf( "index: %d\n", tmp->index);
-
+	ft_printf("index: %d\n", tmp->index);
 }

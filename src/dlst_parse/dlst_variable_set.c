@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlst_variable_set.c                                     :+:      :+:    :+:   */
+/*   dlst_variable_set.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/09 15:20:26 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/05/04 12:25:43 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/05/04 12:26:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,7 @@ void	delete_all_nodes_variable(t_variable **head)
 	t_variable	*tmp;
 
 	if (*head == NULL)
-	{
-		// display_error("head is null, deletion is not possible", NULL,
-		//	DEBUG_MODE);
 		return ;
-	}
 	while (*head != NULL)
 	{
 		tmp = (*head)->next;

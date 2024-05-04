@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 11:51:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:36:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //? https://se.ifmo.ru/~ad/Documentation/Bash_Shell/bash3-CHP-7-SECT-3.html
 
-t_token_type   quote_n_heredoc_census(char *token, t_cli *cli)
+t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 {
 	if (ft_isthis("\"", token[0]) > 0)
 	{
@@ -42,7 +42,7 @@ t_token_type   quote_n_heredoc_census(char *token, t_cli *cli)
 t_token_type	token_type_discovery(char *token, t_cli *cli)
 {
 	if (cli->heredoc == 1 && ft_isthis(" \t\n", token[0]) == 0)
-		return(quote_n_heredoc_census(token, cli));
+		return (quote_n_heredoc_census(token, cli));
 	if (ft_isthis("\"'<", token[0]) > 0)
 		return (quote_n_heredoc_census(token, cli));
 	if (cli->n_dquote & 1)
@@ -80,7 +80,7 @@ void	split_into_token(t_cli *cli)
 		if (cli->input[i] == 0)
 			break ;
 		offset = ft_lenstrtype(cli->input + i, cli);
-		if (ft_isthis(" \t\n", cli->input[i]))
+		if (ft_isthis(" '\"\t\n", cli->input[i]))
 			offset++;
 		if (offset == 0)
 			offset = get_position_of_next_meta(cli->input + i);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:05:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:39:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	replace_var_cpy(t_lst *mnsh, char **str, int i)
 	free_tab(tmp);
 }
 
-int check_if_var_exist(t_env *env, char *str)
+int	check_if_var_exist(t_env *env, char *str)
 {
 	while (env)
 	{
@@ -179,7 +179,7 @@ int	already_exist(t_lst *mnsh, char **str, int i)
 	return (0);
 }
 
-int add_back2(t_lst *mnsh, char **str, int i)
+int	add_back2(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	*value;
@@ -208,8 +208,6 @@ int add_back2(t_lst *mnsh, char **str, int i)
 	return (ERROR);
 }
 
-
-
 int	add_back(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
@@ -228,7 +226,7 @@ int	add_back(t_lst *mnsh, char **str, int i)
 			free_char(env->value);
 			env->value = ft_strjoin(value, to_keep);
 			free_char(value);
-			break;
+			break ;
 		}
 		env = env->next;
 	}

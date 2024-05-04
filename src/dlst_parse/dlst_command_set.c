@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dlst_command_set.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/25 10:23:17 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:26:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -35,11 +35,7 @@ void	delete_all_nodes_com(t_com **head)
 	t_com	*tmp;
 
 	if (*head == NULL)
-	{
-		// display_error("head is null, deletion is not possible", NULL,
-		//	DEBUG_MODE);
 		return ;
-	}
 	while (*head != NULL)
 	{
 		tmp = (*head)->next;

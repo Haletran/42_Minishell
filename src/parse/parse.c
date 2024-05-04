@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:07:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:37:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	parsing_organiser(t_cli *cli)
 		split_into_token(cli);
 	}
 	cleaning_token_list(cli);
-	print_all_in_cli(cli);
 	rulers(cli);
 	tilde_expansion(cli);
 	if (!varloc_creation(cli))
@@ -50,6 +49,4 @@ void	parsing_organiser(t_cli *cli)
 	create_command(cli);
 	print_all_in_cli(cli);
 	print_all_com(cli->com);
-	//freeway(cli);
-	//exit_info(0,"FINISH", NULL, DEBUG_MODE);
 }

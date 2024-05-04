@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 11:44:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:42:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_env
 
 typedef struct s_lst
 {
-	char **commands_recreated;
+	char				**commands_recreated;
 	t_env				*env_var_lst;
 	t_env				*env_cpy_lst;
 	char				**env_var;

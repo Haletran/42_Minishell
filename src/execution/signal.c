@@ -1,18 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/25 00:31:42 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:34:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	g_var = 0;
+int			g_var = 0;
 
 static void	sig_ctrl_c(int signum)
 {
@@ -40,7 +40,7 @@ void	heredoc_handler(int signum)
 	close(0);
 }
 
-void sig_ctrl_back(int signum)
+void	sig_ctrl_back(int signum)
 {
 	(void)signum;
 	ft_putstr_fd("Quit (core dumped)\n", 1);

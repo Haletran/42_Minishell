@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 11:53:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:42:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	find_path_s(t_env *env, t_cli *cli)
 	}
 }
 
-int check_if_builtin(char *str)
+int	check_if_builtin(char *str)
 {
 	if (!ft_strncmp(str, "pwd", 3) && ft_strlen(str) == 3)
 		return (SUCCESS);
@@ -47,8 +47,6 @@ int check_if_builtin(char *str)
 		return (SUCCESS);
 	return (ERROR);
 }
-
-
 
 char	*check_path(char *str, t_lst *mnsh)
 {
@@ -119,7 +117,7 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	return (EXIT_SUCCESS);
 }
 
-int get_nb_args(t_com *com)
+int	get_nb_args(t_com *com)
 {
 	t_arg	*arg;
 	int		nb_args;
@@ -138,10 +136,9 @@ int get_nb_args(t_com *com)
 	return (nb_args);
 }
 
-
-int get_nb_commands(t_com *com)
+int	get_nb_commands(t_com *com)
 {
-	int		nb_commands;
+	int	nb_commands;
 
 	nb_commands = 0;
 	while (com)
@@ -154,36 +151,36 @@ int get_nb_commands(t_com *com)
 
 char	**recreate_commands(t_cli *cli, char **commands)
 {
-    t_com	*com;
-    t_arg	*arg;
-    int		i;
-    int len;
+	t_com	*com;
+	t_arg	*arg;
+	int		i;
+	int		len;
 
-    i = 0;
-    com = cli->com;
-    len = get_nb_args(com) + get_nb_commands(com);
-    commands = malloc(sizeof(char *) * (len + 1));
-    while (i < len)
-    {
+	i = 0;
+	com = cli->com;
+	len = get_nb_args(com) + get_nb_commands(com);
+	commands = malloc(sizeof(char *) * (len + 1));
+	while (i < len)
+	{
 		if (com->command)
-        	commands[i] = ft_strdup(com->command);
-        arg = com->arg;
+			commands[i] = ft_strdup(com->command);
+		arg = com->arg;
 		if (!arg)
-		{	
+		{
 			i++;
-			break;
+			break ;
 		}
 		while (arg)
-        {
-            i++;
-            if (arg->arg)
-                commands[i] = ft_strdup(arg->arg);
-            arg = arg->next;
-        }
-        i++;
-    }
-    commands[i] = NULL;
-    return (commands);
+		{
+			i++;
+			if (arg->arg)
+				commands[i] = ft_strdup(arg->arg);
+			arg = arg->next;
+		}
+		i++;
+	}
+	commands[i] = NULL;
+	return (commands);
 }
 
 /**
@@ -208,7 +205,8 @@ int	exec_command(t_cli *cli)
 	else if (pid == 0)
 	{
 		cli->mnsh->pid = &pid;
-		if (execve(cli->com->env_path, cli->mnsh->commands_recreated, cli->mnsh->env_var) == -1)
+		if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
+				cli->mnsh->env_var) == -1)
 		{
 			cli->mnsh->exit_code = 127;
 			printf("minishell: %s: command not found\n", cli->com->command);
@@ -232,7 +230,10 @@ int	exec_command(t_cli *cli)
 int	exec(t_cli *cli)
 {
 	cli->mnsh->commands_recreated = NULL;
-	cli->mnsh->commands_recreated = recreate_commands(cli, cli->mnsh->commands_recreated);
+	cli->mnsh->commands_recreated = recreate_commands(cli,
+			cli->mnsh->commands_recreated);
+	if (!cli->mnsh->commands_recreated)
+		return (ERROR);
 	if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
 		exec_command(cli);
 	else

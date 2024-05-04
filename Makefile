@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/04 11:44:59 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/04 12:25:02 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,6 +90,9 @@ $(LIBFT_TARGET):
 
 $(NAME): $(LIBFT_TARGET) init $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
+
+gdb: 
+	gdb --tui ./$(NAME)
 
 norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
