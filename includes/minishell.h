@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 14:07:01 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:58:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ extern int		g_var;
 # define SUCCESS 0
 # define STOPPED 1
 
-#ifndef DEBUG
-# 	define DEBUG 0
-#endif
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
 
 //* ************************************************************************ *//
 //*                                                                          *//
@@ -97,7 +97,7 @@ char			*ft_join(char *s1, char *s2);
 void			print_tab(char **src);
 char			*strjoin(char *s1, char *s2);
 void			print_tab(char **src);
-int				exec_pipe(char **str, t_lst *mnsh);
+int				exec_pipe(t_cli *cli);
 char			**ft_split2(char *str, char *delim);
 int				exec_and(char **str, t_lst *mnsh);
 void			handle_sig(int check);
@@ -130,10 +130,10 @@ int				ft_unset(char **str, t_lst **mnsh);
 /*BASH_UTILITIES*/
 int				ft_heredoc(char **str, t_lst *mnsh);
 void			sig_command_is_running(int signum);
-void			ft_redirection(char **str, t_lst *mnsh);
+void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
 void			heredoc_handler(int signum);
-int				delete(t_lst *mnsh, int len);
+int delete (t_lst *mnsh, int len);
 void			historyze(t_cli *cli);
 
 /*LST*/

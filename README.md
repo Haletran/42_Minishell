@@ -5,7 +5,6 @@ As beautiful as a shell..
 ![80%](https://progress-bar.dev/80)
 
 ## TO_FIX
-- Leaks if ./minishell is launched in minishell
 - heredoc with pipes (looping indefinitely)
 - Need to do the redirections of output and input
 - Simple quotes and double quotes
@@ -33,8 +32,11 @@ exemple : cat Makefile
     - <<del commands
     - >commands > outfile
 
-- Add syntax error
-- Exit code a mettre a chaque fin d'exec pour bien faire correspondre
+- Heredoc problem not considered as command
+- the path of the next command in pipe does not exist
+- ./minishell in minishell does not work anymore
+- bash lt tous les infiles outfiles
+
 
 ## Links 
 

@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/04 14:27:09 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/04 14:58:47 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS	= src/main.c \
 		  src/utils/parse_utils.c \
 		  src/debug.c \
 		  src/command_line/split_into_tokens.c \
+		  src/execution/exec_pipe.c \
 		  src/command_line/cleaning_dlst_token.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \

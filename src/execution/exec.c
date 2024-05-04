@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 14:00:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:59:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,8 @@ int	exec_command(t_cli *cli)
 	else if (pid == 0)
 	{
 		cli->mnsh->pid = &pid;
+		if (cli->com->redirection)
+			ft_redirection(cli->mnsh->commands_recreated, cli);
 		if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
 				cli->mnsh->env_var) == -1)
 		{
