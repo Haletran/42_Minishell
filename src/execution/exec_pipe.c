@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:34:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:58:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,13 +141,11 @@ int	exec_pipe(char **str, t_lst *mnsh)
 	// add infile and outfile support
 	if (check_infile_outfile(mnsh) == ERROR)
 		return (ERROR);
-	mnsh->pipe_count = count_pipe(str);
+	//mnsh->pipe_count = count_pipe(str);
 	handle_sig(2);
 	while (str[i])
 	{
 		tmp = ft_split(str[i], ' ');
-		if (check_if_path_needed(tmp) == NOT_FOUND)
-			mnsh->path_command = check_path(*tmp, mnsh);
 		if (i != 0)
 			mnsh->prev_fd[0] = mnsh->fd[0];
 		if (i != mnsh->pipe_count - 1)

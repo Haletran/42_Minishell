@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 13:07:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:15:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void	parsing_organiser(t_cli *cli)
 	glue_quotes(cli);
 	remove_quotes(cli);
 	create_command(cli);
-	//print_all_in_cli(cli);
-	//print_all_com(cli->com);
+	if (DEBUG == 1)
+	{
+		print_all_in_cli(cli);
+		print_all_com(cli->com);
+	}
 }

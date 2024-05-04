@@ -6,14 +6,16 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/04 12:25:02 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/04 14:22:10 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+DEBUG := 0
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
 endif
+
 
 RED				:= \033[0;31m
 BRED			:= \033[1;31m
@@ -26,7 +28,17 @@ NC				:= \033[0m
 NAME := minishell
 CC := clang
 CFLAGS := -Wextra -Wall -Werror -gdwarf-4
-DEBUG_FLAGS := -Wextra -Wall -Werror -gdwarf-4 -fsanitize=address
+DEBUG_FLAGS := -fsanitize=address
+
+ifdef DEBUG
+    ifeq ($(DEBUG), 1)
+        CFLAGS += -D DEBUG=$(DEBUG)
+    else ifeq ($(DEBUG), 2)
+        CFLAGS += $(DEBUG_FLAGS)
+    endif
+endif
+
+
 
 SRCS	= src/main.c \
 		  src/execution/redirections.c \

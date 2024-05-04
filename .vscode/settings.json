@@ -9,7 +9,8 @@
       "minishell.h": "c",
       "curses.h": "c",
       "lexer.h": "c",
-      "random": "c"
+      "random": "c",
+      "readline.h": "c"
     },
 	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
 	"workbench.colorCustomizations": {
