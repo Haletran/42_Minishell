@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 12:38:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:55:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,9 @@ void	rulers(t_cli *cli)
 		if (tmp->type == REDIRECTION_OPERATOR)
 			redirect_rules(cli, tmp);
 		else if (tmp->type == CONTROLE_OPERATOR)
-		{
-			ft_printf(BWHT "CONTROLE WAY\n");
-			ft_printf(BWHT "type=%d\n" CRESET, tmp->type);
 			control_rules(cli, tmp);
-		}
 		else if (tmp->type == KEYWORD)
-		{
-			ft_printf(BWHT "KEYWORD WAY\n");
-			ft_printf(BWHT "type=%d\n" CRESET, tmp->type);
 			syntax_error(cli, tmp->token);
-		}
 		tmp = tmp->next;
 	}
 }
