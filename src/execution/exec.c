@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:42:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:51:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,8 +236,6 @@ int	exec(t_cli *cli)
 		return (ERROR);
 	if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
 		exec_command(cli);
-	else
-		printf("-- built-in -- \n");
 	free_tab(cli->mnsh->commands_recreated);
 	return (SUCCESS);
 }
