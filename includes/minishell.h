@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 14:58:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:46:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ char			*variable_from_token(char *token);
 char			*key_from_token(char *token);
 
 /*RULES*/
-void			rulers(t_cli *cli);
+int				rulers(t_cli *cli);
 void			lt_rules(t_cli *cli, t_token *token);
 void			redirect_rules(t_cli *cli, t_token *token);
 void			syntax_error(t_cli *cli, char *token);

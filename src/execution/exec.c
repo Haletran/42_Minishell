@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 16:22:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:52:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 		free_tab(path);
 		mnsh->env_path = free_char(mnsh->env_path);
 		full_path = free_char(full_path);
+		if (check_if_builtin(str) == SUCCESS)
+			return (EXIT_SUCCESS);
 		mnsh->exit_code = 127;
 		return (EXIT_FAILURE);
 	}

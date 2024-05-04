@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/04 14:58:47 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/04 16:53:08 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NC				:= \033[0m
 
 NAME := minishell
 CC := clang
-CFLAGS := -Wextra -Wall -Werror -gdwarf-4
+CFLAGS := -Wextra -Wall -Werror -gdwarf-4 -O3
 DEBUG_FLAGS := -fsanitize=address
 
 ifdef DEBUG
