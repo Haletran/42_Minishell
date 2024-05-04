@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 15:15:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:32:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);
+	// SIGSEV if CTRL+D
 	while ((cli->n_quote & 1 || cli->n_dquote & 1) == 1)
 	{
 		free(cli->input);
