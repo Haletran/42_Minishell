@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 12:36:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	split_into_token(t_cli *cli)
 			return ;
 		insert_token_end(&cli->token, ft_strdup(token_tmp),
 			token_type_discovery(token_tmp, cli), cli->n_token++);
-		free_char(token_tmp);
+		token_tmp = free_char(token_tmp);
 		i += offset;
 	}
 }

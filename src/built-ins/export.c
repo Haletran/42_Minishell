@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:39:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:13:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,17 +194,17 @@ int	add_back2(t_lst *mnsh, char **str, int i)
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
 		{
 			value = ft_strdup(env->value);
-			free_char(env->value);
+			env->value = free_char(env->value);
 			env->value = ft_strjoin(value, to_keep);
-			free_char(value);
-			free_char(to_keep);
+			value = free_char(value);
+			to_keep = free_char(to_keep);
 			free_tab(tmp);
 			return (SUCCESS);
 		}
 		env = env->next;
 	}
 	free_tab(tmp);
-	free_char(to_keep);
+	to_keep = free_char(to_keep);
 	return (ERROR);
 }
 
@@ -223,15 +223,15 @@ int	add_back(t_lst *mnsh, char **str, int i)
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
 		{
 			value = ft_strdup(env->value);
-			free_char(env->value);
+			env->value = free_char(env->value);
 			env->value = ft_strjoin(value, to_keep);
-			free_char(value);
+			value = free_char(value);
 			break ;
 		}
 		env = env->next;
 	}
 	free_tab(tmp);
-	free_char(to_keep);
+	to_keep = free_char(to_keep);
 	add_back2(mnsh, str, i);
 	return (ERROR);
 }

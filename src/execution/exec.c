@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 15:05:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:22:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	find_path_s(t_env *env, t_cli *cli)
 			cli->mnsh->env_path = ft_strdup(env->value);
 			break ;
 		}
-		else
-			env = env->next;
+		env = env->next;
 	}
 }
 
@@ -68,7 +67,7 @@ char	*check_path(char *str, t_lst *mnsh)
 	{
 		if (access(full_path, F_OK | R_OK) != -1)
 			break ;
-		free_char(full_path);
+		full_path = free_char(full_path);
 		full_path = ft_strjoin_f(ft_strjoin(path[i], "/"), str);
 		i++;
 	}
@@ -96,8 +95,8 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	if (full_path == NULL)
 	{
 		free_tab(path);
-		free_char(mnsh->env_path);
-		free_char(full_path);
+		mnsh->env_path = free_char(mnsh->env_path);
+		full_path = free_char(full_path);
 		mnsh->exit_code = 127;
 		return (EXIT_FAILURE);
 	}
@@ -107,12 +106,12 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 			return (EXIT_SUCCESS);
 		ft_printf_fd(2, "%s : command not found\n", str);
 		free_tab(path);
-		free_char(mnsh->env_path);
-		free_char(full_path);
+		mnsh->env_path = free_char(mnsh->env_path);
+		full_path = free_char(full_path);
 		mnsh->exit_code = 127;
 		return (EXIT_FAILURE);
 	}
-	free_char(mnsh->env_path);
+	mnsh->env_path = free_char(mnsh->env_path);
 	free_tab(path);
 	return (EXIT_SUCCESS);
 }
@@ -196,7 +195,7 @@ int	exec_command(t_cli *cli)
 	pid_t	pid;
 
 	find_path_s(cli->mnsh->env_var_lst, cli);
-	if (!cli->com->env_path)
+	if (cli->com->env_path == NULL)
 		return (ERROR);
 	handle_sig(2);
 	pid = fork();

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 12:26:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:20:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	delete_node_com(t_com **head, t_com *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	free(del_node->command);
-	free(del_node->env_path);
+	del_node->command = free_char(del_node->command);
+	del_node->env_path = free_char(del_node->env_path);
 	if (del_node->arg != NULL)
 		delete_all_nodes_arg(&del_node->arg);
-	free(del_node->redirection);
+	del_node->redirection = free_char(del_node->redirection);
 	free(del_node);
 }
 

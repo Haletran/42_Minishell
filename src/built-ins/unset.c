@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 11:42:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	delete_var_cpy(t_lst *mnsh, char *str)
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 		{
-			free_char(env->key);
-			free_char(env->value);
+			env->key = free_char(env->key);
+			env->value = free_char(env->value);
 			temp = env->next;
 			free(env);
 			if (prev)

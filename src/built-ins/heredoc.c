@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 14:28:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:13:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	child_process(char **str, t_lst *mnsh)
 %d delimited by end-of-file (wanted '%s')\n",
 					count,
 					str[i]);
-			free_char(input);
+			input = free_char(input);
 			global_free(mnsh, str);
 			exit(STOPPED);
 		}
 		if (g_var == 1)
 		{
-			free_char(input);
+			input = free_char(input);
 			global_free(mnsh, str);
 			exit(ERROR);
 		}
@@ -75,13 +75,13 @@ void	child_process(char **str, t_lst *mnsh)
 		{
 			if (!str[i + 1])
 			{
-				free_char(input);
+				input = free_char(input);
 				break ;
 			}
 			i += 2;
 		}
 		count++;
-		free_char(input);
+		input = free_char(input);
 	}
 	global_free(mnsh, str);
 	exit(SUCCESS);

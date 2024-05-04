@@ -35,7 +35,7 @@ exemple : cat Makefile
 - Heredoc problem not considered as command
 - the path of the next command in pipe does not exist
 - ./minishell in minishell does not work anymore
-- bash lt tous les infiles outfiles
+- bash lit tous les infiles outfiles
 
 ## Diagram
 

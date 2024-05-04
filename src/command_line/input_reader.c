@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 14:31:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:14:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	input_reader(t_cli *cli)
 
 	cli->input = readline(BRED "[~] " CRESET "MINISHELL $ > ");
 	input_trim = ft_strtrim(cli->input, " ");
-	free_char(cli->input);
+	cli->input = free_char(cli->input);
 	cli->input = ft_strdup(input_trim);
-	free_char(input_trim);
+	input_trim = free_char(input_trim);
 	if (!cli->input)
 	{
 		freeway(cli);

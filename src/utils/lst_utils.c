@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:32:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 16:24:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	print_list_env(char *string, t_lst *mnsh)
 	t_env	*current;
 
 	current = mnsh->env_var_lst;
+	if (!current)
+		return ;
 	while (current)
 	{
 		ft_printf_fd(1, "%s%s%s\n", current->key, string, current->value);
