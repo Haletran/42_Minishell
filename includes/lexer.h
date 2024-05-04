@@ -1,17 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 14:17:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/03 08:39:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef LEXER_H
 # define LEXER_H
+
 
 typedef enum s_token_type
 {
@@ -20,8 +21,14 @@ typedef enum s_token_type
 	REDIRECTION_OPERATOR,
 	ARGUMENT,
 	QUOTE,
+	DQUOTE,
 	BRACKET,
-	IMMUABLE
+	FREEZE,
+	HEREDOC,
+	DELIMITER,
+	IMMUTABLE,
+	BUILTIN,
+	KEYWORD
 }	t_token_type;
 
 //* *********************************************************************** *//
@@ -31,7 +38,7 @@ typedef enum s_token_type
 //* 																		*//
 //* *********************************************************************** *//
 //* *********************************************************************** *//
-
+//? https://www.gnu.org/software/bash/manual/html_node/Builtin-Index.html
 //? https://www.gnu.org/software/bash/manual/bash.html
 //? https://www.linux.org/threads/bash-01-script-basics.37797/#post-143818
 //? https://www.linux.org/threads/bash-02-%E2%80%93-variables-and-such.38200/
@@ -60,7 +67,7 @@ typedef enum s_token_type
 //* 						REDIRECTION OPERATOR							*//
 //* 																		*//
 //* *********************************************************************** *//
-# define REDICRECT_OPERAT_LIST "<<,>>,<&,>|,<←,<>,>&,<,>"
+# define REDICRECT_OPERAT_LIST "<<,<&,<←,<>,>>,>|,>&,<,>"
 # define DOUBLE_GREATER_THAN ">>"
 # define GREATER_THAN_AND ">&"
 # define LESS_THAN_GREATER_THAN "<>"
@@ -74,12 +81,12 @@ typedef enum s_token_type
 //* 							CONTROL OPERATOR							*//
 //* 																		*//
 //* *********************************************************************** *//
-# define CONTROL_OPERAT_LIST ";;&,||,&&,;;,;&,|&,(,),\n,|,&,{,},[,],;"
+# define CONTROL_OPERAT_LIST ";;&,;;,;&,||,|&,&&,(,),|,&,;,{,},[,]" //\n
 # define AND_AND "&&"
 # define PIPE_PIPE "||"
 # define SEMICOLON_AND ";&"
-# define SEMICOLON_SEMICOLON_AND ";;&"
-# define SEMICOLON_SEMICOLON ";;"
+# define SEMICOLON_SC_AND ";;&"
+# define SEMICOLON_SC ";;"
 # define PIPE_AND "|&"
 
 //* *********************************************************************** *//
@@ -87,7 +94,7 @@ typedef enum s_token_type
 //* 								KEYWORD									*//
 //* 																		*//
 //* *********************************************************************** *//
-# define KEYWORD "if,then,else,elif,fi,case,esac,while,until,for,in,do,done"
+# define KEYWORD_LIST "if,then,else,elif,fi,case,esac,while,until,for,in,do,done"
 # define OPEN_KEYWORD "if,while,until"
 
 //* *********************************************************************** *//
@@ -97,6 +104,14 @@ typedef enum s_token_type
 //* *********************************************************************** *//
 # define QUOTE_LIST "',\""
 # define BRACKET_LIST "{,},[,]"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							BUILTIN COMMAND								*//
+//* 																		*//
+//* *********************************************************************** *//
+# define BUILTIN_LIST "alias,bg,bind,break,builtin,caller,cd,command,compgen,complete,compopt,continue,declare,dirs,disown,echo,enable,eval,exec,exit,export,fc,fg,getopts,hash,help,history,jobs,kill,let,local,logout,mapfile,popd,printf,pushd,pwd,read,readarray,readonly,return,set,shift,shopt,source,suspend,test,times,trap,type,typeset,ulimit,umask,unalias,unset,wait"
+
 
 //* *********************************************************************** *//
 //* *********************************************************************** *//

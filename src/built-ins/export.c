@@ -6,18 +6,18 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 16:23:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:05:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*expand_var(t_lst *args, char *str)
+char	*expand_var(t_lst *mnsh, char *str)
 {
 	t_env	*env;
 	char	**tmp;
 
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	tmp = ft_calloc(2, sizeof(char *));
 	tmp = ft_split(str, '$');
 	if (!str)
@@ -37,13 +37,13 @@ char	*expand_var(t_lst *args, char *str)
 	return (NULL);
 }
 
-void	replace_var(t_lst *args, char **str, int i)
+void	replace_var(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
@@ -59,13 +59,13 @@ void	replace_var(t_lst *args, char **str, int i)
 	free_tab(tmp);
 }
 
-void	replace_var_cpy(t_lst *args, char **str, int i)
+void	replace_var_cpy(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
-	env = args->env_cpy_lst;
+	env = mnsh->env_cpy_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
@@ -81,33 +81,47 @@ void	replace_var_cpy(t_lst *args, char **str, int i)
 	free_tab(tmp);
 }
 
-void	add_var_no_input(t_lst *args, char **str, int i)
+int check_if_var_exist(t_env *env, char *str)
+{
+	while (env)
+	{
+		if (!ft_strncmp(env->key, str, ft_strlen(str))
+			&& ft_strlen(env->key) == ft_strlen(str))
+			return (ERROR);
+		env = env->next;
+	}
+	return (SUCCESS);
+}
+
+int	add_var_no_input(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 
-	env = args->env_cpy_lst;
+	env = mnsh->env_cpy_lst;
+	if (check_if_var_exist(env, str[i]))
+		return (ERROR);
 	while (env->next)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[i]);
 	env->next->value = NULL;
 	env->next->next = NULL;
-	return ;
+	return (SUCCESS);
 }
 
-void	add_var2(t_lst *args, char **str, int i)
+void	add_var2(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
-	env = args->env_cpy_lst;
+	env = mnsh->env_cpy_lst;
 	while (env->next)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
-		env->next->value = expand_var(args, ft_strdup(tmp[1]));
+		env->next->value = expand_var(mnsh, ft_strdup(tmp[1]));
 		env->next->next = NULL;
 		free_tab(tmp);
 		return ;
@@ -119,39 +133,39 @@ void	add_var2(t_lst *args, char **str, int i)
 	return ;
 }
 
-void	add_var(t_lst *args, char **str, int i)
+void	add_var(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	while (env->next)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(tmp[0]);
 	if (!ft_strncmp(tmp[1], "$", 1))
 	{
-		env->next->value = expand_var(args, ft_strdup(tmp[1]));
+		env->next->value = expand_var(mnsh, ft_strdup(tmp[1]));
 		env->next->next = NULL;
-		add_var2(args, str, i);
+		add_var2(mnsh, str, i);
 		free_tab(tmp);
 		return ;
 	}
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
 	free_tab(tmp);
-	add_var2(args, str, i);
+	add_var2(mnsh, str, i);
 	return ;
 }
 
-int	already_exist(t_lst *args, char **str, int i)
+int	already_exist(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
@@ -165,16 +179,16 @@ int	already_exist(t_lst *args, char **str, int i)
 	return (0);
 }
 
-int add_back(t_lst *args, char **str, int i)
+int add_back2(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
-	char *value;
-	char *to_keep;
+	char	*value;
+	char	*to_keep;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '+');
 	to_keep = ft_strtrim(tmp[1], "=");
-	env = args->env_var_lst;
+	env = mnsh->env_cpy_lst;
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
@@ -183,7 +197,7 @@ int add_back(t_lst *args, char **str, int i)
 			free_char(env->value);
 			env->value = ft_strjoin(value, to_keep);
 			free_char(value);
-			free_char (to_keep);
+			free_char(to_keep);
 			free_tab(tmp);
 			return (SUCCESS);
 		}
@@ -196,17 +210,45 @@ int add_back(t_lst *args, char **str, int i)
 
 
 
-int	ft_export(t_lst *args, char **str)
+int	add_back(t_lst *mnsh, char **str, int i)
 {
-	int i;
+	t_env	*env;
+	char	*value;
+	char	*to_keep;
+	char	**tmp;
+
+	tmp = ft_split(str[i], '+');
+	to_keep = ft_strtrim(tmp[1], "=");
+	env = mnsh->env_var_lst;
+	while (env)
+	{
+		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i])))
+		{
+			value = ft_strdup(env->value);
+			free_char(env->value);
+			env->value = ft_strjoin(value, to_keep);
+			free_char(value);
+			break;
+		}
+		env = env->next;
+	}
+	free_tab(tmp);
+	free_char(to_keep);
+	add_back2(mnsh, str, i);
+	return (ERROR);
+}
+
+int	ft_export(t_lst *mnsh, char **str)
+{
+	int	i;
 
 	i = 1;
 	if (!str[1])
 	{
-		if (!args->env_cpy_lst)
+		if (!mnsh->env_cpy_lst)
 			return (ERROR);
-		sort_in_ascii(args->env_cpy_lst);
-		print_list_export(args);
+		sort_in_ascii(mnsh->env_cpy_lst);
+		print_list_export(mnsh);
 		return (1);
 	}
 	while (str[i])
@@ -217,15 +259,15 @@ int	ft_export(t_lst *args, char **str)
 			return (ERROR);
 		}
 		if (ft_strchr(str[i], '+'))
-			add_back(args, str, i);
-		else if (ft_strchr(str[i], '=') && !already_exist(args, str, i))
-			add_var(args, str, i);
-		else if (!ft_strchr(str[i], '=') && !already_exist(args, str, i))
-			add_var_no_input(args, str, i);
+			add_back(mnsh, str, i);
+		else if (ft_strchr(str[i], '=') && !already_exist(mnsh, str, i))
+			add_var(mnsh, str, i);
+		else if (!ft_strchr(str[i], '=') && !already_exist(mnsh, str, i))
+			add_var_no_input(mnsh, str, i);
 		else
 		{
-			replace_var(args, str, i);
-			replace_var_cpy(args, str, i);
+			replace_var(mnsh, str, i);
+			replace_var_cpy(mnsh, str, i);
 		}
 		i++;
 	}

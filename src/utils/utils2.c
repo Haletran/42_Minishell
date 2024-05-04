@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 07:37:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:40:12 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -25,14 +25,14 @@ int	get_nbargs(char **str)
 	return (size);
 }
 
-void	get_exit_code(t_lst *args)
+void	get_exit_code(t_lst *mnsh)
 {
-	if (WIFEXITED(args->exit_code))
-		args->exit_code = WEXITSTATUS(args->exit_code);
-	else if (WIFSIGNALED(args->exit_code))
-		args->exit_code = WTERMSIG(args->exit_code) + 128;
-	else if (WIFSTOPPED(args->exit_code))
-		args->exit_code = WSTOPSIG(args->exit_code);
+	if (WIFEXITED(mnsh->exit_code))
+		mnsh->exit_code = WEXITSTATUS(mnsh->exit_code);
+	else if (WIFSIGNALED(mnsh->exit_code))
+		mnsh->exit_code = WTERMSIG(mnsh->exit_code) + 128;
+	else if (WIFSTOPPED(mnsh->exit_code))
+		mnsh->exit_code = WSTOPSIG(mnsh->exit_code);
 }
 
 int	check_if_pipe(char **str)
@@ -86,7 +86,7 @@ int	check_if_alpha(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isalnum(str[i]) && str[i] != '$' && str[i] != '=' \
+		if (!ft_isalnum(str[i]) && str[i] != '$' && str[i] != '='
 			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
 			return (ERROR);
 		i++;
@@ -94,7 +94,7 @@ int	check_if_alpha(char *str)
 	return (SUCCESS);
 }
 
-void	ft_cpy(char **dest, char **src)
+int	ft_cpy(char **dest, char **src)
 {
 	int	i;
 
@@ -102,8 +102,11 @@ void	ft_cpy(char **dest, char **src)
 	while (src[i])
 	{
 		dest[i] = ft_strdup(src[i]);
+		if (!dest[i])
+			return(ERROR);
 		i++;
 	}
+	return (SUCCESS);
 }
 
 char	**cpy(char **src, char **dest)

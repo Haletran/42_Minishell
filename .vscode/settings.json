@@ -1,14 +1,19 @@
 {
-    "triggerTaskOnSave.tasks": {
+/*     "triggerTaskOnSave.tasks": {
         "Compile C code": [
           "*.c"
         ],
-      },
+      }, */
 
     "files.associations": {
-        "minishell.h": "c",
-        "curses.h": "c",
-        "lexer.h": "c"
+      "minishell.h": "c",
+      "curses.h": "c",
+      "lexer.h": "c",
+      "random": "c"
     },
-    "functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h"
+	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
+	"workbench.colorCustomizations": {
+    "minimap.background": "#00000000",
+    "scrollbar.shadow": "#00000000"
+  }
 }

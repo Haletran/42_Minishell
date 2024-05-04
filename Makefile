@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/04/20 14:25:31 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/04 11:44:59 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,21 +44,29 @@ SRCS	= src/main.c \
 		  src/utils/free.c \
 		  src/utils/lst_utils.c \
 		  src/parse/parse.c \
-		  src/execution/exec_pipe.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
 		  src/utils/utils3.c \
-		  src/debug.c \
 		  src/utils/ft_is.c \
+		  src/utils/parse_utils.c \
+		  src/debug.c \
 		  src/command_line/split_into_tokens.c \
+		  src/command_line/cleaning_dlst_token.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \
 		  src/command_line/parameter_expansion.c \
 		  src/command_line/varloc_creation.c \
+		  src/command_line/create_command.c \
+		  src/syntax_rules/ruler.c \
+		  src/syntax_rules/keyword_rules.c \
+		  src/syntax_rules/control_rules.c \
+		  src/syntax_rules/redirect_rules.c \
 		  src/dlst_parse/dlst_token_get.c \
 		  src/dlst_parse/dlst_token_set.c \
 		  src/dlst_parse/dlst_variable_get.c \
 		  src/dlst_parse/dlst_variable_set.c \
+		  src/dlst_parse/dlst_command_set.c \
+		  src/dlst_parse/dlst_argument_set.c \
 		  src/dlst_parse/dlst_env_set.c \
 		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
@@ -116,9 +124,9 @@ fclean: clean
 
 init:
 	@echo ""
-	@echo "\t\t$(BHYEL)┍━━━━━━━━━━━»•» 🌸  «•«━┑$(NC)"
+	@echo "\t\t$(BHYEL)┍━━━━━━━━━»•» 🌸  «•«━┑$(NC)"
 	@echo "\t\t$(BHYEL) MINISHELL COMPILATION $(NC)"
-	@echo "\t\t$(BHYEL)┕━»•» 🌸  «•«━━━━━━━━━━━┙$(NC)"
+	@echo "\t\t$(BHYEL)┕━»•» 🌸  «•«━━━━━━━━━┙$(NC)"
 	@echo ""
 
 re: fclean all

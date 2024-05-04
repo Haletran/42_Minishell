@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dlst_env_set.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/09 15:20:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:37:44 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -23,8 +23,11 @@ void	delete_node_env(t_env **head, t_env *del_node)
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
 	free(del_node->key);
+	del_node->key = NULL;
 	free(del_node->value);
+	del_node->value = NULL;
 	free(del_node);
+	del_node = NULL;
 }
 
 void	delete_all_nodes_env(t_env **head)
@@ -81,8 +84,10 @@ void	insert_env_end(t_env **head, char *key, char *value)
 
 	tmp_node = *head;
 	new_node = (t_env *)malloc(sizeof(t_env));
-	new_node->key = ft_strdup(key);
-	new_node->value = ft_strdup(value);
+	if (!new_node)
+		return ;
+	new_node->key = key;
+	new_node->value = value;
 	new_node->next = NULL;
 	if (*head == NULL)
 	{

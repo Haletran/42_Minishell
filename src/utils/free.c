@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 12:30:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:11:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,35 +46,32 @@ void	free_list(t_env **lst)
 	*lst = NULL;
 }
 
-void	global_free(t_lst *args, char **str)
+void	global_free(t_lst *mnsh, char **str)
 {
 	free_tab(str);
 	rl_clear_history();
-	close(args->history_fd);
-	delete_all_nodes_env(&args->env_cpy_lst);
-	delete_all_nodes_env(&args->env_var_lst);
-	free_tab(args->env_var);
-	free(args->current_path);
-	free(args);
+	close(mnsh->history_fd);
+	delete_all_nodes_env(&mnsh->env_cpy_lst);
+	delete_all_nodes_env(&mnsh->env_var_lst);
+	free_tab(mnsh->env_var);
+	free(mnsh->current_path);
+	free(mnsh);
 }
 
-void free_char(char *str)
+char *free_char(char *str)
 {
 	if (str != NULL)
 	{
 		free(str);
 		str = NULL;
 	}
+	return (NULL);
 }
 
-void	free_cli(t_cli *cli)
+void	free_command_line(t_cli *cli)
 {
-	//free(cli->input);
-/* 	if (cli->token->token)
-		delete_all_nodes_token(&cli->token); */
-	free_tab(cli->meta);
-	free_tab(cli->redirect);
-	free_tab(cli->control);
-	free(cli);
+	delete_all_nodes_com(&cli->com);
+	if (cli->token != NULL)
+		delete_all_nodes_token(&cli->token);
+	free(cli->input);
 }
-

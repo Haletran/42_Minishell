@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 14:16:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:44:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,36 @@
 
 # include "lexer.h"
 
-typedef struct s_lst
-{
-	char			*home_path;
-	int				backup[2];
-	char			*current_path;
-	char			*env_path;
-	int				*pid;
-	char			**env_var;
-	struct s_env	*env_var_lst;
-	struct s_env	*env_cpy_lst;
-	int				exit_code;
-	char			*path_command;
-	int				fd[2];
-	int				prev_fd[2];
-	int				pipe_count;
-	char			*infile;
-	char			*outfile;
-	int				check_if_freed;
-	int				file_fd[2];
-	int				history_fd;
-}					t_lst;
-
 typedef struct s_env
 {
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-	struct s_env	*prev;
-}					t_env;
+	char				*key;
+	char				*value;
+	struct s_env		*next;
+	struct s_env		*prev;
+}						t_env;
+
+typedef struct s_lst
+{
+	char **commands_recreated;
+	t_env				*env_var_lst;
+	t_env				*env_cpy_lst;
+	char				**env_var;
+	char				*home_path;
+	char				*current_path;
+	char				*env_path;
+	char				*path_command;
+	char				*infile;
+	char				*outfile;
+	int					backup[2];
+	int					*pid;
+	int					fd[2];
+	int					prev_fd[2];
+	int					file_fd[2];
+	int					pipe_count;
+	int					history_fd;
+	int					check_if_freed;
+	int					exit_code;
+}						t_lst;
 
 typedef struct s_arg
 {
@@ -54,11 +55,13 @@ typedef struct s_arg
 typedef struct s_com
 {
 	char				*command;
-	char				*path;
+	char				*env_path;
 	t_arg				*arg;
+	int					n_arg;
 	char				*redirection;
 	int					type;
 	int					index;
+	int					pipe;
 	struct s_com		*next;
 	struct s_com		*prev;
 }						t_com;
@@ -87,20 +90,24 @@ typedef struct s_token
 typedef struct s_cli
 {
 	char				*input;
-	unsigned int		n_token;
 	t_token				*token;
+	unsigned int		n_token;
 	t_com				*com;
+	int					n_com;
 	int					index;
 	char				**meta;
 	char				**redirect;
 	char				**control;
-	char				**quote;
+	char				**keyword;
+	char				**builtin;
 	int					n_quote;
+	int					n_dquote;
 	char				**bracket;
 	char				**commands;
-	t_lst				*args;
+	t_lst				*mnsh;
 	t_variable			*variable;
-
+	int					heredoc;
+	int					n_variable;
 }						t_cli;
 
 #endif

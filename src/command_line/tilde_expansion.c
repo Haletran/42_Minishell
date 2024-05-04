@@ -6,11 +6,20 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/20 12:26:30 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:31:46 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "../../includes/minishell.h"
+
+void	tilde_expansion_process(t_token *tmp, char c, char *env_var)
+{
+	if (tmp->token[1] == c)
+	{
+		free(tmp->token);
+		tmp->token = ft_strdup(env_var);
+	}
+}
 
 void	tilde_expansion(t_cli *cli)
 {
@@ -19,27 +28,15 @@ void	tilde_expansion(t_cli *cli)
 	tmp = cli->token;
 	while (tmp)
 	{
-		if (tmp->token[0] == '~')
+		if (tmp->token[0] == '~' && tmp->type != IMMUTABLE)
 		{
-			if (tmp->token[1] == 0)
-			{
-				free(tmp->token);
-				tmp->token = get_value_from_key(cli->args->env_cpy_lst, "HOME");
-			}
-			else if (tmp->token[1] == '+')
-			{
-				free(tmp->token);
-				tmp->token = get_value_from_key(cli->args->env_cpy_lst, "PWD");
-			}
-			else if (tmp->token[1] == '-')
-			{
-				free(tmp->token);
-				tmp->token = get_value_from_key(cli->args->env_cpy_lst,
-						"OLDPWD");
-			}
+			tilde_expansion_process(tmp, 0, get_value_from_key(cli->mnsh->env_cpy_lst, "HOME"));
+			tilde_expansion_process(tmp, '+', get_value_from_key(cli->mnsh->env_cpy_lst, "PWD"));
+			tilde_expansion_process(tmp, '-', get_value_from_key(cli->mnsh->env_cpy_lst, "OLDPWD"));
 			if (tmp->token == NULL)
 				tmp->token = ft_strdup("\n");
 		}
 		tmp = tmp->next;
 	}
 }
+

@@ -6,20 +6,21 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 10:18:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:40:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_exit(char *code, t_lst *args, char **str)
+int	ft_exit(char *code, t_cli *cli, char **str)
 {
 	long int	exit_code;
 
 	if (!code)
 	{
 		printf("exit\n");
-		global_free(args, str);
+		free_tab(str);
+		freeway(cli);
 		exit(0);
 	}
 	exit_code = ft_atoi(code);
@@ -28,10 +29,12 @@ int	ft_exit(char *code, t_lst *args, char **str)
 		ft_printf_fd(2, "exit\n");
 		ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
 			code);
-		global_free(args, str);
+		free_tab(str);
+		freeway(cli);
 		exit(2);
 	}
 	printf("exit\n");
-	global_free(args, str);
+	free_tab(str);
+	freeway(cli);
 	exit(exit_code % 256);
 }

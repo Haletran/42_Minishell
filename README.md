@@ -19,7 +19,7 @@ As beautiful as a shell..
 
 For execve :
     - need a have the path of the command
-    - need to have the command with his args
+    - need to have the command with his mnsh
 exemple : cat Makefile
     /usr/bin/cat (check_path function)
     cat Makefile
@@ -36,3 +36,42 @@ exemple : cat Makefile
 - Add syntax error
 - Exit code a mettre a chaque fin d'exec pour bien faire correspondre
 
+```c
+	else if (cli->input[0] == ',')
+	{
+		perror(",");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == ';')
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '[' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: [: missing `]'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '|' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `|'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '|' && cli->input[1] == '|' && ft_strlen(cli->input) <= 2)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `||'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '>' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '<' && ft_strlen(cli->input) <= 1)
+	{
+		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
+		(*mnsh)->exit_code = 2;
+	}
+	else if (cli->input[0] == '$')
+		print_path(cli->input + 1, *mnsh, 1);
+```

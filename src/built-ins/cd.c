@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/15 12:56:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:45:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	handle_tilde(char **str, t_lst *lst)
 
 static void	cd_old_path(t_lst *lst)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = lst->env_var_lst;
 	while (env)
@@ -53,7 +53,7 @@ static void	cd_old_path(t_lst *lst)
 	chdir(env->value);
 }
 
-static void update_path(t_lst *lst, char *old_path)
+static void	update_path(t_lst *lst, char *old_path)
 {
 	t_env	*env;
 	char	curr_path[1024];
@@ -86,7 +86,7 @@ char	*search_path(char *str, t_lst *lst)
 	while (env)
 	{
 		if (!env)
-			break;
+			break ;
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 			break ;

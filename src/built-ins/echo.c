@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 14:28:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/24 08:55:25 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -31,7 +31,7 @@ static void	print_current(void)
 	}
 }
 
-int	ft_echo(char **str, t_lst *args)
+int	ft_echo(char **str, t_lst *mnsh)
 {
 	int		i;
 	char	**var;
@@ -60,14 +60,14 @@ int	ft_echo(char **str, t_lst *args)
 	while (str[i])
 	{
 		if (!ft_strncmp(str[i], "$?", 2))
-			ft_printf_fd(1, "%d", args->exit_code);
+			ft_printf_fd(1, "%d", mnsh->exit_code);
 		else if (!ft_strncmp(str[i], "$", 1))
 		{
 			if (ft_strlen(str[1]) > 1)
 			{
 				var = ft_split(str[i], '$');
 				if (var[0])
-					print_path(var[0], args, 0);
+					print_path(var[0], mnsh, 0);
 			}
 			else
 				ft_printf_fd(1, "$");

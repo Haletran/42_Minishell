@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 17:36:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/04/24 08:55:25 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -41,7 +41,7 @@ int	check_heredoc_error(char **str)
 	return (SUCCESS);
 }
 
-void	child_process(char **str, t_lst *args)
+void	child_process(char **str, t_lst *mnsh)
 {
 	char	*input;
 	int		i;
@@ -61,13 +61,13 @@ void	child_process(char **str, t_lst *args)
 					count,
 					str[i]);
 			free_char(input);
-			global_free(args, str);
+			global_free(mnsh, str);
 			exit(STOPPED);
 		}
 		if (g_var == 1)
 		{
 			free_char(input);
-			global_free(args, str);
+			global_free(mnsh, str);
 			exit(ERROR);
 		}
 		if (!ft_strncmp(input, str[i], ft_strlen(str[i]))
@@ -83,11 +83,11 @@ void	child_process(char **str, t_lst *args)
 		count++;
 		free_char(input);
 	}
-	global_free(args, str);
+	global_free(mnsh, str);
 	exit(SUCCESS);
 }
 
-int	ft_heredoc(char **str, t_lst *args)
+int	ft_heredoc(char **str, t_lst *mnsh)
 {
 	char	*input;
 	pid_t	pid;
@@ -95,7 +95,7 @@ int	ft_heredoc(char **str, t_lst *args)
 	input = NULL;
 	if (check_heredoc_error(str) == ERROR)
 	{
-		args->exit_code = 1;
+		mnsh->exit_code = 1;
 		return (ERROR);
 	}
 	pid = fork();
@@ -105,12 +105,10 @@ int	ft_heredoc(char **str, t_lst *args)
 		return (ERROR);
 	}
 	else if (pid == 0)
-		child_process(str, args);
-	waitpid(pid, &args->exit_code, 0);
-	if (str[2] && ft_strncmp(str[2], "<<", 2))
-		exec_command(str + 2, args, check_path(str + 2, args));
+		child_process(str, mnsh);
+	waitpid(pid, &mnsh->exit_code, 0);
+	/* 	if (str[2] && ft_strncmp(str[2], "<<", 2))
+			exec_command(str + 2, mnsh, check_path(str + 2, mnsh)); */
 	free_char(input);
 	return (SUCCESS);
 }
-
-

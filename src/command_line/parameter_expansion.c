@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/20 11:13:37 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:37:05 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,13 +20,15 @@ void	parameter_expansion(t_cli *cli)
 	tmp = cli->token;
 	while (tmp)
 	{
-		if (tmp->token[0] == '$')
+		if (tmp->token[0] == '$' && tmp->type != IMMUTABLE)
 		{
 			key = ft_substr(tmp->token, 1, ft_strlen(tmp->token) - 1);
 			free(tmp->token);
-			tmp->token = get_value_from_key(cli->args->env_cpy_lst, key);
+			tmp->token = ft_strdup(get_value_from_key(cli->mnsh->env_cpy_lst,
+						key));
 			if (tmp->token == NULL)
-				tmp->token = get_variable_from_key(cli->variable, key);
+				tmp->token = ft_strdup(get_variable_from_key(cli->variable,
+							key));
 			if (tmp->token == NULL)
 				tmp->token = ft_strdup("");
 			free(key);

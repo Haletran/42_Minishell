@@ -1,22 +1,22 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 17:06:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/02 23:08:29 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
-int	print_path(char *str, t_lst *args, int choose)
+int	print_path(char *str, t_lst *mnsh, int choose)
 {
 	t_env	*env;
 
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	if (!str)
 		return (ERROR);
 	while (env)
@@ -37,11 +37,11 @@ int	print_path(char *str, t_lst *args, int choose)
 	return (ERROR);
 }
 
-char *get_env(char *str, t_lst *args)
+char	*get_env(char *str, t_lst *mnsh)
 {
 	t_env	*env;
 
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	if (!str)
 		return (NULL);
 	while (env)
@@ -55,10 +55,10 @@ char *get_env(char *str, t_lst *args)
 	return (NULL);
 }
 
-int count_pipe(char **str)
+int	count_pipe(char **str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -71,4 +71,41 @@ int count_pipe(char **str)
 	return (count);
 }
 
+int	check_if_path(char **envp)
+{
+	int	i;
 
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp(envp[i], "PATH=", 5))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	historyze(t_cli *cli)
+{
+	char	*line;
+	int		fd;
+	char	*h_line;
+
+	fd = dup(cli->mnsh->history_fd);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		h_line = ft_substr(line, 0, ft_strlen(line) - 1);
+		if (!h_line)
+		{
+			free(line);
+			freeway(cli);
+		}
+		add_history(h_line);
+		free(line);
+		free(h_line);
+	}
+	close(fd);
+}

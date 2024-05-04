@@ -6,72 +6,20 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/20 11:55:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:05:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	choose(t_cli *cli, char **commands, t_lst **args)
+void	choose(t_cli *cli)
 {
-	int	i;
-
-	i = 0;
-	//(*args)->exit_code = 0;
-	if (!cli->token)
+	if (!cli->com)
 		rl_on_new_line();
-	else if (cli->input[0] == ',')
-	{
-		perror(",");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == ';')
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `;'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '[' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: [: missing `]'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '|' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `|'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '|' && cli->input[1] == '|' && ft_strlen(cli->input) <= 2)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `||'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '>' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '<' && ft_strlen(cli->input) <= 1)
-	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `newline' `<'\n");
-		(*args)->exit_code = 2;
-	}
-	else if (cli->input[0] == '$')
-		print_path(cli->input + 1, *args, 1);
-	else if (cli->input[0] != '\0')
-	{
-		commands = ft_split(cli->input, ' ');
-		if (check_if_pipe(commands))
-		{
-			free_tab(commands);
-			commands = ft_split(cli->input, '|');
-			while (commands[i++])
-				commands[i] = ft_strtrim(commands[i], " ");
-			exec_pipe(commands, *args);
-		}
-		else
-			exec(commands, *args);
-	}
-	free_char(cli->input);
+	else if (cli->com->pipe > 0)
+		printf("piping\n");
+	else
+		exec(cli);
 	return ;
 }
 
@@ -79,39 +27,39 @@ void	choose(t_cli *cli, char **commands, t_lst **args)
  * @brief Associate commands to built-ins if needed
  *
  * @param str
- * @param args
+ * @param mnsh
  * @return int (true / false)
  */
-int	check_commands(char **str, t_lst *args)
+int	check_commands(char **str, t_cli *cli)
 {
 	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
-		return (pwd(args));
+		return (pwd(cli->mnsh));
 	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
 		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
-		return (ft_echo(str, args));
+		return (ft_echo(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
-		return (ft_cd(str, args));
+		return (ft_cd(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
-		return (ft_export(args, str));
+		return (ft_export(cli->mnsh, str));
 	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
-		return (ft_unset(str, &args));
+		return (ft_unset(str, &cli->mnsh));
 	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
-		return (ft_env(args, str));
+		return (ft_env(cli->mnsh, str));
 	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
-		return (ft_heredoc(str, args));
+		return (ft_heredoc(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
-		return (ft_exit(str[1], args, str));
+		return (ft_exit(str[1], cli, str));
 	return (NOT_FOUND);
 }
 
-int	check_if_fork(char **str, t_lst *args)
+int	check_if_fork(char **str, t_lst *mnsh)
 {
 	if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
-		return (ft_export(args, str));
+		return (ft_export(mnsh, str));
 	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
-		return (ft_heredoc(str, args));
+		return (ft_heredoc(str, mnsh));
 	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
-		return (ft_unset(str, &args));
+		return (ft_unset(str, &mnsh));
 	return (NOT_FOUND);
 }
 

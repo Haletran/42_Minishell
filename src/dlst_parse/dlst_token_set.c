@@ -25,6 +25,7 @@ void	delete_node_token(t_token **head, t_token *del_node)
 	free(del_node->token);
 	del_node->token = NULL;
 	free(del_node);
+	del_node = NULL;
 }
 
 void	delete_all_nodes_token(t_token **head)
@@ -45,7 +46,8 @@ void	delete_all_nodes_token(t_token **head)
 	}
 }
 
-void	insert_token_front(t_token **head, char *token, t_token_type type, int index)
+void	insert_token_front(t_token **head, char *token, t_token_type type,
+		int index)
 {
 	t_token	*new_node;
 
@@ -60,7 +62,8 @@ void	insert_token_front(t_token **head, char *token, t_token_type type, int inde
 	(*head) = new_node;
 }
 
-void	insert_token_after(t_token *prev_node, char *token, t_token_type type, int index)
+void	insert_token_after(t_token *prev_node, char *token, t_token_type type,
+		int index)
 {
 	t_token	*new_node;
 
@@ -76,7 +79,8 @@ void	insert_token_after(t_token *prev_node, char *token, t_token_type type, int 
 		new_node->next->prev = new_node;
 }
 
-void	insert_token_end(t_token **head, char *token, t_token_type type, int index)
+void	insert_token_end(t_token **head, char *token, t_token_type type,
+		int index)
 {
 	t_token	*new_node;
 	t_token	*tmp_node;

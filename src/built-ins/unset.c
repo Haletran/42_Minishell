@@ -6,19 +6,19 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/16 08:09:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:42:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	delete_var_cpy(t_lst *args, char *str)
+void	delete_var_cpy(t_lst *mnsh, char *str)
 {
 	t_env	*env;
 	t_env	*prev;
 	t_env	*temp;
 
-	env = args->env_cpy_lst;
+	env = mnsh->env_cpy_lst;
 	prev = NULL;
 	while (env)
 	{
@@ -32,7 +32,7 @@ void	delete_var_cpy(t_lst *args, char *str)
 			if (prev)
 				prev->next = temp;
 			else
-				args->env_var_lst = temp;
+				mnsh->env_var_lst = temp;
 			env = temp;
 		}
 		else
@@ -43,14 +43,13 @@ void	delete_var_cpy(t_lst *args, char *str)
 	}
 }
 
-
-void	delete_var(t_lst *args, char *str)
+void	delete_var(t_lst *mnsh, char *str)
 {
 	t_env	*env;
 	t_env	*prev;
 	t_env	*temp;
 
-	env = args->env_var_lst;
+	env = mnsh->env_var_lst;
 	prev = NULL;
 	while (env)
 	{
@@ -64,7 +63,7 @@ void	delete_var(t_lst *args, char *str)
 			if (prev)
 				prev->next = temp;
 			else
-				args->env_var_lst = temp;
+				mnsh->env_var_lst = temp;
 			env = temp;
 		}
 		else
@@ -75,17 +74,15 @@ void	delete_var(t_lst *args, char *str)
 	}
 }
 
-
-
-int	ft_unset(char **str, t_lst **args)
+int	ft_unset(char **str, t_lst **mnsh)
 {
 	int	i;
 
 	i = 1;
 	while (str[i])
 	{
-		delete_var(*args, str[i]);
-		delete_var_cpy(*args, str[i]);
+		delete_var(*mnsh, str[i]);
+		delete_var_cpy(*mnsh, str[i]);
 		i++;
 	}
 	return (SUCCESS);

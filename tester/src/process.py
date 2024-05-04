@@ -35,7 +35,7 @@ class Process():
     """
     Attributes
     --------------------------------------------------------------------
-    args : str
+    mnsh : str
         The command to run.
 
     process : subprocess.Popen
@@ -65,17 +65,17 @@ class Process():
         the output when there are redirects or pipes in it.
     """
 
-    def __init__(self, args: str, printer: Printer) -> None:
+    def __init__(self, mnsh: str, printer: Printer) -> None:
 
-        self.args: str
+        self.mnsh: str
         self.process: subprocess.Popen
         self.printer: Printer
         self.exit_status_bash: int
         self.exit_status_minishell: int
 
-        self.args = args
+        self.mnsh = mnsh
         self.process: subprocess.Popen = subprocess.Popen(
-            args,
+            mnsh,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -174,7 +174,7 @@ class Process():
 
             while test not in minishell_out:
                 tmp = []
-                t = threading.Thread(target=read_thread, args=(self, tmp,))
+                t = threading.Thread(target=read_thread, mnsh=(self, tmp,))
                 t.start()
                 t.join(timeout=1)
                 if t.is_alive():
@@ -188,7 +188,7 @@ class Process():
                 if counter == bash_output.count('\n'):
                     break
                 tmp = []
-                t = threading.Thread(target=read_thread, args=(self, tmp,))
+                t = threading.Thread(target=read_thread, mnsh=(self, tmp,))
                 t.start()
                 t.join(timeout=1)
                 if t.is_alive():
@@ -247,7 +247,7 @@ class Process():
 
         master, slave = pty.openpty()
         process_pty = subprocess.Popen(
-            self.args,
+            self.mnsh,
             stdin=slave,
             stdout=slave,
             stderr=slave,
