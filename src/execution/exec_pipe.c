@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/09 20:04:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:06:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,3 @@ int	exec_pipe(t_cli *cli)
 		;
 	return (SUCCESS);
 }
-s
