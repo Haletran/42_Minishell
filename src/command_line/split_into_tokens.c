@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 16:14:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:03:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,9 @@ t_token_type	token_type_discovery(char *token, t_cli *cli)
 		return (BUILTIN);
 	if (ft_lencmparray(token, cli->keyword) > 0)
 		return (KEYWORD);
-	if (cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
+	if ((cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
 				get_last_index(cli->token)), cli) > 0)
+		&& (ft_strlen(token) > 0))
 		return (COMMAND);
 	return (ARGUMENT);
 }
@@ -73,6 +74,7 @@ void	split_into_token(t_cli *cli)
 
 	cli->n_token = get_last_index(cli->token) + 1;
 	i = 0;
+	cli->last_was_pipe = 0;
 	while (cli->input[i] != 0)
 	{
 		if (ft_isthis("\n\t", cli->input[i]))

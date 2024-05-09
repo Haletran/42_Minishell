@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 16:52:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:34:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,7 @@ int	exec_command(t_cli *cli)
 		if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
 				cli->mnsh->env_var) == -1)
 		{
-			cli->mnsh->exit_code = 127;
-			printf("minishell: %s: command not found\n", cli->com->command);
+
 			exit(127);
 		}
 	}

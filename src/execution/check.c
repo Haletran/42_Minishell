@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 16:42:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:36:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	choose(t_cli *cli)
 {
+	printf("cli->com->pipe %d", cli->com->pipe);
 	if (!cli->com)
 		rl_on_new_line();
 	else if (cli->com->pipe > 0)
@@ -45,8 +46,6 @@ int	check_commands(char **str, t_cli *cli)
 		return (ft_unset(str, &cli->mnsh));
 	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
 		return (ft_env(cli->mnsh, str));
-	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
-		return (ft_heredoc(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
 		return (ft_exit(str[1], cli, str));
 	return (NOT_FOUND);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:42:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:40:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_cli
 	t_variable			*variable;
 	int					heredoc;
 	int					n_variable;
+	int					last_was_pipe;
 }						t_cli;
 
 #endif

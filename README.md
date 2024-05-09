@@ -36,6 +36,9 @@ exemple : cat Makefile
 - the path of the next command in pipe does not exist
 - ./minishell in minishell does not work anymore
 - bash lit tous les infiles outfiles
+- Probleme avec l'attribution des tokens, apres pipes
+- boucle infini si | apres pas d'espace
+- Probleme avec l'attribution des pipes 
 
 ## Diagram
 
