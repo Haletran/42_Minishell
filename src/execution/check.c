@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/09 19:36:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:56:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	choose(t_cli *cli)
 {
-	printf("cli->com->pipe %d", cli->com->pipe);
 	if (!cli->com)
 		rl_on_new_line();
-	else if (cli->com->pipe > 0)
-		exec_pipe(cli);
 	else
-		exec(cli );
+		exec_pipe(cli);
 	return ;
 }
 

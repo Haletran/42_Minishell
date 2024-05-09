@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 16:46:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/09 19:40:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ char			**cpy(char **src, char **dest);
 int				ft_cpy(char **dest, char **src);
 void			print_list(char *string, t_env *env);
 int				count_pipe(char **str);
+char	**recreate_commands(t_cli *cli, char **commands);
 
 //* INIT */
 t_env			*init_stack(t_env *env, char **str);
