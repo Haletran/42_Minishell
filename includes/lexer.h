@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:46:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:44:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,7 @@ typedef enum s_token_type
 //* 							BUILTIN COMMAND								*//
 //* 																		*//
 //* *********************************************************************** *//
-# define BUILTIN_LIST "alias,bg,bind,break,builtin,caller,cd,command,compgen,complete, \
-	compopt,continue,declare,dirs,disown,echo,enable,eval,exec,exit,export,fc,fg,getopts, \
-	hash,help,history,jobs,kill,let,local,logout,mapfile,popd,printf,pushd,pwd,read, \
-	readarray,readonly,return,set,shift,shopt,source,suspend,test,times,trap,type,typeset,ulimit, \
-	umask,unalias,unset,wait" 
+# define BUILTIN_LIST "pwd,export,cd,echo,unset,pwd,env,exit" 
 
 //* *********************************************************************** *//
 //* *********************************************************************** *//

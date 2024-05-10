@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 13:05:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:32:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parameter_expansion(t_cli *cli)
 			free(tmp->token);
 			tmp->token = ft_itoa(cli->mnsh->exit_code);
 		}
-		else if (tmp->token[0] == '$' && tmp->type != IMMUTABLE)
+		else if (tmp->token[0] == '$')
 		{
 			key = ft_substr(tmp->token, 1, ft_strlen(tmp->token) - 1);
 			free(tmp->token);

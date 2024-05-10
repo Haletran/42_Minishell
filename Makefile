@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/04 16:53:08 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/10 21:17:28 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRCS	= src/main.c \
 		  src/utils/parse_utils.c \
 		  src/debug.c \
 		  src/command_line/split_into_tokens.c \
-		  src/execution/exec_pipe.c \
+		  src/execution/exec.c \
 		  src/command_line/cleaning_dlst_token.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \
@@ -82,7 +82,7 @@ SRCS	= src/main.c \
 		  src/dlst_parse/dlst_argument_set.c \
 		  src/dlst_parse/dlst_env_set.c \
 		  src/dlst_parse/dlst_env_get.c \
-		  src/execution/exec.c
+		  src/execution/exec_utils.c
 
 DEBUG := 0
 SRC_DIR := src

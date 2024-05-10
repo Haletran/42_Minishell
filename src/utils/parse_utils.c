@@ -6,25 +6,32 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/04 12:33:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/10 21:53:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+#include <string.h>
+
 int	ft_lencmparray(char *token, char **array)
 {
-	int	i;
-	int	tmp;
+    int	i;
+    int	tmp;
+    int	command_len;
 
+    command_len = 0;
 	i = 0;
-	while (array[i])
-	{
-		tmp = ft_strlen(array[i]);
-		if (ft_strncmp(token, array[i++], tmp) == 0)
-			return (tmp);
-	}
-	return (0);
+    while (token[command_len] && token[command_len] != ' ')
+        command_len++;
+    while (array[i])
+    {
+        tmp = ft_strlen(array[i]);
+        if (tmp == command_len && ft_strncmp(token, array[i], tmp) == 0)
+            return (tmp);
+        i++;
+    }
+    return (0);
 }
 
 int	get_position_of_next_meta(char *input)

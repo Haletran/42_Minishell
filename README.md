@@ -39,6 +39,7 @@ exemple : cat Makefile
 - Probleme avec l'attribution des tokens, apres pipes
 - boucle infini si | apres pas d'espace
 - Probleme avec l'attribution des pipes 
+- Export detection not working, args considered as BUILTIN so execution impossible : fix vite fait
 
 ## Diagram
 
