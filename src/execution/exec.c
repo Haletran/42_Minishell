@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 15:43:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:47:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	execute_last_command(t_cli *cli)
 {
 	pid_t	pid;
 
-	if (check_if_fork(cli->mnsh->commands_recreated, cli->mnsh) == NOT_FOUND)
+	if (check_if_fork(cli->mnsh->commands_recreated, cli->mnsh, cli) == NOT_FOUND)
 	{
 		pid = fork();
 		if (pid == -1)
@@ -147,8 +147,6 @@ int	exec_pipe(t_cli *cli)
 	tmp->mnsh->commands_recreated = NULL;
 	cli->mnsh->pipe_count = get_nb_pipes(cli);
 	handle_sig(2);
-	//if (cli->heredoc == 1)
-	//	ft_heredoc(cli->mnsh->commands_recreated, cli->mnsh);
 	while (count != cli->mnsh->pipe_count + 1)
 	{
 		tmp->mnsh->commands_recreated = recreate_commands(cli,tmp->mnsh->commands_recreated);

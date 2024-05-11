@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/09 19:40:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:47:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			print_dlst(t_env *head);
 
 //* CHECKS */
 int				check_if_path_needed(char **str);
-int				check_if_fork(char **str, t_lst *mnsh);
+int				check_if_fork(char **str, t_lst *mnsh, t_cli *cli);
 int				check_space(char *str);
 int				check_commands(char **str, t_cli *cli);
 int				check_if_pipe(char **str);

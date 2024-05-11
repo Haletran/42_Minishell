@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/09 18:21:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:45:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int rulers(t_cli *cli)
         else if (tmp->type == CONTROLE_OPERATOR)
 		{
         	control_rules(cli, tmp);
-            //Bug if pipe
+            check++;
         }
 		else if (tmp->type == KEYWORD)
 		{

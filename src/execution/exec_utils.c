@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 15:40:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:54:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ char	**recreate_commands(t_cli *cli, char **commands)
 
 	i = 0;
 	com = cli->com;
-	len = get_nb_args(com) + get_nb_commands(com);
+	len = get_nb_args(com) + 1;
 	commands = malloc(sizeof(char *) * (len + 1));
 	while (i < len)
 	{
