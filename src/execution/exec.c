@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/10 22:09:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:43:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	piping(t_cli *cli, int count)
 		close(cli->mnsh->fd[0]);
 		if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
 		{
-			if (execve(cli->mnsh->path_command, cli->mnsh->commands_recreated,
+			if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
 					cli->mnsh->env_var) == -1)
 			{
 				cli->mnsh->exit_code = 127;
@@ -68,23 +68,26 @@ void	execute_last_command(t_cli *cli)
 		}
 		else if (pid == 0)
 		{
-			if (cli->mnsh->prev_fd[0] != 0)
+			if (cli->mnsh->pipe_count != 0)
 			{
-				dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
-				close(cli->mnsh->prev_fd[0]);
-			}
-			else
-			{
-				dup2(cli->mnsh->prev_fd[1], STDOUT_FILENO);
-				close(cli->mnsh->prev_fd[1]);
+				if (cli->mnsh->prev_fd[0] != 0)
+				{
+					dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
+					close(cli->mnsh->prev_fd[0]);
+				}
+				else
+				{
+					dup2(cli->mnsh->prev_fd[1], STDOUT_FILENO);
+					close(cli->mnsh->prev_fd[1]);
+				}
 			}
 			if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
 			{
-				if (execve(cli->mnsh->path_command, cli->mnsh->commands_recreated,
+				if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
 						cli->mnsh->env_var) == -1)
 				{
 					cli->mnsh->exit_code = 127;
-					printf("minishell: %s: command not found\n", cli->com->command);
+					printf(CRESET"minishell: %s: command not found\n", cli->com->command);
 					exit(127);
 				}
 			}
@@ -107,7 +110,7 @@ void main_loop(t_cli *cli, int count)
 {
 	if (count != 0)
 		cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
-	if (count != cli->mnsh->pipe_count + 1)
+	if (count != cli->mnsh->pipe_count)
 		pipe(cli->mnsh->fd);
 	if (!cli->com->next)
 		execute_last_command(cli);
@@ -144,15 +147,24 @@ int	exec_pipe(t_cli *cli)
 	tmp->mnsh->commands_recreated = NULL;
 	cli->mnsh->pipe_count = get_nb_pipes(cli);
 	handle_sig(2);
+	//if (cli->heredoc == 1)
+	//	ft_heredoc(cli->mnsh->commands_recreated, cli->mnsh);
 	while (count != cli->mnsh->pipe_count + 1)
 	{
-		cli->mnsh->commands_recreated = recreate_commands(cli,
-				tmp->mnsh->commands_recreated);
-		if (!cli->mnsh->path_command)
-			tmp->mnsh->path_command = check_path(tmp->com->command, cli->mnsh);
+		tmp->mnsh->commands_recreated = recreate_commands(cli,tmp->mnsh->commands_recreated);
+		if (!tmp->mnsh->commands_recreated)
+			return (ERROR);
+		if (!cli->com->env_path && cli->token->type != BUILTIN)
+		{
+			tmp->com->env_path = check_path(tmp->com->command, cli->mnsh);
+			if (!tmp->com->env_path)
+			{
+				cli->mnsh->exit_code = 127;
+				break;
+			}
+		}
 		main_loop(tmp, count);
 		free_tab(tmp->mnsh->commands_recreated);
-		tmp->mnsh->path_command = free_char(tmp->mnsh->path_command);
 		tmp->com = tmp->com->next;
 		count++;
 	}

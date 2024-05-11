@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/10 21:16:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:40:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,30 @@ int	get_nb_commands(t_com *com)
 	return (nb_commands);
 }
 
+char *check_parsing(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_strncmp(str, "./", 2))
+		{
+			if (access(str, F_OK | R_OK) == -1)
+			{
+				ft_printf_fd(2, "%s: No such file or directory\n", str);
+				exit(127);
+			}
+			else
+				str = ft_strrchr(str, '/');
+		}
+		i++;
+	}
+	return (str);
+}
+
+
+
 char	**recreate_commands(t_cli *cli, char **commands)
 {
 	t_com	*com;
@@ -152,7 +176,34 @@ char	**recreate_commands(t_cli *cli, char **commands)
 	while (i < len)
 	{
 		if (com->command)
-			commands[i] = ft_strdup(com->command);
+		{
+			if (!ft_strncmp(com->command, "./", 2))
+			{
+				cli->com->env_path = ft_strdup(com->command);
+				commands[i] = ft_strdup(check_parsing(com->command));
+			}
+			else if (!ft_strncmp(com->command, "/", 1))
+			{
+				if (opendir(com->command) == NULL)
+				{
+					if (access(com->command, F_OK | R_OK) == -1)
+					{
+						ft_printf_fd(2, "minishell: %s: command not found\n", com->command);
+						return (NULL);
+					}
+					cli->com->env_path = ft_strdup(com->command);
+					commands[i] = ft_strdup(ft_strrchr(com->command, '/'));
+				}
+				else
+				{
+					ft_printf_fd(2, "minishell: %s: Is a directory\n", com->command);
+					cli->mnsh->exit_code = 126;
+					return (NULL);
+				}
+			}
+			else
+				commands[i] = ft_strdup(com->command);
+		}
 		arg = com->arg;
 		if (!arg)
 		{

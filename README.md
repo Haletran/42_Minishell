@@ -40,6 +40,7 @@ exemple : cat Makefile
 - boucle infini si | apres pas d'espace
 - Probleme avec l'attribution des pipes 
 - Export detection not working, args considered as BUILTIN so execution impossible : fix vite fait
+- if two builtins commands at the same time such as env env, infinite loop
 
 ## Diagram
 

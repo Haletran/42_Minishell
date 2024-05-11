@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 16:27:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 12:55:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ void	free_command_line(t_cli *cli)
 	delete_all_nodes_com(&cli->com);
 	if (cli->token != NULL)
 		delete_all_nodes_token(&cli->token);
-	free(cli->input);
+	cli->input = free_char(cli->input);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/10 21:55:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/11 15:22:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	choose(t_cli *cli)
 		exec_pipe(cli);
 	return ;
 }
+
 
 /**
  * @brief Associate commands to built-ins if needed
@@ -48,8 +49,6 @@ int	check_if_fork(char **str, t_lst *mnsh)
 {
 	if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
 		return (ft_export(mnsh, str));
-	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
-		return (ft_heredoc(str, mnsh));
 	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
 		return (ft_unset(str, &mnsh));
 	return (NOT_FOUND);
