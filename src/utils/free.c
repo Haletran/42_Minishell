@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 12:55:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:03:33 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -69,10 +69,12 @@ void	freeway(t_cli *cli)
 	free_tab(cli->keyword);
 	free_tab(cli->bracket);
 	free_tab(cli->builtin);
+	free_tab(cli->path);
 	delete_all_nodes_env(&cli->mnsh->env_cpy_lst);
 	delete_all_nodes_env(&cli->mnsh->env_var_lst);
 	free(cli->mnsh->current_path);
 	free_tab(cli->mnsh->env_var);
+	free_char(cli->mnsh->env_path);
 	free(cli->mnsh);
 	free(cli);
 }
@@ -92,5 +94,5 @@ void	free_command_line(t_cli *cli)
 	delete_all_nodes_com(&cli->com);
 	if (cli->token != NULL)
 		delete_all_nodes_token(&cli->token);
-	cli->input = free_char(cli->input);
+	free(cli->input);
 }

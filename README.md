@@ -35,16 +35,11 @@ exemple : cat Makefile
 - Heredoc problem not considered as command
 - the path of the next command in pipe does not exist
 - ./minishell in minishell does not work anymore
-- bash lit tous les infiles outfiles
-- Probleme avec l'attribution des tokens, apres pipes
-- boucle infini si | apres pas d'espace
-- Probleme avec l'attribution des pipes 
-- Export detection not working, args considered as BUILTIN so execution impossible : fix vite fait
-- if two builtins commands at the same time such as env env, infinite loop
+- bash lt tous les infiles outfiles
+- problemes avec CD  Command[0]: "cd"
+                     Command[1]: "in"
+                     Command[2]: "cludes/"
 
-## Diagram
-
-<img src="diagram.png" style="width:500px" alt="diagram"></img>
 
 ## Links 
 

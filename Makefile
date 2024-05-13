@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/10 21:17:28 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/13 09:16:10 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ NC				:= \033[0m
 
 NAME := minishell
 CC := clang
-CFLAGS := -Wextra -Wall -Werror -gdwarf-4 -O3
+CFLAGS := -Wextra -Wall -Werror -gdwarf-4
 DEBUG_FLAGS := -fsanitize=address
 
 ifdef DEBUG
@@ -41,7 +41,6 @@ endif
 
 
 SRCS	= src/main.c \
-		  src/execution/redirections.c \
 		  src/built-ins/echo.c \
 		  src/built-ins/cd.c \
 		  src/utils/utils.c \
@@ -62,8 +61,8 @@ SRCS	= src/main.c \
 		  src/utils/ft_is.c \
 		  src/utils/parse_utils.c \
 		  src/debug.c \
+		  src/execution/exec_utils.c \
 		  src/command_line/split_into_tokens.c \
-		  src/execution/exec.c \
 		  src/command_line/cleaning_dlst_token.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \
@@ -79,10 +78,9 @@ SRCS	= src/main.c \
 		  src/dlst_parse/dlst_variable_get.c \
 		  src/dlst_parse/dlst_variable_set.c \
 		  src/dlst_parse/dlst_command_set.c \
-		  src/dlst_parse/dlst_argument_set.c \
 		  src/dlst_parse/dlst_env_set.c \
 		  src/dlst_parse/dlst_env_get.c \
-		  src/execution/exec_utils.c
+		  src/execution/exec.c
 
 DEBUG := 0
 SRC_DIR := src

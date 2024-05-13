@@ -6,32 +6,25 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/11 16:27:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:27:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-#include <string.h>
-
 int	ft_lencmparray(char *token, char **array)
 {
-    int	i;
-    int	tmp;
-    int	command_len;
+	int	i;
+	int	tmp;
 
-    command_len = 0;
 	i = 0;
-    while (token[command_len] && token[command_len] != ' ')
-        command_len++;
-    while (array[i])
-    {
-        tmp = ft_strlen(array[i]);
-        if (tmp == command_len && ft_strncmp(token, array[i], tmp) == 0)
-            return (tmp);
-        i++;
-    }
-    return (0);
+	while (array[i])
+	{
+		tmp = ft_strlen(array[i]);
+		if (ft_strncmp(token, array[i++], tmp) == 0)
+			return (tmp);
+	}
+	return (0);
 }
 
 int	get_position_of_next_meta(char *input)
@@ -74,5 +67,49 @@ int	ft_lenstrtype(char *token, t_cli *cli)
 	i += ft_lencmparray(token, cli->redirect);
 	i += ft_lencmparray(token, cli->control);
 	i += ft_lencmparray(token, cli->bracket);
+	i += ft_lencmparray(token, cli->keyword);
 	return (i);
+}
+
+int	is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
+{
+	(void)path;
+	if (full_path == NULL)
+	{
+		free_char(full_path);
+		mnsh->exit_code = 127;
+		return (EXIT_FAILURE);
+	}
+	if (access(full_path, F_OK | R_OK) == -1)
+	{
+		if (check_if_builtin(str) == SUCCESS)
+			return (EXIT_SUCCESS);
+		ft_printf_fd(2, "%s : command not found\n", str);
+		free_char(full_path);
+		mnsh->exit_code = 127;
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
+{
+	if (cli->heredoc == 1 && ft_isthis(" \t\n", tok->token[0]) == 0)
+		return (quote_n_heredoc_census(tok->token, cli));
+	if (ft_isthis("\"'<", tok->token[0]) > 0)
+		return (quote_n_heredoc_census(tok->token, cli));
+	if (cli->n_dquote & 1)
+		return (FREEZE);
+	if (cli->n_quote & 1)
+		return (IMMUTABLE);
+	if (ft_lencmparray(tok->token, cli->redirect) > 0)
+		return (REDIRECTION_OPERATOR);
+	if (ft_lencmparray(tok->token, cli->control) > 0)
+		return (CONTROLE_OPERATOR);
+	if (ft_lencmparray(tok->token, cli->bracket) > 0)
+		return (BRACKET);
+	if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR
+		|| tok->prev->type == DELIMITER)
+		return (COMMAND);
+	return (ARGUMENT);
 }

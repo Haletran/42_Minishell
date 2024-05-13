@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 16:47:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:42:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,16 @@ void	piping(t_cli *cli, int count)
 			close(cli->mnsh->fd[1]);
 		}
 		close(cli->mnsh->fd[0]);
-		if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
+		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
-			if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
+			if (execve(cli->com->env_path, cli->com->command,
 					cli->mnsh->env_var) == -1)
 			{
 				cli->mnsh->exit_code = 127;
-				printf("minishell: %s: command not found\n", cli->com->command);
+				printf("minishell: %s: command not found\n", *cli->com->command);
 				exit(127);
 			}
 		}
-		cli->mnsh->path_command = free_char(cli->mnsh->path_command);
 	}
 	else
 	{
@@ -57,8 +56,7 @@ void	piping(t_cli *cli, int count)
 void	execute_last_command(t_cli *cli)
 {
 	pid_t	pid;
-
-	if (check_if_fork(cli->mnsh->commands_recreated, cli->mnsh, cli) == NOT_FOUND)
+	if (check_if_fork(cli->com->command, cli->mnsh, cli) == NOT_FOUND)
 	{
 		pid = fork();
 		if (pid == -1)
@@ -81,22 +79,21 @@ void	execute_last_command(t_cli *cli)
 					close(cli->mnsh->prev_fd[1]);
 				}
 			}
-			if (check_commands(cli->mnsh->commands_recreated, cli) == NOT_FOUND)
+			if (check_commands(cli->com->command, cli) == NOT_FOUND)
 			{
-				if (execve(cli->com->env_path, cli->mnsh->commands_recreated,
+				if (execve(cli->com->env_path, cli->com->command,
 						cli->mnsh->env_var) == -1)
 				{
 					cli->mnsh->exit_code = 127;
-					printf(CRESET"minishell: %s: command not found\n", cli->com->command);
+					printf(CRESET"minishell: %s: command not found\n", *cli->com->command);
 					exit(127);
 				}
 			}
-			cli->mnsh->path_command = free_char(cli->mnsh->path_command);
 			exit(0);
 		}
 		waitpid(pid, &cli->mnsh->exit_code, 0);
 	}
-	close(cli->mnsh->fd[0]);
+	//close(cli->mnsh->fd[0]);
 	close(cli->mnsh->fd[1]);
 	close(cli->mnsh->prev_fd[0]);
 	close(cli->mnsh->prev_fd[1]);
@@ -118,18 +115,16 @@ void main_loop(t_cli *cli, int count)
 		piping(cli, count);
 }
 
-int get_nb_pipes(t_cli *cli)
+int get_nb_pipes(t_com *com)
 {
-	t_com	*tmp;
-	int		count;
+	int count;
 
-	tmp = cli->com;
 	count = 0;
-	while (tmp)
+	while (com)
 	{
-		if (tmp->pipe == 1)
+		if (com->command)
 			count++;
-		tmp = tmp->next;
+		com = com->next;
 	}
 	return (count);
 }
@@ -144,25 +139,16 @@ int	exec_pipe(t_cli *cli)
 	tmp = cli;
 	tmp->mnsh->backup[0] = dup(STDIN_FILENO);
 	tmp->mnsh->backup[1] = dup(STDOUT_FILENO);
-	tmp->mnsh->commands_recreated = NULL;
-	cli->mnsh->pipe_count = get_nb_pipes(cli);
 	handle_sig(2);
-	while (count != cli->mnsh->pipe_count + 1)
+	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
+	if (check_number_of_heredoc(tmp->com) > 0)
 	{
-		tmp->mnsh->commands_recreated = recreate_commands(cli,tmp->mnsh->commands_recreated);
-		if (!tmp->mnsh->commands_recreated)
-			return (ERROR);
-		if (!cli->com->env_path && cli->token->type != BUILTIN)
-		{
-			tmp->com->env_path = check_path(tmp->com->command, cli->mnsh);
-			if (!tmp->com->env_path)
-			{
-				cli->mnsh->exit_code = 127;
-				break;
-			}
-		}
+		ft_heredoc(tmp);
+		return (SUCCESS);
+	}
+	while (count != cli->mnsh->pipe_count)
+	{
 		main_loop(tmp, count);
-		free_tab(tmp->mnsh->commands_recreated);
 		tmp->com = tmp->com->next;
 		count++;
 	}

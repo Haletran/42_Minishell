@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/11 15:34:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:54:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -60,6 +60,7 @@ int	init_array_env(t_cli **cli, char **envp)
 	err = ft_cpy((*cli)->mnsh->env_var, envp);
 	if (err == ERROR)
 		return (return_error(ERROR, "ft_cpy: Alloc ", NULL, DEBUG_MODE));
+	find_path((*cli)->mnsh->env_var_lst, (*cli)->mnsh);
 	return (SUCCESS);
 }
 
@@ -80,7 +81,11 @@ int	init_array(t_cli **cli)
 	(*cli)->builtin = ft_split(BUILTIN_LIST, ',');
 	if (!(*cli)->builtin)
 		return (return_error(ERROR, "builtin: Alloc ", NULL, DEBUG_MODE));
+	(*cli)->path = ft_split((*cli)->mnsh->env_path, ':');
+	if (!(*cli)->path)
+		return (return_error(ERROR, "path: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
+	
 }
 
 void	init_fd_history(t_cli **cli)

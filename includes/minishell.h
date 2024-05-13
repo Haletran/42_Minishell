@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 16:47:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:45:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			free_command_line(t_cli *cli);
 void			freeway(t_cli *cli);
 
 //* GET */
-int				get_nbargs(char **str);
+int				get_nb_args(t_token *head);
 int				get_len(char **str);
 void			get_exit_code(t_lst *mnsh);
 char			*get_env(char *str, t_lst *mnsh);
@@ -108,7 +108,6 @@ char			**cpy(char **src, char **dest);
 int				ft_cpy(char **dest, char **src);
 void			print_list(char *string, t_env *env);
 int				count_pipe(char **str);
-char	**recreate_commands(t_cli *cli, char **commands);
 
 //* INIT */
 t_env			*init_stack(t_env *env, char **str);
@@ -129,7 +128,7 @@ int				ft_export(t_lst *mnsh, char **str);
 int				ft_unset(char **str, t_lst **mnsh);
 
 /*BASH_UTILITIES*/
-int				ft_heredoc(char **str, t_lst *mnsh);
+int ft_heredoc(t_cli *cli);
 void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
@@ -147,9 +146,6 @@ char			*search_path(char *str, t_lst *lst);
 void			find_path_s(t_env *env, t_cli *cli);
 void			find_path(t_env *env, t_lst *mnsh);
 void			print_dlst(t_env *head);
-
-int				exec_command(t_cli *cli);
-int				exec(t_cli *cli);
 
 /*PARSING*/
 void			parsing_organiser(t_cli *cli);
@@ -186,7 +182,7 @@ int				get_last_index_var(t_variable *head);
 void			print_dlst_variable(t_variable *head);
 void			split_into_token(t_cli *cli);
 int				ft_lenstrtype(char *token, t_cli *cli);
-t_token_type	token_type_discover(char *token, t_cli *cli);
+t_token_type	token_type_discovery(char *token, t_cli *cli);
 int				get_position_of_next_meta(char *input);
 char			*ft_strtrim_f(char *s1, char *set);
 void			input_reader(t_cli *cli);
@@ -199,16 +195,11 @@ void			reindex_token_list(t_cli *cli);
 void			glue_quotes(t_cli *cli);
 void			remove_quotes(t_cli *cli);
 void			cleaning_token_list(t_cli *cli);
-void			delete_node_arg(t_arg **head, t_arg *del_node);
-void			delete_all_nodes_arg(t_arg **head);
-void			insert_arg_front(t_arg **head, char *arg);
-void			insert_arg_after(t_arg *prev_node, char *arg);
-void			insert_arg_end(t_arg **head, char *arg);
 void			delete_node_com(t_com **head, t_com *del_node);
 void			delete_all_nodes_com(t_com **head);
-void			insert_com_front(t_com **head, char *command, int index);
-void			insert_com_after(t_com *prev_node, char *command, int index);
-void			insert_com_end(t_com **head, char *command, int index);
+void			insert_com_front(t_com **head, int type, int index);
+void			insert_com_after(t_com *prev_node, int type, int index);
+void			insert_com_end(t_com **head, int type, int index);
 int				ft_error_path(char *str, char **path, t_lst *mnsh,
 					char *full_path);
 void			delete_all_nodes_variable(t_variable **head);
@@ -220,19 +211,30 @@ int				varloc_attrib(t_cli *cli, char *key_line, char *var_line,
 					int index);
 char			*variable_from_token(char *token);
 char			*key_from_token(char *token);
+int				get_nbargs(char **str);
+int				check_if_builtin(char *str);
+int				is_error_path(char *str, char **path, t_lst *mnsh,
+					char *full_path);
+t_token_type	token_type_rediscovery(t_token *token, t_cli *cli);
+void			split_variable(t_cli *cli);
 
 /*RULES*/
-int				rulers(t_cli *cli);
+void			rulers(t_cli *cli);
 void			lt_rules(t_cli *cli, t_token *token);
 void			redirect_rules(t_cli *cli, t_token *token);
 void			syntax_error(t_cli *cli, char *token);
 void			control_rules(t_cli *cli, t_token *token);
+void			process_error(t_cli *cli, char *token);
+void			delete_n_token(t_token **head, int n);
 
 /*DEBUG*/
-
 void			print_all_in_cli(t_cli *cli);
 void			print_all_token(t_token *token);
-void			print_all_arg(t_arg *arg);
 void			print_all_com(t_com *com);
+void			debug(t_cli *cli, char *add_msg);
+void			concat_no_space(t_cli *cli);
+void			print_type(t_token *token);
+void			print_type_com(t_com *com);
+int	check_number_of_heredoc(t_com *com);
 
 #endif

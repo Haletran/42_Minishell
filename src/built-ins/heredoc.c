@@ -6,107 +6,101 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 13:10:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:54:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_number_of_heredoc(char **input)
+int	check_number_of_heredoc(t_com *com)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	while (input[i])
+	count = 0;
+	while (com)
 	{
-		if (!ft_strncmp(input[i], "<<", 2) && !input[i + 1])
-			break ;
-		i++;
+		if (com->type == HEREDOC)
+			count++;
+		com = com->next;
 	}
-	return (i - 1);
+	return (count);
 }
 
-int	check_heredoc_error(char **str)
+int	check_heredoc_error(t_cli *cli)
 {
-	if (!str[1])
+	int	i;
+	t_com *tmp;
+
+	i = 0;
+	tmp = cli->com;
+	while (tmp)
 	{
-		printf("heredoc: syntax error\n");
-		return (ERROR);
+		if (tmp->command[i] && !tmp->command[i + 1])
+		{
+			printf("minishell: syntax error near unexpected token `newline'\n");
+			return (ERROR);
+		}
+		tmp = tmp->next;
 	}
-	if (check_number_of_heredoc(str) >= 16)
+	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
+	if (cli->mnsh->nb_heredoc >= 13)
 	{
-		printf("minishell : maximum here-document count exceeded\n");
+		printf("minishell: maximum here-document count exceeded\n");
 		return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-void	child_process(char **str, t_lst *mnsh)
+void	child_process(t_cli *cli, t_com *com)
 {
 	char	*input;
-	int		i;
-	int		count;
+	int line_count;
 
-	count = 1;
-	i = 1;
 	input = NULL;
+	g_var = 0;
+	line_count = 0;
+	(void)cli;
 	handle_sig(1);
 	while (1)
 	{
 		input = readline("> ");
 		if (!input && g_var == 0)
 		{
-			printf("warning: here-document at line \
-%d delimited by end-of-file (wanted '%s')\n",
-					count,
-					str[i]);
-			input = free_char(input);
-			global_free(mnsh, str);
+						printf("warning: here-document at line \
+%d delimited by end-of-file (wanted '%s')\n", line_count, com->command[1]);
 			exit(STOPPED);
 		}
 		if (g_var == 1)
-		{
-			input = free_char(input);
-			global_free(mnsh, str);
 			exit(ERROR);
-		}
-		if (!ft_strncmp(input, str[i], ft_strlen(str[i]))
-			&& ft_strlen(str[i]) == ft_strlen(input))
-		{
-			if (!str[i + 1])
-			{
-				input = free_char(input);
-				break ;
-			}
-			i += 2;
-		}
-		count++;
-		input = free_char(input);
+		if (!ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
+			exit(1);
+		line_count++;
 	}
-	global_free(mnsh, str);
+	input = free_char(input);
+	freeway(cli);
 	exit(SUCCESS);
 }
 
-int	ft_heredoc(char **str, t_lst *mnsh)
+int ft_heredoc(t_cli *cli)
 {
-	char	*input;
 	pid_t	pid;
-
-	input = NULL;
-	if (check_heredoc_error(str) == ERROR)
+	t_com *tmp;
+	if (check_heredoc_error(cli) == ERROR)
 	{
-		mnsh->exit_code = 1;
+		cli->mnsh->exit_code = 1;
 		return (ERROR);
 	}
-	pid = fork();
-	if (pid == -1)
+	tmp = cli->com;
+	while (cli->mnsh->nb_heredoc > 0)
 	{
-		free_tab(str);
-		return (ERROR);
+		pid = fork();
+		if (pid == -1)
+			return (ERROR);
+		else if (pid == 0)
+			child_process(cli, tmp);
+		cli->mnsh->nb_heredoc--;
+		tmp = tmp->next;
+		waitpid(pid, &cli->mnsh->exit_code, 0);
 	}
-	else if (pid == 0)
-		child_process(str, mnsh);
-	waitpid(pid, &mnsh->exit_code, 0);
-	free_char(input);
 	return (SUCCESS);
 }

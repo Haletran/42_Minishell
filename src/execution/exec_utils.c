@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 15:54:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:21:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	check_if_builtin(char *str)
 	else if (!ft_strncmp(str, "unset", 5) && ft_strlen(str) == 5)
 		return (SUCCESS);
 	else if (!ft_strncmp(str, "env", 3) && ft_strlen(str) == 3)
-		return (SUCCESS);
-	else if (!ft_strncmp(str, "<<", 2) && ft_strlen(str) == 2)
 		return (SUCCESS);
 	else if (!ft_strncmp(str, "exit", 4) && ft_strlen(str) == 4)
 		return (SUCCESS);
@@ -106,7 +104,7 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	return (EXIT_SUCCESS);
 }
 
-int	get_nb_args(t_com *com)
+/* int	get_nb_args(t_com *com)
 {
 	t_arg	*arg;
 	int		nb_args;
@@ -123,7 +121,7 @@ int	get_nb_args(t_com *com)
 		com = com->next;
 	}
 	return (nb_args);
-}
+} */
 
 int	get_nb_commands(t_com *com)
 {
@@ -162,7 +160,7 @@ char *check_parsing(char *str)
 
 
 
-char	**recreate_commands(t_cli *cli, char **commands)
+/* char	**recreate_commands(t_cli *cli, char **commands)
 {
 	t_com	*com;
 	t_arg	*arg;
@@ -221,5 +219,5 @@ char	**recreate_commands(t_cli *cli, char **commands)
 	}
 	commands[i] = NULL;
 	return (commands);
-}
+} */
 

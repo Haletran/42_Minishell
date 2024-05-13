@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/09 18:40:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:45:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_env
 
 typedef struct s_lst
 {
-	char				**commands_recreated;
 	t_env				*env_var_lst;
 	t_env				*env_cpy_lst;
 	char				**env_var;
@@ -44,20 +43,13 @@ typedef struct s_lst
 	int					history_fd;
 	int					check_if_freed;
 	int					exit_code;
+	int					nb_heredoc;
 }						t_lst;
 
-typedef struct s_arg
-{
-	char				*arg;
-	struct s_arg		*next;
-	struct s_arg		*prev;
-}						t_arg;
 typedef struct s_com
 {
-	char				*command;
+	char				**command;
 	char				*env_path;
-	t_arg				*arg;
-	int					n_arg;
 	char				*redirection;
 	int					type;
 	int					index;
@@ -100,6 +92,7 @@ typedef struct s_cli
 	char				**control;
 	char				**keyword;
 	char				**builtin;
+	char				**path;
 	int					n_quote;
 	int					n_dquote;
 	char				**bracket;
@@ -108,7 +101,6 @@ typedef struct s_cli
 	t_variable			*variable;
 	int					heredoc;
 	int					n_variable;
-	int					last_was_pipe;
 }						t_cli;
 
 #endif

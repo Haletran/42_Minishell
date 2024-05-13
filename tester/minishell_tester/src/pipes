@@ -1,0 +1,4 @@
+cat minishell.h | grep ");"$
+ls | ls
+ls | cat
+cat Makefile | grep CC

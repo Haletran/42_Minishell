@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/11 16:27:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:26:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,10 @@ t_token_type	token_type_discovery(char *token, t_cli *cli)
 		return (CONTROLE_OPERATOR);
 	if (ft_lencmparray(token, cli->bracket) > 0)
 		return (BRACKET);
-	if (ft_lencmparray(token, cli->builtin) > 0)
-		return (BUILTIN);
-	if (ft_lencmparray(token, cli->keyword) > 0)
-		return (KEYWORD);
-	if ((cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
-				get_last_index(cli->token)), cli) > 0))
+	// if (ft_lencmparray(token, cli->keyword) > 0)
+	//	return (KEYWORD);
+	if (cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
+				get_last_index(cli->token)), cli) > 0)
 		return (COMMAND);
 	return (ARGUMENT);
 }
@@ -73,7 +71,6 @@ void	split_into_token(t_cli *cli)
 
 	cli->n_token = get_last_index(cli->token) + 1;
 	i = 0;
-	cli->last_was_pipe = 0;
 	while (cli->input[i] != 0)
 	{
 		if (ft_isthis("\n\t", cli->input[i]))
@@ -90,7 +87,7 @@ void	split_into_token(t_cli *cli)
 			return ;
 		insert_token_end(&cli->token, ft_strdup(token_tmp),
 			token_type_discovery(token_tmp, cli), cli->n_token++);
-		token_tmp = free_char(token_tmp);
+		free_char(token_tmp);
 		i += offset;
 	}
 }
