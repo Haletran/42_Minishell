@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/14 12:09:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:38:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ void	child_process(t_cli *cli, t_com *com)
 			ft_putstr_fd("\n", cli->mnsh->heredoc_fd);
 		}
 		if (!ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
-		{	
-			close(cli->mnsh->heredoc_fd);
+		{
+			if (cli->mnsh->nb_heredoc - 1 == 0)
+				close(cli->mnsh->heredoc_fd);
 			exit(1);
 		}
 		line_count++;
@@ -91,7 +92,7 @@ void	child_process(t_cli *cli, t_com *com)
 
 int create_heredoc_file(t_cli **cli)
 {
-	(*cli)->mnsh->heredoc_fd = open(".heredoc", O_CREAT | O_RDWR | O_TRUNC | O_APPEND, 0644);
+	(*cli)->mnsh->heredoc_fd = open("heredoc", O_CREAT | O_RDWR | O_APPEND, 0777);
 	if ((*cli)->mnsh->heredoc_fd == -1)
 	{
 		printf("minishell: %s: %s\n", strerror(errno), "heredoc");
@@ -121,7 +122,8 @@ int ft_heredoc(t_cli **cli)
 			child_process((*cli), (*cli)->com);
 		(*cli)->mnsh->nb_heredoc--;
 		(*cli)->com = (*cli)->com->next;
-		waitpid(pid, &(*cli)->mnsh->exit_code, 0);
 	}
+	while (waitpid(-1, &(*cli)->mnsh->exit_code, 0) > 0)
+		;
 	return (SUCCESS);
 }
