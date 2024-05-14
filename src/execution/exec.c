@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/13 16:42:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:02:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,55 +53,56 @@ void	piping(t_cli *cli, int count)
 	}
 }
 
-void	execute_last_command(t_cli *cli)
+void    execute_last_command(t_cli *cli)
 {
-	pid_t	pid;
-	if (check_if_fork(cli->com->command, cli->mnsh, cli) == NOT_FOUND)
-	{
-		pid = fork();
-		if (pid == -1)
-		{
-			ft_printf_fd(2, "fork failed\n");
-			exit(1);
-		}
-		else if (pid == 0)
-		{
-			if (cli->mnsh->pipe_count != 0)
-			{
-				if (cli->mnsh->prev_fd[0] != 0)
-				{
-					dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
-					close(cli->mnsh->prev_fd[0]);
-				}
-				else
-				{
-					dup2(cli->mnsh->prev_fd[1], STDOUT_FILENO);
-					close(cli->mnsh->prev_fd[1]);
-				}
-			}
-			if (check_commands(cli->com->command, cli) == NOT_FOUND)
-			{
-				if (execve(cli->com->env_path, cli->com->command,
-						cli->mnsh->env_var) == -1)
-				{
-					cli->mnsh->exit_code = 127;
-					printf(CRESET"minishell: %s: command not found\n", *cli->com->command);
-					exit(127);
-				}
-			}
-			exit(0);
-		}
-		waitpid(pid, &cli->mnsh->exit_code, 0);
-	}
-	//close(cli->mnsh->fd[0]);
-	close(cli->mnsh->fd[1]);
-	close(cli->mnsh->prev_fd[0]);
-	close(cli->mnsh->prev_fd[1]);
-	dup2(cli->mnsh->backup[0], STDIN_FILENO);
-	close(cli->mnsh->backup[0]);
-	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
-	close(cli->mnsh->backup[1]);
+    pid_t  pid;
+
+    if (check_if_fork(cli->com->command, cli->mnsh, cli) == NOT_FOUND)
+    {
+        pid = fork();
+        if (pid == -1)
+        {
+            ft_printf_fd(2, "fork failed\n");
+            exit(1);
+        }
+        else if (pid == 0)
+        {
+            if (cli->mnsh->pipe_count != 0)
+            {
+                if (cli->mnsh->prev_fd[0] != 0)
+                {
+                    dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
+                    close(cli->mnsh->prev_fd[0]);
+                }
+                else if (cli->mnsh->heredoc_pipe == 1)
+                {
+                    dup2(cli->mnsh->heredoc_fd, STDIN_FILENO);
+                    close(cli->mnsh->heredoc_fd);
+                }
+            }
+            if (check_commands(cli->com->command, cli) == NOT_FOUND)
+            {
+                if (execve(cli->com->env_path, cli->com->command, cli->mnsh->env_var) == -1)
+                {
+                    cli->mnsh->exit_code = 127;
+                    printf(CRESET"minishell: %s: command not found\n", *cli->com->command);
+                    exit(127);
+                }
+            }
+            exit(0);
+        }
+        waitpid(pid, &cli->mnsh->exit_code, 0);
+    }
+    close(cli->mnsh->fd[0]);
+    close(cli->mnsh->fd[1]);
+    close(cli->mnsh->prev_fd[0]);
+    close(cli->mnsh->prev_fd[1]);
+    dup2(cli->mnsh->backup[0], STDIN_FILENO);
+    close(cli->mnsh->backup[0]);
+    dup2(cli->mnsh->backup[1], STDOUT_FILENO);
+    close(cli->mnsh->backup[1]);
 }
+
 
 void main_loop(t_cli *cli, int count)
 {
@@ -113,6 +114,7 @@ void main_loop(t_cli *cli, int count)
 		execute_last_command(cli);
 	else
 		piping(cli, count);
+	cli->mnsh->heredoc_pipe = 0;
 }
 
 int get_nb_pipes(t_com *com)
@@ -143,16 +145,23 @@ int	exec_pipe(t_cli *cli)
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{
-		ft_heredoc(tmp);
-		return (SUCCESS);
+		ft_heredoc(&tmp);
+		if (tmp && tmp->com && tmp->com->command != NULL)
+			cli->mnsh->heredoc_pipe = 1;
+		else
+			return (SUCCESS);
 	}
 	while (count != cli->mnsh->pipe_count)
-	{
+	{ 
 		main_loop(tmp, count);
-		tmp->com = tmp->com->next;
+		if (tmp->com->next)
+			tmp->com = tmp->com->next;
+		else
+			break;
 		count++;
 	}
 	while (waitpid(-1, &cli->mnsh->exit_code, 0) > 0)
 		;
+	delete_file(".heredoc", cli);
 	return (SUCCESS);
 }

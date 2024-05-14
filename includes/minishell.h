@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/13 15:45:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:57:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int				ft_export(t_lst *mnsh, char **str);
 int				ft_unset(char **str, t_lst **mnsh);
 
 /*BASH_UTILITIES*/
-int ft_heredoc(t_cli *cli);
+int				ft_heredoc(t_cli **cli);
 void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
@@ -235,6 +235,7 @@ void			debug(t_cli *cli, char *add_msg);
 void			concat_no_space(t_cli *cli);
 void			print_type(t_token *token);
 void			print_type_com(t_com *com);
-int	check_number_of_heredoc(t_com *com);
+int				check_number_of_heredoc(t_com *com);
+void			delete_file(char *str, t_cli *cli);
 
 #endif
