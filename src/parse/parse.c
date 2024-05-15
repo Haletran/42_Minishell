@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/14 12:00:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:32:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);
-	while ((cli->n_quote & 1 || cli->n_dquote & 1) == 1)
+/* 	while ((cli->n_quote & 1 || cli->n_dquote & 1) == 1)
 	{
 		free(cli->input);
 		cli->input = readline("> ");
 		split_into_token(cli);
-	}
+	} */
 	glue_quotes(cli);
 	remove_quotes(cli);
 	cleaning_token_list(cli);
@@ -50,8 +50,8 @@ void	parsing_organiser(t_cli *cli)
 	if (!varloc_creation(cli))
 		return ;
 	parameter_expansion(cli);
-	debug(cli, "  BEFORE CREATE COMMAND");
+	//debug(cli, "  BEFORE CREATE COMMAND");
 	create_command(cli);
-	debug(cli, "  AFTER CREATE COMMAND");
+	//debug(cli, "  AFTER CREATE COMMAND");
 	return ;
 }

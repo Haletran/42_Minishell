@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/14 11:57:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:42:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			freeway(t_cli *cli);
 //* GET */
 int				get_nb_args(t_token *head);
 int				get_len(char **str);
-void			get_exit_code(t_lst *mnsh);
+int				get_exit_code(t_lst *mnsh);
 char			*get_env(char *str, t_lst *mnsh);
 
 void			delete_node_env(t_env **head, t_env *del_node);
@@ -237,5 +237,7 @@ void			print_type(t_token *token);
 void			print_type_com(t_com *com);
 int				check_number_of_heredoc(t_com *com);
 void			delete_file(char *str, t_cli *cli);
+char			*check_parsing(char *str);
+int				parsing_check(t_cli *cli);
 
 #endif

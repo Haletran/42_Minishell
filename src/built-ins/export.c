@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 16:23:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 06:39:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,7 @@ int	ft_export(t_lst *mnsh, char **str)
 			return (ERROR);
 		sort_in_ascii(mnsh->env_cpy_lst);
 		print_list_export(mnsh);
+		mnsh->exit_code = 0;
 		return (1);
 	}
 	while (str[i])
@@ -254,6 +255,7 @@ int	ft_export(t_lst *mnsh, char **str)
 		if (check_if_alpha(str[i]) == ERROR)
 		{
 			ft_printf_fd(2, "minishell : %s not a valid identifier\n", str[1]);
+			mnsh->exit_code = 1;
 			return (ERROR);
 		}
 		if (ft_strchr(str[i], '+'))
@@ -269,5 +271,6 @@ int	ft_export(t_lst *mnsh, char **str)
 		}
 		i++;
 	}
+	mnsh->exit_code = 0;
 	return (SUCCESS);
 }

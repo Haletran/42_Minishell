@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 05:47:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:20:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ int ft_heredoc(t_cli **cli)
 	}
 	while (waitpid(-1, &(*cli)->mnsh->exit_code, 0) > 0)
 		;
+    (*cli)->mnsh->exit_code = 0;
 	return (SUCCESS);
 }

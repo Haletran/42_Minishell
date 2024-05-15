@@ -6,12 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/13 15:21:01 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:34:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 int	check_if_builtin(char *str)
 {
@@ -104,25 +103,6 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	return (EXIT_SUCCESS);
 }
 
-/* int	get_nb_args(t_com *com)
-{
-	t_arg	*arg;
-	int		nb_args;
-
-	nb_args = 0;
-	while (com)
-	{
-		arg = com->arg;
-		while (arg)
-		{
-			nb_args++;
-			arg = arg->next;
-		}
-		com = com->next;
-	}
-	return (nb_args);
-} */
-
 int	get_nb_commands(t_com *com)
 {
 	int	nb_commands;
@@ -145,10 +125,15 @@ char *check_parsing(char *str)
 	{
 		if (!ft_strncmp(str, "./", 2))
 		{
-			if (access(str, F_OK | R_OK) == -1)
+			if (access(str, F_OK) == -1)
 			{
 				ft_printf_fd(2, "%s: No such file or directory\n", str);
 				exit(127);
+			}
+			else if (access(str, X_OK) == -1)
+			{
+				ft_printf_fd(2, "%s: Permission denied\n", str);
+				exit(126);
 			}
 			else
 				str = ft_strrchr(str, '/');
@@ -158,66 +143,49 @@ char *check_parsing(char *str)
 	return (str);
 }
 
+int find_in_env(char *str, t_cli *cli)
+{	
+	t_cli *tmp;
 
-
-/* char	**recreate_commands(t_cli *cli, char **commands)
-{
-	t_com	*com;
-	t_arg	*arg;
-	int		i;
-	int		len;
-
-	i = 0;
-	com = cli->com;
-	len = get_nb_args(com) + 1;
-	commands = malloc(sizeof(char *) * (len + 1));
-	while (i < len)
+	tmp = cli;
+	while(tmp->mnsh->env_var_lst)
 	{
-		if (com->command)
-		{
-			if (!ft_strncmp(com->command, "./", 2))
-			{
-				cli->com->env_path = ft_strdup(com->command);
-				commands[i] = ft_strdup(check_parsing(com->command));
-			}
-			else if (!ft_strncmp(com->command, "/", 1))
-			{
-				if (opendir(com->command) == NULL)
-				{
-					if (access(com->command, F_OK | R_OK) == -1)
-					{
-						ft_printf_fd(2, "minishell: %s: command not found\n", com->command);
-						return (NULL);
-					}
-					cli->com->env_path = ft_strdup(com->command);
-					commands[i] = ft_strdup(ft_strrchr(com->command, '/'));
-				}
-				else
-				{
-					ft_printf_fd(2, "minishell: %s: Is a directory\n", com->command);
-					cli->mnsh->exit_code = 126;
-					return (NULL);
-				}
-			}
-			else
-				commands[i] = ft_strdup(com->command);
-		}
-		arg = com->arg;
-		if (!arg)
-		{
-			i++;
-			break ;
-		}
-		while (arg)
-		{
-			i++;
-			if (arg->arg)
-				commands[i] = ft_strdup(arg->arg);
-			arg = arg->next;
-		}
-		i++;
+		if (!ft_strcmp(str, tmp->mnsh->env_var_lst->key))
+			return (SUCCESS);
+		tmp->mnsh->env_var_lst = tmp->mnsh->env_var_lst->next;
 	}
-	commands[i] = NULL;
-	return (commands);
-} */
+	return (ERROR);
+}
 
+int parsing_check(t_cli *cli)
+{
+	if (!ft_strncmp(cli->com->command[0], "./", 2))
+	{
+		cli->com->env_path = free_char(cli->com->env_path);
+		cli->com->env_path = ft_strdup(cli->com->command[0]);
+		free_tab(cli->com->command);
+		cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
+		cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
+	}
+	else if (!ft_strncmp(cli->com->command[0], "/", 1))
+	{
+		if (opendir(cli->com->command[0]) == NULL)
+		{
+			if (access(cli->com->command[0], F_OK | R_OK) == -1)
+			{
+				ft_printf_fd(2, "minishell: %s: command not found\n", cli->com->command[0]);
+				cli->mnsh->exit_code = 126;
+				return (ERROR);
+			}
+			cli->com->env_path = ft_strdup(cli->com->command[0]);
+			cli->com->command[0] =  ft_strdup(ft_strcpy(cli->com->command[0], cli->com->env_path));
+		}
+		else
+		{
+			ft_printf_fd(2, "minishell: %s: Is a directory\n", cli->com->command[0]);
+			cli->mnsh->exit_code = 126;
+			return (ERROR);
+		}
+	}
+	return (SUCCESS);
+}

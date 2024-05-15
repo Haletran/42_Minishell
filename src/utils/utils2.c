@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/04 12:32:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:43:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ int	get_nbargs(char **str)
 	return (size);
 }
 
-void	get_exit_code(t_lst *mnsh)
+int get_exit_code(t_lst *mnsh)
 {
 	if (WIFEXITED(mnsh->exit_code))
-		mnsh->exit_code = WEXITSTATUS(mnsh->exit_code);
+		return (mnsh->exit_code = WEXITSTATUS(mnsh->exit_code));
 	else if (WIFSIGNALED(mnsh->exit_code))
-		mnsh->exit_code = WTERMSIG(mnsh->exit_code) + 128;
+		return (mnsh->exit_code = WTERMSIG(mnsh->exit_code) + 128);
 	else if (WIFSTOPPED(mnsh->exit_code))
-		mnsh->exit_code = WSTOPSIG(mnsh->exit_code);
+		return (mnsh->exit_code = WSTOPSIG(mnsh->exit_code));
+	return (0);
 }
 
 int	check_if_pipe(char **str)

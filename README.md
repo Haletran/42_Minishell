@@ -5,40 +5,22 @@ As beautiful as a shell..
 ![80%](https://progress-bar.dev/80)
 
 ## TO_FIX
-- heredoc with pipes (looping indefinitely)
 - Need to do the redirections of output and input
 - Simple quotes and double quotes
-- Echo built-ins might need to change to accomodate parsing
-- Parsing to get better input and output
 - Exit code of commands
 - Right exit error message (instead of perror)
 - Env built-in parsing
+- GUILLEMETS 
 
 ## TO_DO
 
-For execve :
-    - need a have the path of the command
-    - need to have the command with his mnsh
-exemple : cat Makefile
-    /usr/bin/cat (check_path function)
-    cat Makefile
-
-- Commande du demon : ls | echo $PATH | cat
-- Fix des pipes avec le heredoc, exemple de fail : << ls | cat
-- heredoc avec commands derriere, exemple : << ls cat (copy the output into a file and use it instead of an infile)
 - toutes les redirections de merdes du style : 
     - <infile commands > outfile
     - <<del commands > outfile
     - <<del commands
     - >commands > outfile
 
-- Heredoc problem not considered as command
-- the path of the next command in pipe does not exist
-- ./minishell in minishell does not work anymore
-- bash lt tous les infiles outfiles
-- problemes avec CD  Command[0]: "cd"
-                     Command[1]: "in"
-                     Command[2]: "cludes/"
+// bash lt tous les infiles outfiles
 
 
 ## Links 

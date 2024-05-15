@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:59:39 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/11 13:22:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:36:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ int	ft_env(t_lst *mnsh, char **str)
 	}
 	else if (ft_strlen(str[1]) == 0)
 		print_list_env("=", mnsh);
+	mnsh->exit_code = 0;
 	return (SUCCESS);
 }
