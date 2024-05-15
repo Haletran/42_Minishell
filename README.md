@@ -11,6 +11,8 @@ As beautiful as a shell..
 - Env built-in parsing
 - GUILLEMETS 
 - Expansion de var
+- Fix export et unset
+- Trim exit input
 
 ## TO_DO
 
@@ -22,6 +24,12 @@ As beautiful as a shell..
 
 // bash lt tous les infiles outfiles
 // fork si pipes builtins
+
+
+## MODIFIACTION bapasqui
+
+- dans ruler pour les exit_codes
+- dans redirect_rules pour print les bon messages d'erreur
 
 ## Links 
 
