@@ -2,15 +2,15 @@
 
 As beautiful as a shell..
 
-![80%](https://progress-bar.dev/80)
+![81%](https://progress-bar.dev/81)
 
 ## TO_FIX
 - Need to do the redirections of output and input
-- Simple quotes and double quotes
 - Exit code of commands
 - Right exit error message (instead of perror)
 - Env built-in parsing
 - GUILLEMETS 
+- Expansion de var
 
 ## TO_DO
 
