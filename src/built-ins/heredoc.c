@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 07:20:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:08:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void	child_process(t_cli *cli, t_com *com)
 
 int create_heredoc_file(t_cli **cli)
 {
-	(*cli)->mnsh->heredoc_fd = open(".heredoc", O_CREAT | O_RDWR | O_APPEND, 0777);
+	(*cli)->mnsh->heredoc_fd = open("/tmp/.heredoc", O_CREAT | O_RDWR | O_APPEND, 0777);
 	if ((*cli)->mnsh->heredoc_fd == -1)
 	{
-		printf("minishell: %s: %s\n", strerror(errno), ".heredoc");
+		printf("minishell: %s: %s\n", strerror(errno), "/tmp/.heredoc");
 		(*cli)->mnsh->exit_code = 1;
 		return (ERROR);
 	}

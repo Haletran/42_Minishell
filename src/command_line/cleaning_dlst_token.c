@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cleaning_dlst_token.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/11 14:45:28 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:24:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -75,13 +75,15 @@ void	cleaning_token_list(t_cli *cli)
 			&& tmp->type != FREEZE)
 		{
 			tmp = tmp->next;
-			delete_node_token(&cli->token, tmp->prev);
+			if (tmp && cli->token)
+				delete_node_token(&cli->token, tmp->prev);
 		}
 		else if (ft_strcmp(tmp->token, "\n") == 0 && tmp->type != IMMUTABLE
 			&& tmp->type != FREEZE)
 		{
 			tmp = tmp->prev;
-			delete_node_token(&cli->token, tmp->next);
+			if (tmp && cli->token)
+				delete_node_token(&cli->token, tmp->next);
 		}
 		else
 			tmp = tmp->next;

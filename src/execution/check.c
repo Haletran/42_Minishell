@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 06:30:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:56:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	check_commands(char **str, t_cli *cli)
 {
 	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
 		return (pwd(cli->mnsh));
-/* 	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
+	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
 		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
-		return (ft_echo(str, cli->mnsh)); */
+		return (ft_echo(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
 		return (ft_cd(str, cli->mnsh));
 	else if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
@@ -58,9 +58,6 @@ int	check_if_fork(char **str, t_lst *mnsh, t_cli *cli)
 		return (ft_exit(str[1], cli, str));
 	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
 		return (ft_cd(str, cli->mnsh));
-	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
-		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
-		return (ft_echo(str, cli->mnsh));
 	return (NOT_FOUND);
 }
 

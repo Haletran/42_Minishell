@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/11 14:45:30 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:59:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
@@ -88,6 +88,7 @@ void	debug(t_cli *cli, char *add_msg)
 		add_msg);
 	print_all_in_cli(cli);
 	print_all_com(cli->com);
+	//printf("REDIRECTION %s\n", cli->com->redirection);
 }
 
 void	print_type(t_token *token)

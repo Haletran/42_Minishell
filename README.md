@@ -21,7 +21,7 @@ As beautiful as a shell..
     - >commands > outfile
 
 // bash lt tous les infiles outfiles
-
+// fork si pipes builtins
 
 ## Links 
 

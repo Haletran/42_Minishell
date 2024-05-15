@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 07:34:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:28:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int parsing_check(t_cli *cli)
 	}
 	else if (!ft_strncmp(cli->com->command[0], "/", 1))
 	{
-		if (opendir(cli->com->command[0]) == NULL)
+		if (opendir(cli->com->command[0]) != NULL)
 		{
 			if (access(cli->com->command[0], F_OK | R_OK) == -1)
 			{
@@ -189,3 +189,20 @@ int parsing_check(t_cli *cli)
 	}
 	return (SUCCESS);
 }
+
+/* int check_redirection(t_cli *cli)
+{
+	t_cli *tmp;
+
+	tmp = cli;
+	while(tmp)
+	{
+		if (tmp->token->type == NULL)
+			break;
+		if (tmp->token->type == REDIRECTION_OPERATOR)
+			printf("%s", tmp->token->token);
+		tmp->token = tmp->token->next;
+	}
+	return (SUCCESS);
+} */
+

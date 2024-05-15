@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/14 16:35:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:06:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_lst
 	char				*current_path;
 	char				*env_path;
 	char				*path_command;
-	char				*infile;
-	char				*outfile;
+	int					infile;
+	int					outfile;
 	int					backup[2];
 	int					*pid;
 	int					fd[2];
