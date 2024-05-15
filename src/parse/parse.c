@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 11:24:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:05:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ void	parsing_organiser(t_cli *cli)
 	if (!varloc_creation(cli))
 		return ;
 	parameter_expansion(cli);
-	if (DEBUG == 1)
-		debug(cli, "  BEFORE CREATE COMMAND");
+	debug(cli, "  BEFORE CREATE COMMAND");
 	create_command(cli);
-	if (DEBUG == 1)
-		debug(cli, "  AFTER CREATE COMMAND");
+	debug(cli, "  AFTER CREATE COMMAND");
 	return ;
 }

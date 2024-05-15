@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/15 07:59:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:06:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	print_all_in_cli(t_cli *cli)
 {
-	ft_printf(HRED "Input :\t" BYEL "%s\t " HRED ":: n_token :" BYEL " %i\t",
-		cli->input, cli->n_token);
-	ft_printf(HRED "n_quote :" BYEL "%i\t " HRED "n_dquote :" BYEL "%i\n",
+	ft_printf(HRED "n_token\t:" BYEL " %i\t" HRED "| Input\t: " BYEL "%s\n", cli->n_token, cli->input);
+	ft_printf(HRED "n_quote\t: " BYEL "%i\t" HRED "| n_dquote\t: " BYEL "%i\n",
 		cli->n_quote, cli->n_dquote);
-	ft_printf(HRED "heredoc :" BYEL "%i\t\n\n", cli->heredoc);
-	ft_printf(HRED "Token list :\n" CRESET);
+	ft_printf(HRED "heredoc\t: " BYEL "%i\t" HRED "| Exit_code\t: " BHRED "%i\n", cli->heredoc, cli->mnsh->exit_code);
+	ft_printf(HRED "Token list\t:\n" CRESET);
 	print_all_token(cli->token);
 	ft_printf("\n");
 }
@@ -84,11 +83,14 @@ void	print_all_com(t_com *com)
 
 void	debug(t_cli *cli, char *add_msg)
 {
-	printf(BHCYN "\t\t\t#########\n\t\t%s\n\t\t\t#########\n\n" CRESET,
-		add_msg);
-	print_all_in_cli(cli);
-	print_all_com(cli->com);
-	//printf("REDIRECTION %s\n", cli->com->redirection);
+	if (DEBUG == 1)
+	{
+		printf(BHCYN "\t\t\t#########\n\t\t%s\n\t\t\t#########\n\n" CRESET,
+			add_msg);
+		print_all_in_cli(cli);
+		print_all_com(cli->com);
+		ft_printf("\t##########\t##########\t##########\t##########\n\n");
+	}
 }
 
 void	print_type(t_token *token)
