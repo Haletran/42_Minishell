@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 13:06:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:07:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_commands(char **str, t_cli *cli)
 	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
 		return (ft_env(cli->mnsh, str));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
-		return (ft_exit(str[1], cli, str));
+		return (ft_exit(str[1], cli));
 	return (NOT_FOUND);
 }
 
@@ -55,7 +55,7 @@ int	check_if_fork(char **str, t_lst *mnsh, t_cli *cli)
 	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
 		return (ft_unset(str, &mnsh));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
-		return (ft_exit(str[1], cli, str));
+		return (ft_exit(str[1], cli));
 	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
 		return (ft_cd(str, cli->mnsh));
 	return (NOT_FOUND);
