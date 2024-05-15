@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/15 21:12:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:28:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,16 @@ void	rulers(t_cli *cli)
 void	syntax_error(t_cli *cli, char *token)
 {
 	if (ft_strchr(token, '*') != 0)
+	{
 		ft_printf_fd(2, "minishell: %s: ambiguous redirect\n", token);
+		cli->mnsh->exit_code = 1;
+	}
 	else
+	{
 		ft_printf_fd(2, "minishell: syntax error near unexpected token `%s'\n",
 			token);
-	cli->mnsh->exit_code = 1;
+		cli->mnsh->exit_code = 2;
+	}
 	cli->rules_flag = 1;
 }
 
