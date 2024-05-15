@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/14 16:39:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 05:50:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	piping(t_cli *cli, int count)
 			dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
 			close(cli->mnsh->prev_fd[0]);
 		}
-		else if (cli->mnsh->heredoc_pipe == 1)
+		if (cli->mnsh->heredoc_pipe == 1)
 		{
-			dup2(cli->mnsh->heredoc_fd, STDIN_FILENO);
-			close(cli->mnsh->heredoc_fd);
+			dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
+			close(cli->mnsh->heredoc_backup_fd);
 		}
 		if (count != cli->mnsh->pipe_count - 1)
 		{
@@ -150,10 +150,11 @@ int	exec_pipe(t_cli *cli)
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{
-		ft_heredoc(&tmp);
-		if (tmp && tmp->com && tmp->com->command != NULL)
+		if (ft_heredoc(&tmp) == ERROR)
+			return (ERROR);
+		else if (tmp && tmp->com && tmp->com->command != NULL)
 		{
-			cli->mnsh->heredoc_backup_fd = open("heredoc", O_RDONLY);
+			cli->mnsh->heredoc_backup_fd = open(".heredoc", O_RDONLY);
 			cli->mnsh->heredoc_pipe = 1;
 		}
 		else
@@ -172,6 +173,6 @@ int	exec_pipe(t_cli *cli)
 	}
 	while (waitpid(-1, &cli->mnsh->exit_code, 0) > 0)
 		;
-	delete_file("heredoc", cli);
+	delete_file(".heredoc", cli);
 	return (SUCCESS);
 }
