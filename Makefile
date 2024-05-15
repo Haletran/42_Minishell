@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/15 15:02:39 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/15 16:50:34 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ norminette:
 	@-norminette 
 	
 tester: all
-	@-cd tester/minishell_tester/ && ./tester
+	@-cd tester/minishell_tester/src/ && ./tester
 
 clean:
 	rm -rf $(OBJS_DIR)

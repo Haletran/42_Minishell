@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 15:18:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:26:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,11 +160,6 @@ int	exec_pipe(t_cli *cli)
 	handle_sig(2);
 	heredoc = 0;
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
-/* 	if (cli->mnsh->syntax_error == 1)
-	{
-		cli->mnsh->syntax_error = 0;
-		return (SUCCESS);
-	} */
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{
 		if (ft_heredoc(&tmp) == ERROR)

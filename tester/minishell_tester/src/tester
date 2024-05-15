@@ -1,25 +1,73 @@
 #!/bin/bash
 
-MINISHELL_PATH="../../minishell"
+MINISHELL_PATH="../../../minishell"
 
 # Run a specific test if the file name was specified
+
+if [ ! -x $MINISHELL_PATH ]; then
+	clear
+	printf "\e[31m$MINISHELL_PATH does not exist.\e[0m\n\n"
+	printf "\e[32mEnter the new path to minishell.\e[0m\n"
+	echo
+	read path
+	replace "$MINISHELL_PATH" "$path" -- ./tester
+	MINISHELL_PATH=$path
+fi
+
 if [[ $1 ]]; then
 	test_lists=(
 		$1
 	)
-else
+fi
+if [[ $1 == "mandatory" || !$1 ]]; then
 	test_lists=(
-		"mandatory"
-		"syntax"
-		"builtins"
-		"pipes"
 		"redirects"
+		"pipes"
+		"builtins"
 		"extras"
+		"var"
+		"syntax"
 	)
 fi
 
-if [[ $1 == "wildcards"  || $1 == "bonus" ]]; then
-	MINISHELL_PATH="../minishell_bonus"
+if [[ $1 == "bonus" ]]; then
+	test_lists=(
+		"redirects_bonus"
+		"bonus"
+		"builtins_bonus"
+		"var_bonus"
+		"wildcards"
+		"syntax_bonus"
+	)
+	touch '!'
+	touch ')'
+	touch '('
+	touch '*'
+	touch '8'
+	touch 'b'
+fi
+
+if [[ $1 == "all" ]]; then
+	test_lists=(
+		"redirects"
+		"pipes"
+		"builtins"
+		"extras"
+		"redirects_bonus"
+		"bonus"
+		"builtins_bonus"
+		"var"
+		"var_bonus"
+		"wildcards"
+		"syntax"
+		"syntax_bonus"
+	)
+	touch '!'
+	touch ')'
+	touch '('
+	touch '*'
+	touch '8'
+	touch 'b'
 fi
 
 BOLD="\e[1m"
@@ -60,19 +108,20 @@ for testfile in ${test_lists[*]}; do
 	while read teste; do
 		((i++))
 
+
 		rm -rf ./outfiles/*
 		rm -rf ./mini_outfiles/*
 		MINI_OUTPUT=$(echo -e "$teste" | $MINISHELL_PATH 2> /dev/null | $REMOVE_COLORS | grep -vF "$PROMPT" | $REMOVE_EXIT )
 		MINI_OUTFILES=$(cp ./outfiles/* ./mini_outfiles &>/dev/null)
 		MINI_EXIT_CODE=$(echo -e "$MINISHELL_PATH\n$teste\necho \$?\nexit\n" | bash 2> /dev/null | $REMOVE_COLORS | grep -vF "$PROMPT" | $REMOVE_EXIT | tail -n 1)
-		MINI_ERROR_MSG=$(trap "" PIPE && echo "$teste" | $MINISHELL_PATH 2>&1 > /dev/null | grep -o '[^:]*$' )
+		MINI_ERROR_MSG=$(trap "" PIPE && echo "$teste" | $MINISHELL_PATH 2>&1 > /dev/null | grep -o '[^:]*$')
 
 		rm -rf ./outfiles/*
 		rm -rf ./bash_outfiles/*
 		BASH_OUTPUT=$(echo -e "$teste" | bash 2> /dev/null)
 		BASH_EXIT_CODE=$(echo $?)
 		BASH_OUTFILES=$(cp ./outfiles/* ./bash_outfiles &>/dev/null)
-		BASH_ERROR_MSG=$(trap "" PIPE && echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$' | head -n1)
+		BASH_ERROR_MSG=$(trap "" PIPE && echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$')
 
 		OUTFILES_DIFF=$(diff --brief ./mini_outfiles ./bash_outfiles)
 
@@ -114,6 +163,15 @@ chmod 666 ./test_files/invalid_permission
 rm -rf ./outfiles
 rm -rf ./mini_outfiles
 rm -rf ./bash_outfiles
+
+if [[ $1 == "all" || $1 == "bonus" ]]; then
+	rm '!'
+	rm ')'
+	rm '('
+	rm '*'
+	rm '8'
+	rm 'b'
+fi
 
 printf $PURPLE
 printf $BOLD
