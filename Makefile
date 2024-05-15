@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/15 13:08:09 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/15 15:02:39 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,13 +118,7 @@ norminette:
 	@-norminette 
 	
 tester: all
-	@-cd tester/minishell_tester/src && ./tester mandatory
-
-tester2: fclean
-	@python3 -m pip install --upgrade pip setuptools
-	@python3 -m pip install norminette
-	@pip3 install -r tester/requirements.txt
-	@python3 tester/src/__main__.py ./
+	@-cd tester/minishell_tester/ && ./tester
 
 clean:
 	rm -rf $(OBJS_DIR)
