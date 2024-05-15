@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 07:52:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:31:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,6 @@ void			delete_file(char *str, t_cli *cli);
 char			*check_parsing(char *str);
 int				parsing_check(t_cli *cli);
 int				check_redirection(t_cli *cli);
+int				ft_exitcode(long int exit_code);
 
 #endif

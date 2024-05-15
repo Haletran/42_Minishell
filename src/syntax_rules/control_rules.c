@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   control_rules.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 08:40:58 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/05 14:06:39 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:44:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -34,8 +34,8 @@ void	pipe_rules(t_cli *cli, t_token *token)
 		syntax_error(cli, "|");
 	else if (token->prev->type == KEYWORD)
 		syntax_error(cli, "|");
-	if (token->next == NULL)
-		syntax_error(cli, "|");
+/* 	if (token->next == NULL)
+		syntax_error(cli, "|"); */
 }
 
 void	control_rules(t_cli *cli, t_token *token)

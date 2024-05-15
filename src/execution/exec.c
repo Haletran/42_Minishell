@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 11:56:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:04:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	piping(t_cli *cli, int count)
 				{
 					cli->mnsh->exit_code = 127;
 					printf("minishell: %s: command not found\n", *cli->com->command);
-					exit(127);
+					ft_exitcode(127);
 				}
 			}
 			if (check_if_builtin(cli->com->command[0]) == SUCCESS)
-				exit(0);
+				ft_exitcode(0);
 		}
 		if (count != cli->mnsh->pipe_count - 1)
 			close(cli->mnsh->fd[1]);
@@ -100,11 +100,11 @@ void    execute_last_command(t_cli *cli)
 					{
                     	cli->mnsh->exit_code = 127;
                     	printf(CRESET"minishell: %s: command not found\n", *cli->com->command);
-						exit(127);
+						ft_exitcode(127);
 					}
                 }
             }
-            exit(0);
+            ft_exitcode(0);
         }
         waitpid(pid, &cli->mnsh->exit_code, 0);
     }
@@ -159,6 +159,11 @@ int	exec_pipe(t_cli *cli)
 	tmp->mnsh->backup[1] = dup(STDOUT_FILENO);
 	handle_sig(2);
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
+	if (cli->mnsh->syntax_error == 1)
+	{
+		cli->mnsh->syntax_error = 0;
+		return (SUCCESS);
+	}
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{
 		if (ft_heredoc(&tmp) == ERROR)
@@ -174,6 +179,7 @@ int	exec_pipe(t_cli *cli)
 	//check_redirection(cli);
 	while (count != cli->mnsh->pipe_count)
 	{ 
+			
 		if (parsing_check(cli) == ERROR)
 			break;
 		main_loop(tmp, count);
