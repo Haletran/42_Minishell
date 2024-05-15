@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 13:45:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:09:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,7 @@ void main_loop(t_cli *cli, int count)
     if (count != 0)
         cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
     if (count != cli->mnsh->pipe_count)
-	{
-		printf("asdasd\n");
 	    pipe(cli->mnsh->fd);
-	}
 	if (!cli->com->next)
         execute_last_command(cli);
     else
@@ -163,11 +160,11 @@ int	exec_pipe(t_cli *cli)
 	handle_sig(2);
 	heredoc = 0;
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
-	if (cli->mnsh->syntax_error == 1)
+/* 	if (cli->mnsh->syntax_error == 1)
 	{
 		cli->mnsh->syntax_error = 0;
 		return (SUCCESS);
-	}
+	} */
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{
 		if (ft_heredoc(&tmp) == ERROR)

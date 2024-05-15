@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 11:23:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:02:12 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../includes/minishell.h"
 
@@ -21,7 +21,8 @@ void	render_prompt(t_cli *cli)
 {
 	handle_sig(0);
 	parsing_organiser(cli);
-	choose(cli);
+	if (cli->rules_flag == 0)
+		choose(cli);
 	free_command_line(cli);
 }
 
@@ -37,8 +38,10 @@ int	main(int ac, char **av, char **envp)
 	cli = NULL;
 	init_organizer(&cli, envp);
 	while (1)
+	{
 		render_prompt(cli);
-	return (0);
+	}
+	return (cli->mnsh->exit_code);
 }
 
 

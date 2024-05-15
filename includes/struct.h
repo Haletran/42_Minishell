@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 12:44:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:04:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ typedef struct s_cli
 	t_lst				*mnsh;
 	t_variable			*variable;
 	int					heredoc;
+	int					rules_flag;
 	int					n_variable;
 }						t_cli;
+
+
 
 #endif
