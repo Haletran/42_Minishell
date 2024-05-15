@@ -6,34 +6,57 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 18:07:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:53:25 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_exit(char *code, t_cli *cli)
+int check_code(char *code)
 {
-	long int	exit_code;
+	int i;
+	i = 0;
 
-	if (!code)
+	while (code[i])
 	{
-		printf("exit\n");
-		freeway(cli);
-		exit(0);
+		if (ft_isdigit(code[i]) == FALSE)
+			return (ERROR);
+		i++;
 	}
+	return (SUCCESS);
+}
+
+int ft_exit(char *code, t_cli *cli)
+{
+    unsigned long long exit_code;
+	int backup;
+
+	backup = cli->mnsh->exit_code;
+    if (!code)
+    {
+        ft_printf_fd(1, "exit\n");
+        freeway(cli);
+        exit (backup);
+    }
 	exit_code = ft_atoi(code);
-	if (exit_code % 255 == 0 || (ft_strlen(code) > 0  && !ft_isdigit(code[0])))
-	{
-		ft_printf_fd(2, "exit\n");
-		ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
-			code);
-		freeway(cli);
-		exit(2);
-	}
-	printf("exit\n");
-	freeway(cli);
-	exit(exit_code % 256);
+    if (check_code(code) == ERROR || exit_code >= 9223372036854775807ULL || ft_strcmp(code, "9223372036854775808") >= 0)
+    {
+        ft_printf_fd(1, "exit\n");
+        ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+            code);
+        freeway(cli);
+        exit(2);
+    }
+    if (cli->com->command[2])
+    {
+        ft_printf_fd(1, "exit\n");
+        ft_printf_fd(2, "minishell: exit: too many arguments\n");
+        freeway(cli);
+        exit(1);
+    }
+    printf("exit\n");
+    freeway(cli);
+    exit(exit_code % 256);
 }
 
 int ft_exitcode(long int exit_code)
