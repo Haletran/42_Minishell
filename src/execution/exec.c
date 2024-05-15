@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 17:43:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:56:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	piping(t_cli *cli, int count)
 					cli->mnsh->env_var) == -1)
 			{
 				cli->mnsh->exit_code = 127;
-				printf("minishell: %s: command not found\n", *cli->com->command);
+				ft_printf_fd(2, "minishell: %s: command not found\n", *cli->com->command);
 				ft_exitcode(127);
 			}
 		}
@@ -94,7 +94,7 @@ void    execute_last_command(t_cli *cli)
 					if (ft_strlen(cli->com->command[0]) != 0)
 					{
                     	cli->mnsh->exit_code = 127;
-                    	printf(CRESET"minishell: %s: command not found\n", *cli->com->command);
+                    	ft_printf_fd(2, CRESET"minishell: %s: command not found\n", *cli->com->command);
 						ft_exitcode(127);
 					}
                 }

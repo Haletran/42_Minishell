@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 13:33:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:55:25 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_heredoc_error(t_cli *cli)
 	{
 		if (ft_strncmp(tmp->command[0], "<<", 2) == 0 && !tmp->command[1])
 		{
-			printf("minishell: syntax error near unexpected token `newline'\n");
+			ft_printf_fd(2, "minishell: syntax error near unexpected token `newline'\n");
 			return (ERROR);
 		}
 		tmp = tmp->next;
@@ -45,7 +45,7 @@ int	check_heredoc_error(t_cli *cli)
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
 	if (cli->mnsh->nb_heredoc >= 13)
 	{
-		printf("minishell: maximum here-document count exceeded\n");
+		ft_printf_fd(2, "minishell: maximum here-document count exceeded\n");
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -66,7 +66,7 @@ void	child_process(t_cli *cli, t_com *com)
 		input = readline("> ");
 		if (!input && g_var == 0)
 		{
-						printf("warning: here-document at line \
+						ft_printf_fd(2, "warning: here-document at line \
 %d delimited by end-of-file (wanted '%s')\n", line_count, com->command[1]);
 			exit(STOPPED);
 		}
@@ -95,7 +95,7 @@ int create_heredoc_file(t_cli **cli)
 	(*cli)->mnsh->heredoc_fd = open("/tmp/.heredoc", O_CREAT | O_RDWR | O_APPEND, 0777);
 	if ((*cli)->mnsh->heredoc_fd == -1)
 	{
-		printf("minishell: %s: %s\n", strerror(errno), "/tmp/.heredoc");
+		ft_printf_fd(2, "minishell: %s: %s\n", strerror(errno), "/tmp/.heredoc");
 		(*cli)->mnsh->exit_code = 1;
 		return (ERROR);
 	}
