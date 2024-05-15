@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 20:53:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:09:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int check_code(char *code)
 	}
 	return (SUCCESS);
 }
-
+//exit 9223372036854775807  = 255
 int ft_exit(char *code, t_cli *cli)
 {
     unsigned long long exit_code;
@@ -39,7 +39,7 @@ int ft_exit(char *code, t_cli *cli)
         exit (backup);
     }
 	exit_code = ft_atoi(code);
-    if (check_code(code) == ERROR || exit_code >= 9223372036854775807ULL || ft_strcmp(code, "9223372036854775808") >= 0)
+    if ((check_code(code) == ERROR || exit_code >= 9223372036854775807ULL || ft_strcmp(code, "9223372036854775808") >= 0))
     {
         ft_printf_fd(1, "exit\n");
         ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
