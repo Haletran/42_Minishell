@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 20:56:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 21:52:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,35 +159,39 @@ int find_in_env(char *str, t_cli *cli)
 
 int parsing_check(t_cli *cli)
 {
-	if (!ft_strncmp(cli->com->command[0], "./", 2))
-	{
-		cli->com->env_path = free_char(cli->com->env_path);
-		cli->com->env_path = ft_strdup(cli->com->command[0]);
-		free_tab(cli->com->command);
-		cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
-		cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
-	}
-	else if (!ft_strncmp(cli->com->command[0], "/", 1))
-	{
-		if (opendir(cli->com->command[0]) != NULL)
+    if (!ft_strncmp(cli->com->command[0], "./", 2))
+    {
+		if (access(cli->com->command[0], F_OK | R_OK) != -1)
 		{
-			if (access(cli->com->command[0], F_OK | R_OK) == -1)
-			{
-				ft_printf_fd(2, "minishell: %s: command not found\n", cli->com->command[0]);
-				cli->mnsh->exit_code = 127;
-				return (ERROR);
-			}
-			cli->com->env_path = ft_strdup(cli->com->command[0]);
-			cli->com->command[0] =  ft_strdup(ft_strcpy(cli->com->command[0], cli->com->env_path));
+        	cli->com->env_path = free_char(cli->com->env_path);
+        	cli->com->env_path = ft_strdup(cli->com->command[0]);
+        	free_tab(cli->com->command);
+        	cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
+        	cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
+			return (SUCCESS);
 		}
-		else
-		{
-			ft_printf_fd(2, "minishell: %s: Is a directory\n", cli->com->command[0]);
-			cli->mnsh->exit_code = 126;
-			return (ERROR);
-		}
-	}
-	return (SUCCESS);
+    }
+    else if (!ft_strncmp(cli->com->command[0], "/", 1))
+    {
+        if (opendir(cli->com->command[0]) == NULL)
+        {
+            if (access(cli->com->command[0], F_OK | R_OK) == -1)
+            {
+                ft_printf_fd(2, "minishell: %s: command not found\n", cli->com->command[0]);
+                cli->mnsh->exit_code = 127;
+                return (ERROR);
+            }
+            cli->com->env_path = ft_strdup(cli->com->command[0]);
+            cli->com->command[0] =  ft_strdup(ft_strcpy(cli->com->command[0], cli->com->env_path));
+        }
+        else
+        {
+            ft_printf_fd(2, "minishell: %s: Is a directory\n", cli->com->command[0]);
+            cli->mnsh->exit_code = 126;
+            return (ERROR);
+        }
+    }
+    return (SUCCESS);
 }
 
 /* int check_redirection(t_cli *cli)
