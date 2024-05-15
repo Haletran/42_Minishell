@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 21:08:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:03:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	check_if_alpha(char *str)
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '$' && str[i] != '='
 			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
+			return (ERROR);
+		if (str[i] == '-')
 			return (ERROR);
 		i++;
 	}

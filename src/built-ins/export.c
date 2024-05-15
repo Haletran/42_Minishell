@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 21:04:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:05:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	t_env	*env;
 
 	env = mnsh->env_cpy_lst;
+	//check if alphae
 	if (check_if_var_exist(env, str[i]))
 		return (ERROR);
 	while (env->next)

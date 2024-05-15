@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 21:54:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 22:06:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void    execute_last_command(t_cli *cli)
         }
         waitpid(pid, &cli->mnsh->exit_code, 0);
     }
-	if (cli->mnsh->exit_code != 127)
+	if (cli->mnsh->exit_code != 127 && check_if_builtin(cli->com->command[0]) == ERROR)
 		cli->mnsh->exit_code = get_exit_code(cli->mnsh);
     close(cli->mnsh->fd[0]);
 	close(cli->mnsh->heredoc_backup_fd);
