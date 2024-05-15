@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 13:04:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:45:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,18 +119,20 @@ void    execute_last_command(t_cli *cli)
     close(cli->mnsh->backup[1]);
 }
 
-
 void main_loop(t_cli *cli, int count)
 {
-	if (count != 0)
-		cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
-	if (count != cli->mnsh->pipe_count)
-		pipe(cli->mnsh->fd);
+    if (count != 0)
+        cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
+    if (count != cli->mnsh->pipe_count)
+	{
+		printf("asdasd\n");
+	    pipe(cli->mnsh->fd);
+	}
 	if (!cli->com->next)
-		execute_last_command(cli);
-	else
-		piping(cli, count);
-	cli->mnsh->heredoc_pipe = 0;
+        execute_last_command(cli);
+    else
+        piping(cli, count);
+    cli->mnsh->heredoc_pipe = 0;
 }
 
 int get_nb_pipes(t_com *com)
@@ -151,6 +153,7 @@ int get_nb_pipes(t_com *com)
 int	exec_pipe(t_cli *cli)
 {
 	int		count;
+	int heredoc;
 	t_cli *tmp;
 
 	count = 0;
@@ -158,6 +161,7 @@ int	exec_pipe(t_cli *cli)
 	tmp->mnsh->backup[0] = dup(STDIN_FILENO);
 	tmp->mnsh->backup[1] = dup(STDOUT_FILENO);
 	handle_sig(2);
+	heredoc = 0;
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
 	if (cli->mnsh->syntax_error == 1)
 	{
@@ -172,9 +176,14 @@ int	exec_pipe(t_cli *cli)
 		{
 			cli->mnsh->heredoc_backup_fd = open("/tmp/.heredoc", O_RDONLY);
 			cli->mnsh->heredoc_pipe = 1;
+			heredoc = 1;
 		}
 		else
+		{
+			delete_file("/tmp/.heredoc", cli);
+			close(cli->mnsh->heredoc_backup_fd);
 			return (SUCCESS);
+		}
 	}
 	//check_redirection(cli);
 	while (count != cli->mnsh->pipe_count)
@@ -191,7 +200,11 @@ int	exec_pipe(t_cli *cli)
 	}
 	while (waitpid(-1, NULL, 0) > 0)
 		;
-	delete_file("/tmp/.heredoc", cli);
+	if (heredoc == 1)
+	{
+		delete_file("/tmp/.heredoc", cli);
+		close(cli->mnsh->heredoc_backup_fd);
+	}
 	cli->mnsh->exit_code = get_exit_code(cli->mnsh);
 	return (SUCCESS);
 }

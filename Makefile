@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/15 12:34:40 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/15 13:08:09 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ ifdef DEBUG
         CFLAGS += $(DEBUG_FLAGS)
     endif
 endif
+
+
 
 
 
@@ -100,7 +102,7 @@ $(OBJS_DIR)/%.o: %.c
 $(LIBFT_TARGET):
 	make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT_TARGET) init $(OBJS) 
+$(NAME): init $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
 
 gdb: 
@@ -131,7 +133,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf tester/src/__pycache__
-	make -C $(LIBFT_DIR) fclean
+#make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
 	rm -rf outfile
 	rm -rf infile
