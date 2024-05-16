@@ -46,8 +46,5 @@ jobs:
     - name: Clone repository
       run: git clone https://github.com/eyJvcy/minishell_tester.git
 
-    - name: Change file permissions
-      run: chmod 777 minishell_tester/src/tester
-
     - name: Execute script
-      run: make re && ./minishell_tester/src/tester
+      run: chmod 777 minishell_tester/src/tester && make re && ./minishell_tester/src/tester
