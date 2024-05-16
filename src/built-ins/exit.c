@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 14:16:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:39:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int check_code(char *code)
 	}
 	return (SUCCESS);
 }
-//exit 9223372036854775807  = 255
+
 int ft_exit(char *code, t_cli *cli)
 {
     unsigned long long exit_code;
