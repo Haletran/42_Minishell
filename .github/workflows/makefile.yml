@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Minishell checker
 
 on:
   push:
@@ -7,8 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  compilation:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,9 +15,30 @@ jobs:
 
     - name: Compilation
       run: make
+    
+    - name: Make re
+      run: make re
+    
+    - name: Make clean
+      run: make clean
+
+    - name: Make fclean
+      run: make fclean
+
+  norminette:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
 
     - name: Norminette
       run: make norminette
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
 
     - name: Run Premier tester
       run: make tester
