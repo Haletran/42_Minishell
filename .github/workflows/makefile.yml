@@ -32,7 +32,10 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Norminette
-      run: make norminette
+      run: |
+        python3 -m pip install --upgrade pip setuptools
+        python3 -m pip install norminette
+        norminette
 
   build:
     runs-on: ubuntu-latest
