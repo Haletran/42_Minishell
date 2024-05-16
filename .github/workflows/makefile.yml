@@ -37,7 +37,7 @@ jobs:
         python3 -m pip install norminette
         norminette
 
-  build:
+  tester:
     runs-on: ubuntu-latest
 
     steps:
