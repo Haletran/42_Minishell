@@ -43,5 +43,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Run Premier tester
-      run: make tester
+    - name: Clone repository
+      run: git clone https://github.com/eyJvcy/minishell_tester.git
+
+    - name: Change file permissions
+      run: chmod +x minishell_tester/src/tester
+
+    - name: Modify script
+      run: sed -i 's|MINISHELL_PATH="../minishell"|MINISHELL_PATH="../../../minishell"|g' minishell_tester/src/tester
+
+    - name: Execute script
+      run: make re && ./minishell_tester/src/tester
