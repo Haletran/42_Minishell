@@ -49,8 +49,5 @@ jobs:
     - name: Change file permissions
       run: chmod +x minishell_tester/src/tester
 
-    - name: Modify script
-      run: sed -i 's|MINISHELL_PATH="../minishell"|MINISHELL_PATH="../../../minishell"|g' minishell_tester/src/tester
-
     - name: Execute script
       run: make re && ./minishell_tester/src/tester
