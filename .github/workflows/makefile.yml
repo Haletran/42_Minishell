@@ -35,7 +35,8 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip setuptools
         python3 -m pip install norminette
-        norminette
+        printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
+        norminette | grep -v "Notice: GLOBAL_VAR_DETECTED"
 
   tester:
     runs-on: ubuntu-latest

@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/16 15:36:10 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/16 15:40:06 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,11 +111,6 @@ gdb:
 norm:
 	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
 	@norminette $(SRCS) includes libft src | grep -v "Notice: GLOBAL_VAR_DETECTED"
-
-norminette:
-	@python3 -m pip install --upgrade pip setuptools
-	@python3 -m pip install norminette
-	@-norminette | grep -v "Notice: GLOBAL_VAR_DETECTED"
 	
 tester: all
 	@-cd tester/minishell_tester/src/ && ./tester
