@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 21:53:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:16:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,16 @@ int check_code(char *code)
 int ft_exit(char *code, t_cli *cli)
 {
     unsigned long long exit_code;
-	int backup;
+    int backup;
 
-	backup = cli->mnsh->exit_code;
+    backup = cli->mnsh->exit_code;
     if (!code)
     {
         ft_printf_fd(1, "exit\n");
         freeway(cli);
         exit (backup);
     }
-	exit_code = ft_atoi(code);
-    if ((check_code(code) == ERROR || exit_code >= 9223372036854775807ULL || ft_strcmp(code, "9223372036854775808") >= 0))
+    if ((check_code(code) == ERROR || ft_strcmp(code, "9223372036854775808") >= 0 || ft_strcmp(code, "9223372036854775807") > 0))
     {
         ft_printf_fd(1, "exit\n");
         ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
@@ -47,6 +46,7 @@ int ft_exit(char *code, t_cli *cli)
         freeway(cli);
         exit(2);
     }
+    exit_code = ft_atoi(code);
     if (cli->com->command[2])
     {
         ft_printf_fd(1, "exit\n");

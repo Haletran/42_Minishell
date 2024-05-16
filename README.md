@@ -30,6 +30,8 @@ As beautiful as a shell..
 
 - dans ruler pour les exit_codes
 - dans redirect_rules pour print les bon messages d'erreur
+73 / 101 BUITLINS
+171 / 423 TOTAL
 
 ## Links 
 

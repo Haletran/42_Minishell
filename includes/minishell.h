@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 13:40:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:02:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int				pwd(t_lst *mnsh);
 int				ft_cd(char **str, t_lst *lst);
 int				ft_echo(char **str, t_lst *mnsh);
 int				ft_exit(char *code, t_cli *cli);
-int				ft_env(t_lst *mnsh, char **str);
+int				ft_env(t_cli *cli);
 int				ft_export(t_lst *mnsh, char **str);
 int				ft_unset(char **str, t_lst **mnsh);
 

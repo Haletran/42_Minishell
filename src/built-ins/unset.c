@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 20:55:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:26:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,5 @@ int	ft_unset(char **str, t_lst **mnsh)
 		i++;
 	}
     (*mnsh)->exit_code = 0;
-	return (SUCCESS);
+	exit(0);
 }

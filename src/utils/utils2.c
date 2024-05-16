@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 22:03:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:12:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,18 @@ int	check_if_alpha(char *str)
 			return (ERROR);
 		if (str[i] == '-')
 			return (ERROR);
+/* 		if (ft_isdigit(str[i]) == TRUE && str[i - 1] != '=')
+			return (ERROR); */
 		i++;
 	}
+	i = 0;
+	while(str[i] != '=' )
+	{
+		if (ft_isdigit(str[i]) == TRUE && str[i - 1] != '=')
+			return (ERROR);
+		i++;
+	}
+
 	return (SUCCESS);
 }
 

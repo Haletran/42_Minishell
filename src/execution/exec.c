@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 13:42:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:35:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,14 @@ void    execute_last_command(t_cli *cli)
 						ft_exitcode(127);
 					}
                 }
+				exit(0);
             }
-            ft_exitcode(0);
         }
         waitpid(pid, &cli->mnsh->exit_code, 0);
     }
-	if (cli->mnsh->exit_code != 127 && check_if_builtin(cli->com->command[0]) == ERROR)
+	if (cli->mnsh->exit_code != 127)
 		cli->mnsh->exit_code = get_exit_code(cli->mnsh);
-    close(cli->mnsh->fd[0]);
+	close(cli->mnsh->fd[0]);
 	close(cli->mnsh->heredoc_backup_fd);
     close(cli->mnsh->fd[1]);
     close(cli->mnsh->prev_fd[0]);
@@ -143,22 +143,6 @@ int get_nb_pipes(t_com *com)
 	return (count);
 }
 
-/* 
-int get_nb_commands(t_com *com)
-{
-	int i; 
-
-	i = 0;
-	while(com)
-	{
-		if (com->type == COMMAND)
-			i++;
-		com = com->next;
-	}
-	return (i);
-} */
-
-
 int	exec_pipe(t_cli *cli)
 {
 	int		count;
@@ -193,7 +177,6 @@ int	exec_pipe(t_cli *cli)
 	//check_redirection(cli);
 	while (count != cli->mnsh->pipe_count)
 	{ 
-			
 		if (parsing_check(cli) == ERROR)
 			break;
 		main_loop(tmp, count);
