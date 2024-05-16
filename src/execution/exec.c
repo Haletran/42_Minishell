@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 22:06:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:42:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void main_loop(t_cli *cli, int count)
 {
     if (count != 0)
         cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
-    if (count != cli->mnsh->pipe_count)
+    if (count != cli->mnsh->pipe_count || cli->mnsh->nb_commands != 1)
 	    pipe(cli->mnsh->fd);
 	if (!cli->com->next)
         execute_last_command(cli);
@@ -143,6 +143,21 @@ int get_nb_pipes(t_com *com)
 	return (count);
 }
 
+/* 
+int get_nb_commands(t_com *com)
+{
+	int i; 
+
+	i = 0;
+	while(com)
+	{
+		if (com->type == COMMAND)
+			i++;
+		com = com->next;
+	}
+	return (i);
+} */
+
 
 int	exec_pipe(t_cli *cli)
 {
@@ -156,6 +171,7 @@ int	exec_pipe(t_cli *cli)
 	tmp->mnsh->backup[1] = dup(STDOUT_FILENO);
 	handle_sig(2);
 	heredoc = 0;
+	tmp->mnsh->nb_commands = get_nb_commands(tmp->com);
 	cli->mnsh->pipe_count = get_nb_pipes(tmp->com);
 	if (check_number_of_heredoc(tmp->com) > 0)
 	{

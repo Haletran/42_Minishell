@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 14:04:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:35:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_lst
 	int					heredoc_backup_fd;
 	int					heredoc_pipe;
 	int					syntax_error;
+	int					nb_commands;
 }						t_lst;
 
 typedef struct s_com
@@ -107,7 +108,5 @@ typedef struct s_cli
 	int					rules_flag;
 	int					n_variable;
 }						t_cli;
-
-
 
 #endif

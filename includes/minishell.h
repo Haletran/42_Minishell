@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 18:07:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:40:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int				init_data_parsing(t_cli **cli);
 int				pwd(t_lst *mnsh);
 int				ft_cd(char **str, t_lst *lst);
 int				ft_echo(char **str, t_lst *mnsh);
-int	ft_exit(char *code, t_cli *cli);
+int				ft_exit(char *code, t_cli *cli);
 int				ft_env(t_lst *mnsh, char **str);
 int				ft_export(t_lst *mnsh, char **str);
 int				ft_unset(char **str, t_lst **mnsh);
@@ -241,5 +241,7 @@ char			*check_parsing(char *str);
 int				parsing_check(t_cli *cli);
 int				check_redirection(t_cli *cli);
 int				ft_exitcode(long int exit_code);
+void			close_fds(void);
+int				get_nb_commands(t_com *com);
 
 #endif
