@@ -43,11 +43,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Clone repository
-      run: git clone https://github.com/eyJvcy/minishell_tester.git
-
-    - name: Change path
-      run: sed -i 's|MINISHELL_PATH="../minishell"|MINISHELL_PATH="../../minishell"|g' minishell_tester/src/tester
-
-    - name: Execute script
-      run: chmod 777 minishell_tester/src/tester && make re && ./minishell_tester/src/tester
+    - name: Launch tester
+      run: make tester
