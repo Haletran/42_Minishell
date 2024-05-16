@@ -46,5 +46,10 @@ jobs:
     - name: Clone repository
       run: git clone https://github.com/eyJvcy/minishell_tester.git
 
+    - name: Change path
+      run: - name: Modify script
+      run: sed -i 's|MINISHELL_PATH="../minishell"|MINISHELL_PATH="../../minishell"|g' minishell_tester/src/tester.sh
+
+
     - name: Execute script
       run: chmod 777 minishell_tester/src/tester && make re && ./minishell_tester/src/tester
