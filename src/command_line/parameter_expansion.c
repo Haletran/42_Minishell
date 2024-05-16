@@ -6,15 +6,15 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/15 22:29:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:33:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void replacement(t_token *tmp, char *value, char *key, int str_token_len)
+void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 {
-	char *new_token;
+	char	*new_token;
 
 	new_token = ft_substr(tmp->token, 0, str_token_len);
 	new_token = ft_strjoin_f(new_token, value);
@@ -24,39 +24,41 @@ void replacement(t_token *tmp, char *value, char *key, int str_token_len)
 	free(key);
 }
 
-void parameter_expansion(t_cli *cli)
+void	parameter_expansion(t_cli *cli)
 {
-    t_token	*tmp;
-    char	*key;
-    char	*value;
-    int		i;
+	t_token	*tmp;
+	char	*key;
+	char	*value;
+	int		i;
 
-    tmp = cli->token;
-    while (tmp)
-    {
-        i = 0;
-        while (tmp->token[i] && tmp->token[i] != '$')
-            i++;
-        key = ft_substr(tmp->token, i + 1, ft_strlen(tmp->token) - (i - 1));
-        if (key == NULL)
-            return ;
-        else if (key[0] == '?')
-            value = ft_itoa(cli->mnsh->exit_code);
-        else
-            value = ft_strdup(get_value_from_key(cli->mnsh->env_cpy_lst, key));
-        if (value == NULL)
-            value = ft_strdup(get_variable_from_key(cli->variable, key));
-        if (value == NULL) {
-            value = ft_strdup(tmp->token);
-        } else {
-            replacement(tmp, value, key, i);
-        }
-        tmp = tmp->next;
-    }
+	tmp = cli->token;
+	while (tmp)
+	{
+		i = 0;
+		while (tmp->token[i] && tmp->token[i] != '$')
+			i++;
+		key = ft_substr(tmp->token, i + 1, ft_strlen(tmp->token) - (i - 1));
+		if (key == NULL)
+			return ;
+		else if (key[0] == '?')
+			value = ft_itoa(cli->mnsh->exit_code);
+		else
+			value = ft_strdup(get_value_from_key(cli->mnsh->env_cpy_lst, key));
+		if (value == NULL)
+			value = ft_strdup(get_variable_from_key(cli->variable, key));
+		if (value == NULL)
+		{
+			value = ft_strdup(tmp->token);
+		}
+		else
+		{
+			replacement(tmp, value, key, i);
+		}
+		tmp = tmp->next;
+	}
 }
 
-
-//void	parameter_expansion(t_cli *cli)
+// void	parameter_expansion(t_cli *cli)
 //{
 //	t_token	*tmp;
 //	char	*key;

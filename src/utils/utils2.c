@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 14:12:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:32:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_nbargs(char **str)
 	return (size);
 }
 
-int get_exit_code(t_lst *mnsh)
+int	get_exit_code(t_lst *mnsh)
 {
 	if (WIFEXITED(mnsh->exit_code))
 		return (mnsh->exit_code = WEXITSTATUS(mnsh->exit_code));
@@ -92,18 +92,15 @@ int	check_if_alpha(char *str)
 			return (ERROR);
 		if (str[i] == '-')
 			return (ERROR);
-/* 		if (ft_isdigit(str[i]) == TRUE && str[i - 1] != '=')
-			return (ERROR); */
 		i++;
 	}
 	i = 0;
-	while(str[i] != '=' )
+	while (str[i] != '=')
 	{
 		if (ft_isdigit(str[i]) == TRUE && str[i - 1] != '=')
 			return (ERROR);
 		i++;
 	}
-
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/15 15:05:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ void	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);
-/* 	while ((cli->n_quote & 1 || cli->n_dquote & 1) == 1)
-	{
-		free(cli->input);
-		cli->input = readline("> ");
-		split_into_token(cli);
-	} */
 	glue_quotes(cli);
 	remove_quotes(cli);
 	cleaning_token_list(cli);

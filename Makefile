@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/16 14:55:19 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/16 15:36:10 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ norm:
 norminette:
 	@python3 -m pip install --upgrade pip setuptools
 	@python3 -m pip install norminette
-	@-norminette 
+	@-norminette | grep -v "Notice: GLOBAL_VAR_DETECTED"
 	
 tester: all
 	@-cd tester/minishell_tester/src/ && ./tester

@@ -6,53 +6,55 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 14:25:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:30:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int handle_n_option(char **str, int *i, int *flag)
+int	handle_n_option(char **str, int *i, int *flag)
 {
-    int check = 1;
-    if (!ft_strncmp(str[*i], "-n", 2))
-    {
-        while (str[1][check] == 'n')
-            check++;
-        if (check == (int)ft_strlen(str[1]))
-        {
-            (*flag)++;
-            (*i)++;
-        }
-    }
-    return (SUCCESS);
+	int	check;
+
+	check = 1;
+	if (!ft_strncmp(str[*i], "-n", 2))
+	{
+		while (str[1][check] == 'n')
+			check++;
+		if (check == (int)ft_strlen(str[1]))
+		{
+			(*flag)++;
+			(*i)++;
+		}
+	}
+	return (SUCCESS);
 }
 
 int	ft_echo(char **str, t_lst *mnsh)
 {
-    int		i;
-    int		flag;
-	(void)mnsh;
+	int	i;
+	int	flag;
 
-    i = 1;
-    flag = 0;
-    if (!str[1])
-    {
-        printf("\n");
-	    mnsh->exit_code = 0;
-        exit (0);
-    }
-    handle_n_option(str, &i, &flag);
-    while (str[i])
-    {
-        if (str[i + 1] == NULL)
-            ft_printf_fd(STDOUT_FILENO, "%s", str[i]);
-        else
-            ft_printf_fd(STDOUT_FILENO, "%s ", str[i]);
-        i++;
-    }
-    mnsh->exit_code = 0;
-    if (flag == 0)
-        ft_printf_fd(STDOUT_FILENO, "\n");
-    exit (0);
+	(void)mnsh;
+	i = 1;
+	flag = 0;
+	if (!str[1])
+	{
+		printf("\n");
+		mnsh->exit_code = 0;
+		exit(0);
+	}
+	handle_n_option(str, &i, &flag);
+	while (str[i])
+	{
+		if (str[i + 1] == NULL)
+			ft_printf_fd(STDOUT_FILENO, "%s", str[i]);
+		else
+			ft_printf_fd(STDOUT_FILENO, "%s ", str[i]);
+		i++;
+	}
+	mnsh->exit_code = 0;
+	if (flag == 0)
+		ft_printf_fd(STDOUT_FILENO, "\n");
+	exit(0);
 }

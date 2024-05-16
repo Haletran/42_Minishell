@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/15 16:36:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:34:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	glue_quotes(t_cli *cli)
 			tmp->type = ARGUMENT;
 		tmp = tmp->next;
 	}
-	// reindex_token_list(cli);
 }
 
 void	cleaning_token_list(t_cli *cli)

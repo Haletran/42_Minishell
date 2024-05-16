@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 13:57:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:32:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	get_nb_commands(t_com *com)
 	return (nb_commands);
 }
 
-char *check_parsing(char *str)
+char	*check_parsing(char *str)
 {
 	int	i;
 
@@ -143,12 +143,12 @@ char *check_parsing(char *str)
 	return (str);
 }
 
-int find_in_env(char *str, t_cli *cli)
-{	
-	t_cli *tmp;
+int	find_in_env(char *str, t_cli *cli)
+{
+	t_cli	*tmp;
 
 	tmp = cli;
-	while(tmp->mnsh->env_var_lst)
+	while (tmp->mnsh->env_var_lst)
 	{
 		if (!ft_strcmp(str, tmp->mnsh->env_var_lst->key))
 			return (SUCCESS);
@@ -157,41 +157,44 @@ int find_in_env(char *str, t_cli *cli)
 	return (ERROR);
 }
 
-int parsing_check(t_cli *cli)
+int	parsing_check(t_cli *cli)
 {
-    if (!ft_strncmp(cli->com->command[0], "./", 2))
-    {
+	if (!ft_strncmp(cli->com->command[0], "./", 2))
+	{
 		if (access(cli->com->command[0], F_OK | R_OK) != -1)
 		{
-        	cli->com->env_path = free_char(cli->com->env_path);
-        	cli->com->env_path = ft_strdup(cli->com->command[0]);
-        	free_tab(cli->com->command);
-        	cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
-        	cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
+			cli->com->env_path = free_char(cli->com->env_path);
+			cli->com->env_path = ft_strdup(cli->com->command[0]);
+			free_tab(cli->com->command);
+			cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
+			cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
 			return (SUCCESS);
 		}
-    }
-    else if (!ft_strncmp(cli->com->command[0], "/", 1))
-    {
-        if (opendir(cli->com->command[0]) == NULL)
-        {
-            if (access(cli->com->command[0], F_OK | R_OK) == -1)
-            {
-                ft_printf_fd(2, "minishell: %s: No such file or directory\n", cli->com->command[0]);
-                cli->mnsh->exit_code = 127;
-                return (ERROR);
-            }
-            cli->com->env_path = ft_strdup(cli->com->command[0]);
-            cli->com->command[0] =  ft_strdup(ft_strcpy(cli->com->command[0], cli->com->env_path));
-        }
-        else
-        {
-            ft_printf_fd(2, "minishell: %s: Is a directory\n", cli->com->command[0]);
-            cli->mnsh->exit_code = 126;
-            return (ERROR);
-        }
-    }
-    return (SUCCESS);
+	}
+	else if (!ft_strncmp(cli->com->command[0], "/", 1))
+	{
+		if (opendir(cli->com->command[0]) == NULL)
+		{
+			if (access(cli->com->command[0], F_OK | R_OK) == -1)
+			{
+				ft_printf_fd(2, "minishell: %s: No such file or directory\n",
+					cli->com->command[0]);
+				cli->mnsh->exit_code = 127;
+				return (ERROR);
+			}
+			cli->com->env_path = ft_strdup(cli->com->command[0]);
+			cli->com->command[0] = ft_strdup(ft_strcpy(cli->com->command[0],
+						cli->com->env_path));
+		}
+		else
+		{
+			ft_printf_fd(2, "minishell: %s: Is a directory\n",
+				cli->com->command[0]);
+			cli->mnsh->exit_code = 126;
+			return (ERROR);
+		}
+	}
+	return (SUCCESS);
 }
 
 /* int check_redirection(t_cli *cli)
@@ -202,11 +205,10 @@ int parsing_check(t_cli *cli)
 	while(tmp)
 	{
 		if (tmp->token->type == NULL)
-			break;
+			break ;
 		if (tmp->token->type == REDIRECTION_OPERATOR)
 			printf("%s", tmp->token->token);
 		tmp->token = tmp->token->next;
 	}
 	return (SUCCESS);
 } */
-

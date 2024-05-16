@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:10:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_number_of_heredoc(t_com *com)
 {
-	int	count;
-	t_com *tmp;
+	int		count;
+	t_com	*tmp;
 
 	count = 0;
 	tmp = com;
@@ -30,14 +30,15 @@ int	check_number_of_heredoc(t_com *com)
 
 int	check_heredoc_error(t_cli *cli)
 {
-	t_com *tmp;
+	t_com	*tmp;
 
 	tmp = cli->com;
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->command[0], "<<", 2) == 0 && !tmp->command[1])
 		{
-			ft_printf_fd(2, "minishell: syntax error near unexpected token `newline'\n");
+			ft_printf_fd(2,
+				"minishell: syntax error near unexpected token `newline'\n");
 			return (ERROR);
 		}
 		tmp = tmp->next;
@@ -54,7 +55,7 @@ int	check_heredoc_error(t_cli *cli)
 void	child_process(t_cli *cli, t_com *com)
 {
 	char	*input;
-	int line_count;
+	int		line_count;
 
 	input = NULL;
 	g_var = 0;
@@ -66,8 +67,11 @@ void	child_process(t_cli *cli, t_com *com)
 		input = readline("> ");
 		if (!input && g_var == 0)
 		{
-						ft_printf_fd(2, "warning: here-document at line \
-%d delimited by end-of-file (wanted '%s')\n", line_count, com->command[1]);
+			ft_printf_fd(2,
+							"warning: here-document at line \
+%d delimited by end-of-file (wanted '%s')\n",
+							line_count,
+							com->command[1]);
 			exit(STOPPED);
 		}
 		if (g_var == 1)
@@ -90,21 +94,24 @@ void	child_process(t_cli *cli, t_com *com)
 	exit(SUCCESS);
 }
 
-int create_heredoc_file(t_cli **cli)
+int	create_heredoc_file(t_cli **cli)
 {
-	(*cli)->mnsh->heredoc_fd = open("/tmp/.heredoc", O_CREAT | O_RDWR | O_APPEND, 0777);
+	(*cli)->mnsh->heredoc_fd = open("/tmp/.heredoc",
+			O_CREAT | O_RDWR | O_APPEND, 0777);
 	if ((*cli)->mnsh->heredoc_fd == -1)
 	{
-		ft_printf_fd(2, "minishell: %s: %s\n", strerror(errno), "/tmp/.heredoc");
+		ft_printf_fd(2, "minishell: %s: %s\n", strerror(errno),
+			"/tmp/.heredoc");
 		(*cli)->mnsh->exit_code = 1;
 		return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-int ft_heredoc(t_cli **cli)
+int	ft_heredoc(t_cli **cli)
 {
 	pid_t	pid;
+
 	if (check_heredoc_error((*cli)) == ERROR)
 	{
 		(*cli)->mnsh->exit_code = 1;
@@ -125,7 +132,7 @@ int ft_heredoc(t_cli **cli)
 	}
 	while (waitpid(-1, &(*cli)->mnsh->exit_code, 0) > 0)
 		;
-    (*cli)->mnsh->exit_code = 0;
+	(*cli)->mnsh->exit_code = 0;
 	close((*cli)->mnsh->heredoc_fd);
 	return (SUCCESS);
 }

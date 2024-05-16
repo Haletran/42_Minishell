@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 13:33:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	freeway(t_cli *cli)
 	free_char(cli->mnsh->env_path);
 	free(cli->mnsh);
 	free(cli);
-	
 }
 
 char	*free_char(char *str)

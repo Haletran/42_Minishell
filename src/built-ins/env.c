@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:59:39 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 14:24:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:30:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ int	ft_env(t_cli *cli)
 		if (cli->com->command[1][0] == '-')
 		{
 			cli->mnsh->exit_code = 125;
-			ft_printf_fd(2, "env : invalid option -- %c\n", cli->com->command[1][1]);
-			exit (125);
+			ft_printf_fd(2, "env : invalid option -- %c\n",
+				cli->com->command[1][1]);
+			exit(125);
 		}
-		ft_printf_fd(2, "env : '%s': No such file or directory\n", cli->com->command[1]);
+		ft_printf_fd(2, "env : '%s': No such file or directory\n",
+			cli->com->command[1]);
 		cli->mnsh->exit_code = 127;
-		exit (127);
+		exit(127);
 	}
 	else if (ft_strlen(cli->com->command[1]) == 0)
 	{
 		print_list_env("=", cli->mnsh);
 		cli->mnsh->exit_code = 0;
 	}
-	exit (0);
+	exit(0);
 }

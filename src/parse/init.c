@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/15 12:45:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	init_array(t_cli **cli)
 	if (!(*cli)->path)
 		return (return_error(ERROR, "path: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
-	
 }
 
 void	init_fd_history(t_cli **cli)

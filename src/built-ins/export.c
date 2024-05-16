@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 14:24:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:31:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	t_env	*env;
 
 	env = mnsh->env_cpy_lst;
-	//check if alphae
+	// check if alphae
 	if (check_if_var_exist(env, str[i]))
 		return (ERROR);
 	while (env->next)
@@ -255,7 +255,8 @@ int	ft_export(t_lst *mnsh, char **str)
 	{
 		if (check_if_alpha(str[i]) == ERROR)
 		{
-			ft_printf_fd(2, "minishell : export: '%s' not a valid identifier\n", str[1]);
+			ft_printf_fd(2, "minishell : export: '%s' not a valid identifier\n",
+				str[1]);
 			mnsh->exit_code = 1;
 			exit(mnsh->exit_code);
 		}

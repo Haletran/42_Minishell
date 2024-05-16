@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/13 15:27:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:33:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 
 void	create_command(t_cli *cli)
 {
-	t_token			*tmp;
-	t_com			*com;
+	t_token	*tmp;
+	t_com	*com;
 
 	tmp = cli->token;
 	while (tmp != NULL)
