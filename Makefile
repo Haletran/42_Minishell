@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/16 15:40:06 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/17 09:56:14 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,6 @@ ifdef DEBUG
         CFLAGS += $(DEBUG_FLAGS)
     endif
 endif
-
-
-
 
 
 SRCS	= src/main.c \

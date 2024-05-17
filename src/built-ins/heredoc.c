@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:05:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	child_process(t_cli *cli, t_com *com)
 %d delimited by end-of-file (wanted '%s')\n",
 							line_count,
 							com->command[1]);
-			exit(STOPPED);
+			exit(0);
 		}
 		if (g_var == 1)
-			exit(ERROR);
+			exit(130);
 		if (cli->mnsh->nb_heredoc - 1 == 0)
 		{
 			ft_putstr_fd(input, cli->mnsh->heredoc_fd);
@@ -85,7 +85,7 @@ void	child_process(t_cli *cli, t_com *com)
 		{
 			if (cli->mnsh->nb_heredoc - 1 == 0)
 				close(cli->mnsh->heredoc_fd);
-			exit(1);
+			exit(0);
 		}
 		line_count++;
 	}
@@ -132,7 +132,7 @@ int	ft_heredoc(t_cli **cli)
 	}
 	while (waitpid(-1, &(*cli)->mnsh->exit_code, 0) > 0)
 		;
-	(*cli)->mnsh->exit_code = 0;
+	(*cli)->mnsh->exit_code = get_exit_code((*cli)->mnsh);
 	close((*cli)->mnsh->heredoc_fd);
 	return (SUCCESS);
 }
