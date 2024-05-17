@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:11:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:42:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	ft_exit(char *code, t_cli *cli)
 		freeway(cli);
 		exit(backup);
 	}
-	code =	ft_strtrim(code, " ");
+	//if (ft_strchr(code, ' '))
+	//	code =	ft_strtrim(code, " ");
 	if ((check_code(code) == ERROR || ft_strcmp(code,
 				"9223372036854775808") >= 0 || ft_strcmp(code,
 				"9223372036854775807") > 0))

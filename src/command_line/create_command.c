@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/17 12:33:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:42:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	create_command(t_cli *cli)
 		}
 		tmp = tmp->next;
 	}
-	free_tab(cli->path);
+	//free_tab(cli->path);
 	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 }
 
