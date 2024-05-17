@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/16 15:33:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:53:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	create_command(t_cli *cli)
 	while (tmp != NULL)
 	{
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
-			|| tmp->type == HEREDOC)
+			|| tmp->type == HEREDOC || tmp->type == REDIRECTION_OPERATOR)
 		{
 			insert_com_end(&cli->com, tmp->type, tmp->index);
 			com = cli->com;

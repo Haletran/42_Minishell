@@ -13,6 +13,8 @@ As beautiful as a shell..
 - Expansion de var
 - Fix export et unset
 - Trim exit input
+- REDIRECTIONS infile outfile type not accurate
+- 
 
 ## TO_DO
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 10:05:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:29:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	child_process(t_cli *cli, t_com *com)
 		}
 		if (g_var == 1)
 			exit(130);
-		if (cli->mnsh->nb_heredoc - 1 == 0)
+		if (cli->mnsh->nb_heredoc - 1 == 0 && ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
 		{
 			ft_putstr_fd(input, cli->mnsh->heredoc_fd);
 			ft_putstr_fd("\n", cli->mnsh->heredoc_fd);
@@ -108,31 +108,39 @@ int	create_heredoc_file(t_cli **cli)
 	return (SUCCESS);
 }
 
-int	ft_heredoc(t_cli **cli)
+int	ft_heredoc(t_cli *cli)
 {
 	pid_t	pid;
 
-	if (check_heredoc_error((*cli)) == ERROR)
+	t_com *tmp;
+
+	tmp = cli->com;
+	if (check_heredoc_error(cli) == ERROR)
 	{
-		(*cli)->mnsh->exit_code = 1;
+		cli->mnsh->exit_code = 1;
 		return (ERROR);
 	}
-	while ((*cli)->mnsh->nb_heredoc > 0)
+	while (tmp)
 	{
-		if ((*cli)->mnsh->nb_heredoc - 1 == 0)
-			if (create_heredoc_file(cli) == ERROR)
+		if (tmp->type == HEREDOC)
+		{
+			if (cli->mnsh->nb_heredoc - 1 == 0)
+				if (create_heredoc_file(&cli) == ERROR)
+					return (ERROR);
+			pid = fork();
+			if (pid == -1)
 				return (ERROR);
-		pid = fork();
-		if (pid == -1)
-			return (ERROR);
-		else if (pid == 0)
-			child_process((*cli), (*cli)->com);
-		(*cli)->mnsh->nb_heredoc--;
-		(*cli)->com = (*cli)->com->next;
+			else if (pid == 0)
+				child_process(cli, tmp);
+			cli->mnsh->nb_heredoc--;
+			tmp = tmp->next;
+		}
+		else
+			tmp = tmp->next;
 	}
-	while (waitpid(-1, &(*cli)->mnsh->exit_code, 0) > 0)
+	while (waitpid(-1, &cli->mnsh->exit_code, 0) > 0)
 		;
-	(*cli)->mnsh->exit_code = get_exit_code((*cli)->mnsh);
-	close((*cli)->mnsh->heredoc_fd);
+	cli->mnsh->exit_code = get_exit_code(cli->mnsh);
+	close(cli->mnsh->heredoc_fd);
 	return (SUCCESS);
 }
