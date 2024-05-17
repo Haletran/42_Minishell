@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:55:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:10:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,7 @@ int	exec_pipe(t_cli *cli)
 	while (waitpid(-1, NULL, 0) > 0)
 		;
 	if (heredoc == 1)
-	{
 		delete_file("/tmp/.heredoc", cli);
-	}
+	close_fds();
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/17 12:28:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:14:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	init_array_env(t_cli **cli, char **envp)
 	err = ft_cpy((*cli)->mnsh->env_var, envp);
 	if (err == ERROR)
 		return (return_error(ERROR, "ft_cpy: Alloc ", NULL, DEBUG_MODE));
-	find_path((*cli)->mnsh->env_var_lst, (*cli)->mnsh);
 	return (SUCCESS);
 }
 
