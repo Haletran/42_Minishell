@@ -12,9 +12,8 @@ As beautiful as a shell..
 - GUILLEMETS 
 - Expansion de var
 - Fix export et unset
-- Trim exit input
 - REDIRECTIONS infile outfile type not accurate
-- UNSET path command still working
+- FIX exit-codes in builtins not fork
 
 ## TO_DO
 

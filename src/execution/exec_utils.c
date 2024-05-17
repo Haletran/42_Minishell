@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:24:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:55:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,25 @@ int	parsing_check(t_cli *cli)
 	}
 	return (SUCCESS);
 }
+
+int check_if_forked(t_cli *cli)
+{
+	if (cli->com->type == COMMAND)
+	{
+		if (!ft_strncmp(cli->com->command[0], "export", 6) && ft_strlen(cli->com->command[0]) == 6)
+			return (SUCCESS);
+		else if (!ft_strncmp(cli->com->command[0], "unset", 5) && ft_strlen(cli->com->command[0]) == 5)
+			return (SUCCESS);
+		else if (!ft_strncmp(cli->com->command[0], "exit", 4) && ft_strlen(cli->com->command[0]) == 4)
+			return (SUCCESS);
+		else if (!ft_strncmp(cli->com->command[0], "cd", 2) && ft_strlen(cli->com->command[0]) == 2)
+			return (SUCCESS);
+	}
+	return (NOT_FOUND);
+}
+
+
+
 
 /* int check_redirection(t_cli *cli)
 {

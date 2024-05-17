@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:23:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:54:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int				ft_unset(char **str, t_lst **mnsh);
 
 /*BASH_UTILITIES*/
 int				ft_heredoc(t_cli *cli);
+int check_if_forked(t_cli *cli);
 void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
