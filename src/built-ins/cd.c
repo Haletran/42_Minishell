@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:30:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:10:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	ft_cd(char **str, t_lst *lst)
 			ft_printf_fd(2, "minishell : cd : HOME not set\n");
 			old_path = free_char(old_path);
 			lst->exit_code = 1;
-			exit(1);
+			return (1);
 		}
 		chdir(lst->home_path);
 	}
@@ -111,10 +111,10 @@ int	ft_cd(char **str, t_lst *lst)
 		perror(str[1]);
 		lst->exit_code = 1;
 		old_path = free_char(old_path);
-		exit(1);
+		return(1);
 	}
 	update_path(lst, old_path);
 	old_path = free_char(old_path);
 	lst->exit_code = 0;
-	exit(0);
+	return (0);
 }

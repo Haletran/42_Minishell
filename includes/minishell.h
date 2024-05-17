@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 10:56:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:23:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ void			print_list_env(char *string, t_lst *mnsh);
 int				print_path(char *str, t_lst *mnsh, int choose);
 char			*search_path(char *str, t_lst *lst);
 void			find_path_s(t_env *env, t_cli *cli);
-void			find_path(t_env *env, t_lst *mnsh);
+int			find_path(t_env *env, t_lst *mnsh);
 void			print_dlst(t_env *head);
 
 /*PARSING*/

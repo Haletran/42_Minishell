@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:32:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:24:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,19 @@ char	*check_path(char *str, t_lst *mnsh)
 	return (full_path);
 }
 
-void	find_path(t_env *env, t_lst *mnsh)
+int	find_path(t_env *env, t_lst *mnsh)
 {
 	while (env)
 	{
 		if (!ft_strncmp(env->key, "PATH", 4))
 		{
 			mnsh->env_path = ft_strdup(env->value);
-			break ;
+			return (SUCCESS);
 		}
 		else
 			env = env->next;
 	}
+	return (ERROR);
 }
 
 int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)

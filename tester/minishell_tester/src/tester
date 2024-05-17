@@ -30,6 +30,12 @@ if [[ $1 == "mandatory" || !$1 ]]; then
 	)
 fi
 
+if [[ $1 == "buitlins" ]]; then
+	test_lists=(
+		"builtins"
+	)
+fi
+
 if [[ $1 == "bonus" ]]; then
 	test_lists=(
 		"redirects_bonus"

@@ -14,7 +14,7 @@ As beautiful as a shell..
 - Fix export et unset
 - Trim exit input
 - REDIRECTIONS infile outfile type not accurate
-- 
+- UNSET path command still working
 
 ## TO_DO
 
@@ -32,6 +32,7 @@ As beautiful as a shell..
 
 - dans ruler pour les exit_codes
 - dans redirect_rules pour print les bon messages d'erreur
+- create command because found path when shouldn't (unset PATH)
 73 / 101 BUITLINS
 171 / 423 TOTAL
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/17 10:53:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:33:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	create_command(t_cli *cli)
 	t_com	*com;
 
 	tmp = cli->token;
+	find_path(cli->mnsh->env_var_lst, cli->mnsh);
+	cli->path = ft_split(cli->mnsh->env_path, ':');
 	while (tmp != NULL)
 	{
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
@@ -82,6 +84,8 @@ void	create_command(t_cli *cli)
 		}
 		tmp = tmp->next;
 	}
+	free_tab(cli->path);
+	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 }
 
 int	get_nb_args(t_token *head)
