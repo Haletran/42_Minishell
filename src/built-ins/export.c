@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:11:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:51:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,29 @@ int	add_back(t_lst *mnsh, char **str, int i)
 	return (ERROR);
 }
 
+int check_valid_identifier(char **str)
+{
+	char **tmp;
+	int i = 0;
+
+	tmp = ft_split(str[1], '=');
+	if(!tmp[0])
+		return (ERROR);
+	while (tmp[0][i])
+	{
+		if (!ft_isalpha(tmp[0][i]) || tmp[0][i] == '-')
+			return (ERROR);
+		i++;
+	}
+	if (tmp[1])
+	{
+		if (ft_strlen(tmp[1]) == 0)
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+//export HELLO=123 A- WORLD=456
 int	ft_export(t_lst *mnsh, char **str)
 {
 	int	i;
@@ -249,14 +272,14 @@ int	ft_export(t_lst *mnsh, char **str)
 		sort_in_ascii(mnsh->env_cpy_lst);
 		print_list_export(mnsh);
 		mnsh->exit_code = 0;
-		return(0);
+		return(SUCCESS);
 	}
 	while (str[i])
 	{
-		if (check_if_alpha(str[i]) == ERROR && (ft_strchr(str[i], '=') && ft_strlen(str[i]) <= 1))
+		if (check_valid_identifier(str) == ERROR)
 		{
 			ft_printf_fd(2, "minishell : export: '%s' not a valid identifier\n",
-				str[1]);
+			str[1]);
 			mnsh->exit_code = 1;
 			return(mnsh->exit_code);
 		}

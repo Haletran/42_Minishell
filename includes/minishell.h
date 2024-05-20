@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:54:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:24:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ extern int		g_var;
 # define ERROR -1
 # define SUCCESS 0
 # define STOPPED 1
+# define NOT_EQUAL 90
 
 # ifndef DEBUG
 #  define DEBUG 0
