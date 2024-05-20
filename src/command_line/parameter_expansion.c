@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/17 13:20:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:53:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 	free_char(tmp->token);
 	tmp->token = new_token;
 	key = free_char(key);
+	value = free_char(value);
 }
 
 void	parameter_expansion(t_cli *cli)
@@ -49,7 +50,6 @@ void	parameter_expansion(t_cli *cli)
 			value = ft_strdup(tmp->token);
 		else
 			replacement(tmp, value, key, i);
-		value = free_char(value);
 		tmp = tmp->next;
 	}
 }
