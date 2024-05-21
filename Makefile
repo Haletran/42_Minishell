@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/20 17:09:42 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/21 09:36:42 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS	= src/main.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
 		  src/utils/utils3.c \
+		  src/execution/child.c \
 		  src/utils/utils4.c \
 		  src/utils/ft_is.c \
 		  src/utils/parse_utils.c \

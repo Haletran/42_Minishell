@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/20 16:53:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:28:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 	value = free_char(value);
 }
 
+// LEAKS
 void	parameter_expansion(t_cli *cli)
 {
 	t_token	*tmp;

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/20 17:24:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:06:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int				ft_unset(char **str, t_lst **mnsh);
 
 /*BASH_UTILITIES*/
 int				ft_heredoc(t_cli *cli);
-int check_if_forked(t_cli *cli);
+int				check_if_forked(t_cli *cli);
 void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
@@ -146,7 +146,7 @@ void			print_list_env(char *string, t_lst *mnsh);
 int				print_path(char *str, t_lst *mnsh, int choose);
 char			*search_path(char *str, t_lst *lst);
 void			find_path_s(t_env *env, t_cli *cli);
-int			find_path(t_env *env, t_lst *mnsh);
+int				find_path(t_env *env, t_lst *mnsh);
 void			print_dlst(t_env *head);
 
 /*PARSING*/
@@ -245,5 +245,9 @@ int				check_redirection(t_cli *cli);
 int				ft_exitcode(long int exit_code);
 void			close_fds(void);
 int				get_nb_commands(t_com *com);
+
+/*EXECUTION*/
+void			execute_last_command(t_cli *cli);
+void			piping(t_cli *cli, int count);
 
 #endif

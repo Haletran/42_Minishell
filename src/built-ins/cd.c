@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/17 12:49:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:07:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	ft_cd(char **str, t_lst *lst)
 		perror(str[1]);
 		lst->exit_code = 1;
 		old_path = free_char(old_path);
-		return(1);
+		return (1);
 	}
 	update_path(lst, old_path);
 	old_path = free_char(old_path);

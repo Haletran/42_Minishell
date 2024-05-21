@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/20 17:51:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:06:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,13 +237,14 @@ int	add_back(t_lst *mnsh, char **str, int i)
 	return (ERROR);
 }
 
-int check_valid_identifier(char **str)
+int	check_valid_identifier(char **str)
 {
-	char **tmp;
-	int i = 0;
+	char	**tmp;
+	int		i;
 
+	i = 0;
 	tmp = ft_split(str[1], '=');
-	if(!tmp[0])
+	if (!tmp[0])
 		return (ERROR);
 	while (tmp[0][i])
 	{
@@ -259,7 +260,7 @@ int check_valid_identifier(char **str)
 	return (SUCCESS);
 }
 
-//export HELLO=123 A- WORLD=456
+// export HELLO=123 A- WORLD=456
 int	ft_export(t_lst *mnsh, char **str)
 {
 	int	i;
@@ -272,16 +273,16 @@ int	ft_export(t_lst *mnsh, char **str)
 		sort_in_ascii(mnsh->env_cpy_lst);
 		print_list_export(mnsh);
 		mnsh->exit_code = 0;
-		return(SUCCESS);
+		return (SUCCESS);
 	}
 	while (str[i])
 	{
 		if (check_valid_identifier(str) == ERROR)
 		{
 			ft_printf_fd(2, "minishell : export: '%s' not a valid identifier\n",
-			str[1]);
+				str[1]);
 			mnsh->exit_code = 1;
-			return(mnsh->exit_code);
+			return (mnsh->exit_code);
 		}
 		if (ft_strchr(str[i], '+'))
 			add_back(mnsh, str, i);

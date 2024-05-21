@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/20 16:56:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 10:06:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	child_process(t_cli *cli, t_com *com)
 	input = NULL;
 	g_var = 0;
 	line_count = 0;
-	(void)cli;
 	handle_sig(1);
 	while (1)
 	{
@@ -77,7 +76,8 @@ void	child_process(t_cli *cli, t_com *com)
 		}
 		if (g_var == 1)
 			exit(130);
-		if (cli->mnsh->nb_heredoc - 1 == 0 && ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
+		if (cli->mnsh->nb_heredoc - 1 == 0 && ft_strncmp(input, com->command[1],
+				ft_strlen(com->command[1])))
 		{
 			ft_putstr_fd(input, cli->mnsh->heredoc_fd);
 			ft_putstr_fd("\n", cli->mnsh->heredoc_fd);
@@ -89,6 +89,7 @@ void	child_process(t_cli *cli, t_com *com)
 			input = free_char(input);
 			exit(0);
 		}
+		input = free_char(input);
 		line_count++;
 	}
 	input = free_char(input);
@@ -113,8 +114,7 @@ int	create_heredoc_file(t_cli **cli)
 int	ft_heredoc(t_cli *cli)
 {
 	pid_t	pid;
-
-	t_com *tmp;
+	t_com	*tmp;
 
 	tmp = cli->com;
 	if (check_heredoc_error(cli) == ERROR)

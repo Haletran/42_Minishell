@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/21 08:14:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 08:27:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*return_path(char *str, t_cli **cli)
 	return (full_path);
 }
 
+// LEAKS
 void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 {
 	int	i;
@@ -84,7 +85,7 @@ void	create_command(t_cli *cli)
 		}
 		tmp = tmp->next;
 	}
-	//free_tab(cli->path);
+	free_tab(cli->path);
 	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 }
 
