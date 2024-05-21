@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 10:05:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:57:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*check_path(char *str, t_lst *mnsh)
 	find_path(mnsh->env_var_lst, mnsh);
 	if (!mnsh->env_path)
 	{
-		ft_printf_fd(2, "%s: No such file or directory\n", str);
+		print_error(NO_FILE, str);
 		mnsh->exit_code = 127;
 		return (NULL);
 	}
@@ -92,7 +92,7 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	{
 		if (check_if_builtin(str) == SUCCESS)
 			return (EXIT_SUCCESS);
-		ft_printf_fd(2, "%s : command not found\n", str);
+		print_error(NO_FILE, str);
 		free_tab(path);
 		mnsh->env_path = free_char(mnsh->env_path);
 		full_path = free_char(full_path);
@@ -128,7 +128,7 @@ char	*check_parsing(char *str)
 		{
 			if (access(str, F_OK) == -1)
 			{
-				ft_printf_fd(2, "%s: No such file or directory\n", str);
+				print_error(NO_FILE, str);
 				exit(127);
 			}
 			else if (access(str, X_OK) == -1)
@@ -178,8 +178,7 @@ int	parsing_check(t_cli *cli)
 		{
 			if (access(cli->com->command[0], F_OK | R_OK) == -1)
 			{
-				ft_printf_fd(2, "minishell: %s: No such file or directory\n",
-					cli->com->command[0]);
+				print_error(NOT_FOUND, cli->com->command[0]);
 				cli->mnsh->exit_code = 127;
 				return (ERROR);
 			}
@@ -189,8 +188,7 @@ int	parsing_check(t_cli *cli)
 		}
 		else
 		{
-			ft_printf_fd(2, "minishell: %s: Is a directory\n",
-				cli->com->command[0]);
+			print_error(IS_DIRECTORY, cli->com->command[0]);
 			cli->mnsh->exit_code = 126;
 			return (ERROR);
 		}

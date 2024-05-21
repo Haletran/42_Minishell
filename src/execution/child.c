@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 10:06:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:45:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	piping(t_cli *cli, int count)
 	pid = fork();
 	if (pid == -1)
 	{
-		ft_printf_fd(2, "fork failed\n");
+		print_error(FORK_FAILED, NULL);
 		exit(1);
 	}
 	else if (pid == 0)
@@ -46,8 +46,7 @@ void	piping(t_cli *cli, int count)
 					cli->mnsh->env_var) == -1)
 			{
 				cli->mnsh->exit_code = 127;
-				ft_printf_fd(2, "minishell: %s: command not found\n",
-					*cli->com->command);
+				print_error(NOT_FOUND, *cli->com->command);
 				ft_exitcode(127);
 			}
 		}
@@ -70,7 +69,7 @@ void	execute_last_command(t_cli *cli)
 		pid = fork();
 		if (pid == -1)
 		{
-			ft_printf_fd(2, "fork failed\n");
+		    print_error(FORK_FAILED, NULL);
 			exit(1);
 		}
 		else if (pid == 0)
@@ -96,8 +95,7 @@ void	execute_last_command(t_cli *cli)
 					if (ft_strlen(cli->com->command[0]) != 0)
 					{
 						cli->mnsh->exit_code = 127;
-						ft_printf_fd(2, CRESET "minishell: \
-							%s: command not found\n", *cli->com->command);
+						print_error(NOT_FOUND, *cli->com->command);
 						ft_exitcode(127);
 					}
 				}

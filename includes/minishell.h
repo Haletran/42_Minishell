@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 10:06:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:10:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ extern int		g_var;
 # define SUCCESS 0
 # define STOPPED 1
 # define NOT_EQUAL 90
+# define FORK_FAILED -10
+# define NO_FILE -20
+# define IS_DIRECTORY -30
 
 # ifndef DEBUG
 #  define DEBUG 0
@@ -245,9 +248,21 @@ int				check_redirection(t_cli *cli);
 int				ft_exitcode(long int exit_code);
 void			close_fds(void);
 int				get_nb_commands(t_com *com);
+void			print_error(int i, char *str);
 
 /*EXECUTION*/
 void			execute_last_command(t_cli *cli);
 void			piping(t_cli *cli, int count);
+int				check_valid_identifier(char **str);
+int				add_back(t_lst *mnsh, char **str, int i);
+void			replace_var(t_lst *mnsh, char **str, int i);
+void			replace_var_cpy(t_lst *mnsh, char **str, int i);
+int				check_if_var_exist(t_env *env, char *str);
+int				add_var_no_input(t_lst *mnsh, char **str, int i);
+char			*expand_var(t_lst *mnsh, char *str);
+int				add_back2(t_lst *mnsh, char **str, int i);
+int				already_exist(t_lst *mnsh, char **str, int i);
+void			add_var(t_lst *mnsh, char **str, int i);
+void			add_var2(t_lst *mnsh, char **str, int i);
 
 #endif

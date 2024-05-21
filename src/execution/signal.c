@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 08:15:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:56:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ void	sig_ctrl_back(int signum)
 	rl_redisplay();
 }
 
+void handle_seg(int signum)
+{
+	(void)signum;
+	ft_printf_fd(2, BRED "SEGFAULT\n" CRESET);
+	exit(131);
+}
+
 /**
  * @brief Handle CTRL+C and CTRL+\ signal
  *
@@ -70,4 +77,5 @@ void	handle_sig(int check)
 		signal(CTRL_C, sig_command_is_running);
 		signal(CTRL_BACKSLACH, sig_ctrl_back);
 	}
+	signal(SIGSEGV, handle_seg);
 }

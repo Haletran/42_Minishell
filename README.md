@@ -32,8 +32,8 @@ As beautiful as a shell..
 - dans ruler pour les exit_codes
 - dans redirect_rules pour print les bon messages d'erreur
 - create command because found path when shouldn't (unset PATH)
-73 / 101 BUITLINS
-171 / 423 TOTAL
+80 / 101 BUITLINS
+179 / 423 TOTAL
 
 ## Links 
 

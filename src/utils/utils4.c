@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 09:22:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:49:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,16 @@ void	close_fds(void)
 		close(i);
 		i++;
 	}
+}
+
+void print_error(int i, char *str)
+{
+	if (i == NOT_FOUND)
+		ft_printf_fd(2, CRESET "minishell: %s: command not found\n", str);
+	else if (i == FORK_FAILED)
+		ft_printf_fd(2, CRESET "fork failed\n");
+	else if (i == NO_FILE)
+		ft_printf_fd(2, "%s: No such file or directory\n", str);
+	else if (i == IS_DIRECTORY)
+		ft_printf_fd(2, "minishell: %s: Is a directory\n", str);
 }

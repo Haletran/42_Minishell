@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/21 09:36:42 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/21 12:08:16 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ SRCS	= src/main.c \
 		  src/parse/init.c \
 		  src/built-ins/env.c \
 		  src/built-ins/export.c \
+		  src/built-ins/export2.c \
+		  src/built-ins/export3.c \
 		  src/built-ins/exit.c \
 		  src/built-ins/unset.c \
 		  src/built-ins/pwd.c \
