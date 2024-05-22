@@ -6,12 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 12:12:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:35:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
 
 int	add_back(t_lst *mnsh, char **str, int i)
 {
@@ -43,8 +42,8 @@ int	add_back(t_lst *mnsh, char **str, int i)
 
 int	check_valid_identifier(char **str)
 {
-	char	**tmp;
-	int		i;
+	char **tmp;
+	int i;
 
 	i = 0;
 	tmp = ft_split(str[1], '=');
@@ -53,13 +52,13 @@ int	check_valid_identifier(char **str)
 	while (tmp[0][i])
 	{
 		if (!ft_isalpha(tmp[0][i]) || tmp[0][i] == '-')
-        {
-            if (tmp[0][i] == '+')
-                i++;
-            else
-        	    return (ERROR);
-        }
-        i++;
+		{
+			if (tmp[0][i] == '+')
+				i++;
+			else
+				return (ERROR);
+		}
+		i++;
 	}
 	if (tmp[1])
 	{

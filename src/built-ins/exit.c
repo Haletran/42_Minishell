@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:26:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:35:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,32 @@ int	check_code(char *code)
 
 long long	ft_strtoll_check(const char *str)
 {
-    int			i;
-    long long	result;
-    int			flag;
+	int			i;
+	long long	result;
+	int			flag;
 
-    i = 0;
-    flag = 0;
-    result = 0;
-    while(str[i] == 32)
-        i++;
-    if (str[i] == '-' || str[i] == '+')
-    {
-        if (str[i + 1] == '-' || str[i + 1] == '+')
-            flag++;
-        i++;
-    }
-    while (str[i] >= '0' && str[i] <= '9')
-    {
-        if (result > (9223372036854775807 - (str[i] - '0')) / 10)
-        {
-            flag++;
-            break;
-        }
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-    return (flag);
+	i = 0;
+	flag = 0;
+	result = 0;
+	while (str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i + 1] == '-' || str[i + 1] == '+')
+			flag++;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (result > (9223372036854775807 - (str[i] - '0')) / 10)
+		{
+			flag++;
+			break ;
+		}
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (flag);
 }
 
 long long	ft_strtoll(const char *str)
