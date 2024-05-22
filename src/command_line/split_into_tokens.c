@@ -1,41 +1,49 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   split_into_tokens.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/16 15:33:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:43:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
 //? https://se.ifmo.ru/~ad/Documentation/Bash_Shell/bash3-CHP-7-SECT-3.html
+t_token_type	add_flag(t_cli *cli, t_token_type type)
+{
+	if (type == QUOTE)
+	{
+		cli->n_quote = gate_or(cli->n_quote);
+	}
+	else if (type == DQUOTE)
+	{
+		cli->n_dquote = gate_or(cli->n_dquote);
+	}
+	else if (type == HEREDOC)
+		cli->heredoc = 1;
+	else if (type == DELIMITER)
+		cli->heredoc = 0;
+	return (type);
+}
 
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 {
-	if (ft_isthis("\"", token[0]) > 0)
-	{
-		cli->n_dquote++;
-		return (DQUOTE);
-	}
-	if (ft_isthis("'", token[0]) > 0)
-	{
-		cli->n_quote++;
-		return (QUOTE);
-	}
+	if (ft_isthis("\"", token[0]) > 0 && cli->n_quote != 1)
+		return (add_flag(cli, DQUOTE));
+	if (ft_isthis("'", token[0]) > 0 && cli->n_dquote != 1)
+		return (add_flag(cli, QUOTE));
 	if (token[0] == '<' && token[1] == '<')
-	{
-		cli->heredoc = 1;
-		return (HEREDOC);
-	}
+		return (add_flag(cli, HEREDOC));
 	if (cli->heredoc == 1 && ft_isthis(" \t\n", token[0]) == 0)
-	{
-		cli->heredoc = 0;
-		return (DELIMITER);
-	}
+		return (add_flag(cli, DELIMITER));
+	if (cli->n_dquote & 1)
+		return (FREEZE);
+	if (cli->n_quote & 1)
+		return (IMMUTABLE);
 	return (REDIRECTION_OPERATOR);
 }
 

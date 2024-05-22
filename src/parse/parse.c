@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 10:08:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:48:29 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -23,7 +23,7 @@ void	reindex_token_list(t_cli *cli)
 	{
 		if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
 		{
-			tmp->type = token_type_rediscovery(tmp, cli);
+			// tmp->type = token_type_rediscovery(tmp, cli);
 			tmp->index = i;
 		}
 		tmp = tmp->next;
@@ -36,16 +36,14 @@ void	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);
-	glue_quotes(cli);
-	remove_quotes(cli);
-	cleaning_token_list(cli);
 	rulers(cli);
 	tilde_expansion(cli);
 	if (!varloc_creation(cli))
 		return ;
 	parameter_expansion(cli);
-	debug(cli, "  BEFORE CREATE COMMAND");
+	glue_quotes(cli);
+	remove_quotes(cli);
+	cleaning_token_list(cli);
 	create_command(cli);
-	debug(cli, "  AFTER CREATE COMMAND");
 	return ;
 }

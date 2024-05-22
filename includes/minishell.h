@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:29:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:54:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ int				ft_exitcode(t_cli *cli, long int exit_code);
 void			close_fds(void);
 int				get_nb_commands(t_com *com);
 void			print_error(int i, char *str);
+int	gate_or(int i);
 
 /*EXECUTION*/
 void			execute_last_command(t_cli *cli);

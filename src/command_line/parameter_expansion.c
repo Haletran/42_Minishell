@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parameter_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 12:08:03 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:11:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -28,9 +28,13 @@ void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 char	*get_parameter_value(t_cli *cli, char *key)
 {
 	char	*value;
+	pid_t	pid;
 
+	pid = getpid();
 	if (key[0] == '?')
 		return (ft_itoa(cli->mnsh->exit_code));
+	if (key[0] == '$')
+		return (ft_itoa(pid));
 	value = ft_strdup(get_value_from_key(cli->mnsh->env_cpy_lst, key));
 	if (value == NULL)
 		value = ft_strdup(get_variable_from_key(cli->variable, key));
@@ -39,6 +43,35 @@ char	*get_parameter_value(t_cli *cli, char *key)
 	else if (value == NULL)
 		value = ft_strdup("$");
 	return (value);
+}
+int	variable_len(char *token)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (token[i] && token[i] != '$')
+		i++;
+	while (token[i + j] != 0)
+	{
+		if (ft_isthis("'\"", token[i + j]) > 0)
+			return (j);
+		j++;
+	}
+	return (j);
+}
+
+int	dollar_position(char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i] != 0 && token[i] != '$')
+		i++;
+	if (token[i] == 0)
+		return (-1);
+	return (i);
 }
 
 void	parameter_expansion(t_cli *cli)
@@ -51,19 +84,19 @@ void	parameter_expansion(t_cli *cli)
 	tmp = cli->token;
 	while (tmp)
 	{
-		i = 0;
-		while (tmp->token[i] && tmp->token[i] != '$')
-			i++;
-		if (tmp->token[i] == 0)
+		i = dollar_position(tmp->token);
+		if (i == -1)
 		{
 			tmp = tmp->next;
 			continue ;
 		}
-		key = ft_substr(tmp->token, i + 1, ft_strlen(tmp->token) - (i - 1));
+		key = ft_substr(tmp->token, i + 1, variable_len(tmp->token) - 1);
 		if (key == NULL)
 			return ;
 		else
 			value = get_parameter_value(cli, key);
+		if (value == NULL)
+			value = ft_strdup(tmp->token);
 		replacement(tmp, value, key, i);
 		tmp = tmp->next;
 	}

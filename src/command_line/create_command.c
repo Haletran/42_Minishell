@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 14:51:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:00:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*return_path(char *str, t_cli **cli)
 	return (full_path);
 }
 
-// LEAKS
+// SIGSEV
 void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 {
 	int	i;
@@ -54,10 +54,7 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	com->command = ft_calloc(arr_size + 1, sizeof(char *));
 	while (i != arr_size)
 	{
-		if (tmp->token != NULL && tmp->token[0] != '\0')
-			com->command[i++] = ft_strdup(tmp->token);
-		else
-			arr_size--;
+		com->command[i++] = ft_strdup(tmp->token);
 		tmp = tmp->next;
 	}
 	com->command[i] = NULL;

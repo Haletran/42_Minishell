@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:35:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:44:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	ft_exit(char *code, t_cli *cli)
 		freeway(cli);
 		exit(1);
 	}
-	printf("exit\n");
+	ft_printf_fd(1, "exit\n");
 	freeway(cli);
 	exit(exit_code % 256);
 }

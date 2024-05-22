@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:30:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:10:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	execute_last_command(t_cli *cli)
 					{
 						cli->mnsh->exit_code = 127;
 						print_error(NOT_FOUND, *cli->com->command);
-						freeway(cli);
 						ft_exitcode(cli, 127);
 					}
 				}
