@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 11:23:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:31:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	handle_n_option(char **str, int *i, int *flag)
 	return (SUCCESS);
 }
 
-int	ft_echo(char **str, t_lst *mnsh)
+int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)
 {
 	int	i;
 	int	flag;
@@ -42,7 +42,7 @@ int	ft_echo(char **str, t_lst *mnsh)
 	{
 		printf("\n");
 		mnsh->exit_code = 0;
-		exit(0);
+		ft_exitcode(cli, 0);
 	}
 	handle_n_option(str, &i, &flag);
 	while (str[i])
@@ -56,5 +56,6 @@ int	ft_echo(char **str, t_lst *mnsh)
 	mnsh->exit_code = 0;
 	if (flag == 0)
 		ft_printf_fd(STDOUT_FILENO, "\n");
-	exit(0);
+	ft_exitcode(cli, 0);
+	return (1);
 }

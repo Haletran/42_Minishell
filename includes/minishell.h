@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 12:10:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:29:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ void			init_fd_history(t_cli **cli);
 int				init_data_parsing(t_cli **cli);
 
 /*BUILTS-INS*/
-int				pwd(t_lst *mnsh);
+int				pwd(t_lst *mnsh, t_cli *cli);
 int				ft_cd(char **str, t_lst *lst);
-int				ft_echo(char **str, t_lst *mnsh);
+int				ft_echo(char **str, t_lst *mnsh, t_cli *cli);
 int				ft_exit(char *code, t_cli *cli);
 int				ft_env(t_cli *cli);
 int				ft_export(t_lst *mnsh, char **str);
@@ -245,7 +245,7 @@ void			delete_file(char *str, t_cli *cli);
 char			*check_parsing(char *str);
 int				parsing_check(t_cli *cli);
 int				check_redirection(t_cli *cli);
-int				ft_exitcode(long int exit_code);
+int				ft_exitcode(t_cli *cli, long int exit_code);
 void			close_fds(void);
 int				get_nb_commands(t_com *com);
 void			print_error(int i, char *str);

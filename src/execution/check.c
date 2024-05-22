@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 11:46:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:33:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,10 @@ void	choose(t_cli *cli)
 int	check_commands(char **str, t_cli *cli)
 {
 	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
-		return (pwd(cli->mnsh));
+		return (pwd(cli->mnsh, cli));
 	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
 		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))
-		return (ft_echo(str, cli->mnsh));
-	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
-		return (ft_cd(str, cli->mnsh));
-	else if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
-		return (ft_export(cli->mnsh, str));
+		return (ft_echo(str, cli->mnsh, cli));
 	else if (!ft_strncmp(str[0], "env", 3) && ft_strlen(str[0]) == 3)
 		return (ft_env(cli));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
