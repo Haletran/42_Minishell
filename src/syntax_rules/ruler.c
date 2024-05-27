@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/16 15:32:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:14:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ void	rulers(t_cli *cli)
 			control_rules(cli, tmp);
 		else if (tmp->type == KEYWORD && cli->rules_flag == 0)
 			process_error(cli, tmp->token);
+		else if (ft_isthis(tmp->token, '*') != 0)
+			syntax_error(cli, tmp->token);
 		tmp = tmp->next;
 	}
 }
 
 void	syntax_error(t_cli *cli, char *token)
 {
-	if (ft_strchr(token, '*') != 0)
+	if (ft_isthis(token, '*') != 0)
 	{
 		ft_printf_fd(2, "minishell: %s: ambiguous redirect\n", token);
 		cli->mnsh->exit_code = 1;

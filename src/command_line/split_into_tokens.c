@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 15:43:42 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:07:17 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,31 +32,30 @@ t_token_type	add_flag(t_cli *cli, t_token_type type)
 
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 {
-	if (ft_isthis("\"", token[0]) > 0 && cli->n_quote != 1)
-		return (add_flag(cli, DQUOTE));
 	if (ft_isthis("'", token[0]) > 0 && cli->n_dquote != 1)
 		return (add_flag(cli, QUOTE));
+	if (cli->n_quote & 1)
+		return (IMMUTABLE);
+	if (ft_isthis("\"", token[0]) > 0 && cli->n_quote != 1)
+		return (add_flag(cli, DQUOTE));
+	if (cli->n_dquote & 1)
+		return (FREEZE);
 	if (token[0] == '<' && token[1] == '<')
 		return (add_flag(cli, HEREDOC));
 	if (cli->heredoc == 1 && ft_isthis(" \t\n", token[0]) == 0)
 		return (add_flag(cli, DELIMITER));
-	if (cli->n_dquote & 1)
-		return (FREEZE);
-	if (cli->n_quote & 1)
-		return (IMMUTABLE);
 	return (REDIRECTION_OPERATOR);
 }
 
 t_token_type	token_type_discovery(char *token, t_cli *cli)
 {
+	if (ft_isthis("\"'<", token[0]) > 0 || cli->n_quote & 1
+			|| cli->n_dquote & 1)
+	{
+		return (quote_n_heredoc_census(token, cli));
+	}
 	if (cli->heredoc == 1 && ft_isthis(" \t\n", token[0]) == 0)
 		return (quote_n_heredoc_census(token, cli));
-	if (ft_isthis("\"'<", token[0]) > 0)
-		return (quote_n_heredoc_census(token, cli));
-	if (cli->n_dquote & 1)
-		return (FREEZE);
-	if (cli->n_quote & 1)
-		return (IMMUTABLE);
 	if (ft_lencmparray(token, cli->redirect) > 0)
 		return (REDIRECTION_OPERATOR);
 	if (ft_lencmparray(token, cli->control) > 0)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 16:02:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:17:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	choose(t_cli *cli)
  */
 int	check_commands(char **str, t_cli *cli)
 {
-	if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
+	if (!ft_strncmp(str[0], "export", 6) && ft_strlen(str[0]) == 6)
+		return (ft_export(cli->mnsh, str));
+	else if (!ft_strncmp(str[0], "pwd", 3) && ft_strlen(str[0]) == 3)
 		return (pwd(cli->mnsh, cli));
 	else if ((!ft_strncmp(str[0], "echo", 4) && ft_strlen(str[0]) == 4)
 		|| (!ft_strncmp(str[0], "e\"ch\"o", 5) && ft_strlen(str[0]) == 6))

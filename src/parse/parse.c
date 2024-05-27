@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:48:29 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:12:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -23,7 +23,7 @@ void	reindex_token_list(t_cli *cli)
 	{
 		if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
 		{
-			// tmp->type = token_type_rediscovery(tmp, cli);
+			tmp->type = token_type_rediscovery(tmp, cli);
 			tmp->index = i;
 		}
 		tmp = tmp->next;
@@ -45,5 +45,6 @@ void	parsing_organiser(t_cli *cli)
 	remove_quotes(cli);
 	cleaning_token_list(cli);
 	create_command(cli);
+	debug(cli, "DEBUG");
 	return ;
 }
