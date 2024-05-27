@@ -38,11 +38,56 @@ jobs:
         printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
         norminette | grep -v "Notice: GLOBAL_VAR_DETECTED"
 
-  tester:
+  builtins:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Launch tester
+    - name: Launch builtins tester
+      run: make builtins
+
+  pipes:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch pipes tester
+      run: make pipes
+  
+  syntax:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch syntax tester
+      run: make syntax
+
+  var:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch var tester
+      run: make var
+
+  extras:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch extras tester
+      run: make extras
+
+  All tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch syntax tester
       run: make tester

@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/21 12:08:16 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/27 13:19:59 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -113,7 +113,22 @@ norm:
 	@norminette $(SRCS) includes libft src | grep -v "Notice: GLOBAL_VAR_DETECTED"
 	
 tester: all
+	@-cd tester/minishell_tester/src/ && ./tester mandatory
+
+builtins: all
 	@-cd tester/minishell_tester/src/ && ./tester builtins
+
+syntax: all
+	@-cd tester/minishell_tester/src/ && ./tester syntax
+
+extras: all
+	@-cd tester/minishell_tester/src/ && ./tester extras
+
+var: all
+	@-cd tester/minishell_tester/src/ && ./tester var
+
+pipes: all
+	@-cd tester/minishell_tester/src/ && ./tester pipes
 
 clean:
 	rm -rf $(OBJS_DIR)

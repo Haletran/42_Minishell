@@ -19,8 +19,10 @@ if [[ $1 ]]; then
 		$1
 	)
 fi
+
 if [[ $1 == "mandatory" || !$1 ]]; then
 	test_lists=(
+		"redirects"
 		"pipes"
 		"builtins"
 		"extras"
@@ -28,6 +30,43 @@ if [[ $1 == "mandatory" || !$1 ]]; then
 		"syntax"
 	)
 fi
+
+if [[ $1 == "redirects" ]]; then
+	test_lists=(
+		"redirects"
+	)
+fi
+
+if [[ $1 == "pipes" ]]; then
+	test_lists=(
+		"pipes"
+	)
+fi
+
+if [[ $1 == "builtins" ]]; then
+	test_lists=(
+		"builtins"
+	)
+fi
+
+if [[ $1 == "var" ]]; then
+	test_lists=(
+		"var"
+	)
+fi
+
+if [[ $1 == "syntax" ]]; then
+    test_lists=(
+        "syntax"
+    )
+fi
+
+if [[ $1 == "extras" ]]; then
+	test_lists=(
+		"extras"
+	)
+fi
+
 
 if [[ $1 == "bonus" ]]; then
 	test_lists=(
