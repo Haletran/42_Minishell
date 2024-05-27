@@ -83,7 +83,7 @@ jobs:
     - name: Launch extras tester
       run: make extras
 
-  All tests:
+  all:
     runs-on: ubuntu-latest
 
     steps:
