@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 12:13:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:29:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 	//	return (quote_n_heredoc_census(tok->token, cli));
 	// if (ft_isthis("\"'<", tok->token[0]) > 0)
 	//	return (quote_n_heredoc_census(tok->token, cli));
-/* 	if (cli->n_dquote & 1)
+/* 	if (cli->flag_dquote & 1)
 		return (FREEZE);
-	if (cli->n_quote & 1)
+	if (cli->flag_quote & 1)
 		return (IMMUTABLE); */
 	if (ft_lencmparray(tok->token, cli->redirect) > 0)
 		return (REDIRECTION_OPERATOR);

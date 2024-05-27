@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 11:10:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:30:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ typedef struct s_cli
 	char				**keyword;
 	char				**builtin;
 	char				**path;
-	int					n_quote;
+	int					flag_quote;
 	int					n_dquote;
+	int					n_quote;
+	int					flag_dquote;
 	char				**bracket;
 	char				**commands;
 	t_lst				*mnsh;

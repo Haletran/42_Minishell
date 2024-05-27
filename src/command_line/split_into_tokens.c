@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   split_into_tokens.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 11:07:17 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:30:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -17,11 +17,13 @@ t_token_type	add_flag(t_cli *cli, t_token_type type)
 {
 	if (type == QUOTE)
 	{
-		cli->n_quote = gate_or(cli->n_quote);
+		cli->flag_quote = gate_or(cli->flag_quote);
+		cli->n_quote++;
 	}
 	else if (type == DQUOTE)
 	{
-		cli->n_dquote = gate_or(cli->n_dquote);
+		cli->flag_dquote = gate_or(cli->flag_dquote);
+		cli->n_dquote++;
 	}
 	else if (type == HEREDOC)
 		cli->heredoc = 1;
@@ -32,13 +34,13 @@ t_token_type	add_flag(t_cli *cli, t_token_type type)
 
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 {
-	if (ft_isthis("'", token[0]) > 0 && cli->n_dquote != 1)
+	if (ft_isthis("'", token[0]) > 0 && cli->flag_dquote != 1)
 		return (add_flag(cli, QUOTE));
-	if (cli->n_quote & 1)
+	if (cli->flag_quote & 1)
 		return (IMMUTABLE);
-	if (ft_isthis("\"", token[0]) > 0 && cli->n_quote != 1)
+	if (ft_isthis("\"", token[0]) > 0 && cli->flag_quote != 1)
 		return (add_flag(cli, DQUOTE));
-	if (cli->n_dquote & 1)
+	if (cli->flag_dquote & 1)
 		return (FREEZE);
 	if (token[0] == '<' && token[1] == '<')
 		return (add_flag(cli, HEREDOC));
@@ -49,8 +51,8 @@ t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 
 t_token_type	token_type_discovery(char *token, t_cli *cli)
 {
-	if (ft_isthis("\"'<", token[0]) > 0 || cli->n_quote & 1
-			|| cli->n_dquote & 1)
+	if (ft_isthis("\"'<", token[0]) > 0 || cli->flag_quote & 1
+			|| cli->flag_dquote & 1)
 	{
 		return (quote_n_heredoc_census(token, cli));
 	}

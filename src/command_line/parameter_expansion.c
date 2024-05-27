@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 11:47:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:32:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	parameter_expansion(t_cli *cli)
 	int		i;
 
 	tmp = cli->token;
-	while (tmp && tmp->type != IMMUTABLE)
+	while (tmp && (tmp->type != IMMUTABLE || (cli->n_quote / 2) / 2 >= 1))
 	{
 		i = dollar_position(tmp->token);
 		if (i == -1)

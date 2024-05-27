@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/21 10:06:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:29:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_all_in_cli(t_cli *cli)
 {
 	ft_printf(HRED "n_token\t:" BYEL " %i\t" HRED "| Input\t: " BYEL "%s\n",
 		cli->n_token, cli->input);
-	ft_printf(HRED "n_quote\t: " BYEL "%i\t" HRED "| n_dquote\t: " BYEL "%i\n",
-		cli->n_quote, cli->n_dquote);
+	ft_printf(HRED "flag_quote\t: " BYEL "%i\t" HRED "| flag_dquote\t: " BYEL "%i\n",
+		cli->flag_quote, cli->flag_dquote);
 	ft_printf(HRED "heredoc\t: " BYEL "%i\t" HRED "| Exit_code\t: " BHRED "%i\n",
 		cli->heredoc, cli->mnsh->exit_code);
 	ft_printf(HRED "Token list\t:\n" CRESET);
