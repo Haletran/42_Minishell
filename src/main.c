@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:18:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:45:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	main(int ac, char **av, char **envp)
 	cli = NULL;
 	init_organizer(&cli, envp);
 	while (1)
-	{
 		render_prompt(cli);
-	}
 	return (cli->mnsh->exit_code);
 }

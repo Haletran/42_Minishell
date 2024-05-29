@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 12:31:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:13:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ void	child_process(t_cli *cli, t_com *com)
 							line_count,
 							com->command[1]);
 			input = free_char(input);
-			exit(0);
+			ft_exitcode(cli, 0);
 		}
 		if (g_var == 1)
-			exit(130);
+			ft_exitcode(cli, 130);
 		if (cli->mnsh->nb_heredoc - 1 == 0 && ft_strncmp(input, com->command[1],
 				ft_strlen(com->command[1])))
 		{
@@ -87,14 +87,12 @@ void	child_process(t_cli *cli, t_com *com)
 			if (cli->mnsh->nb_heredoc - 1 == 0)
 				close(cli->mnsh->heredoc_fd);
 			input = free_char(input);
-			exit(0);
+			ft_exitcode(cli, 0);
 		}
 		input = free_char(input);
 		line_count++;
 	}
 	input = free_char(input);
-	freeway(cli);
-	exit(SUCCESS);
 }
 
 int	create_heredoc_file(t_cli **cli)

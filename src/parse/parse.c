@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 12:46:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:24:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,5 @@ void	parsing_organiser(t_cli *cli)
 	remove_quotes(cli);
 	cleaning_token_list(cli);
 	create_command(cli);
-	debug(cli, "DEBUG");
 	return ;
 }

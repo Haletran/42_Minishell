@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/27 14:30:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:52:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,9 @@ int	parsing_check(t_cli *cli)
 				cli->com->env_path = free_char(cli->com->env_path);
 				cli->com->env_path = ft_strdup(cli->com->command[0]);
 				free_tab(cli->com->command);
-				cli->com->command = ft_calloc(1, ft_strlen(cli->com->env_path));
+				cli->com->command = ft_calloc(2, ft_strlen(cli->com->env_path));
 				cli->com->command[0] = ft_strdup(check_parsing(cli->com->env_path));
+				cli->com->command[1] = NULL;
 				return (SUCCESS);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:54:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:45:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	close_fds(void)
 {
 	int	i;
 
-	i = 3;
-	while (i < 1024)
+	i = 4;
+	while (i <= 1023)
 	{
 		close(i);
 		i++;
