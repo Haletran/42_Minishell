@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/27 13:30:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:27:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ typedef struct s_lst
 	char				*current_path;
 	char				*env_path;
 	char				*path_command;
-	int					infile;
-	int					outfile;
+	char				*infile;
+	char				*outfile;
+	int					infile_fd;
+	int					outfile_fd;
 	int					backup[2];
 	int					*pid;
 	int					fd[2];
@@ -44,6 +46,7 @@ typedef struct s_lst
 	int					check_if_freed;
 	int					exit_code;
 	int					nb_heredoc;
+	int					nb_infile;
 	int					heredoc_fd;
 	int					heredoc_backup_fd;
 	int					heredoc_pipe;

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 16:00:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:19:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	get_nb_args(t_token *head)
 	tmp = head;
 	nb_args = 0;
 	heredoc_flag = 0;
-	while (tmp != NULL && tmp->type != REDIRECTION_OPERATOR
+	while (tmp != NULL /* && tmp->type != REDIRECTION_OPERATOR */
 		&& tmp->type != CONTROLE_OPERATOR && heredoc_flag != 1)
 	{
 		if (tmp->type == DELIMITER)

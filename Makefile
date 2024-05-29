@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/27 13:19:59 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/27 14:31:11 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,7 @@ SRCS	= src/main.c \
 		  src/utils/ft_is.c \
 		  src/utils/parse_utils.c \
 		  src/debug.c \
+		  src/execution/redirection.c \
 		  src/execution/exec_utils.c \
 		  src/command_line/split_into_tokens.c \
 		  src/command_line/cleaning_dlst_token.c \

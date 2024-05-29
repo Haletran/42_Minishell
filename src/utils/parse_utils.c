@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 13:29:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:47:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 		return (FREEZE);
 	if (cli->flag_quote & 1)
 		return (IMMUTABLE); */
+	if (tok->type == HEREDOC)
+		return (HEREDOC);
 	if (ft_lencmparray(tok->token, cli->redirect) > 0)
 		return (REDIRECTION_OPERATOR);
 	if (ft_lencmparray(tok->token, cli->control) > 0)

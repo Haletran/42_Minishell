@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/27 12:47:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:44:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,14 @@ int	exec_pipe(t_cli *cli)
 	heredoc = 0;
 	cli->mnsh->pipe_count = get_nb_pipes(cli->com);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
+	cli->mnsh->nb_infile = check_number_of_infile(cli, cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);
 	cli->mnsh->backup[1] = dup(STDOUT_FILENO);
+	//cli->mnsh->infile = ft_calloc(1, cli->mnsh->nb_infile * sizeof(char *));
 	if (cli->mnsh->nb_heredoc > 0)
 		handle_heredoc(cli, &heredoc);
+/* 	if (cli->mnsh->nb_infile > 0)
+		handle_infile(cli); */
 	loop_commands(cli, &count);
 	while (waitpid(-1, NULL, 0) > 0)
 		;

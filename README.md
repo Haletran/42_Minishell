@@ -6,14 +6,9 @@ As beautiful as a shell..
 
 ## TO_FIX
 - Need to do the redirections of output and input
-- Exit code of commands
-- Right exit error message (instead of perror)
-- Env built-in parsing
 - GUILLEMETS 
-- Expansion de var
-- Fix export et unset
 - REDIRECTIONS infile outfile type not accurate
-- FIX exit-codes in builtins not fork
+- HEREDOC not working anymore
 
 ## TO_DO
 
