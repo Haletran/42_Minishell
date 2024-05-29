@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:04:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:17:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reindex_token_list(t_cli *cli)
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
+		if (tmp->next != NULL && tmp->type != FREEZE && tmp->type != IMMUTABLE)
 		{
 			tmp->type = token_type_rediscovery(tmp, cli);
 			tmp->index = i;
