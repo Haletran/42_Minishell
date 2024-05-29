@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:02:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:29:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	execute_last_command(t_cli *cli)
 		pid = fork();
 		if (pid == -1)
 		{
-		    print_error(FORK_FAILED, NULL);
+			print_error(FORK_FAILED, NULL);
 			exit(1);
 		}
 		else if (pid == 0)

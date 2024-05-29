@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/29 13:20:14 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/29 14:38:28 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,6 @@ SRCS	= src/main.c \
 		  src/command_line/varloc_creation.c \
 		  src/command_line/create_command.c \
 		  src/syntax_rules/ruler.c \
-		  src/syntax_rules/keyword_rules.c \
 		  src/syntax_rules/control_rules.c \
 		  src/syntax_rules/redirect_rules.c \
 		  src/dlst_parse/dlst_token_get.c \

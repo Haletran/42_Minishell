@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 13:45:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:28:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	close_fds(void)
 	}
 }
 
-void print_error(int i, char *str)
+void	print_error(int i, char *str)
 {
 	if (i == NOT_FOUND)
 		ft_printf_fd(2, CRESET "minishell: %s: command not found\n", str);

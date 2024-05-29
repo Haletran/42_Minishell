@@ -6,13 +6,12 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/29 14:21:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:30:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-//? https://se.ifmo.ru/~ad/Documentation/Bash_Shell/bash3-CHP-7-SECT-3.html
 t_token_type	add_flag(t_cli *cli, t_token_type type)
 {
 	if (type == QUOTE)

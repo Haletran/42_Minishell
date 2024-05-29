@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 13:24:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:01:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	exit_input(t_cli *cli)
 {
+	int code;
+
+	if (cli->mnsh->ctrl_c == 1)
+		code = 130;
+	else
+		code = cli->mnsh->exit_code;
 	freeway(cli);
 	ft_printf_fd(1, "exit\n");
-	exit(0);
+	exit (code);
 }
 
 void	input_reader(t_cli *cli)
@@ -24,6 +30,12 @@ void	input_reader(t_cli *cli)
 	char	*input_trim;
 
 	cli->input = readline(BRED "[~] " CRESET "MINISHELL $ > ");
+	if (g_var == 2)
+	{
+		cli->mnsh->exit_code = 130;
+		cli->mnsh->ctrl_c = 1;
+		g_var = 0;
+	}
 	if (!cli->input)
 		exit_input(cli);
 	if (ft_strlen(cli->input) != 0)

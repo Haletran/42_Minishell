@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 11:56:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:35:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	sig_ctrl_c(int signum)
 	rl_on_new_line();
 	rl_replace_line("", 1);
 	rl_redisplay();
+	g_var = 2;
 }
 
 void	sig_command_is_running(int signum)
