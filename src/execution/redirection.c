@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 14:21:24 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 12:39:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:54:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int handle_infile(t_cli *cli)
     {
         if (!cli->mnsh->infile[i + 1])
         {
-            cli->mnsh->infile_fd = open(&cli->mnsh->infile[i], O_RDONLY);
+            cli->mnsh->infile_fd = open(&cli->mnsh->infile[i], O_RDONLY, 0644);
             if (cli->mnsh->infile_fd == -1)
             {
                 ft_printf_fd(2, "minishell: %s: %s\n", cli->mnsh->infile[i], strerror(errno));
@@ -35,7 +35,7 @@ int handle_infile(t_cli *cli)
         }
         if (cli->mnsh->infile[i])
         {
-            fd = open(&cli->mnsh->infile[i], O_RDONLY);
+            fd = open(&cli->mnsh->infile[i], O_RDONLY, 0644);
             if (fd == -1)
             {
                 ft_printf_fd(2, "minishell: %s: %s\n", cli->mnsh->infile[i], strerror(errno));
