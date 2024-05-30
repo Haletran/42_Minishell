@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:45:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:33:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <sys/stat.h>  // stat, lstat, fstat
 # include <sys/types.h> // wait, waitpid, wait3, wait4, signal, sigemptyset,
 # include <sys/wait.h>
+# include <term.h>
 # include <termios.h> // tcsetattr, tcgetattr
 # include <unistd.h>  // write, access, close, fork, execve, dup, dup2, pipe
 
@@ -267,5 +268,6 @@ void			add_var(t_lst *mnsh, char **str, int i);
 void			add_var2(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_cli *cli);
+int				handle_outfile(t_cli *cli);
 
 #endif

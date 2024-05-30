@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:51:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:18:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	main_loop(t_cli *cli, int count)
 			piping(cli, count);
 		}
 		cli->mnsh->heredoc_pipe = 0;
+		cli->mnsh->outfile_check = 0;
 	}
 }
 
@@ -43,7 +44,6 @@ int	get_nb_pipes(t_com *com)
 	return (count);
 }
 
-// LEAKS (fds)
 static void	handle_heredoc(t_cli *cli, int *heredoc)
 {
 	if (ft_heredoc(cli) == ERROR)
@@ -71,6 +71,16 @@ static void	loop_commands(t_cli *cli, int *count)
 			close(cli->mnsh->backup[1]);
 			break ;
 		}
+		if (cli->com->redirection)
+		{
+			if (handle_outfile(cli) == ERROR)
+			{
+				close(cli->mnsh->backup[0]);
+				close(cli->mnsh->backup[1]);
+				break;
+			}
+			cli->mnsh->outfile_check = 1;
+		}
 		main_loop(cli, *count);
 		if (cli->com->next)
 			cli->com = cli->com->next;
@@ -90,14 +100,10 @@ int	exec_pipe(t_cli *cli)
 	heredoc = 0;
 	cli->mnsh->pipe_count = get_nb_pipes(cli->com);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
-	cli->mnsh->nb_infile = check_number_of_infile(cli, cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);
 	cli->mnsh->backup[1] = dup(STDOUT_FILENO);
-	//cli->mnsh->infile = ft_calloc(1, cli->mnsh->nb_infile * sizeof(char *));
 	if (cli->mnsh->nb_heredoc > 0)
 		handle_heredoc(cli, &heredoc);
-/* 	if (cli->mnsh->nb_infile > 0)
-		handle_infile(cli); */
 	loop_commands(cli, &count);
 	while (waitpid(-1, NULL, 0) > 0)
 		;

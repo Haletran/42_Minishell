@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:29:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:09:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	piping(t_cli *cli, int count)
 					cli->mnsh->env_var) == -1)
 			{
 				cli->mnsh->exit_code = 127;
-				print_error(NOT_FOUND, *cli->com->command);
+				print_error(NOT_FOUND, cli->com->command[0]);
 				ft_exitcode(cli, 127);
 			}
 		}
@@ -85,6 +85,11 @@ void	execute_last_command(t_cli *cli)
 				{
 					dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
 					close(cli->mnsh->heredoc_backup_fd);
+				}
+				else if (cli->mnsh->outfile_check == 1)
+				{
+					dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
+					close(cli->mnsh->outfile_fd);
 				}
 			}
 			if (check_commands(cli->com->command, cli) == NOT_FOUND)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:55:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:12:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reindex_token_list(t_cli *cli)
 	i = 0;
 	while (tmp)
 	{
-		if (tmp->next != NULL && tmp->type != FREEZE && tmp->type != IMMUTABLE)
+		if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
 		{
 			tmp->type = token_type_rediscovery(tmp, cli);
 			tmp->index = i;
@@ -36,6 +36,7 @@ void	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);
+	debug(cli, "parse");
 	rulers(cli);
 	tilde_expansion(cli);
 	if (!varloc_creation(cli))
@@ -45,5 +46,6 @@ void	parsing_organiser(t_cli *cli)
 	remove_quotes(cli);
 	cleaning_token_list(cli);
 	create_command(cli);
+	debug(cli, "parse");
 	return ;
 }

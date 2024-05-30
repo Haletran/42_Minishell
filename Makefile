@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/29 14:38:28 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/30 17:29:17 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ DEBUG_FLAGS := -fsanitize=address
 ifdef DEBUG
     ifeq ($(DEBUG), 1)
         CFLAGS += -D DEBUG=$(DEBUG)
+		DEBUG_RE = re
     else ifeq ($(DEBUG), 2)
         CFLAGS += $(DEBUG_FLAGS)
     endif
@@ -117,6 +118,9 @@ tester: all
 
 builtins: all
 	@-cd tester/minishell_tester/src/ && ./tester builtins
+
+redirects: all
+	@-cd tester/minishell_tester/src/ && ./tester redirects
 
 syntax: all
 	@-cd tester/minishell_tester/src/ && ./tester syntax

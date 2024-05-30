@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 13:29:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:04:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	print_all_com(t_com *com)
 		ft_printf(WHT "| Path:" BHGRN " \"%s\"\n\n" CRESET, head->env_path);
 		head = head->next;
 	}
+	//if (com->redirection)
+	//	printf(WHT "| Redirection :" BHGRN " \"%s\"" CRESET, com->redirection);
 	ft_printf(BHRED "\nEND PRINT ALL COMMANDS\n\n" CRESET);
 }
 

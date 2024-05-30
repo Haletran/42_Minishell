@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:45:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:36:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_lst
 	int					exit_code;
 	int					nb_heredoc;
 	int					nb_infile;
+	int					outfile_check;
 	int					heredoc_fd;
 	int					heredoc_backup_fd;
 	int					heredoc_pipe;
@@ -60,7 +61,7 @@ typedef struct s_com
 {
 	char				**command;
 	char				*env_path;
-	char				*redirection;
+	char				**redirection;
 	int					type;
 	int					index;
 	int					pipe;

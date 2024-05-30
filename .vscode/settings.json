@@ -36,7 +36,8 @@
       "streambuf": "c",
       "system_error": "c",
       "tuple": "c",
-      "typeinfo": "c"
+      "typeinfo": "c",
+      "term.h": "c"
     },
 	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
 	"workbench.colorCustomizations": {
