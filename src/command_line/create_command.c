@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/03 13:05:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:07:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,47 +63,6 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	else
 		com->env_path = return_path(com->command[0], &cli);
 }
-
-void create_redirection_out(t_cli *cli)
-{
-    t_token *tmp;
-    int i;
-    t_com *current_com;
-
-    tmp = cli->token;
-    i = 0;
-    while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
-    {
-        if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
-        {
-            if (!ft_strncmp(tmp->prev->token, ">", 1))
-                i++;
-        }
-        tmp = tmp->next;
-    }
-    current_com = cli->com;
-    while (current_com != NULL)
-    {
-		tmp = cli->token;
-        if (i > 0)
-        {
-            current_com->redirection_out = malloc(sizeof(char *) * (i + 1));
-            i = 0;
-            while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
-            {
-                if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
-                {
-                    current_com->redirection_out[i] = ft_strdup(tmp->token);
-                    i++;
-                }
-                tmp = tmp->next;
-            }
-            current_com->redirection_out[i] = NULL;
-        }
-        current_com = current_com->next;
-    }
-}
-
 
 void	create_command(t_cli *cli)
 {

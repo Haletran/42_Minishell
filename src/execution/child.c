@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 15:00:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:47:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,16 @@ void	piping(t_cli *cli, int count)
 		}
 		if (count != cli->mnsh->pipe_count - 1)
 		{
-			dup2(cli->mnsh->fd[1], STDOUT_FILENO);
-			close(cli->mnsh->fd[1]);
-		}
-		if (cli->mnsh->outfile_check == 1)
-		{
-			dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
-			close(cli->mnsh->outfile_fd);
+			if (cli->mnsh->outfile_check == 1)
+			{
+				dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
+				close(cli->mnsh->outfile_fd);
+			}
+			else
+			{ 
+				dup2(cli->mnsh->fd[1], STDOUT_FILENO);
+				close(cli->mnsh->fd[1]);
+			}
 		}
 		close(cli->mnsh->fd[0]);
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
@@ -116,7 +119,7 @@ void	execute_last_command(t_cli *cli)
 					dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
 					close(cli->mnsh->heredoc_backup_fd);
 				}
-				else if (cli->mnsh->outfile_check == 1)
+				if (cli->mnsh->outfile_check == 1)
 				{
 					dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
 					close(cli->mnsh->outfile_fd);

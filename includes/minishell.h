@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 14:23:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:08:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ extern int		g_var;
 # define IS_DIRECTORY -30
 
 # ifndef DEBUG
-#  define DEBUG 0
+#  define DEBUG 1
 # endif
 
 //* ************************************************************************ *//
@@ -152,6 +152,8 @@ char			*search_path(char *str, t_lst *lst);
 void			find_path_s(t_env *env, t_cli *cli);
 int				find_path(t_env *env, t_lst *mnsh);
 void			print_dlst(t_env *head);
+t_com			*get_last_command(t_com *com);
+t_token			*get_redirection(t_token *head, int start);
 
 /*PARSING*/
 void			parsing_organiser(t_cli *cli);
@@ -224,6 +226,7 @@ int				is_error_path(char *str, char **path, t_lst *mnsh,
 t_token_type	token_type_rediscovery(t_token *token, t_cli *cli);
 void			split_variable(t_cli *cli);
 void			replace_last_space(t_token *tok);
+void			create_redirection_out(t_cli *cli);
 
 /*RULES*/
 void			rulers(t_cli *cli);
@@ -253,6 +256,7 @@ void			close_fds(void);
 int				get_nb_commands(t_com *com);
 void			print_error(int i, char *str);
 int				gate_or(int i);
+void			print_tab_redirection(t_com *com);
 
 /*EXECUTION*/
 void			execute_last_command(t_cli *cli);
@@ -271,6 +275,6 @@ void			add_var2(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_cli *cli);
 int				handle_outfile(t_cli *cli);
-int				check_error(t_cli **cli);
+int	check_error(t_cli **cli);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/03 12:15:07 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/03 17:49:04 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ DEBUG_FLAGS := -fsanitize=address
 ifdef DEBUG
     ifeq ($(DEBUG), 1)
         CFLAGS += -D DEBUG=$(DEBUG)
-		DEBUG_RE = re
     else ifeq ($(DEBUG), 2)
         CFLAGS += $(DEBUG_FLAGS)
     endif
@@ -69,6 +68,7 @@ SRCS	= src/main.c \
 		  src/execution/redirection.c \
 		  src/execution/exec_utils.c \
 		  src/command_line/split_into_tokens.c \
+		  src/command_line/create_redirection.c \
 		  src/command_line/cleaning_dlst_token.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \
@@ -83,6 +83,7 @@ SRCS	= src/main.c \
 		  src/dlst_parse/dlst_variable_get.c \
 		  src/dlst_parse/dlst_variable_set.c \
 		  src/dlst_parse/dlst_command_set.c \
+		  src/dlst_parse/dlst_command_get.c \
 		  src/dlst_parse/dlst_env_set.c \
 		  src/dlst_parse/dlst_env_get.c \
 		  src/execution/exec.c
