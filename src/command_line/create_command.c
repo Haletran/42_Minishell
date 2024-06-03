@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/03 12:17:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:05:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	int	i;
 	int	arr_size;
 
-	com->redirection = NULL;
+	com->redirection_out = NULL;
 	com->type = tmp->type;
 	com->pipe = 0;
 	i = 0;
@@ -87,18 +87,18 @@ void create_redirection_out(t_cli *cli)
 		tmp = cli->token;
         if (i > 0)
         {
-            current_com->redirection = malloc(sizeof(char *) * (i + 1));
+            current_com->redirection_out = malloc(sizeof(char *) * (i + 1));
             i = 0;
             while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
             {
                 if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
                 {
-                    current_com->redirection[i] = ft_strdup(tmp->token);
+                    current_com->redirection_out[i] = ft_strdup(tmp->token);
                     i++;
                 }
                 tmp = tmp->next;
             }
-            current_com->redirection[i] = NULL;
+            current_com->redirection_out[i] = NULL;
         }
         current_com = current_com->next;
     }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 12:27:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:04:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ typedef struct s_com
 {
 	char				**command;
 	char				*env_path;
-	char				**redirection;
+	char				**redirection_out;
+	char				**redirection_in;
 	int					type;
 	int					index;
 	int					pipe;

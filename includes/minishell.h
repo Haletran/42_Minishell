@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 12:14:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:07:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ int				is_error_path(char *str, char **path, t_lst *mnsh,
 					char *full_path);
 t_token_type	token_type_rediscovery(t_token *token, t_cli *cli);
 void			split_variable(t_cli *cli);
+void			replace_last_space(t_token *tok);
 
 /*RULES*/
 void			rulers(t_cli *cli);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 12:23:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:04:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	loop_commands(t_cli *cli, int *count)
 			close(cli->mnsh->backup[1]);
 			break ;
 		}
-		if (cli->com->redirection)
+		if (cli->com->redirection_out)
 		{
 			if (handle_outfile(cli) == ERROR)
 			{

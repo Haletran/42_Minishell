@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection.c                                      :+:      :+:    :+:   */
+/*   redirection_out.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 14:21:24 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 10:01:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:04:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int handle_outfile(t_cli *cli)
 	int i = 0;
 	com = cli->com;
 
-	if (!com->redirection)
+	if (!com->redirection_out)
 		return (ERROR);
-	while (com->redirection[i])
+	while (com->redirection_out[i])
 	{
-		if (!com->redirection[i + 1])
+		if (!com->redirection_out[i + 1])
 		{
-			if (access(com->redirection[i], F_OK) != -1)
-				cli->mnsh->outfile_fd = open(com->redirection[i], O_RDWR | O_TRUNC, 0640);
+			if (access(com->redirection_out[i], F_OK) != -1)
+				cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC, 0640);
 			else 
-				cli->mnsh->outfile_fd = open(com->redirection[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
+				cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
 		}
 		i++;
 	}
@@ -41,12 +41,12 @@ int handle_outfile(t_cli *cli)
     {
         if (errno == ENOENT)
         {
-		    ft_printf_fd(2, "minishell: No such file or directory: %s\n", com->redirection[i - 1]);
+		    ft_printf_fd(2, "minishell: No such file or directory: %s\n", com->redirection_out[i - 1]);
         	cli->mnsh->exit_code = 0;
 		}
 		else
 		{
-            ft_printf_fd(2, "minishell: Permission denied: %s\n", com->redirection[i - 1]);
+            ft_printf_fd(2, "minishell: Permission denied: %s\n", com->redirection_out[i - 1]);
         	cli->mnsh->exit_code = 1;
 		}
 		return (ERROR);
