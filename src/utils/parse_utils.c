@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/29 16:44:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:19:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ int	is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 // GUILLEMETS NOT WORKING ANYMORE
 t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 {
-	if (cli->heredoc == 1 && ft_isthis(" \t\n", tok->token[0]) == 0)
-		return (quote_n_heredoc_census(tok->token, cli));
-	if (ft_isthis("\"'<", tok->token[0]) > 0)
-		return (quote_n_heredoc_census(tok->token, cli));
-/* 	if (cli->flag_dquote & 1)
-		return (FREEZE);
-	if (cli->flag_quote & 1)
-		return (IMMUTABLE); */
-	//if (tok->type == HEREDOC)
+	//if (cli->heredoc == 1 && ft_isthis(" \t\n", tok->token[0]) == 0)
+	//	return (quote_n_heredoc_census(tok->token, cli));
+	//if (ft_isthis("\"'<", tok->token[0]) > 0)
+	//	return (quote_n_heredoc_census(tok->token, cli));
+	/* 	if (cli->flag_dquote & 1)
+			return (FREEZE);
+		if (cli->flag_quote & 1)
+			return (IMMUTABLE); */
+	// if (tok->type == HEREDOC)
 	//	return (HEREDOC);
 	if (ft_lencmparray(tok->token, cli->redirect) > 0)
 		return (REDIRECTION_OPERATOR);
@@ -110,8 +110,7 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 		return (CONTROLE_OPERATOR);
 	if (ft_lencmparray(tok->token, cli->bracket) > 0)
 		return (BRACKET);
-	if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR
-		|| tok->prev->type == DELIMITER)
+	if (command_census(tok, cli) == COMMAND)
 		return (COMMAND);
 	return (ARGUMENT);
 }

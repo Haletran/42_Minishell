@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/30 17:09:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:49:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	piping(t_cli *cli, int count)
 		{
 			dup2(cli->mnsh->fd[1], STDOUT_FILENO);
 			close(cli->mnsh->fd[1]);
+		}
+		if (cli->mnsh->outfile_check == 1)
+		{
+			dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
+			close(cli->mnsh->outfile_fd);
 		}
 		close(cli->mnsh->fd[0]);
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)

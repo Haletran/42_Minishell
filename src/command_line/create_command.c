@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/30 17:41:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:17:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,38 +64,44 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 		com->env_path = return_path(com->command[0], &cli);
 }
 
-void create_redirection(t_cli *cli)
+void create_redirection_out(t_cli *cli)
 {
     t_token *tmp;
     int i;
+    t_com *current_com;
 
     tmp = cli->token;
     i = 0;
-    while (tmp != NULL)
+    while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
     {
         if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
-		{
-			if (!ft_strncmp(tmp->prev->token, ">", 1))
-		    	i++;
-		}
-		tmp = tmp->next;
+        {
+            if (!ft_strncmp(tmp->prev->token, ">", 1))
+                i++;
+        }
+        tmp = tmp->next;
     }
-    tmp = cli->token;
-	if (i > 0)
+    current_com = cli->com;
+    while (current_com != NULL)
     {
-		cli->com->redirection = malloc(sizeof(char *) * (i + 1));
-		i = 0;
-    	while (tmp != NULL)
-    	{
-    	    if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
-    	    {
-    	        cli->com->redirection[i] = ft_strdup(tmp->token);
-    	        i++;
-    	    }
-    	    tmp = tmp->next;
-    	}
-    	cli->com->redirection[i] = NULL;
-	}
+		tmp = cli->token;
+        if (i > 0)
+        {
+            current_com->redirection = malloc(sizeof(char *) * (i + 1));
+            i = 0;
+            while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
+            {
+                if (tmp->type == ARGUMENT && tmp->prev->type == REDIRECTION_OPERATOR)
+                {
+                    current_com->redirection[i] = ft_strdup(tmp->token);
+                    i++;
+                }
+                tmp = tmp->next;
+            }
+            current_com->redirection[i] = NULL;
+        }
+        current_com = current_com->next;
+    }
 }
 
 
@@ -117,12 +123,12 @@ void	create_command(t_cli *cli)
 			while (com->next != NULL)
 				com = com->next;
 			fill_command(cli, tmp, com);
+			create_redirection_out(cli);
 		}
 		tmp = tmp->next;
 	}
 	free_tab(cli->path);
 	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
-	create_redirection(cli);
 }
 
 int	get_nb_args(t_token *head)

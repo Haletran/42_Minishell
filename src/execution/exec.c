@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/30 17:18:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:17:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	main_loop(t_cli *cli, int count)
 			pipe(cli->mnsh->fd);
 			piping(cli, count);
 		}
-		cli->mnsh->heredoc_pipe = 0;
-		cli->mnsh->outfile_check = 0;
+		//cli->mnsh->heredoc_pipe = 0;
 	}
 }
 
@@ -82,6 +81,7 @@ static void	loop_commands(t_cli *cli, int *count)
 			cli->mnsh->outfile_check = 1;
 		}
 		main_loop(cli, *count);
+		cli->mnsh->outfile_check = 0;
 		if (cli->com->next)
 			cli->com = cli->com->next;
 		else

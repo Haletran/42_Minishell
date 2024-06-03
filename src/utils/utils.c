@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 09:09:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:55:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	print_tab(char **src)
 
 	i = 0;
 	while (src[i])
-		printf("%s\n", src[i++]);
+	{
+		printf("%s\n", src[i]);
+		i++;
+	}
 }
 
 char	*ft_join(char *s1, char *s2)

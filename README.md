@@ -11,7 +11,7 @@ As beautiful as a shell..
 - Syntax error if ;; or other behind command
 - Echo -n fix 
 - jojo | echo $?
-- gerer les out et in better because some problem
+- gerer les out et in better because some problem (PIPES block redirection)
 
 ## TO_DO
 
