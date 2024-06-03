@@ -24,7 +24,6 @@ echo '"'$USER'$USER"q'
 "ls" | ls
 "ls" | "ls"
 "ls" | "cat"
-echo b ">" ./outfiles/out
 ls | echo $PATH
 ls | echo $USER
 ls | echo "$USER"
