@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 13:07:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:23:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ void			syntax_error(t_cli *cli, char *token);
 void			control_rules(t_cli *cli, t_token *token);
 void			process_error(t_cli *cli, char *token);
 void			delete_n_token(t_token **head, int n);
-int    command_census(t_token *tok, t_cli *cli);
+int				command_census(t_token *tok, t_cli *cli);
 
 /*DEBUG*/
 void			print_all_in_cli(t_cli *cli);
@@ -271,5 +271,6 @@ void			add_var2(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_cli *cli);
 int				handle_outfile(t_cli *cli);
+int				check_error(t_cli **cli);
 
 #endif

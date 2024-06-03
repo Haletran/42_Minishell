@@ -6,11 +6,38 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 13:23:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:00:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	check_error(t_cli **cli)
+{
+	t_com	*tmp;
+
+	tmp = (*cli)->com;
+	while (tmp)
+	{	
+		if (check_if_path_needed(tmp->command) == NOT_FOUND)
+		{
+			if (access(tmp->env_path, F_OK) == -1)
+			{
+				(*cli)->mnsh->exit_code = 127;
+				print_error(NOT_FOUND, (*cli)->com->command[0]);
+				return (ERROR);
+			}
+			else if (tmp->command[0][0] == '\0')
+			{
+				(*cli)->mnsh->exit_code = 127;
+				print_error(NOT_FOUND, (*cli)->com->command[0]);
+				return (ERROR);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (SUCCESS);
+}
 
 void	piping(t_cli *cli, int count)
 {
@@ -48,12 +75,10 @@ void	piping(t_cli *cli, int count)
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
 			if (execve(cli->com->env_path, cli->com->command,
-					cli->mnsh->env_var) == -1)
-			{
-				cli->mnsh->exit_code = 127;
-				print_error(NOT_FOUND, cli->com->command[0]);
-				ft_exitcode(cli, 127);
-			}
+					cli->mnsh->env_var) != -1)
+				ft_exitcode(cli, 0);
+			else
+				ft_exitcode(cli, cli->mnsh->exit_code);
 		}
 		if (check_if_builtin(cli->com->command[0]) == SUCCESS)
 			ft_exitcode(cli, 0);
@@ -100,16 +125,10 @@ void	execute_last_command(t_cli *cli)
 			if (check_commands(cli->com->command, cli) == NOT_FOUND)
 			{
 				if (execve(cli->com->env_path, cli->com->command,
-						cli->mnsh->env_var) == -1)
-				{
-					if (ft_strlen(cli->com->command[0]) != 0 || cli->com->command[0][0] == '\0')
-					{
-						cli->mnsh->exit_code = 127;
-						print_error(NOT_FOUND, *cli->com->command);
-						ft_exitcode(cli, 127);
-					}
-				}
-				ft_exitcode(cli, 0);
+						cli->mnsh->env_var) != -1)
+					ft_exitcode(cli, 0);
+				else
+					ft_exitcode(cli, cli->mnsh->exit_code);
 			}
 		}
 		waitpid(pid, &cli->mnsh->exit_code, 0);

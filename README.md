@@ -3,14 +3,12 @@
 As beautiful as a shell..
 
 ![85%](https://progress-bar.dev/85)
+![Progress](https://progress-bar.dev/262/?title=Tester&scale=423&width=100)
 
 ## TO_FIX
-- GUILLEMETS 
 - REDIRECTIONS infile outfile type not accurate
-- HEREDOC not working anymore
 - Syntax error if ;; or other behind command
 - Echo -n fix 
-- jojo | echo $?
 - gerer les out et in better because some problem (PIPES block redirection)
 
 ## TO_DO
@@ -20,17 +18,6 @@ As beautiful as a shell..
     - <<del commands > outfile
     - <<del commands
     - >commands > outfile
-
-// bash lt tous les infiles outfiles
-// fork si pipes builtins
-
-## MODIFIACTION bapasqui
-
-- dans ruler pour les exit_codes
-- dans redirect_rules pour print les bon messages d'erreur
-- create command because found path when shouldn't (unset PATH)
-80 / 101 BUITLINS
-218 / 423 TOTAL
 
 ## Links 
 
