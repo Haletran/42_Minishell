@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:44:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:41:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int	handle_n_option(char **str, int *i, int *flag)
 {
-	int	check;
+    int	check;
 
-	check = 1;
-	if (!ft_strncmp(str[*i], "-n", 2))
-	{
-		while (str[1][check] == 'n')
-			check++;
-		if (check == (int)ft_strlen(str[1]))
-		{
-			(*flag)++;
-			(*i)++;
-		}
-	}
-	return (SUCCESS);
+    while (str[*i] && !ft_strncmp(str[*i], "-n", 2))
+    {
+        check = 1;
+        while (str[*i][check] == 'n')
+            check++;
+        if (str[*i][check] == '\0')
+        {
+            (*flag)++;
+            (*i)++;
+        }
+        else
+            break;
+    }
+    return (SUCCESS);
 }
 
 int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)

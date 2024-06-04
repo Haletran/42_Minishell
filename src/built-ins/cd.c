@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:35:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:23:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static void	cd_old_path(t_lst *lst)
 			break ;
 		env = env->next;
 	}
-	chdir(env->value);
+	if (env && env->value)
+		chdir(env->value);
+	
 }
 
 static void	update_path(t_lst *lst, char *old_path)
@@ -36,8 +38,11 @@ static void	update_path(t_lst *lst, char *old_path)
 	{
 		if (!ft_strncmp(env->key, "OLDPWD", 6))
 		{
-			free(env->value);
-			env->value = ft_strdup(old_path);
+			if (env->value)
+			{
+				free(env->value);
+				env->value = ft_strdup(old_path);
+			}
 		}
 		else if (!ft_strncmp(env->key, "PWD", 3))
 		{
