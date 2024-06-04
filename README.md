@@ -8,9 +8,8 @@ As beautiful as a shell..
 ## TO_FIX
 - REDIRECTIONS infile outfile type not accurate
 - Syntax error if ;; or other behind command
-- Echo -n fix 
 - gerer les out et in better because some problem (PIPES block redirection)
-- cat /dev/urandom | head -1 | wc -l
+- cat /dev/urandom | head -1 | wc -l  (STUCK IN WHILE LOOP)
 
 ## TO_DO
 
