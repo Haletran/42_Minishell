@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/16 15:33:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:33:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	tilde_expansion(t_cli *cli)
 		if (tmp->token[0] == '~' && tmp->type != IMMUTABLE)
 		{
 			tilde_expansion_process(tmp, 0,
-				get_value_from_key(cli->mnsh->env_cpy_lst, "HOME"));
+				get_value_from_key(cli->mnsh->env_var_lst, "HOME"));
 			tilde_expansion_process(tmp, '+',
-				get_value_from_key(cli->mnsh->env_cpy_lst, "PWD"));
+				get_value_from_key(cli->mnsh->env_var_lst, "PWD"));
 			tilde_expansion_process(tmp, '-',
-				get_value_from_key(cli->mnsh->env_cpy_lst, "OLDPWD"));
+				get_value_from_key(cli->mnsh->env_var_lst, "OLDPWD"));
 			if (tmp->token == NULL)
 				tmp->token = ft_strdup("\n");
 		}

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 14:29:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:33:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ char	*expand_var(t_lst *mnsh, char *str)
 	return (NULL);
 }
 
-void	replace_var(t_lst *mnsh, char **str, int i)
+int replace_var(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 	char	**tmp;
 
 	tmp = ft_split(str[i], '=');
 	env = mnsh->env_var_lst;
+	if (check_valid_identifier(tmp) == ERROR)
+		return (ERROR);
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
@@ -51,35 +53,16 @@ void	replace_var(t_lst *mnsh, char **str, int i)
 		{
 			free(env->value);
 			env->value = ft_strdup(tmp[1]);
+			env->print = 0;
 			free_tab(tmp);
-			return ;
+			return (SUCCESS);
 		}
 		env = env->next;
 	}
 	free_tab(tmp);
+	return (SUCCESS);
 }
 
-void	replace_var_cpy(t_lst *mnsh, char **str, int i)
-{
-	t_env	*env;
-	char	**tmp;
-
-	tmp = ft_split(str[i], '=');
-	env = mnsh->env_cpy_lst;
-	while (env)
-	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
-			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
-		{
-			free(env->value);
-			env->value = ft_strdup(tmp[1]);
-			free_tab(tmp);
-			return ;
-		}
-		env = env->next;
-	}
-	free_tab(tmp);
-}
 
 int	check_if_var_exist(t_env *env, char *str)
 {
@@ -97,7 +80,9 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
 
-	env = mnsh->env_cpy_lst;
+	env = mnsh->env_var_lst;
+	if (check_valid_identifier(str) == ERROR)
+		return (ERROR);
 	if (check_if_var_exist(env, str[i]))
 		return (ERROR);
 	while (env->next)
@@ -105,6 +90,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[i]);
 	env->next->value = NULL;
+	env->next->print = 1;
 	env->next->next = NULL;
 	return (SUCCESS);
 }

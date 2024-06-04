@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:27:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:33:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:38:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	insert_env_front(t_env **head, char *key, char *value)
 	new_node->key = key;
 	new_node->value = value;
 	new_node->next = (*head);
+	new_node->print = 0;
 	new_node->prev = NULL;
 	if ((*head) != NULL)
 		(*head)->prev = new_node;
@@ -71,6 +72,7 @@ void	insert_env_after(t_env *prev_node, char *key, char *value)
 	new_node = (t_env *)malloc(sizeof(t_env));
 	new_node->key = key;
 	new_node->value = value;
+	new_node->print = 0;
 	new_node->next = prev_node->next;
 	new_node->prev = prev_node;
 	if (new_node->next != NULL)
@@ -88,6 +90,7 @@ void	insert_env_end(t_env **head, char *key, char *value)
 		return ;
 	new_node->key = key;
 	new_node->value = value;
+	new_node->print = 0;
 	new_node->next = NULL;
 	if (*head == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/16 15:31:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:39:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	print_list_env(char *string, t_lst *mnsh)
 	current = mnsh->env_var_lst;
 	while (current)
 	{
-		ft_printf_fd(1, "%s%s%s\n", current->key, string, current->value);
+		if (current->print == 0)
+			ft_printf_fd(1, "%s%s%s\n", current->key, string, current->value);
 		current = current->next;
 	}
 }
@@ -28,12 +29,15 @@ void	print_list_export(t_lst *mnsh)
 {
 	t_env	*current;
 
-	current = mnsh->env_cpy_lst;
+	current = mnsh->env_var_lst;
 	while (current)
 	{
 		if (current->value)
-			ft_printf_fd(1, "declare -x %s=\"%s\"\n", current->key,
+		{
+			if (ft_strcmp(current->key, "_"))
+				ft_printf_fd(1, "declare -x %s=\"%s\"\n", current->key,
 				current->value);
+		}
 		else
 			ft_printf_fd(1, "declare -x %s\n", current->key);
 		current = current->next;

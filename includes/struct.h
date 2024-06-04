@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:58:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 16:08:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:16:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_env
 {
 	char				*key;
 	char				*value;
+	int					print;
 	struct s_env		*next;
 	struct s_env		*prev;
 }						t_env;
@@ -26,7 +27,6 @@ typedef struct s_env
 typedef struct s_lst
 {
 	t_env				*env_var_lst;
-	t_env				*env_cpy_lst;
 	char				**env_var;
 	char				*home_path;
 	char				*current_path;
@@ -48,6 +48,7 @@ typedef struct s_lst
 	int					nb_heredoc;
 	int					nb_infile;
 	int					outfile_check;
+	int					infile_check;
 	int					heredoc_fd;
 	int					heredoc_backup_fd;
 	int					heredoc_pipe;
@@ -55,6 +56,7 @@ typedef struct s_lst
 	int					nb_commands;
 	int					dollar;
 	int					ctrl_c;
+	int					flag_d;
 }						t_lst;
 
 typedef struct s_com

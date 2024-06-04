@@ -10,6 +10,10 @@ As beautiful as a shell..
 - Syntax error if ;; or other behind command
 - Echo -n fix 
 - gerer les out et in better because some problem (PIPES block redirection)
+- cat /dev/urandom | head -1 | wc -l
+- export / env qui communique entre eux
+- cd - : SIGSEV si unset HOME OLDPWD PWD
+- PWD not updated in other linked list : SOLUTION ONLY ONE LINKED LIST
 
 ## TO_DO
 

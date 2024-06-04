@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/27 13:32:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:33:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_parameter_value(t_cli *cli, char *key)
 		return (ft_itoa(cli->mnsh->exit_code));
 	if (key[0] == '$')
 		return (ft_itoa(pid));
-	value = ft_strdup(get_value_from_key(cli->mnsh->env_cpy_lst, key));
+	value = ft_strdup(get_value_from_key(cli->mnsh->env_var_lst, key));
 	if (value == NULL)
 		value = ft_strdup(get_variable_from_key(cli->variable, key));
 	if (key[0] > 0 && value == NULL)

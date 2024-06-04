@@ -6,42 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/22 15:35:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:32:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	delete_var_cpy(t_lst *mnsh, char *str)
-{
-	t_env	*env;
-	t_env	*prev;
-	t_env	*temp;
-
-	env = mnsh->env_cpy_lst;
-	prev = NULL;
-	while (env)
-	{
-		if (!ft_strncmp(env->key, str, ft_strlen(str))
-			&& ft_strlen(env->key) == ft_strlen(str))
-		{
-			env->key = free_char(env->key);
-			env->value = free_char(env->value);
-			temp = env->next;
-			free(env);
-			if (prev)
-				prev->next = temp;
-			else
-				mnsh->env_var_lst = temp;
-			env = temp;
-		}
-		else
-		{
-			prev = env;
-			env = env->next;
-		}
-	}
-}
 
 void	delete_var(t_lst *mnsh, char *str)
 {
@@ -82,7 +51,6 @@ int	ft_unset(char **str, t_lst **mnsh)
 	while (str[i])
 	{
 		delete_var(*mnsh, str[i]);
-		delete_var_cpy(*mnsh, str[i]);
 		i++;
 	}
 	(*mnsh)->exit_code = 0;

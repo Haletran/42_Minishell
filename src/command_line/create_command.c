@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/03 16:07:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:06:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	int	arr_size;
 
 	com->redirection_out = NULL;
+	com->redirection_in = NULL;
 	com->type = tmp->type;
 	com->pipe = 0;
 	i = 0;
@@ -83,6 +84,7 @@ void	create_command(t_cli *cli)
 				com = com->next;
 			fill_command(cli, tmp, com);
 			create_redirection_out(cli);
+			//create_redirection_in(cli);
 		}
 		tmp = tmp->next;
 	}

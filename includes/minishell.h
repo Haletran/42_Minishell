@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 16:08:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:52:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,18 +263,16 @@ void			execute_last_command(t_cli *cli);
 void			piping(t_cli *cli, int count);
 int				check_valid_identifier(char **str);
 int				add_back(t_lst *mnsh, char **str, int i);
-void			replace_var(t_lst *mnsh, char **str, int i);
-void			replace_var_cpy(t_lst *mnsh, char **str, int i);
+int replace_var(t_lst *mnsh, char **str, int i);
 int				check_if_var_exist(t_env *env, char *str);
 int				add_var_no_input(t_lst *mnsh, char **str, int i);
 char			*expand_var(t_lst *mnsh, char *str);
-int				add_back2(t_lst *mnsh, char **str, int i);
 int				already_exist(t_lst *mnsh, char **str, int i);
-void			add_var(t_lst *mnsh, char **str, int i);
-void			add_var2(t_lst *mnsh, char **str, int i);
+int add_var(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_cli *cli);
 int				handle_outfile(t_cli *cli);
-int	check_error(t_cli **cli);
+int				check_error(t_cli **cli);
+void				create_redirection_in(t_cli *cli);
 
 #endif

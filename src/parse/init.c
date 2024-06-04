@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/30 16:37:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:32:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,9 @@ int	first_allocation(t_cli **cli, char **envp)
 
 int	init_array_env(t_cli **cli, char **envp)
 {
-	int	err;
-
-	err = 0;
 	(*cli)->mnsh->env_var_lst = init_stack((*cli)->mnsh->env_var_lst, envp);
 	if (!(*cli)->mnsh->env_var_lst)
 		return (return_error(ERROR, "env_var_lst: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->mnsh->env_cpy_lst = init_stack((*cli)->mnsh->env_cpy_lst, envp);
-	if (!(*cli)->mnsh->env_cpy_lst)
-		return (return_error(ERROR, "env_cpy_lst: Alloc ", NULL, DEBUG_MODE));
-	err = ft_cpy((*cli)->mnsh->env_var, envp);
-	if (err == ERROR)
-		return (return_error(ERROR, "ft_cpy: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
 }
 
