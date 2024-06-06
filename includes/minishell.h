@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 21:52:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:27:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 /*LIBRAIRIES*/
 # include "../libft/libft.h"
-# include "lexer.h"
-# include "struct.h"
+# include "builtins.h"
+# include "command_line.h"
+# include "dlst.h"
+# include "parse.h"
+# include "typedef.h"
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <dirent.h> // opendir, readdir, closedir
 # include <errno.h>  // strerror, perror
@@ -37,6 +40,7 @@
 # include <unistd.h>  // write, access, close, fork, execve, dup, dup2, pipe
 
 extern int		g_var;
+
 # define RESET_SIG SIG_IGN
 # define CTRL_C SIGINT
 # define CTRL_BACKSLACH SIGQUIT
@@ -52,6 +56,81 @@ extern int		g_var;
 # ifndef DEBUG
 #  define DEBUG 1
 # endif
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							META-CHARACTERS								*//
+//* 																		*//
+//* *********************************************************************** *//
+# define META_LIST ";|&<> \t\n'\"{}[]()"
+# define PIPE "|"
+# define AND "&"
+# define SEMICOLON ";"
+# define OPEN_BRACKET "("
+# define CLOSE_BRACKET ")"
+# define GREATER_THAN ">"
+# define LESS_THAN "<"
+# define SPACE_META " "
+//# define TAB "\t"
+//# define NEWLINE "\n"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 						REDIRECTION OPERATOR							*//
+//* 																		*//
+//* *********************************************************************** *//
+# define REDICRECT_OPERAT_LIST "<<,<&,<←,<>,>>,>|,>&,<,>"
+# define DOUBLE_GREATER_THAN ">>"
+# define GREATER_THAN_AND ">&"
+# define LESS_THAN_GREATER_THAN "<>"
+# define GREATER_THAN_PIPE ">|"
+# define QQCHOSE "<←"
+# define LESS_THAN_AND "<&"
+# define DOUBLE_LESS_THAN "<<"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							CONTROL OPERATOR							*//
+//* 																		*//
+//* *********************************************************************** *//
+# define CONTROL_OPERAT_LIST ";;&,;;,;&,||,|&,&&,(,),|,&,;,{,},[,]" //\n
+# define AND_AND "&&"
+# define PIPE_PIPE "||"
+# define SEMICOLON_AND ";&"
+# define SEMICOLON_SC_AND ";;&"
+# define SEMICOLON_SC ";;"
+# define PIPE_AND "|&"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 								KEYWORD									*//
+//* 																		*//
+//* *********************************************************************** *//
+# define KEYWORD_LIST                                     \
+	"if,then,else,elif,fi,case,esac,while,until,for,in," \
+	"do,done"
+# define OPEN_KEYWORD "if,while,until"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							QUOTE & OTHER								*//
+//* 																		*//
+//* *********************************************************************** *//
+# define QUOTE_LIST "',\""
+# define BRACKET_LIST "{,},[,]"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							BUILTIN COMMAND								*//
+//* 																		*//
+//* *********************************************************************** *//
+# define BUILTIN_LIST                                                   \
+	"alias,bg,bind,break,builtin,caller,cd,command,compgen,complete,"  \
+	"compopt,continue,declare,dirs,disown,echo,enable,eval,exec,exit," \
+	"export,fc,fg,getopts,hash,help,history,jobs,kill,let,local,"      \
+	"logout,mapfile,popd,printf,pushd,pwd,read,readarray,readonly,"    \
+	"return,set,shift,shopt,source,suspend,test,times,trap,type,"      \
+	"typeset,ulimit,umask,unalias,unset,wait"
 
 //* ************************************************************************ *//
 //*                                                                          *//
@@ -226,7 +305,7 @@ int				is_error_path(char *str, char **path, t_lst *mnsh,
 t_token_type	token_type_rediscovery(t_token *token, t_cli *cli);
 void			split_variable(t_cli *cli);
 void			replace_last_space(t_token *tok);
-void			create_redirection_out(t_cli *cli);
+void			create_redirection(t_cli *cli);
 
 /*RULES*/
 void			rulers(t_cli *cli);
@@ -263,16 +342,16 @@ void			execute_last_command(t_cli *cli);
 void			piping(t_cli *cli, int count);
 int				check_valid_identifier(char **str);
 int				add_back(t_lst *mnsh, char **str, int i);
-int replace_var(t_lst *mnsh, char **str, int i);
+int				replace_var(t_lst *mnsh, char **str, int i);
 int				check_if_var_exist(t_env *env, char *str);
 int				add_var_no_input(t_lst *mnsh, char **str, int i);
 char			*expand_var(t_lst *mnsh, char *str);
 int				already_exist(t_lst *mnsh, char **str, int i);
-int add_var(t_lst *mnsh, char **str, int i);
+int				add_var(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_cli *cli);
 int				handle_outfile(t_cli *cli);
 int				check_error(t_cli **cli);
-void				create_redirection_in(t_cli *cli);
+void			create_redirection_in(t_cli *cli);
 
 #endif

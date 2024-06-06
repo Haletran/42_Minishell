@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 23:28:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:36:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	main_loop(t_cli *cli, int count)
 	}
 }
 
-int	get_nb_pipes(t_com *com)
+int	get_nb_pipes(t_token *token)
 {
 	int	count;
 
 	count = 0;
-	while (com)
+	while (token)
 	{
-		if (com->command)
+		if (token->type == CONTROLE_OPERATOR)
 			count++;
-		com = com->next;
+		token = token->next;
 	}
 	return (count);
 }
@@ -70,7 +70,7 @@ static void	loop_commands(t_cli *cli, int *count)
 			close(cli->mnsh->backup[1]);
 			break ;
 		}
-		if (cli->com->redirection_out)
+/* 		if (cli->com->redirection_out)
 		{
 			if (handle_outfile(cli) == ERROR)
 			{
@@ -89,7 +89,7 @@ static void	loop_commands(t_cli *cli, int *count)
 				break;
 			}
 			cli->mnsh->infile_check = 1;
-		}
+		} */
 		check_error(&cli);
 		main_loop(cli, *count);
 		cli->mnsh->outfile_check = 0;
@@ -110,7 +110,7 @@ int	exec_pipe(t_cli *cli)
 	count = 0;
 	handle_sig(2);
 	heredoc = 0;
-	cli->mnsh->pipe_count = get_nb_pipes(cli->com);
+	cli->mnsh->pipe_count = get_nb_pipes(cli->token);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);
 	cli->mnsh->backup[1] = dup(STDOUT_FILENO);
@@ -128,3 +128,4 @@ int	exec_pipe(t_cli *cli)
 	close_fds();
 	return (SUCCESS);
 }
+

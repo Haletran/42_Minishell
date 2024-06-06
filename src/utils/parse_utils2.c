@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/03 13:06:03 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:12:27 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,4 +35,24 @@ void	replace_last_space(t_token *tok)
 			tok->token = ft_strdup("");
 		}
 	}
+}
+
+void	reindex_token_list(t_cli *cli)
+{
+	t_token	*tmp;
+	int		i;
+
+	tmp = cli->token;
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
+		{
+			tmp->type = token_type_rediscovery(tmp, cli);
+			tmp->index = i;
+		}
+		tmp = tmp->next;
+		i++;
+	}
+	cli->n_token = i;
 }

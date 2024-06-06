@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/04 21:32:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:25:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,6 @@ int	first_allocation(t_cli **cli, char **envp)
 	(*cli)->mnsh->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
 	if (!(*cli)->mnsh->env_var)
 		return (return_error(ERROR, "env_var: Alloc ", cli, DEBUG_MODE));
-	return (SUCCESS);
-}
-
-int	init_array_env(t_cli **cli, char **envp)
-{
-	(*cli)->mnsh->env_var_lst = init_stack((*cli)->mnsh->env_var_lst, envp);
-	if (!(*cli)->mnsh->env_var_lst)
-		return (return_error(ERROR, "env_var_lst: Alloc ", NULL, DEBUG_MODE));
-	return (SUCCESS);
-}
-
-int	init_array(t_cli **cli)
-{
-	(*cli)->redirect = ft_split(REDICRECT_OPERAT_LIST, ',');
-	if (!(*cli)->redirect)
-		return (return_error(ERROR, "redirect: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->control = ft_split(CONTROL_OPERAT_LIST, ',');
-	if (!(*cli)->control)
-		return (return_error(ERROR, "control: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->keyword = ft_split(KEYWORD_LIST, ',');
-	if (!(*cli)->keyword)
-		return (return_error(ERROR, "Keyword: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->bracket = ft_split(BRACKET_LIST, ',');
-	if (!(*cli)->bracket)
-		return (return_error(ERROR, "bracket: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->builtin = ft_split(BUILTIN_LIST, ',');
-	if (!(*cli)->builtin)
-		return (return_error(ERROR, "builtin: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
 }
 

@@ -1,18 +1,18 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 23:23:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:06:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
-static void	cd_old_path(t_lst *lst)
+void	cd_old_path(t_lst *lst)
 {
 	t_env	*env;
 
@@ -25,10 +25,9 @@ static void	cd_old_path(t_lst *lst)
 	}
 	if (env && env->value)
 		chdir(env->value);
-	
 }
 
-static void	update_path(t_lst *lst, char *old_path)
+void	update_path(t_lst *lst, char *old_path)
 {
 	t_env	*env;
 	char	curr_path[1024];
@@ -75,7 +74,7 @@ char	*search_path(char *str, t_lst *lst)
 	return (env->value);
 }
 
-static int	handle_arguments(char **str, t_lst *lst)
+int	handle_arguments(char **str, t_lst *lst)
 {
 	if (get_nbargs(str) > 2)
 	{

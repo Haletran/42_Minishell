@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/03 17:49:04 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/05 14:19:22 by ygaiffie         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 DEBUG := 0
 
@@ -40,33 +40,19 @@ endif
 
 
 SRCS	= src/main.c \
+		  src/debug.c \
 		  src/built-ins/echo.c \
 		  src/built-ins/cd.c \
 		  src/utils/utils.c \
 		  src/utils/utils2.c \
-		  src/parse/init.c \
 		  src/built-ins/env.c \
 		  src/built-ins/export.c \
-		  src/built-ins/export2.c \
-		  src/built-ins/export3.c \
+		  src/built-ins/export_add.c \
+		  src/built-ins/export_chk.c \
 		  src/built-ins/exit.c \
 		  src/built-ins/unset.c \
 		  src/built-ins/pwd.c \
 		  src/built-ins/heredoc.c \
-		  src/utils/free.c \
-		  src/utils/lst_utils.c \
-		  src/parse/parse.c \
-		  src/execution/signal.c \
-		  src/execution/check.c \
-		  src/utils/utils3.c \
-		  src/execution/child.c \
-		  src/utils/utils4.c \
-		  src/utils/ft_is.c \
-		  src/utils/parse_utils.c \
-		  src/debug.c \
-		  src/utils/parse_utils2.c \
-		  src/execution/redirection.c \
-		  src/execution/exec_utils.c \
 		  src/command_line/split_into_tokens.c \
 		  src/command_line/create_redirection.c \
 		  src/command_line/cleaning_dlst_token.c \
@@ -75,18 +61,35 @@ SRCS	= src/main.c \
 		  src/command_line/parameter_expansion.c \
 		  src/command_line/varloc_creation.c \
 		  src/command_line/create_command.c \
+		  src/dlst/dlst_token_get.c \
+		  src/dlst/dlst_token_set.c \
+		  src/dlst/dlst_variable_get.c \
+		  src/dlst/dlst_variable_set.c \
+		  src/dlst/dlst_command_set.c \
+		  src/dlst/dlst_command_get.c \
+		  src/dlst/dlst_env_set.c \
+		  src/dlst/dlst_env_get.c \
+		  src/dlst/dlst_redir_get.c \
+		  src/dlst/dlst_redir_set.c \
+		  src/execution/signal.c \
+		  src/execution/check.c \
+		  src/execution/child.c \
+		  src/execution/redirection.c \
+		  src/execution/exec_utils.c \
+		  src/execution/exec.c \
+		  src/parse/init.c \
+		  src/parse/init_array.c \
+		  src/parse/organizer.c \
 		  src/syntax_rules/ruler.c \
 		  src/syntax_rules/control_rules.c \
 		  src/syntax_rules/redirect_rules.c \
-		  src/dlst_parse/dlst_token_get.c \
-		  src/dlst_parse/dlst_token_set.c \
-		  src/dlst_parse/dlst_variable_get.c \
-		  src/dlst_parse/dlst_variable_set.c \
-		  src/dlst_parse/dlst_command_set.c \
-		  src/dlst_parse/dlst_command_get.c \
-		  src/dlst_parse/dlst_env_set.c \
-		  src/dlst_parse/dlst_env_get.c \
-		  src/execution/exec.c
+		  src/utils/free.c \
+		  src/utils/lst_utils.c \
+		  src/utils/utils3.c \
+		  src/utils/utils4.c \
+		  src/utils/ft_is.c \
+		  src/utils/parse_utils.c \
+		  src/utils/parse_utils2.c 
 
 DEBUG := 0
 SRC_DIR := src
