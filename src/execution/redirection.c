@@ -12,80 +12,82 @@
 
 #include "../../includes/minishell.h"
 
+int handle_redirection(t_cli **cli)
+{
+	if (handle_infile((*cli)) == ERROR)
+		return (ERROR);
+	else if (handle_outfile((*cli)) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+void handle_error(t_cli *cli)
+{
+    if (errno == ENOENT)
+    {
+        ft_printf_fd(2, "minishell: No such file or directory \n");
+        cli->mnsh->exit_code = 0;
+    }
+    else
+    {
+        ft_printf_fd(2, "minishell: Permission denied \n");
+        cli->mnsh->exit_code = 1;
+    }
+}
+
 int handle_outfile(t_cli *cli)
 {
-	t_com *com;
-	int fd;
-	int i = 0;
-	com = cli->com;
+    t_com	*com;
+    int		fd;
+    int		i;
 
-	if (!com->redirection_out)
-		return (ERROR);
-	while (com->redirection_out[i])
-	{
-		if (!com->redirection_out[i + 1])
-		{
-			if (access(com->redirection_out[i], F_OK) != -1)
-				cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC, 0640);
-			else 
-				cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
-			break;
-		}
-		fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
-		close(fd);
-		i++;
-	}
-    if (cli->mnsh->outfile_fd == -1)
+    i = 0;
+    com = cli->com;
+    if (!com->redirection_out)
+        return (ERROR);
+    while (com->redirection_out[i])
     {
-        if (errno == ENOENT)
+        if (!com->redirection_out[i + 1])
         {
-		    ft_printf_fd(2, "minishell: No such file or directory \n");
-        	cli->mnsh->exit_code = 0;
-		}
-		else
-		{
-            ft_printf_fd(2, "minishell: Permission denied \n");
-        	cli->mnsh->exit_code = 1;
-		}
-		return (ERROR);
+            if (access(com->redirection_out[i], F_OK) != -1)
+                cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC, 0640);
+            else
+                cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
+            break ;
+        }
+        fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
+        close(fd);
+        i++;
     }
-	return (SUCCESS);
+    if (cli->mnsh->outfile_fd == -1)
+        handle_error(cli);
+    return (SUCCESS);
 }
 
 int handle_infile(t_cli *cli)
 {
-	t_com *com;
-	int fd;
-	int i = 0;
-	com = cli->com;
+    t_com	*com;
+    int		fd;
+    int		i;
 
-	if (!com->redirection_in)
-		return (ERROR);
-	while (com->redirection_in[i])
-	{
-		printf("asd\n");
-		if (!com->redirection_in[i + 1])
-		{
-			cli->mnsh->infile_fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
-			break;
-		}
-		fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
-		close(fd);
-		i++;
-	}
-    if (cli->mnsh->infile_fd == -1)
+    i = 0;
+    com = cli->com;
+    if (!com->redirection_in)
+        return (ERROR);
+    while (com->redirection_in[i])
     {
-        if (errno == ENOENT)
+        if (!com->redirection_in[i + 1])
         {
-		    ft_printf_fd(2, "minishell: No such file or directory \n");
-        	cli->mnsh->exit_code = 0;
-		}
-		else
-		{
-            ft_printf_fd(2, "minishell: Permission denied \n");
-        	cli->mnsh->exit_code = 1;
-		}
-		return (ERROR);
+            cli->mnsh->infile_fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
+            break ;
+        }
+        fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
+        close(fd);
+        i++;
     }
-	return (SUCCESS);
+    if (cli->mnsh->infile_fd == -1)
+        handle_error(cli);
+    return (SUCCESS);
 }
+
+

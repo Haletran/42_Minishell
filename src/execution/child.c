@@ -6,7 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/06 12:39:07 by bapasqui         ###   ########.fr       */
+=======
+/*   Updated: 2024/06/06 15:27:42 by bapasqui         ###   ########.fr       */
+>>>>>>> 00a7aac (fix exec)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +65,7 @@ void	piping(t_cli *cli, int count)
 			dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
 			close(cli->mnsh->heredoc_backup_fd);
 		}
-		if (count != cli->mnsh->pipe_count - 1)
+		if (count != cli->mnsh->pipe_count)
 		{
 			if (cli->mnsh->outfile_check == 1)
 			{
@@ -92,7 +96,7 @@ void	piping(t_cli *cli, int count)
 	}
 	else
 	{
-		if (count != cli->mnsh->pipe_count - 1)
+		if (count != cli->mnsh->pipe_count)
 			close(cli->mnsh->fd[1]);
 	}
 }

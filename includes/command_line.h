@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 /******************************************************************************/
+=======
+/* ************************************************************************** */
+>>>>>>> 00a7aac (fix exec)
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_line.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
 /*   Updated: 2024/06/05 14:05:51 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
+=======
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
+/*   Updated: 2024/06/06 15:43:15 by bapasqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+>>>>>>> 00a7aac (fix exec)
 
 #ifndef COMMAND_LINE_H
 # define COMMAND_LINE_H
@@ -77,6 +90,10 @@ int				varloc_modify(t_cli *cli, char *key_line, char *var_line);
 int				varloc_attrib(t_cli *cli, char *key_line, char *var_line,
 					int index);
 char			*key_from_token(char *token);
+<<<<<<< HEAD
+=======
+int handle_redirection(t_cli **cli);
+>>>>>>> 00a7aac (fix exec)
 char			*variable_from_token(char *token);
 
 //****************************************************************************/
