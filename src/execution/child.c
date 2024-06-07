@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/06 23:53:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:32:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void execute_command(t_cli *cli)
 			ft_exitcode(cli, cli->mnsh->exit_code);
 	}
 	if (check_if_builtin(cli->com->command[0]) == SUCCESS)
-		ft_exitcode(cli, 0);
+		ft_exitcode(cli, cli->mnsh->exit_code);
 }
 
 void fork_error()
@@ -90,7 +90,14 @@ void	piping(t_cli *cli, int count)
 			}
 		}
 		close(cli->mnsh->fd[0]);
-		execute_command(cli);
+		if (check_commands(cli->com->command, cli) == NOT_FOUND)
+		{
+			if (execve(cli->com->env_path, cli->com->command,
+				cli->mnsh->env_var) == -1)
+				ft_exitcode(cli, cli->mnsh->exit_code);
+		}
+		if (check_if_builtin(cli->com->command[0]) == SUCCESS)
+			ft_exitcode(cli, cli->mnsh->exit_code);
 	}
 	else
 	{
@@ -136,11 +143,18 @@ void	execute_last_command(t_cli *cli)
 				dup2(cli->mnsh->infile_fd, STDIN_FILENO);
 				close(cli->mnsh->infile_fd);
 			}
-			execute_command(cli);
+			if (check_commands(cli->com->command, cli) == NOT_FOUND)
+			{
+				if (execve(cli->com->env_path, cli->com->command,
+					cli->mnsh->env_var) == -1)
+					ft_exitcode(cli, cli->mnsh->exit_code);
+			}
+			if (check_if_builtin(cli->com->command[0]) == SUCCESS)
+				ft_exitcode(cli, cli->mnsh->exit_code);
 		}
 		waitpid(pid, &cli->mnsh->exit_code, 0);
 	}
-	if (cli->mnsh->exit_code != 127 && cli->mnsh->pipe_count != 0)
+	if (cli->mnsh->exit_code != 127 && check_if_forked(cli) == NOT_FOUND)
 		cli->mnsh->exit_code = get_exit_code(cli->mnsh);
 	close(cli->mnsh->prev_fd[0]);
 	close(cli->mnsh->prev_fd[1]);
