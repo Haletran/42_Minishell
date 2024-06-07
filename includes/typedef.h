@@ -97,8 +97,6 @@ typedef struct s_com
 	char					**command;
 	char					*env_path;
 	t_redirection			*redirection;
-	char					**redirection_out;
-	char					**redirection_in;
 	int						type;
 	int						index;
 	int						pipe;

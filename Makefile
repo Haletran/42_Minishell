@@ -1,14 +1,14 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/05 14:19:22 by ygaiffie         ###   ########.fr        #
+#    Updated: 2024/06/06 18:54:32 by bapasqui         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
 DEBUG := 0
 
@@ -73,7 +73,6 @@ SRCS	= src/main.c \
 		  src/dlst/dlst_redir_set.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
-		  src/execution/child.c \
 		  src/execution/redirection.c \
 		  src/execution/exec_utils.c \
 		  src/execution/exec.c \
@@ -88,6 +87,7 @@ SRCS	= src/main.c \
 		  src/utils/utils3.c \
 		  src/utils/utils4.c \
 		  src/utils/ft_is.c \
+		  src/execution/child.c \
 		  src/utils/parse_utils.c \
 		  src/utils/parse_utils2.c 
 

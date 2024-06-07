@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/06 12:25:57 by bapasqui         ###   ########.fr       */
 =======
 /*   Updated: 2024/06/06 15:39:37 by bapasqui         ###   ########.fr       */
 >>>>>>> 00a7aac (fix exec)
+=======
+/*   Updated: 2024/06/06 22:56:57 by bapasqui         ###   ########.fr       */
+>>>>>>> 5258212 (test)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +37,7 @@ void	init_organizer(t_cli **cli, char **envp)
 	err = init_data_parsing(cli);
 	if (err == ERROR)
 		freeway(*cli);
-	init_fd_history(cli);
+	init_fd_history(cli); //SLOW EXEC
 }
 
 int	first_allocation(t_cli **cli, char **envp)

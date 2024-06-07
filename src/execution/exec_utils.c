@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/06 15:12:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:42:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,27 +226,4 @@ int	check_if_forked(t_cli *cli)
 	return (NOT_FOUND);
 }
 
-int check_number_of_infile(t_cli *cli, t_com *com)
-{
-	int count;
-	int place;
-	int i;
-	t_com *tmp;
-
-	count = 0;
-	i = 0;
-	place = 0;
-	tmp = com;
-	while (tmp->command[i])
-	{
-		if (!ft_strncmp(tmp->command[i], "<", 1) && ft_strlen(tmp->command[i]) == 1)
-		{
-			cli->mnsh->infile[place] = *ft_strdup(tmp->command[i + 1]);
-			place++;
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
 

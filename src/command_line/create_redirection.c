@@ -1,19 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   create_redirection.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/05 16:31:14 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/06 23:36:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 t_redi_type	redirection_census(char *token)
 {
+	if (!token)
+		return (-1);
 	if (ft_strcmp(token, "<") == 0)
 		return (IN);
 	else if (ft_strcmp(token, ">") == 0)
@@ -35,7 +37,7 @@ void	create_redirection(t_cli *cli)
 	tmp_com = get_last_command(cli->com);
 	tmp = get_redirection(cli->token, tmp_com->index);
 	i = 0;
-	while (tmp != NULL && tmp->type != CONTROLE_OPERATOR)
+	while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && tmp->type != COMMAND)
 	{
 		type = redirection_census(tmp->token);
 		tmp = tmp->next;

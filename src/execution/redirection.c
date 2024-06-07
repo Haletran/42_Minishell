@@ -14,79 +14,92 @@
 
 int handle_redirection(t_cli **cli)
 {
-	if (handle_infile((*cli)) == ERROR)
-		return (ERROR);
-	else if (handle_outfile((*cli)) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
+    t_redirection *red;
+
+    red = (*cli)->com->redirection;
+    while (red)
+    {
+        if (red->type == IN)
+        {
+	        if (handle_infile(red, (*cli)) == ERROR)
+	    	    return (ERROR);
+        }
+        else if (red->type == OUT || red->type == APPEND_OUT)
+	    {
+            if (handle_outfile(red, (*cli)) == ERROR)
+	    	    return (ERROR);
+        }
+        red = red->next;
+    }
+    return (SUCCESS);
 }
 
-void handle_error(t_cli *cli)
+int handle_error(int fd, t_cli *cli)
 {
     if (errno == ENOENT)
     {
         ft_printf_fd(2, "minishell: No such file or directory \n");
-        cli->mnsh->exit_code = 0;
+        cli->mnsh->exit_code = 1;
+        close(fd);
+        return (ERROR);
     }
     else
     {
         ft_printf_fd(2, "minishell: Permission denied \n");
         cli->mnsh->exit_code = 1;
-    }
-}
-
-int handle_outfile(t_cli *cli)
-{
-    t_com	*com;
-    int		fd;
-    int		i;
-
-    i = 0;
-    com = cli->com;
-    if (!com->redirection_out)
-        return (ERROR);
-    while (com->redirection_out[i])
-    {
-        if (!com->redirection_out[i + 1])
-        {
-            if (access(com->redirection_out[i], F_OK) != -1)
-                cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC, 0640);
-            else
-                cli->mnsh->outfile_fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
-            break ;
-        }
-        fd = open(com->redirection_out[i], O_RDWR | O_TRUNC | O_CREAT, 0640);
         close(fd);
-        i++;
+        return (ERROR);
     }
-    if (cli->mnsh->outfile_fd == -1)
-        handle_error(cli);
     return (SUCCESS);
 }
 
-int handle_infile(t_cli *cli)
+int handle_outfile(t_redirection *red, t_cli *cli)
 {
-    t_com	*com;
-    int		fd;
-    int		i;
-
-    i = 0;
-    com = cli->com;
-    if (!com->redirection_in)
-        return (ERROR);
-    while (com->redirection_in[i])
+    int fd;
+    if (access(red->file, F_OK) != -1)
     {
-        if (!com->redirection_in[i + 1])
-        {
-            cli->mnsh->infile_fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
-            break ;
-        }
-        fd = open(com->redirection_in[i], O_RDWR | O_TRUNC , 0640);
-        close(fd);
-        i++;
+        if (red->type == APPEND_OUT)
+            fd = open(red->file, O_RDWR | O_APPEND, 0640);
+        else
+            fd = open(red->file, O_RDWR | O_TRUNC, 0640);
     }
-    if (cli->mnsh->infile_fd == -1)
-        handle_error(cli);
+    else
+    {
+        if (red->type == APPEND_OUT)
+            fd = open(red->file, O_RDWR | O_CREAT | O_APPEND, 0640);
+        else
+            fd = open(red->file, O_RDWR | O_CREAT, 0640);
+    }
+    if (fd == -1)
+    {
+        if (handle_error(fd, cli) == ERROR)
+            return (ERROR);
+    }
+    if (!red->next)
+    {
+        cli->mnsh->outfile_fd = dup(fd);
+        cli->mnsh->outfile_check = 1;
+    }
+    close(fd);
+    return (SUCCESS);
+}
+
+int handle_infile(t_redirection *red, t_cli *cli)
+{
+    int fd;
+
+    fd = open(red->file, O_RDONLY, 0640);
+    if (fd == -1)
+    {
+        if (handle_error(fd, cli) == ERROR)
+            return (ERROR);
+    }
+    if (!red->next)
+    {
+        cli->mnsh->infile_fd = dup(fd);
+        cli->mnsh->infile_check = 1;
+    }
+    close(fd);
     return (SUCCESS);
 }
 

@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2024/06/06 12:39:07 by bapasqui         ###   ########.fr       */
 =======
 /*   Updated: 2024/06/06 15:27:42 by bapasqui         ###   ########.fr       */
 >>>>>>> 00a7aac (fix exec)
+=======
+/*   Updated: 2024/06/06 23:53:38 by bapasqui         ###   ########.fr       */
+>>>>>>> 5258212 (test)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +47,33 @@ int	check_error(t_cli **cli)
 	return (SUCCESS);
 }
 
+void execute_command(t_cli *cli)
+{		
+	if (check_commands(cli->com->command, cli) == NOT_FOUND)
+	{
+		if (execve(cli->com->env_path, cli->com->command,
+				cli->mnsh->env_var) == -1)
+			ft_exitcode(cli, cli->mnsh->exit_code);
+	}
+	if (check_if_builtin(cli->com->command[0]) == SUCCESS)
+		ft_exitcode(cli, 0);
+}
+
+void fork_error()
+{
+	print_error(FORK_FAILED, NULL);
+	exit(1);
+}
+
 void	piping(t_cli *cli, int count)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
-	{
-		print_error(FORK_FAILED, NULL);
-		exit(1);
-	}
+		fork_error();
 	else if (pid == 0)
 	{
-		if (count != 0)
-		{
-			dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
-			close(cli->mnsh->prev_fd[0]);
-		}
 		if (cli->mnsh->heredoc_pipe == 1)
 		{
 			dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
@@ -82,17 +96,9 @@ void	piping(t_cli *cli, int count)
 				dup2(cli->mnsh->fd[1], STDOUT_FILENO);
 				close(cli->mnsh->fd[1]);
 			}
-			
 		}
 		close(cli->mnsh->fd[0]);
-		if (check_commands(cli->com->command, cli) == NOT_FOUND)
-		{
-			if (execve(cli->com->env_path, cli->com->command,
-					cli->mnsh->env_var) == -1)
-				ft_exitcode(cli, cli->mnsh->exit_code);
-		}
-		if (check_if_builtin(cli->com->command[0]) == SUCCESS)
-			ft_exitcode(cli, 0);
+		execute_command(cli);
 	}
 	else
 	{
@@ -122,30 +128,23 @@ void	execute_last_command(t_cli *cli)
 					dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
 					close(cli->mnsh->prev_fd[0]);
 				}
-				if (cli->mnsh->heredoc_pipe == 1)
-				{
-					dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
-					close(cli->mnsh->heredoc_backup_fd);
-				}
-				if (cli->mnsh->outfile_check == 1)
-				{
-					dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
-					close(cli->mnsh->outfile_fd);
-				}
-				if (cli->mnsh->infile_check == 1)
-				{
-					dup2(cli->mnsh->infile_fd, STDIN_FILENO);
-					close(cli->mnsh->infile_fd);
-				}
 			}
-			if (check_commands(cli->com->command, cli) == NOT_FOUND)
+			if (cli->mnsh->heredoc_pipe == 1)
 			{
-				if (execve(cli->com->env_path, cli->com->command,
-						cli->mnsh->env_var) == -1)
-					ft_exitcode(cli, cli->mnsh->exit_code);
+				dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
+				close(cli->mnsh->heredoc_backup_fd);
 			}
-			if (check_if_builtin(cli->com->command[0]) == SUCCESS)
-				ft_exitcode(cli, cli->mnsh->exit_code);
+			if (cli->mnsh->outfile_check == 1)
+			{
+				dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
+				close(cli->mnsh->outfile_fd);
+			}
+			if (cli->mnsh->infile_check == 1)
+			{
+				dup2(cli->mnsh->infile_fd, STDIN_FILENO);
+				close(cli->mnsh->infile_fd);
+			}
+			execute_command(cli);
 		}
 		waitpid(pid, &cli->mnsh->exit_code, 0);
 	}

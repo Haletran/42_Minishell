@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/07 11:46:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:46:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void	main_loop(t_cli *cli, int count)
 	if (cli->com->type == COMMAND)
 	{
 		if (count != 0)
+		{
 			cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
+			dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
+			close(cli->mnsh->prev_fd[0]);
+		}
+		}
 		if (!cli->com->next)
 			execute_last_command(cli);
 		else
@@ -26,7 +31,6 @@ void	main_loop(t_cli *cli, int count)
 			piping(cli, count);
 		}
 		cli->mnsh->heredoc_pipe = 0;
-	}
 }
 
 int	get_nb_pipes(t_token *token)
@@ -71,6 +75,7 @@ static void	loop_commands(t_cli *cli, int *count)
 			break ;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* 		if (cli->com->redirection_out)
 		{
 			if (handle_outfile(cli) == ERROR)
@@ -94,6 +99,10 @@ static void	loop_commands(t_cli *cli, int *count)
 =======
 		handle_redirection(&cli);
 >>>>>>> 00a7aac (fix exec)
+=======
+		if (handle_redirection(&cli) == ERROR)
+			break;
+>>>>>>> 5258212 (test)
 		check_error(&cli);
 		main_loop(cli, *count);
 		cli->mnsh->outfile_check = 0;

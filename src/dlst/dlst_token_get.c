@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   dlst_token_get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/05 13:11:19 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/07 00:21:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -69,8 +69,9 @@ t_token	*get_redirection(t_token *head, int start)
 	t_token *tmp;
 
 	tmp = head;
-	while (tmp && tmp->index != start)
-		tmp = tmp->next;
+	(void)start;
+/* 	while (tmp && tmp->index != start)
+		tmp = tmp->next; */
 	while (tmp)
 	{
 		if (tmp->type == REDIRECTION_OPERATOR)

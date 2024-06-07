@@ -1,18 +1,22 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
+<<<<<<< HEAD
 <<<<<<< HEAD
 /*   Updated: 2024/06/06 12:27:28 by bapasqui         ###   ########.fr       */
 =======
 /*   Updated: 2024/06/05 14:18:40 by ygaiffie         ###   ########.fr       */
 >>>>>>> 00a7aac (fix exec)
+=======
+/*   Updated: 2024/06/06 18:53:52 by bapasqui         ###   ########.fr       */
+>>>>>>> 5258212 (test)
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -353,9 +357,8 @@ char			*expand_var(t_lst *mnsh, char *str);
 int				already_exist(t_lst *mnsh, char **str, int i);
 int				add_var(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
-int				handle_infile(t_cli *cli);
-int				handle_outfile(t_cli *cli);
+int 			handle_infile(t_redirection *red, t_cli *cli);
+int 			handle_outfile(t_redirection *red, t_cli *cli);
 int				check_error(t_cli **cli);
-void			create_redirection_in(t_cli *cli);
 
 #endif
