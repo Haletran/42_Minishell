@@ -1,0 +1,22 @@
+|
+| echo oi
+| |
+| $
+| >
+>
+>>
+<
+<<
+echo hi <
+cat    <| ls
+echo hi | >
+echo hi | > >>
+echo hi | < |
+echo hi |   |
+echo hi |  "|"
+> *
+>> *
+< *
+*
+> *
+>> *
