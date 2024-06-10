@@ -82,6 +82,7 @@ typedef struct s_lst
 	int						ctrl_c;
 	int 					file_check;
 	int						flag_d;
+	int						bloc;
 }							t_lst;
 
 typedef struct s_redirection

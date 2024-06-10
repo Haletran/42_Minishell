@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 16:21:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:36:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_redi_type	redirection_census(char *token)
 {
-	if (!token)
-		return (-1);
+/* 	if (!token)
+		return (-1); */
 	if (ft_strcmp(token, "<") == 0)
 		return (IN);
 	else if (ft_strcmp(token, ">") == 0)
@@ -30,22 +30,39 @@ t_redi_type	redirection_census(char *token)
 void	create_redirection(t_cli *cli)
 {
     t_token		*tmp;
-    t_com		*tmp_com;
-    int			i;
-    t_redi_type	type;
-    char		*token_dup;
-
-    tmp_com = get_last_command(cli->com);
-    tmp = get_redirection(cli->token, tmp_com->index);
-    i = 0;
-    while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && tmp->type != COMMAND)
+    t_redirection	*red;
+    t_redi_type		type;
+    t_com		*com;
+    
+    if (!cli || !cli->token || !cli->com) return;
+    
+    tmp = cli->token;
+    com = cli->com;
+    while (tmp)
     {
-        type = redirection_census(tmp->token);
-        tmp = tmp->next;
-        if (tmp != NULL) {
-            token_dup = ft_strdup(tmp->token);
-            tmp = tmp->next;
-            insert_redirection_end(&tmp_com->redirection, token_dup, type, i++);
+        if (tmp->type == REDIRECTION_OPERATOR)
+        {
+            type = redirection_census(tmp->token);
+            if (type >= 0)
+            {
+                red = ft_calloc(1, sizeof(t_redirection));
+                if (!red) return; // Check if memory allocation was successful
+                red->type = type;
+                tmp = tmp->next;
+                if (tmp && tmp->token)
+                {
+                    red->file = ft_strdup(tmp->token);
+                    if (!red->file) return; // Check if memory allocation was successful
+                    red->next = com->redirection;
+                    com->redirection = red;
+                }
+            }
         }
+        else if (tmp->type == CONTROLE_OPERATOR)
+        {
+            com = com->next;
+            if (!com) return; // Check if the next command exists
+        }
+        tmp = tmp->next;
     }
 }

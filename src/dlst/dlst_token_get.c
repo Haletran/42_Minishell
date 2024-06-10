@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 15:52:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:03:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ t_token	*get_redirection(t_token *head, int start)
 
 	tmp = head;
 	(void)start;
-/* 	while (tmp && tmp->index != start)
-		tmp = tmp->next; */
+	// while (tmp && tmp->index != start)
+	// 	tmp = tmp->next;
 	while (tmp)
 	{
 		if (tmp->type == REDIRECTION_OPERATOR)

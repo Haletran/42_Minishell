@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 16:19:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:34:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	create_command(t_cli *cli)
 	while (tmp != NULL)
 	{
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
-			|| tmp->type == HEREDOC/*  || tmp->type == REDIRECTION_OPERATOR */)
+			|| tmp->type == HEREDOC)
 		{
 			insert_com_end(&cli->com, tmp->type, tmp->index);
 			com = cli->com;
@@ -81,10 +81,11 @@ void	create_command(t_cli *cli)
 				com = com->next;
 			fill_command(cli, tmp, com);
 			com->redirection = NULL;
-			create_redirection(cli);
 		}
 		tmp = tmp->next;
 	}
+	create_redirection(cli);
+	//print_dlst_redirection(cli->com->redirection);
 	free_tab(cli->path);
 	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 }

@@ -1,11 +1,1 @@
-LICENSE
-Makefile
-README.md
-includes
-libft
-minishell
-obj
-out
-src
-tester
-vsupp.txt
+test

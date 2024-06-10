@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/10 16:12:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:41:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	main_loop(t_cli *cli, int count)
 		if (count != 0)
 		{
 			cli->mnsh->prev_fd[0] = cli->mnsh->fd[0];
-			dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
-			close(cli->mnsh->prev_fd[0]);
-		}
+			if (cli->mnsh->outfile_check != 1)
+			{
+				dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
+				close(cli->mnsh->prev_fd[0]);
+			}
 		}
 		if (!cli->com->next)
 			execute_last_command(cli);
@@ -31,6 +33,7 @@ void	main_loop(t_cli *cli, int count)
 			piping(cli, count);
 		}
 		cli->mnsh->heredoc_pipe = 0;
+	}
 }
 
 int	get_nb_pipes(t_token *token)
@@ -86,6 +89,7 @@ static void	loop_commands(t_cli *cli, int *count)
 		cli->mnsh->outfile_check = 0;
 		cli->mnsh->infile_check = 0;
 		cli->mnsh->file_check = 0;
+
 		if (cli->com->next)
 			cli->com = cli->com->next;
 		else

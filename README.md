@@ -10,6 +10,7 @@ As beautiful as a shell..
 - Syntax error if ;; or other behind command
 - gerer les out et in better because some problem (PIPES block redirection)
 - cat /dev/urandom | head -1 | wc -l  (STUCK IN WHILE LOOP)
+- clear not working
 
 ## TO_DO
 
