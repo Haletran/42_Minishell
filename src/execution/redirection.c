@@ -17,6 +17,7 @@ int handle_redirection(t_cli **cli)
     t_redirection *red;
 
     red = (*cli)->com->redirection;
+    (*cli)->mnsh->file_check = 0;
     while (red)
     {
         if (red->type == IN)
@@ -38,6 +39,7 @@ int handle_error(int fd, t_cli *cli)
 {
     if (errno == ENOENT)
     {
+        cli->mnsh->file_check = 1;
         ft_printf_fd(2, "minishell: No such file or directory\n");
         cli->mnsh->exit_code = 1;
         close(fd);
@@ -45,6 +47,7 @@ int handle_error(int fd, t_cli *cli)
     }
     else
     {
+        cli->mnsh->file_check = 1;
         ft_printf_fd(2, "minishell: Permission denied\n");
         cli->mnsh->exit_code = 1;
         close(fd);
@@ -70,7 +73,7 @@ int handle_outfile(t_redirection *red, t_cli *cli)
         else
             fd = open(red->file, O_RDWR | O_CREAT, 0640);
     }
-    if (fd == -1)
+    if (fd == -1 && cli->mnsh->file_check == 0)
     {
         if (handle_error(fd, cli) == ERROR)
             return (ERROR);
@@ -89,7 +92,7 @@ int handle_infile(t_redirection *red, t_cli *cli)
     int fd;
 
     fd = open(red->file, O_RDONLY, 0640);
-    if (fd == -1)
+    if (fd == -1 && cli->mnsh->file_check == 0)
     {
         if (handle_error(fd, cli) == ERROR)
             return (ERROR);

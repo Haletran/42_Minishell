@@ -80,6 +80,7 @@ typedef struct s_lst
 	int						nb_commands;
 	int						dollar;
 	int						ctrl_c;
+	int 					file_check;
 	int						flag_d;
 }							t_lst;
 

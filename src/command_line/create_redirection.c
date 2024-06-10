@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 12:59:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:21:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ t_redi_type	redirection_census(char *token)
 
 void	create_redirection(t_cli *cli)
 {
-	t_token		*tmp;
-	t_com		*tmp_com;
-	int			i;
-	t_redi_type	type;
+    t_token		*tmp;
+    t_com		*tmp_com;
+    int			i;
+    t_redi_type	type;
+    char		*token_dup;
 
-	tmp_com = get_last_command(cli->com);
-	tmp = get_redirection(cli->token, tmp_com->index);
-	i = 0;
-	while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && tmp->type != COMMAND)
-	{
-		type = redirection_census(tmp->token);
-		tmp = tmp->next;
-		insert_redirection_end(&tmp_com->redirection, ft_strdup(tmp->token),
-			type, i++);
-		tmp = tmp->next;
-	}
+    tmp_com = get_last_command(cli->com);
+    tmp = get_redirection(cli->token, tmp_com->index);
+    i = 0;
+    while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && tmp->type != COMMAND)
+    {
+        type = redirection_census(tmp->token);
+        tmp = tmp->next;
+        if (tmp != NULL) {
+            token_dup = ft_strdup(tmp->token);
+            tmp = tmp->next;
+            insert_redirection_end(&tmp_com->redirection, token_dup, type, i++);
+        }
+    }
 }

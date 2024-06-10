@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 21:32:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:10:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,6 @@ void	free_list(t_env **lst)
 	}
 	*lst = NULL;
 }
-
-/* void	global_free(t_lst *mnsh, char **str)
-{
-	free_tab(str);
-	rl_clear_history();
-	close(mnsh->history_fd);
-	delete_all_nodes_env(&mnsh->env_cpy_lst);
-	delete_all_nodes_env(&mnsh->env_var_lst);
-	free_tab(mnsh->env_var);
-	free(mnsh->current_path);
-	free(mnsh);
-} */
 
 void	freeway(t_cli *cli)
 {

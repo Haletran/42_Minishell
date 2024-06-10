@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/10 13:47:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:12:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ static void	loop_commands(t_cli *cli, int *count)
 			else
 				break;
 		}
-		//check_error(&cli);
+		check_error(&cli);
 		main_loop(cli, *count);
 		cli->mnsh->outfile_check = 0;
 		cli->mnsh->infile_check = 0;
+		cli->mnsh->file_check = 0;
 		if (cli->com->next)
 			cli->com = cli->com->next;
 		else
