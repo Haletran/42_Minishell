@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/05 13:44:46 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:05:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
@@ -75,6 +75,7 @@ void	print_all_com(t_com *com)
 				head->command[i]);
 		ft_printf(WHT "\n\nPipe:" BHGRN " %i" CRESET, head->pipe);
 		ft_printf(WHT "| Path:" BHGRN " \"%s\"\n\n" CRESET, head->env_path);
+		print_dlst_redirection(head->redirection);
 		head = head->next;
 	}
 	ft_printf(BHRED "\nEND PRINT ALL COMMANDS\n\n" CRESET);
