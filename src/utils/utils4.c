@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/30 14:56:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:18:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	print_error(int i, char *str)
 		ft_printf_fd(2, "%s: No such file or directory\n", str);
 	else if (i == IS_DIRECTORY)
 		ft_printf_fd(2, "minishell: %s: Is a directory\n", str);
+	else if (i == PERMISSION_DENIED)
+		ft_printf_fd(2, "minishell: %s: Permission denied\n", str);	
 }
 
 int	gate_or(int i)

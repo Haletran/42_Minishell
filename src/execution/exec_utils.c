@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/07 12:13:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:22:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,17 @@ int	parsing_check(t_cli *cli)
 				cli->com->command[1] = NULL;
 				return (SUCCESS);
 			}
+			else
+			{
+				if (errno == EACCES) {
+			        print_error(PERMISSION_DENIED, cli->com->command[0]);
+			        cli->mnsh->exit_code = 126;
+			    } else {
+			        print_error(NOT_FOUND, cli->com->command[0]);
+			        cli->mnsh->exit_code = 127;
+			    }
+			    return (ERROR);
+			}
 		}
 		else
 		{
@@ -188,9 +199,14 @@ int	parsing_check(t_cli *cli)
 		{
 			if (access(cli->com->command[0], F_OK | R_OK) == -1)
 			{
-				print_error(NOT_FOUND, cli->com->command[0]);
-				cli->mnsh->exit_code = 127;
-				return (ERROR);
+			    if (errno == EACCES) {
+			        print_error(PERMISSION_DENIED, cli->com->command[0]);
+			        cli->mnsh->exit_code = 126;
+			    } else {
+			        print_error(NOT_FOUND, cli->com->command[0]);
+			        cli->mnsh->exit_code = 127;
+			    }
+			    return (ERROR);
 			}
 			cli->com->env_path = ft_strdup(cli->com->command[0]);
 			cli->com->command[0] = ft_strdup(ft_strcpy(cli->com->command[0],

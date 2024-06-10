@@ -3,7 +3,7 @@
 As beautiful as a shell..
 
 ![85%](https://progress-bar.dev/85)
-![Progress](https://progress-bar.dev/262/?title=Tester&scale=423&width=100)
+![Progress](https://progress-bar.dev/378/?title=Tester&scale=423&width=100)
 
 ## TO_FIX
 - REDIRECTIONS infile outfile type not accurate

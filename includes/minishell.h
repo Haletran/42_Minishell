@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/10 12:53:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/10 21:17:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ extern int		g_var;
 # define FORK_FAILED -10
 # define NO_FILE -20
 # define IS_DIRECTORY -30
+# define PERMISSION_DENIED -40
 
 # ifndef DEBUG
 #  define DEBUG 1
