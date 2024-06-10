@@ -83,6 +83,15 @@ jobs:
     - name: Launch extras tester
       run: make extras
 
+  redirections:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Launch redirects tester
+      run: make redirects
+
   all:
     runs-on: ubuntu-latest
 
