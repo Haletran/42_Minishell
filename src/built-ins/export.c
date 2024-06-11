@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/10 12:28:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:53:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,16 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
 		{
 			free(env->value);
-			env->value = ft_strdup(tmp[1]);
-			env->print = 0;
+			if (!tmp[1])
+			{	
+				env->print = 1;
+				env->value = NULL;
+			}
+			else
+			{
+				env->value = ft_strdup(tmp[1]);
+				env->print = 0;
+			}
 			free_tab(tmp);
 			return (SUCCESS);
 		}
@@ -63,9 +71,33 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 	return (SUCCESS);
 }
 
+t_env *cpy_env_var(t_env *cpy)
+{
+    t_env	*new;
+    t_env	*tmp;
+    t_env	*head;
+
+    new = ft_calloc(1, sizeof(t_env));
+    head = new;
+    tmp = cpy;
+    while (tmp)
+    {
+        new->key = ft_strdup(tmp->key);
+        new->value = ft_strdup(tmp->value);
+        new->print = tmp->print;
+        if (tmp->next) {
+            new->next = ft_calloc(1, sizeof(t_env));
+            new = new->next;
+        }
+        tmp = tmp->next;
+    }
+    return (head);
+}
+
 int	ft_export(t_lst *mnsh, char **str)
 {
 	int	i;
+	t_env *cpy;
 	int	err;
 
 	i = 1;
@@ -73,9 +105,11 @@ int	ft_export(t_lst *mnsh, char **str)
 	{
 		if (!mnsh->env_var_lst)
 			return (ERROR);
-		sort_in_ascii(mnsh->env_var_lst);
-		print_list_export(mnsh);
+		cpy = cpy_env_var(mnsh->env_var_lst);
+		sort_in_ascii(cpy);
+		print_list_export(cpy);
 		mnsh->exit_code = 0;
+		delete_all_nodes_env(&cpy);
 		return (SUCCESS);
 	}
 	while (str[i])

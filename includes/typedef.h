@@ -80,7 +80,7 @@ typedef struct s_lst
 	int						nb_commands;
 	int						dollar;
 	int						ctrl_c;
-	int 					file_check;
+	int						file_check;
 	int						flag_d;
 	int						bloc;
 }							t_lst;
@@ -149,6 +149,7 @@ typedef struct s_cli
 	int						heredoc;
 	int						rules_flag;
 	int						n_variable;
+	int						command_flag;
 }							t_cli;
 
 #endif

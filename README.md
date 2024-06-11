@@ -2,23 +2,14 @@
 
 As beautiful as a shell..
 
-![85%](https://progress-bar.dev/85)
+![87%](https://progress-bar.dev/85)
 ![Progress](https://progress-bar.dev/378/?title=Tester&scale=423&width=100)
 
 ## TO_FIX
-- REDIRECTIONS infile outfile type not accurate
 - Syntax error if ;; or other behind command
-- gerer les out et in better because some problem (PIPES block redirection)
-- cat /dev/urandom | head -1 | wc -l  (STUCK IN WHILE LOOP)
 - clear not working
-
-## TO_DO
-
-- toutes les redirections de merdes du style : 
-    - <infile commands > outfile
-    - <<del commands > outfile
-    - <<del commands
-    - >commands > outfile
+- args considered as command after an outfile (ex: echo hi | echo >out bye | echo test)
+- error / command
 
 ## Links 
 

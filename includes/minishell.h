@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/10 21:17:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:49:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void			historyze(t_cli *cli);
 /*LST*/
 void			*ft_lst_new_2(char *index);
 void			*ft_lstadd_back_2(t_env *lst, char *value);
-void			print_list_export(t_lst *mnsh);
+void			print_list_export(t_env *current);
 void			print_list_env(char *string, t_lst *mnsh);
 int				print_path(char *str, t_lst *mnsh, int choose);
 char			*search_path(char *str, t_lst *lst);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 21:39:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:49:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	print_list_env(char *string, t_lst *mnsh)
 	}
 }
 
-void	print_list_export(t_lst *mnsh)
+void	print_list_export(t_env *current)
 {
-	t_env	*current;
-
-	current = mnsh->env_var_lst;
 	while (current)
 	{
 		if (current->value)
