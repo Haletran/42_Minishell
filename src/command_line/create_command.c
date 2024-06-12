@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/12 12:19:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:52:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 		com->env_path = return_path(com->command[0], &cli);
 }
 
+void cpy_path(t_cli *cli)
+{
+	int i;
+
+	i = 0;
+	if (!cli->path)
+		return ;
+	while(cli->path[i])
+	{
+		cli->mnsh->env_var[i] = ft_strdup(cli->path[i]);
+		i++;
+	}
+}
+
 void	create_command(t_cli *cli)
 {
 	t_token	*tmp;
@@ -71,6 +85,7 @@ void	create_command(t_cli *cli)
 	tmp = cli->token;
 	find_path(cli->mnsh->env_var_lst, cli->mnsh);
 	cli->path = ft_split(cli->mnsh->env_path, ':');
+	cpy_path(cli);
 	while (tmp != NULL)
 	{
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
@@ -87,7 +102,7 @@ void	create_command(t_cli *cli)
 	}
 	create_redirection(cli);
 	free_tab(cli->path);
-	//cli->mnsh->env_path = free_char(cli->mnsh->env_path);
+	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 }
 
 int	get_nb_args(t_token *head)
