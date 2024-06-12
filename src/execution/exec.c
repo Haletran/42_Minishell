@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 13:43:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 14:40:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ static void	loop_commands(t_cli *cli, int *count)
 			else
 				break;
 		}
+		//printf("env_path %s\n", cli->com->env_path);
+		//printf("com->command[0] = %s\n", cli->com->command[0]);
+		//print_tab(cli->mnsh->env_var);
 		check_error(&cli);
 		main_loop(cli, *count);
 		cli->mnsh->outfile_check = 0;

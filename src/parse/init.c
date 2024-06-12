@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/11 15:48:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:13:25 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,13 @@ void	init_organizer(t_cli **cli, char **envp)
 
 int	first_allocation(t_cli **cli, char **envp)
 {
+	(void)envp;
 	*cli = ft_calloc(1, sizeof(t_cli));
 	if (!*cli)
 		return (return_error(ERROR, "cli: Alloc ", NULL, DEBUG_MODE));
 	(*cli)->mnsh = ft_calloc(1, sizeof(t_lst));
 	if (!(*cli)->mnsh)
 		return (return_error(ERROR, "mnsh: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->mnsh->env_var = ft_calloc(1, sizeof(char) * get_len(envp));
-	if (!(*cli)->mnsh->env_var)
-		return (return_error(ERROR, "env_var: Alloc ", cli, DEBUG_MODE));
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/12 13:52:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:12:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,38 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 		com->env_path = return_path(com->command[0], &cli);
 }
 
-void cpy_path(t_cli *cli)
+char **cpy_env(t_cli *cli)
 {
-	int i;
+    int     i;
+    t_env   *tmp;
+	char	**result;
 
-	i = 0;
-	if (!cli->path)
-		return ;
-	while(cli->path[i])
-	{
-		cli->mnsh->env_var[i] = ft_strdup(cli->path[i]);
-		i++;
-	}
+    int j = 0;
+    tmp = cli->mnsh->env_var_lst;
+    while (tmp)
+    {
+        tmp = tmp->next;
+        j++;
+    }
+    result = calloc((j+1), sizeof(char *));
+    if (!result)
+        return (NULL);
+    i = 0;
+    tmp = cli->mnsh->env_var_lst;
+    while (tmp)
+    {
+		if (tmp->value != NULL)
+		{
+			result[i] = ft_strjoin(tmp->key, "=");
+			result[i] = ft_strjoin_f(result[i], tmp->value);
+			i++;
+		}
+        tmp = tmp->next;
+    }
+    result[i] = NULL;
+	return (result);
 }
+
 
 void	create_command(t_cli *cli)
 {
@@ -83,9 +102,9 @@ void	create_command(t_cli *cli)
 	t_com	*com;
 
 	tmp = cli->token;
+	cli->mnsh->env_var = cpy_env(cli);
 	find_path(cli->mnsh->env_var_lst, cli->mnsh);
 	cli->path = ft_split(cli->mnsh->env_path, ':');
-	cpy_path(cli);
 	while (tmp != NULL)
 	{
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
