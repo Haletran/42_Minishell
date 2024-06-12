@@ -6,9 +6,10 @@
       }, */
 
     "files.associations": {
-		"typedef.h": "c",
-		"minishell.h": "c"
-	},
+      "typedef.h": "c",
+      "minishell.h": "c",
+      "stat.h": "c"
+    },
 	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
 	"workbench.colorCustomizations": {
     "minimap.background": "#00000000",
