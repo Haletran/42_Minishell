@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 11:02:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:39:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,19 @@ static void	handle_heredoc(t_cli *cli, int *heredoc)
 
 static void	loop_commands(t_cli *cli, int *count)
 {
+	t_com *head;
+
+	head = cli->com;
 	while (cli->com)
 	{
+
 		if (parsing_check(cli) == ERROR)
 		{
 			close(cli->mnsh->backup[0]);
 			close(cli->mnsh->backup[1]);
 			break ;
 		}
+		
 		if (handle_redirection(&cli) == ERROR)
 		{
 			if (cli->com->next)
@@ -95,6 +100,8 @@ static void	loop_commands(t_cli *cli, int *count)
 			break ;
 		(*count)++;
 	}
+
+	cli->com = head;
 }
 
 int	exec_pipe(t_cli *cli)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 14:08:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:45:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int	parsing_check(t_cli *cli)
 			        print_error(PERMISSION_DENIED, cli->com->command[0]);
 			        cli->mnsh->exit_code = 126;
 			    } else {
-			        print_error(NOT_FOUND, cli->com->command[0]);
+			        print_error(NO_FILE, cli->com->command[0]);
 			        cli->mnsh->exit_code = 127;
 			    }
 			    return (ERROR);
@@ -206,7 +206,7 @@ int	parsing_check(t_cli *cli)
 			        print_error(PERMISSION_DENIED, cli->com->command[0]);
 			        cli->mnsh->exit_code = 126;
 			    } else {
-			        print_error(NOT_FOUND, cli->com->command[0]);
+			        print_error(NO_FILE, cli->com->command[0]);
 			        cli->mnsh->exit_code = 127;
 			    }
 			    return (ERROR);
