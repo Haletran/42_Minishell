@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/07 12:29:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:10:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ int	ft_exit(char *code, t_cli *cli)
 {
 	long long	exit_code;
 	int			backup;
-
+	
 	backup = cli->mnsh->exit_code;
 	if (!code)
-	{
+	{	
+		if (cli->mnsh->outfile_check == 1)
+			backup = 0;
 		ft_printf_fd(1, "exit\n");
 		freeway(cli);
 		exit(backup);

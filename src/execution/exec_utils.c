@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 10:54:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:08:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,9 +235,9 @@ int	check_if_forked(t_cli *cli)
 		else if (!ft_strncmp(cli->com->command[0], "unset", 5)
 			&& ft_strlen(cli->com->command[0]) == 5)
 			return (SUCCESS);
-		else if (!ft_strncmp(cli->com->command[0], "exit", 4)
+/* 		else if (!ft_strncmp(cli->com->command[0], "exit", 4)
 			&& ft_strlen(cli->com->command[0]) == 4)
-			return (SUCCESS);
+			return (SUCCESS); */
 		else if (!ft_strncmp(cli->com->command[0], "cd", 2)
 			&& ft_strlen(cli->com->command[0]) == 2)
 			return (SUCCESS);
