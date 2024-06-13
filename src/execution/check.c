@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/11 16:57:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 09:56:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	choose(t_cli *cli)
 {
-	if (!cli->com)
+/* 	if (!cli->com)
 		rl_on_new_line();
-	else
+	else */
 		exec_pipe(cli);
 	return ;
 }

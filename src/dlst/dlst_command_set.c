@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 16:08:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:38:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	delete_node_com(t_com **head, t_com *del_node)
 		free_tab(del_node->command);
 	if (del_node->redirection != NULL)
 		delete_all_nodes_redi(&del_node->redirection);
-	del_node->env_path = free_char(del_node->env_path);
+	if (del_node->env_path != NULL)
+		del_node->env_path = free_char(del_node->env_path);
 	free(del_node);
 }
 

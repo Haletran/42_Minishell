@@ -7,7 +7,6 @@ As beautiful as a shell..
 
 ## TO_FIX
 - Syntax error if ;; or other behind command
-- clear not working
 - args considered as command after an outfile (ex: echo hi | echo >out bye | echo test)
 - error / command
 

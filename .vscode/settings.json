@@ -8,7 +8,8 @@
     "files.associations": {
       "typedef.h": "c",
       "minishell.h": "c",
-      "stat.h": "c"
+      "stat.h": "c",
+      "system_error": "c"
     },
 	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
 	"workbench.colorCustomizations": {

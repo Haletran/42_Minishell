@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 13:50:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:22:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ void	freeway(t_cli *cli)
 	free_tab(cli->builtin);
 	close_fds();
 	delete_all_nodes_env(&cli->mnsh->env_var_lst);
-	free(cli->mnsh->current_path);
-	free_tab(cli->mnsh->env_var);
-	free_char(cli->mnsh->env_path);
+	cli->mnsh->current_path = free_char(cli->mnsh->current_path);
+	cli->mnsh->env_path = free_char(cli->mnsh->env_path);
 	free(cli->mnsh);
 	free(cli);
 }
@@ -82,6 +81,8 @@ void	free_command_line(t_cli *cli)
 	if (cli->token != NULL)
 		delete_all_nodes_token(&cli->token);
 	cli->input = free_char(cli->input);
+	free_tab(cli->mnsh->env_var);
+	cli->mnsh->env_var = NULL;
 	cli->n_dquote = 0;
 	cli->n_quote = 0;
 	cli->n_token = 0;

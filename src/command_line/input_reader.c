@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 12:19:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:48:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	exit_input(t_cli *cli)
 	else
 		code = cli->mnsh->exit_code;
 	cli->input = free_char(cli->input);
-	freeway(cli);
 	ft_printf_fd(1, "exit\n");
-	exit (code);
+	ft_exitcode(cli, code);
 }
 
 void	input_reader(t_cli *cli)
