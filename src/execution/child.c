@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 14:49:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:39:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	check_error(t_cli **cli)
 			print_error(NOT_FOUND, tmp->command[0]);
 			return (ERROR);
 		}
-/* 		else if (tmp->command[0][0] == '\0')
-		{
-			(*cli)->mnsh->exit_code = 127;
-			print_error(NOT_FOUND, (*cli)->com->command[0]);
-			return (ERROR);
-		} */
+		/* 		else if (tmp->command[0][0] == '\0')
+				{
+					(*cli)->mnsh->exit_code = 127;
+					print_error(NOT_FOUND, (*cli)->com->command[0]);
+					return (ERROR);
+				} */
 	}
 	return (SUCCESS);
 }
 
-void fork_error()
+void	fork_error(void)
 {
 	print_error(FORK_FAILED, NULL);
 	exit(1);
@@ -77,7 +77,7 @@ void	piping(t_cli *cli, int count)
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
 			if (execve(cli->com->env_path, cli->com->command,
-				cli->mnsh->env_var) == -1)
+					cli->mnsh->env_var) == -1)
 				ft_exitcode(cli, cli->mnsh->exit_code);
 		}
 		if (check_if_builtin(cli->com->command[0]) == SUCCESS)
@@ -120,11 +120,13 @@ void	execute_last_command(t_cli *cli)
 			if (check_commands(cli->com->command, cli) == NOT_FOUND)
 			{
 				if (execve(cli->com->env_path, cli->com->command,
-					cli->mnsh->env_var) == -1)
+						cli->mnsh->env_var) == -1)
 					ft_exitcode(cli, cli->mnsh->exit_code);
 			}
 			if (check_if_builtin(cli->com->command[0]) == SUCCESS)
 				ft_exitcode(cli, cli->mnsh->exit_code);
+			if (cli->mnsh->file_check == 1)
+				close_fds();
 		}
 		waitpid(pid, &cli->mnsh->exit_code, 0);
 	}

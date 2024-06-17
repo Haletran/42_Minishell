@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 14:52:36 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:13:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -184,16 +184,11 @@ void			delete_all_nodes_env(t_env **head);
 void			insert_env_front(t_env **head, char *key, char *value);
 void			insert_env_after(t_env *prev_node, char *key, char *value);
 void			insert_env_end(t_env **head, char *key, char *value);
-char			*str_capitalizer(char *str);
 char			*ft_join(char *s1, char *s2);
 void			print_tab(char **src);
-char			*strjoin(char *s1, char *s2);
 void			print_tab(char **src);
 int				exec_pipe(t_cli *cli);
-char			**ft_split2(char *str, char *delim);
-int				exec_and(char **str, t_lst *mnsh);
 void			handle_sig(int check);
-void			choose(t_cli *cli);
 void			show_token(char **commands, t_com **com);
 t_env			*sort_in_ascii(t_env *list);
 char			**cpy(char **src, char **dest);

@@ -36,13 +36,13 @@ int	get_last_index_redi(t_redirection *head)
 
 void	print_dlst_redirection(t_redirection *head)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (head)
 	{
-		printf("NODE %d -> type: %d, file: %s, index: %d\n", i, head->type, head->file,
-			head->index);
+		printf("NODE %d -> type: %d, file: %s, index: %d\n", i, head->type,
+			head->file, head->index);
 		head = head->next;
 		i++;
 	}

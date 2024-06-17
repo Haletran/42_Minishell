@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 12:51:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:13:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				varloc_modify(t_cli *cli, char *key_line, char *var_line);
 int				varloc_attrib(t_cli *cli, char *key_line, char *var_line,
 					int index);
 char			*key_from_token(char *token);
-int handle_redirection(t_cli **cli);
+int				handle_redirection(t_cli **cli);
 char			*variable_from_token(char *token);
 
 //****************************************************************************/

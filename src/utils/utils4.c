@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 12:10:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:13:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_error(int i, char *str)
 	else if (i == IS_DIRECTORY)
 		ft_printf_fd(2, "minishell: %s: Is a directory\n", str);
 	else if (i == PERMISSION_DENIED)
-		ft_printf_fd(2, "minishell: %s: Permission denied\n", str);	
+		ft_printf_fd(2, "minishell: %s: Permission denied\n", str);
 }
 
 int	gate_or(int i)

@@ -12,98 +12,97 @@
 
 #include "../../includes/minishell.h"
 
-int handle_redirection(t_cli **cli)
+int	handle_redirection(t_cli **cli)
 {
-    t_redirection *red;
+	t_redirection	*red;
 
-    red = (*cli)->com->redirection;
-    (*cli)->mnsh->file_check = 0;
-    while (red)
-    {
-        if (red->type == IN)
-        {
-	        if (handle_infile(red, (*cli)) == ERROR)
-	    	    return (ERROR);
-        }
-        else if (red->type == OUT || red->type == APPEND_OUT)
-	    {
-            if (handle_outfile(red, (*cli)) == ERROR)
-	    	    return (ERROR);
-        }
-        red = red->next;
-    }
-    return (SUCCESS);
+	red = (*cli)->com->redirection;
+	(*cli)->mnsh->file_check = 0;
+	while (red)
+	{
+		if (red->type == IN)
+		{
+			if (handle_infile(red, (*cli)) == ERROR)
+				return (ERROR);
+		}
+		else if (red->type == OUT || red->type == APPEND_OUT)
+		{
+			if (handle_outfile(red, (*cli)) == ERROR)
+				return (ERROR);
+		}
+		red = red->next;
+	}
+	return (SUCCESS);
 }
 
-int handle_error(int fd, t_cli *cli)
+int	handle_error(int fd, t_cli *cli)
 {
-    if (errno == ENOENT)
-    {
-        cli->mnsh->file_check = 1;
-        ft_printf_fd(2, "minishell: No such file or directory\n");
-        cli->mnsh->exit_code = 1;
-        close(fd);
-        return (ERROR);
-    }
-    else
-    {
-        cli->mnsh->file_check = 1;
-        ft_printf_fd(2, "minishell: Permission denied\n");
-        cli->mnsh->exit_code = 1;
-        close(fd);
-        return (ERROR);
-    }
-    return (SUCCESS);
+	if (errno == ENOENT)
+	{
+		cli->mnsh->file_check = 1;
+		ft_printf_fd(2, "minishell: No such file or directory\n");
+		cli->mnsh->exit_code = 1;
+		close(fd);
+		return (ERROR);
+	}
+	else
+	{
+		cli->mnsh->file_check = 1;
+		ft_printf_fd(2, "minishell: Permission denied\n");
+		cli->mnsh->exit_code = 1;
+		close(fd);
+		return (ERROR);
+	}
+	return (SUCCESS);
 }
 
-int handle_outfile(t_redirection *red, t_cli *cli)
+int	handle_outfile(t_redirection *red, t_cli *cli)
 {
-    int fd;
-    if (access(red->file, F_OK) != -1)
-    {
-        if (red->type == APPEND_OUT)
-            fd = open(red->file, O_RDWR | O_APPEND, 0640);
-        else
-            fd = open(red->file, O_RDWR | O_TRUNC, 0640);
-    }
-    else
-    {
-        if (red->type == APPEND_OUT)
-            fd = open(red->file, O_RDWR | O_CREAT | O_APPEND, 0640);
-        else
-            fd = open(red->file, O_RDWR | O_CREAT, 0640);
-    }
-    if (fd == -1 && cli->mnsh->file_check == 0)
-    {
-        if (handle_error(fd, cli) == ERROR)
-            return (ERROR);
-    }
-    if (!red->next)
-    {
-        cli->mnsh->outfile_fd = dup(fd);
-        cli->mnsh->outfile_check = 1;
-    }
-    close(fd);
-    return (SUCCESS);
+	int	fd;
+
+	if (access(red->file, F_OK) != -1)
+	{
+		if (red->type == APPEND_OUT)
+			fd = open(red->file, O_RDWR | O_APPEND, 0640);
+		else
+			fd = open(red->file, O_RDWR | O_TRUNC, 0640);
+	}
+	else
+	{
+		if (red->type == APPEND_OUT)
+			fd = open(red->file, O_RDWR | O_CREAT | O_APPEND, 0640);
+		else
+			fd = open(red->file, O_RDWR | O_CREAT, 0640);
+	}
+	if (fd == -1 && cli->mnsh->file_check == 0)
+	{
+		if (handle_error(fd, cli) == ERROR)
+			return (ERROR);
+	}
+	if (!red->next)
+	{
+		cli->mnsh->outfile_fd = dup(fd);
+		cli->mnsh->outfile_check = 1;
+	}
+	close(fd);
+	return (SUCCESS);
 }
 
-int handle_infile(t_redirection *red, t_cli *cli)
+int	handle_infile(t_redirection *red, t_cli *cli)
 {
-    int fd;
+	int	fd;
 
-    fd = open(red->file, O_RDONLY, 0640);
-    if (fd == -1 && cli->mnsh->file_check == 0)
-    {
-        if (handle_error(fd, cli) == ERROR)
-            return (ERROR);
-    }
-    if (!red->next)
-    {
-        cli->mnsh->infile_fd = dup(fd);
-        cli->mnsh->infile_check = 1;
-    }
-    close(fd);
-    return (SUCCESS);
+	fd = open(red->file, O_RDONLY, 0640);
+	if (fd == -1 && cli->mnsh->file_check == 0)
+	{
+		if (handle_error(fd, cli) == ERROR)
+			return (ERROR);
+	}
+	if (!red->next)
+	{
+		cli->mnsh->infile_fd = dup(fd);
+		cli->mnsh->infile_check = 1;
+	}
+	close(fd);
+	return (SUCCESS);
 }
-
-

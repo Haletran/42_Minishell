@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/11 16:53:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:12:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 		{
 			free(env->value);
 			if (!tmp[1])
-			{	
+			{
 				env->print = 1;
 				env->value = NULL;
 			}
@@ -71,34 +71,35 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 	return (SUCCESS);
 }
 
-t_env *cpy_env_var(t_env *cpy)
+t_env	*cpy_env_var(t_env *cpy)
 {
-    t_env	*new;
-    t_env	*tmp;
-    t_env	*head;
+	t_env	*new;
+	t_env	*tmp;
+	t_env	*head;
 
-    new = ft_calloc(1, sizeof(t_env));
-    head = new;
-    tmp = cpy;
-    while (tmp)
-    {
-        new->key = ft_strdup(tmp->key);
-        new->value = ft_strdup(tmp->value);
-        new->print = tmp->print;
-        if (tmp->next) {
-            new->next = ft_calloc(1, sizeof(t_env));
-            new = new->next;
-        }
-        tmp = tmp->next;
-    }
-    return (head);
+	new = ft_calloc(1, sizeof(t_env));
+	head = new;
+	tmp = cpy;
+	while (tmp)
+	{
+		new->key = ft_strdup(tmp->key);
+		new->value = ft_strdup(tmp->value);
+		new->print = tmp->print;
+		if (tmp->next)
+		{
+			new->next = ft_calloc(1, sizeof(t_env));
+			new = new->next;
+		}
+		tmp = tmp->next;
+	}
+	return (head);
 }
 
 int	ft_export(t_lst *mnsh, char **str)
 {
-	int	i;
-	t_env *cpy;
-	int	err;
+	int		i;
+	t_env	*cpy;
+	int		err;
 
 	i = 1;
 	if (!str[1])

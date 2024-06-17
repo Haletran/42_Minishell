@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 14:36:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:13:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	check_if_path(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		//printf("envp[%d] = %s\n", i, envp[i]);
 		if (!ft_strncmp(envp[i], "PATH=", 5))
 			return (1);
 		i++;

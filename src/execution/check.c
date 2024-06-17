@@ -6,20 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 13:02:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:27:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	choose(t_cli *cli)
-{
-/* 	if (!cli->com)
-		rl_on_new_line();
-	else */
-		exec_pipe(cli);
-	return ;
-}
 
 /**
  * @brief Associate commands to built-ins if needed

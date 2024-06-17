@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 14:51:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:11:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	sig_ctrl_back(int signum)
 	rl_redisplay();
 }
 
-void handle_seg(int signum)
+void	handle_seg(int signum)
 {
 	(void)signum;
 	ft_printf_fd(2, BRED "SEGFAULT\n" CRESET);

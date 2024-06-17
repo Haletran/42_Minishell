@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 15:15:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:42:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@ void	main_loop(t_cli *cli, int count)
 	if (cli->com->type == COMMAND)
 	{
 		if (!cli->com->next)
+		{
+			// need to find a better solution
+			if (cli->mnsh->file_check == 1)
+			{
+				pipe(cli->mnsh->fd);
+				close(cli->mnsh->fd[1]);
+				dup2(cli->mnsh->fd[0], STDIN_FILENO);
+				close(cli->mnsh->fd[0]);
+			}
 			execute_last_command(cli);
+		}
 		else
 		{
 			pipe(cli->mnsh->fd);
@@ -60,7 +70,7 @@ static void	handle_heredoc(t_cli *cli, int *heredoc)
 
 static void	loop_commands(t_cli *cli, int *count)
 {
-	t_com *head;
+	t_com	*head;
 
 	head = cli->com;
 	while (cli->com)
@@ -89,7 +99,6 @@ static void	loop_commands(t_cli *cli, int *count)
 			break ;
 		(*count)++;
 	}
-
 	cli->com = head;
 }
 
