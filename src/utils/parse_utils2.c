@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/05 14:12:27 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:41:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -22,6 +22,7 @@ int	command_census(t_token *tok, t_cli *cli)
 	else if (tok->prev->prev != NULL)
 		if (tok->prev->prev->type == REDIRECTION_OPERATOR)
 			return (COMMAND);
+	// to fix error
 	return (ARGUMENT);
 }
 

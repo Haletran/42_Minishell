@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 15:26:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:13:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	piping(t_cli *cli, int count)
 	pid_t	pid;
 
 	pid = fork();
+	(void)count;
 	if (pid == -1)
 		fork_error();
 	else if (pid == 0)
@@ -69,25 +70,22 @@ void	piping(t_cli *cli, int count)
 			dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
 			close(cli->mnsh->heredoc_backup_fd);
 		}
-		if (count != cli->mnsh->pipe_count)
+		if (cli->mnsh->outfile_check == 1)
 		{
-			if (cli->mnsh->outfile_check == 1)
-			{
-				dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
-				close(cli->mnsh->outfile_fd);
-			}
-			if (cli->mnsh->infile_check == 1)
-			{
-				dup2(cli->mnsh->infile_fd, STDIN_FILENO);
-				close(cli->mnsh->infile_fd);
-			}
-			if (cli->mnsh->outfile_check != 1)
-			{
-				dup2(cli->mnsh->fd[1], STDOUT_FILENO);
-				close(cli->mnsh->fd[1]);
-			}
+			dup2(cli->mnsh->outfile_fd, STDOUT_FILENO);
+			close(cli->mnsh->outfile_fd);
 		}
-		close(cli->mnsh->fd[0]);
+		if (cli->mnsh->infile_check == 1)
+		{
+			dup2(cli->mnsh->infile_fd, STDIN_FILENO);
+			close(cli->mnsh->infile_fd);
+		}
+		if (cli->mnsh->outfile_check != 1)
+		{
+			close(cli->mnsh->fd[0]);
+			dup2(cli->mnsh->fd[1], STDOUT_FILENO);
+			close(cli->mnsh->fd[1]);
+		}
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
 			if (execve(cli->com->env_path, cli->com->command,
@@ -99,8 +97,9 @@ void	piping(t_cli *cli, int count)
 	}
 	else
 	{
-		if (count != cli->mnsh->pipe_count)
-			close(cli->mnsh->fd[1]);
+		close(cli->mnsh->fd[1]);
+		dup2(cli->mnsh->fd[0], STDIN_FILENO);
+		close(cli->mnsh->fd[0]);
 	}
 }
 
@@ -118,14 +117,6 @@ void	execute_last_command(t_cli *cli)
 		}
 		else if (pid == 0)
 		{
-			if (cli->mnsh->pipe_count != 0)
-			{
-				if (cli->mnsh->prev_fd[0] != 0)
-				{
-					dup2(cli->mnsh->prev_fd[0], STDIN_FILENO);
-					close(cli->mnsh->prev_fd[0]);
-				}
-			}
 			if (cli->mnsh->heredoc_pipe == 1)
 			{
 				dup2(cli->mnsh->heredoc_backup_fd, STDIN_FILENO);
@@ -154,8 +145,6 @@ void	execute_last_command(t_cli *cli)
 	}
 	if (cli->mnsh->exit_code != 127 && check_if_forked(cli) == NOT_FOUND)
 		cli->mnsh->exit_code = get_exit_code(cli->mnsh);
-	close(cli->mnsh->prev_fd[0]);
-	close(cli->mnsh->prev_fd[1]);
 	close(cli->mnsh->fd[0]);
 	close(cli->mnsh->fd[1]);
 }
