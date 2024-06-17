@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 15:36:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:52:36 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -132,6 +132,13 @@ extern int		g_var;
 	"logout,mapfile,popd,printf,pushd,pwd,read,readarray,readonly,"    \
 	"return,set,shift,shopt,source,suspend,test,times,trap,type,"      \
 	"typeset,ulimit,umask,unalias,unset,wait"
+
+//* *********************************************************************** *//
+//* 																		*//
+//* 							SPECIAL PARAMETER							*//
+//* 																		*//
+//* *********************************************************************** *//
+# define SPECIAL_PARAM_LIST "$*,$@,$#,$?,$!,$0,$_,$-,$$"
 
 //* ************************************************************************ *//
 //*                                                                          *//
@@ -350,8 +357,8 @@ char			*expand_var(t_lst *mnsh, char *str);
 int				already_exist(t_lst *mnsh, char **str, int i);
 int				add_var(t_lst *mnsh, char **str, int i);
 int				check_number_of_infile(t_cli *cli, t_com *com);
-int 			handle_infile(t_redirection *red, t_cli *cli);
-int 			handle_outfile(t_redirection *red, t_cli *cli);
+int				handle_infile(t_redirection *red, t_cli *cli);
+int				handle_outfile(t_redirection *red, t_cli *cli);
 int				check_error(t_cli **cli);
 
 #endif

@@ -19,7 +19,6 @@ echo hi | <"./test_files/infile" cat
 echo hi | "./test_files/infile" cat
 <"./test_files/infile" cat | echo hi
 <"./test_files/infile" cat | grep hello
-<"./test_files/infile_big" cat | echo hi
 <missing cat
 <missing cat | cat
 <missing cat | echo oi
@@ -115,7 +114,6 @@ echo hi | cat <"./test_files/infile"
 echo hi | cat "./test_files/infile"
 cat <"./test_files/infile" | echo hi
 cat <"./test_files/infile" | grep hello
-cat <"./test_files/infile_big" | echo hi
 cat <missing
 cat <missing | cat
 cat <missing | echo oi

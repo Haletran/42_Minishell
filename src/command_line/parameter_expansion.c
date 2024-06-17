@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parameter_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 21:37:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:28:39 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -82,10 +82,10 @@ void	parameter_expansion(t_cli *cli)
 	int		i;
 
 	tmp = cli->token;
-	while (tmp && (tmp->type != IMMUTABLE || (cli->n_quote / 2) / 2 >= 1))
+	while (tmp && (cli->flag_quote == 0))
 	{
 		i = dollar_position(tmp->token);
-		if (i == -1)
+		if (i == -1 || tmp->type == IMMUTABLE)
 		{
 			tmp = tmp->next;
 			continue ;
@@ -101,4 +101,3 @@ void	parameter_expansion(t_cli *cli)
 		tmp = tmp->next;
 	}
 }
-

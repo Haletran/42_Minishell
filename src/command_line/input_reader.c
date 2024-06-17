@@ -1,20 +1,20 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   input_reader.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 13:48:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:41:25 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
 void	exit_input(t_cli *cli)
 {
-	int code;
+	int	code;
 
 	if (cli->mnsh->ctrl_c == 1)
 		code = 130;
@@ -29,7 +29,7 @@ void	input_reader(t_cli *cli)
 {
 	char	*input_trim;
 
-	cli->input = readline(BRED "[~] " CRESET "MINISHELL $ > ");
+	cli->input = readline(BRED "[~] " CRESET "MINISHELL > ");
 	if (g_var == 2)
 	{
 		cli->mnsh->exit_code = 130;
@@ -47,7 +47,7 @@ void	input_reader(t_cli *cli)
 	}
 	if (!cli->input)
 		exit_input(cli);
-	//ft_printf_fd(cli->mnsh->history_fd, "%s\n", cli->input);
+	// ft_printf_fd(cli->mnsh->history_fd, "%s\n", cli->input);
 	if (cli->input)
 		add_history(cli->input);
 }

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   create_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/13 12:24:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:28:00 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -53,7 +53,8 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	while (i != arr_size)
 	{
 		if (tmp->token != NULL)
-			com->command[i++] = ft_strdup(tmp->token);
+			if (tmp->type != 2 && tmp->type != 13)
+				com->command[i++] = ft_strdup(tmp->token);
 		tmp = tmp->next;
 	}
 	com->command[i] = NULL;
@@ -65,33 +66,33 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 
 char	**cpy_env(t_cli *cli)
 {
-    int		i;
-    t_env	*tmp;
-    char	*tmp2;
-    char	**result;
-    int		j;
+	int		i;
+	t_env	*tmp;
+	char	*tmp2;
+	char	**result;
+	int		j;
 
-    j = 0;
-    tmp = cli->mnsh->env_var_lst;
-    while (tmp && ++j)
-        tmp = tmp->next;
-    result = ft_calloc((j + 1), sizeof(char *));
-    if (!result)
+	j = 0;
+	tmp = cli->mnsh->env_var_lst;
+	while (tmp && ++j)
+		tmp = tmp->next;
+	result = ft_calloc((j + 1), sizeof(char *));
+	if (!result)
 		return (NULL);
-    i = 0;
-    tmp = cli->mnsh->env_var_lst;
-    while (tmp)
-    {
-        if (tmp->value)
-        {
-            tmp2 = ft_strjoin(tmp->key, "=");
-            result[i] = ft_strjoin_f(tmp2, tmp->value);
-            i++;
-        }
-        tmp = tmp->next;
-    }
-    result[i] = NULL;
-    return (result);
+	i = 0;
+	tmp = cli->mnsh->env_var_lst;
+	while (tmp)
+	{
+		if (tmp->value)
+		{
+			tmp2 = ft_strjoin(tmp->key, "=");
+			result[i] = ft_strjoin_f(tmp2, tmp->value);
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	result[i] = NULL;
+	return (result);
 }
 
 void	create_command(t_cli *cli)
@@ -131,11 +132,12 @@ int	get_nb_args(t_token *head)
 	tmp = head;
 	nb_args = 0;
 	heredoc_flag = 0;
-	while (tmp != NULL && tmp->type != REDIRECTION_OPERATOR
-		&& tmp->type != CONTROLE_OPERATOR && heredoc_flag != 1)
+	while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && heredoc_flag != 1)
 	{
 		if (tmp->type == DELIMITER)
 			heredoc_flag = 1;
+		else if (tmp->type == 2 || tmp->type == 13)
+			nb_args--;
 		nb_args++;
 		tmp = tmp->next;
 	}

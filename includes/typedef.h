@@ -29,7 +29,8 @@ typedef enum s_token_type
 	DELIMITER,
 	IMMUTABLE,
 	BUILTIN,
-	KEYWORD
+	KEYWORD,
+	REDIRECTION_ARGUMENT
 }							t_token_type;
 
 typedef enum s_redi_type
@@ -133,6 +134,7 @@ typedef struct s_cli
 	int						n_com;
 	int						index;
 	char					**meta;
+	char					**spe_param;
 	char					**redirect;
 	char					**control;
 	char					**keyword;

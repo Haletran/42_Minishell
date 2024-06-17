@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 12:13:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:49:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ int	check_error(t_cli **cli)
 		} */
 	}
 	return (SUCCESS);
-}
-
-void execute_command(t_cli *cli)
-{		
-	if (check_commands(cli->com->command, cli) == NOT_FOUND)
-	{
-		if (execve(cli->com->env_path, cli->com->command,
-				cli->mnsh->env_var) == -1)
-			ft_exitcode(cli, cli->mnsh->exit_code);
-	}
-	if (check_if_builtin(cli->com->command[0]) == SUCCESS)
-		ft_exitcode(cli, cli->mnsh->exit_code);
 }
 
 void fork_error()
@@ -111,10 +99,7 @@ void	execute_last_command(t_cli *cli)
 	{
 		pid = fork();
 		if (pid == -1)
-		{
-			print_error(FORK_FAILED, NULL);
-			exit(1);
-		}
+			fork_error();
 		else if (pid == 0)
 		{
 			if (cli->mnsh->heredoc_pipe == 1)

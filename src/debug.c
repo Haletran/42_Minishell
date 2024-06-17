@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/10 13:05:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:21:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_all_token(t_token *token)
 	t_token	*head;
 	char	*type[] = {"COMMAND", "CONTROLE_OPERATOR", "REDIRECTION_OPERATOR",
 			"ARGUMENT", "QUOTE", "DQUOTE", "BRACKET", "FREEZE", "HEREDOC",
-			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD"};
+			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD", "REDIRECTION_ARGUMENT"};
 
 	head = token;
 	while (token)
@@ -57,7 +57,7 @@ void	print_all_com(t_com *com)
 	int		i;
 	char	*type[] = {"COMMAND", "CONTROLE_OPERATOR", "REDIRECTION_OPERATOR",
 			"ARGUMENT", "QUOTE", "DQUOTE", "BRACKET", "FREEZE", "HEREDOC",
-			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD"};
+			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD", "REDIRECTION_ARGUMENT"};
 
 	head = com;
 	ft_printf(BHRED "PRINT ALL COMMANDS\n\n" CRESET);
@@ -97,7 +97,7 @@ void	print_type(t_token *token)
 {
 	char	*type[] = {"COMMAND", "CONTROLE_OPERATOR", "REDIRECTION_OPERATOR",
 			"ARGUMENT", "QUOTE", "DQUOTE", "BRACKET", "FREEZE", "HEREDOC",
-			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD"};
+			"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD", "REDIRECTION_ARGUMENT"};
 
 	ft_printf("Type: %s\n", type[token->type]);
 }
@@ -106,7 +106,7 @@ void	print_type_com(t_com *com)
 {
 	char *type[] = {"COMMAND", "CONTROLE_OPERATOR", "REDIRECTION_OPERATOR",
 		"ARGUMENT", "QUOTE", "DQUOTE", "BRACKET", "FREEZE", "HEREDOC",
-		"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD"};
+		"DELIMITER", "IMMUTABLE", "BUILTIN", "KEYWORD", "REDIRECTION_ARGUMENT"};
 
 	ft_printf("Type: %s\n", type[com->type]);
 }

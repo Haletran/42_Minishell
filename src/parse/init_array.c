@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:17:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/12 15:37:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:47:35 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -37,5 +37,8 @@ int	init_array(t_cli **cli)
 	(*cli)->builtin = ft_split(BUILTIN_LIST, ',');
 	if (!(*cli)->builtin)
 		return (return_error(ERROR, "builtin: Alloc ", NULL, DEBUG_MODE));
+	(*cli)->spe_param = ft_split(SPECIAL_PARAM_LIST, ',');
+	if (!(*cli)->spe_param)
+		return (return_error(ERROR, "spe_param: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
 }

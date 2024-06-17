@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 11:41:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:13:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -19,10 +19,16 @@ int	command_census(t_token *tok, t_cli *cli)
 		return (COMMAND);
 	else if (tok->prev->type == DELIMITER)
 		return (COMMAND);
-	else if (tok->prev->prev != NULL)
-		if (tok->prev->prev->type == REDIRECTION_OPERATOR)
+	else if (tok->prev->type == 13)
+	{
+		if (tok->prev->prev->prev == NULL)
 			return (COMMAND);
-	// to fix error
+		else if (tok->prev->prev->prev->type == CONTROLE_OPERATOR)
+			return (COMMAND);
+	}
+	if (tok->prev != NULL)
+		if (tok->prev->type == COMMAND && tok->prev->token[0] == 0)
+			return (COMMAND);
 	return (ARGUMENT);
 }
 

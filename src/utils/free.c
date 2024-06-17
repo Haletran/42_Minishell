@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 12:22:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:03:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -57,6 +57,7 @@ void	freeway(t_cli *cli)
 	free_tab(cli->keyword);
 	free_tab(cli->bracket);
 	free_tab(cli->builtin);
+	free_tab(cli->spe_param);
 	close_fds();
 	delete_all_nodes_env(&cli->mnsh->env_var_lst);
 	cli->mnsh->current_path = free_char(cli->mnsh->current_path);

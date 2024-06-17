@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   split_into_tokens.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/11 15:40:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:13:31 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -35,11 +35,11 @@ t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 {
 	if (ft_isthis("'", token[0]) > 0 && cli->flag_dquote != 1)
 		return (add_flag(cli, QUOTE));
-	if (cli->flag_quote & 1)
-		return (IMMUTABLE);
-	if (ft_isthis("\"", token[0]) > 0 && cli->flag_quote != 1)
+	else if (ft_isthis("\"", token[0]) > 0 && cli->flag_quote != 1)
 		return (add_flag(cli, DQUOTE));
-	if (cli->flag_dquote & 1)
+	else if (cli->flag_quote & 1)
+		return (IMMUTABLE);
+	else if (cli->flag_dquote & 1)
 		return (FREEZE);
 	if (token[0] == '<' && token[1] == '<')
 		return (add_flag(cli, HEREDOC));

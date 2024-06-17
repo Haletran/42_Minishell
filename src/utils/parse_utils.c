@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/03 12:30:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/17 14:50:47 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -68,6 +68,7 @@ int	ft_lenstrtype(char *token, t_cli *cli)
 	i += ft_lencmparray(token, cli->control);
 	i += ft_lencmparray(token, cli->bracket);
 	i += ft_lencmparray(token, cli->keyword);
+	i += ft_lencmparray(token, cli->spe_param);
 	return (i);
 }
 
@@ -94,14 +95,12 @@ int	is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 // GUILLEMETS NOT WORKING ANYMORE
 t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 {
-	if (cli->heredoc == 1 && ft_isthis(" \t\n", tok->token[0]) == 0)
+	if (cli->heredoc == 1 && ft_isthis(" \t\n<", tok->token[0]) == 0)
 		return (quote_n_heredoc_census(tok->token, cli));
-	if (ft_isthis("<", tok->token[0]) > 0)
-		return (quote_n_heredoc_census(tok->token, cli));
-	/* 	if (cli->flag_dquote & 1)
-			return (FREEZE);
-		if (cli->flag_quote & 1)
-			return (IMMUTABLE); */
+	else if (cli->flag_dquote & 1)
+		return (FREEZE);
+	else if (cli->flag_quote & 1)
+		return (IMMUTABLE);
 	if (tok->type == HEREDOC)
 		return (HEREDOC);
 	if (ft_lencmparray(tok->token, cli->redirect) > 0)
@@ -110,6 +109,9 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 		return (CONTROLE_OPERATOR);
 	if (ft_lencmparray(tok->token, cli->bracket) > 0)
 		return (BRACKET);
+	if (tok->prev != NULL)
+		if (tok->prev->type == REDIRECTION_OPERATOR)
+			return (REDIRECTION_ARGUMENT);
 	if (command_census(tok, cli) == COMMAND)
 		return (COMMAND);
 	return (ARGUMENT);
