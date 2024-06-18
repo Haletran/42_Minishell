@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 12:02:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:24:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,5 @@ int	exec_pipe(t_cli *cli)
 	close(cli->mnsh->backup[0]);
 	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
 	close(cli->mnsh->backup[1]);
-	//close_fds();
 	return (SUCCESS);
 }

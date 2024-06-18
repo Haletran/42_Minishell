@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 12:27:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:04:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_error(t_cli **cli)
 {
 	t_com	*tmp;
 
-	tmp = (*cli)->com;
+	tmp = (*cli)->com; 
 	if (!tmp)
 		return (ERROR);
 	if (check_if_path_needed(tmp->command) == NOT_FOUND)
@@ -27,12 +27,6 @@ int	check_error(t_cli **cli)
 			print_error(NOT_FOUND, tmp->command[0]);
 			return (ERROR);
 		}
-		/* 		else if (tmp->command[0][0] == '\0')
-				{
-					(*cli)->mnsh->exit_code = 127;
-					print_error(NOT_FOUND, (*cli)->com->command[0]);
-					return (ERROR);
-				} */
 	}
 	return (SUCCESS);
 }

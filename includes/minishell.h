@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 16:13:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:38:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ t_com			*get_last_command(t_com *com);
 t_token			*get_redirection(t_token *head, int start);
 
 /*PARSING*/
-void			parsing_organiser(t_cli *cli);
+int			parsing_organiser(t_cli *cli);
 char			*get_token_from_index(t_token *head, int index);
 int				get_type_from_token(t_token *head, char *token);
 void			delete_node_token(t_token **head, t_token *del_node);
@@ -282,7 +282,7 @@ int				varloc_creation(t_cli *cli);
 
 int				ft_isthis(char *this, char c);
 void			reindex_token_list(t_cli *cli);
-void			glue_quotes(t_cli *cli);
+int				glue_quotes(t_cli *cli);
 void			remove_quotes(t_cli *cli);
 void			cleaning_token_list(t_cli *cli);
 void			delete_node_com(t_com **head, t_com *del_node);

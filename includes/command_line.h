@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:13:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:35:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 //* cleaning_dlst_token.c
 
 void			remove_quotes(t_cli *cli);
-void			glue_quotes(t_cli *cli);
+int				glue_quotes(t_cli *cli);
 void			cleaning_token_list(t_cli *cli);
 void			concat_no_space(t_cli *cli);
 
