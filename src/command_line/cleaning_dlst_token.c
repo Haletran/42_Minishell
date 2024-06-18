@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 14:19:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:56:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ void	cleaning_token_list(t_cli *cli)
 		}
 		else if ((ft_strcmp(tmp->token, "\n") == 0 || ft_strcmp(tmp->token,
 					" ") == 0) && tmp->type != IMMUTABLE && tmp->type != FREEZE)
-		{
 			replace_last_space(tmp);
-			// tmp = tmp->prev;
-			// delete_node_token(&cli->token, tmp->next);
-		}
 		else
 			tmp = tmp->next;
 	}
@@ -116,5 +112,4 @@ void	concat_no_space(t_cli *cli)
 		else
 			tmp = tmp->next;
 	}
-	// reindex_token_list(cli);
 }

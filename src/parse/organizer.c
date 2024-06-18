@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 14:49:50 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/06/18 15:51:31 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/06/18 15:51:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int		parsing_organiser(t_cli *cli)
+int	parsing_organiser(t_cli *cli)
 {
 	input_reader(cli);
 	split_into_token(cli);

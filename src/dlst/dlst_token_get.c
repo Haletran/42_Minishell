@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:12:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:55:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,10 @@ void	print_dlst_token(t_token *head)
 
 t_token	*get_redirection(t_token *head, int start)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = head;
 	(void)start;
-	// while (tmp && tmp->index != start)
-	// 	tmp = tmp->next;
 	while (tmp)
 	{
 		if (tmp->type == REDIRECTION_OPERATOR)

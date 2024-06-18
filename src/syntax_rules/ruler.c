@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 13:47:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:50:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	syntax_error(t_cli *cli, char *token)
 void	process_error(t_cli *cli, char *token)
 {
 	ft_printf_fd(2,
-		"minishell: bash reserved keyword: no implementation required for `%s'\n",
-		token);
+		"minishell: bash reserved keyword: no \
+		implementation required for `%s'\n", token);
 	cli->mnsh->exit_code = 2;
 	cli->rules_flag = 1;
 }

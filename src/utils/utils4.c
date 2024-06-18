@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 13:29:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:50:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	delete_file(char *name, t_cli *cli)
 		exit(1);
 	}
 }
-
-
 
 void	close_fds(void)
 {
@@ -65,4 +63,15 @@ int	gate_or(int i)
 		return (1);
 	else
 		return (0);
+}
+
+int	get_exit_code(t_lst *mnsh)
+{
+	if (WIFEXITED(mnsh->exit_code))
+		return (mnsh->exit_code = WEXITSTATUS(mnsh->exit_code));
+	else if (WIFSIGNALED(mnsh->exit_code))
+		return (mnsh->exit_code = WTERMSIG(mnsh->exit_code) + 128);
+	else if (WIFSTOPPED(mnsh->exit_code))
+		return (mnsh->exit_code = WSTOPSIG(mnsh->exit_code));
+	return (0);
 }

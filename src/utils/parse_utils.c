@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:11:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:47:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	}
 	return (EXIT_SUCCESS);
 }
-// GUILLEMETS NOT WORKING ANYMORE
+
 t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 {
 	if (cli->heredoc == 1 && ft_isthis(" \t\n<", tok->token[0]) == 0)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/11 16:46:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:49:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@ int	get_nbargs(char **str)
 		str++;
 	}
 	return (size);
-}
-
-int	get_exit_code(t_lst *mnsh)
-{
-	if (WIFEXITED(mnsh->exit_code))
-		return (mnsh->exit_code = WEXITSTATUS(mnsh->exit_code));
-	else if (WIFSIGNALED(mnsh->exit_code))
-		return (mnsh->exit_code = WTERMSIG(mnsh->exit_code) + 128);
-	else if (WIFSTOPPED(mnsh->exit_code))
-		return (mnsh->exit_code = WSTOPSIG(mnsh->exit_code));
-	return (0);
 }
 
 int	check_if_pipe(char **str)
@@ -79,7 +68,6 @@ t_env	*sort_in_ascii(t_env *list)
 	return (list);
 }
 
-//[a-zA-Z_]{1,}[a-zA-Z0-9_]{0,}
 int	check_if_alpha(char *str)
 {
 	int	i;
@@ -117,27 +105,4 @@ int	ft_cpy(char **dest, char **src)
 		i++;
 	}
 	return (SUCCESS);
-}
-
-char	**cpy(char **src, char **dest)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	if (!dest || !src)
-		return (NULL);
-	while (src[len] != NULL)
-		len++;
-	dest = malloc((len + 1) * sizeof(char *));
-	if (!dest)
-		return (NULL);
-	while (src[i] != NULL)
-	{
-		dest[i] = strdup(src[i]);
-		i++;
-	}
-	dest[i] = NULL;
-	return (dest);
 }

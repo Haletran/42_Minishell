@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 13:47:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:48:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ void	reindex_token_list(t_cli *cli)
 	}
 	cli->n_token = i;
 }
-

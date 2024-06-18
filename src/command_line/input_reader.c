@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 14:24:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:57:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	input_reader(t_cli *cli)
 	}
 	if (!cli->input)
 		exit_input(cli);
-	// ft_printf_fd(cli->mnsh->history_fd, "%s\n", cli->input);
 	if (cli->input)
 		add_history(cli->input);
 }

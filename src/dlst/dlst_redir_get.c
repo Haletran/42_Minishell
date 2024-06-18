@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlst_redirection_get.c                                :+:      :+:    :+:   */
+/*   dlst_redir_get.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 10:49:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:53:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,4 @@ int	get_last_index_redi(t_redirection *head)
 	while (head->next)
 		head = head->next;
 	return (head->index);
-}
-
-void	print_dlst_redirection(t_redirection *head)
-{
-	int	i;
-
-	i = 0;
-	while (head)
-	{
-		printf("NODE %d -> type: %d, file: %s, index: %d\n", i, head->type,
-			head->file, head->index);
-		head = head->next;
-		i++;
-	}
 }

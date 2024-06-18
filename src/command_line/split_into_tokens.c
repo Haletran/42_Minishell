@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:10:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:56:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ t_token_type	token_type_discovery(char *token, t_cli *cli)
 		return (CONTROLE_OPERATOR);
 	if (ft_lencmparray(token, cli->bracket) > 0)
 		return (BRACKET);
-	// if (ft_lencmparray(token, cli->keyword) > 0)
-	//	return (KEYWORD);
 	if (cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
 				get_last_index(cli->token)), cli) > 0)
 		return (COMMAND);
