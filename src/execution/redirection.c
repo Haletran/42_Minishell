@@ -37,12 +37,12 @@ int	handle_redirection(t_cli **cli)
 
 int	handle_error(int fd, t_cli *cli)
 {
+	(void)fd;
 	if (errno == ENOENT)
 	{
 		cli->mnsh->file_check = 1;
 		ft_printf_fd(2, "minishell: No such file or directory\n");
 		cli->mnsh->exit_code = 1;
-		close(fd);
 		return (ERROR);
 	}
 	else
@@ -50,7 +50,6 @@ int	handle_error(int fd, t_cli *cli)
 		cli->mnsh->file_check = 1;
 		ft_printf_fd(2, "minishell: Permission denied\n");
 		cli->mnsh->exit_code = 1;
-		close(fd);
 		return (ERROR);
 	}
 	return (SUCCESS);

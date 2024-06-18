@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 16:13:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:31:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	delete_file(char *name, t_cli *cli)
 		exit(1);
 	}
 }
+
+
 
 void	close_fds(void)
 {

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 17:42:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:02:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,7 @@ void	main_loop(t_cli *cli, int count)
 	if (cli->com->type == COMMAND)
 	{
 		if (!cli->com->next)
-		{
-			// need to find a better solution
-			if (cli->mnsh->file_check == 1)
-			{
-				pipe(cli->mnsh->fd);
-				close(cli->mnsh->fd[1]);
-				dup2(cli->mnsh->fd[0], STDIN_FILENO);
-				close(cli->mnsh->fd[0]);
-			}
 			execute_last_command(cli);
-		}
 		else
 		{
 			pipe(cli->mnsh->fd);
@@ -83,9 +73,7 @@ static void	loop_commands(t_cli *cli, int *count)
 		}
 		if (handle_redirection(&cli) == ERROR)
 		{
-			if (cli->com->next)
-				cli->com = cli->com->next;
-			else
+			if (!cli->com->next)
 				break;
 		}
 		check_error(&cli);
@@ -125,6 +113,6 @@ int	exec_pipe(t_cli *cli)
 	close(cli->mnsh->backup[0]);
 	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
 	close(cli->mnsh->backup[1]);
-	close_fds();
+	//close_fds();
 	return (SUCCESS);
 }
