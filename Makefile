@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/19 09:29:08 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/19 10:15:16 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,8 @@ SRCS	= src/main.c \
 		  src/built-ins/unset.c \
 		  src/built-ins/pwd.c \
 		  src/built-ins/heredoc.c \
+		  src/built-ins/heredoc_utils.c \
+		  src/built-ins/heredoc_child.c \
 		  src/command_line/split_into_tokens.c \
 		  src/command_line/create_redirection.c \
 		  src/command_line/cleaning_dlst_token.c \

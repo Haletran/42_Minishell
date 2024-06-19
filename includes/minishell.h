@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:59:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:06:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,5 +360,6 @@ void			redirection_pipe(t_cli *cli);
 void			redirection_fd(t_cli *cli);
 void			redirection_parent(t_cli *cli);
 void			redirection_error(t_cli *cli);
+void			fork_error(pid_t pid);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:00:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:22:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,6 @@ int	check_if_var_exist(t_env *env, char *str)
 	return (SUCCESS);
 }
 
-void print_tab(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_printf("str[%d] = %s\n", i, str[i]);
-		i++;
-	}
-
-}
-
 int	check_valid_identifier(char **str)
 {
 	char	**tmp;
@@ -112,14 +99,11 @@ int	check_valid_identifier(char **str)
 		if (!tmp[0])
 			return (free_tab(tmp), ERROR);
 		j = 0;
-		if (i == 0)
-		{
-			while (tmp[0][++j])
-				if (!ft_isalnum(tmp[0][j]) || tmp[0][j] == '-')
-					if (tmp[0][j] != '+')
-						return (free_tab(tmp), ERROR);
-		}
-		if (tmp[1] && ft_strlen(tmp[1]) == 0)
+		while (i == 0 && tmp[0][++j])
+			if (!ft_isalnum(tmp[0][j]) || tmp[0][j] == '-')
+				if (tmp[0][j] != '+')
+					return (free_tab(tmp), ERROR);
+		if (i == 1 && tmp[0] && ft_strlen(tmp[0]) == 0)
 			return (free_tab(tmp), ERROR);
 		free_tab(tmp);
 		i++;

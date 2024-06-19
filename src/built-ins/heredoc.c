@@ -6,93 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:54:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:16:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int	check_number_of_heredoc(t_com *com)
-{
-	int		count;
-	t_com	*tmp;
-
-	count = 0;
-	tmp = com;
-	while (tmp)
-	{
-		if (tmp->type == HEREDOC)
-			count++;
-		tmp = tmp->next;
-	}
-	return (count);
-}
-
-int	check_heredoc_error(t_cli *cli)
-{
-	t_com	*tmp;
-
-	tmp = cli->com;
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->command[0], "<<", 2) == 0 && !tmp->command[1])
-		{
-			ft_printf_fd(2, HEREDOC_SYNT);
-			return (ERROR);
-		}
-		tmp = tmp->next;
-	}
-	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
-	if (cli->mnsh->nb_heredoc >= 13)
-	{
-		ft_printf_fd(2, HEREDOC_MAX);
-		return (ERROR);
-	}
-	return (SUCCESS);
-}
-
-void	child_process(t_cli *cli, t_com *com)
-{
-	char	*input;
-	int		line_count;
-
-	input = NULL;
-	g_var = 0;
-	line_count = 0;
-	handle_sig(1);
-	while (1)
-	{
-		input = readline("> ");
-		if (!input && g_var == 0)
-		{
-			ft_printf_fd(2, HEREDOC_EOF, line_count, com->command[1]);
-			input = free_char(input);
-			ft_exitcode(cli, 0);
-		}
-		if (g_var == 1)
-		{
-			input = free_char(input);
-			ft_exitcode(cli, 130);
-		}
-		if (cli->mnsh->nb_heredoc - 1 == 0 && ft_strncmp(input, com->command[1],
-				ft_strlen(com->command[1])))
-		{
-			ft_putstr_fd(input, cli->mnsh->heredoc_fd);
-			ft_putstr_fd("\n", cli->mnsh->heredoc_fd);
-		}
-		if (!ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
-		{
-			if (cli->mnsh->nb_heredoc - 1 == 0)
-				close(cli->mnsh->heredoc_fd);
-			input = free_char(input);
-			ft_exitcode(cli, 0);
-		}
-		input = free_char(input);
-		line_count++;
-	}
-	input = free_char(input);
-	ft_exitcode(cli, 0);
-}
 
 int	create_heredoc_file(t_cli **cli)
 {
@@ -114,10 +32,7 @@ int	ft_heredoc(t_cli *cli)
 
 	tmp = cli->com;
 	if (check_heredoc_error(cli) == ERROR)
-	{
-		cli->mnsh->exit_code = 1;
-		return (ERROR);
-	}
+		return (ERROR, cli->mnsh->exit_code = 1);
 	while (tmp)
 	{
 		if (tmp->type == HEREDOC)
@@ -126,16 +41,13 @@ int	ft_heredoc(t_cli *cli)
 				if (create_heredoc_file(&cli) == ERROR)
 					return (ERROR);
 			pid = fork();
-			if (pid == -1)
-				return (ERROR);
-			else if (pid == 0)
+			fork_error(pid);
+			if (pid == 0)
 				child_process(cli, tmp);
 			cli->mnsh->nb_heredoc--;
 			waitpid(pid, &cli->mnsh->exit_code, 0);
-			tmp = tmp->next;
 		}
-		else
-			tmp = tmp->next;
+		tmp = tmp->next;
 	}
 	cli->mnsh->exit_code = get_exit_code(cli->mnsh);
 	close(cli->mnsh->heredoc_fd);

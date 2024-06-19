@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:33:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:06:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ int	check_error(t_cli **cli)
 	return (SUCCESS);
 }
 
-void	fork_error(void)
+void	fork_error(pid_t pid)
 {
-	print_error(FORK_FAILED, NULL);
-	exit(1);
+	if (pid == -1)
+	{
+		print_error(FORK_FAILED, NULL);
+		exit(1);
+	}
 }
 
 void	piping(t_cli *cli, int count)
@@ -43,9 +46,8 @@ void	piping(t_cli *cli, int count)
 
 	pid = fork();
 	(void)count;
-	if (pid == -1)
-		fork_error();
-	else if (pid == 0)
+	fork_error(pid);
+	if (pid == 0)
 	{
 		redirection_error(cli);
 		redirection_fd(cli);
@@ -70,9 +72,8 @@ void	execute_last_command(t_cli *cli)
 	if (check_if_fork(cli->com->command, cli->mnsh, cli) == NOT_FOUND)
 	{
 		pid = fork();
-		if (pid == -1)
-			fork_error();
-		else if (pid == 0)
+		fork_error(pid);
+		if (pid == 0)
 		{
 			redirection_fd(cli);
 			if (check_commands(cli->com->command, cli) == NOT_FOUND)
