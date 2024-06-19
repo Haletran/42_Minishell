@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 14:33:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:33:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int    command_census(t_token *tok, t_cli *cli)
         return (COMMAND);
     else if (tok->prev->type == 13)
     {
-        if (tok->prev->prev->token[0] == '<')
+        if (tok->prev->prev->token[0] == '<' || tok->prev->prev->token[0] == '>')
             return (COMMAND);
         else if (tok->prev->prev->prev == NULL)
             return (COMMAND);

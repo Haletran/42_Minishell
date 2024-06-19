@@ -16,18 +16,7 @@ fi
 
 if [[ $1 ]]; then
 	test_lists=(
-		$1
-	)
-fi
-
-if [[ $1 == "mandatory" || !$1 ]]; then
-	test_lists=(
-		"redirects"
-		"pipes"
-		"builtins"
-		"extras"
-		"var"
-		"syntax"
+		"$1"
 	)
 fi
 
@@ -49,6 +38,12 @@ if [[ $1 == "builtins" ]]; then
 	)
 fi
 
+if [[ $1 == "command" ]]; then
+	test_lists=(
+		"command"
+	)
+fi
+
 if [[ $1 == "var" ]]; then
 	test_lists=(
 		"var"
@@ -56,26 +51,31 @@ if [[ $1 == "var" ]]; then
 fi
 
 if [[ $1 == "syntax" ]]; then
-    test_lists=(
-        "syntax"
-    )
-fi
-
-if [[ $1 == "extras" ]]; then
 	test_lists=(
-		"extras"
+		"syntax"
 	)
 fi
 
+if [[ $1 == "mandatory" || $1 == "" ]]; then
+	test_lists=(
+		"redirects"
+		"pipes"
+		"builtins"
+		"command"
+		"var"
+		"syntax"
+	)
+fi
 
 if [[ $1 == "bonus" ]]; then
 	test_lists=(
 		"redirects_bonus"
-		"bonus"
 		"builtins_bonus"
 		"var_bonus"
-		"wildcards"
 		"syntax_bonus"
+		"bonus"
+		"wildcards"
+		"mix_bonus"
 	)
 	touch '!'
 	touch ')'
@@ -88,17 +88,20 @@ fi
 if [[ $1 == "all" ]]; then
 	test_lists=(
 		"redirects"
+		"redirects_bonus"
 		"pipes"
 		"builtins"
-		"extras"
-		"redirects_bonus"
-		"bonus"
 		"builtins_bonus"
+		"command"
 		"var"
 		"var_bonus"
-		"wildcards"
 		"syntax"
 		"syntax_bonus"
+		"bonus"
+		"wildcards"
+		"not_required"
+		"not_required_bonus"
+		"mix_bonus"
 	)
 	touch '!'
 	touch ')'
@@ -106,6 +109,13 @@ if [[ $1 == "all" ]]; then
 	touch '*'
 	touch '8'
 	touch 'b'
+fi
+
+if [[ $1 == "not_required" ]]; then
+	test_lists=(
+		"not_required"
+		"not_required_bonus"
+	)
 fi
 
 BOLD="\e[1m"
@@ -163,6 +173,8 @@ for testfile in ${test_lists[*]}; do
 
 		OUTFILES_DIFF=$(diff --brief ./mini_outfiles ./bash_outfiles)
 
+		echo -e "$teste" | $MINISHELL_PATH 2> /dev/null 1>/dev/null
+		MINI_EXIT_CODE=$(echo $?)
 		printf $YELLOW
 		printf "Test %3s: " $i
 		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && -z "$OUTFILES_DIFF" ]]; then

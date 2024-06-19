@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:25:27 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 22:22:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:31:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ void	redirection_error(t_cli *cli)
 int check_before_exec(t_cli **cli, int *count)
 {
 	if (parsing_check(*cli) == ERROR)
-		return (ERROR);
+	{
+		if ((*cli)->com->next)
+			(*cli)->com = (*cli)->com->next;
+		else
+			return (ERROR);
+		(*count)++;
+	}
 	if (check_error(cli) == ERROR)
 	{
 		if ((*cli)->com->next)

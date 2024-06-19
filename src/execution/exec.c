@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 17:24:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:44:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void	loop_commands(t_cli *cli, int *count)
 	t_com	*head;
 
 	head = cli->com;
+	//debug(cli, "executing commands");
 	if (!cli->com->command)
 		handle_redirection(&cli);
 	while (cli->com)

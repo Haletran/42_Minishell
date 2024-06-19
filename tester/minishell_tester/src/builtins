@@ -10,6 +10,8 @@ echo "aspas ->'"
 echo "aspas -> ' "
 echo 'aspas ->"'
 echo 'aspas -> " '
+echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<"
+echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $ \ <<'
 echo "exit_code ->$? user ->$USER home -> $HOME"
 echo 'exit_code ->$? user ->$USER home -> $HOME'
 echo "$"
@@ -17,6 +19,23 @@ echo '$'
 echo $
 echo $?
 echo $?HELLO
+echo "           p"
+echo "           n"
+echo     "           n"       "            n"
+echo $USER$TESTNOTFOUND$HOME$
+echo $USER$TESTNOTFOUND$HOME$WTF$PWD
+echo -n e
+echo -n-n-n-n e
+echo -n -n -n e
+echo -nnnnnnn e
+echo -n e -n
+echo -n e -n -n
+echo -n e -nnnnnn
+echo -n -n e -n
+echo -nnnnnnnnnnnn e -n
+echo -nnnnnnnnnnnn e -n-n-n-n
+echo -qwerqwerqwejrgvsbdfa
+echo -nqwerwqer
 pwd
 pwd oi
 export hello
@@ -30,9 +49,6 @@ export =
 export 123
 export | sort | grep -v SHLVL | grep -v "declare -x _" | grep -v "PS.=" | wc -l
 export HELLO=123 A- WORLD=456
-echo "           p"
-echo "           n"
-echo     "           n"       "            n"
 unset HELLO=
 unset  A-
 unset  HELLO A- WORLD
@@ -45,6 +61,8 @@ unset SHELL
 cd $PWD
 cd $PWD hi 
 cd 123123
+cd wqerhqwer
+cd "$PWD/file_tests"
 exit 123
 exit 298
 exit +100
@@ -70,9 +88,6 @@ exit -"                -100"
 exit -"                ---------100"
 exit hello
 exit 42 world
-env -qwerqwer
-env $PATH
-cd wqerhqwer
 exit 9223372036854775807 q
 exit 9223372036854775808 q
 exit -9223372036854775807 q
