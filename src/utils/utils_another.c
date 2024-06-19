@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils_another.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 15:49:47 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/06/19 08:36:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	get_nbargs(char **str)
+void	delete_file(char *name, t_cli *cli)
 {
-	int	size;
+	pid_t	pid;
 
-	size = 0;
-	while (*str)
+	pid = fork();
+	if (pid == -1)
+		exit(1);
+	else if (pid == 0)
 	{
-		size++;
-		str++;
+		execve("/bin/rm", (char *[]){"rm", "-rf", name, NULL},
+			cli->mnsh->env_var);
+		close(cli->mnsh->heredoc_fd);
+		close(cli->mnsh->heredoc_backup_fd);
+		exit(1);
 	}
-	return (size);
-}
-
-int	check_if_pipe(char **str)
-{
-	int	i;
-
-	i = 1;
-	while (str[i])
-	{
-		if (ft_strchr(str[i], '|'))
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 t_env	*sort_in_ascii(t_env *list)
@@ -68,41 +58,40 @@ t_env	*sort_in_ascii(t_env *list)
 	return (list);
 }
 
-int	check_if_alpha(char *str)
+void	historyze(t_cli *cli)
 {
-	int	i;
+	char	*line;
+	int		fd;
+	char	*h_line;
 
-	i = 0;
-	while (str[i])
+	fd = dup(cli->mnsh->history_fd);
+	while (1)
 	{
-		if (!ft_isalnum(str[i]) && str[i] != '$' && str[i] != '='
-			&& str[i] != '+' && str[i] != '_' && str[i] != '/' && str[i] != '.')
-			return (ERROR);
-		if (str[i] == '-')
-			return (ERROR);
-		i++;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		h_line = ft_substr(line, 0, ft_strlen(line) - 1);
+		if (!h_line)
+		{
+			free(line);
+			freeway(cli);
+		}
+		add_history(h_line);
+		free(line);
+		free(h_line);
 	}
-	i = 0;
-	while (str[i] != '=')
-	{
-		if (ft_isdigit(str[i]) == TRUE && str[i - 1] != '=')
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
+	close(fd);
 }
 
-int	ft_cpy(char **dest, char **src)
+int	ret_code(t_lst *mnsh, int ret)
 {
-	int	i;
+	mnsh->exit_code = ret;
+	return (ret);
+}
 
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = ft_strdup(src[i]);
-		if (!dest[i])
-			return (ERROR);
-		i++;
-	}
-	return (SUCCESS);
+void	handle_seg(int signum)
+{
+	(void)signum;
+	ft_printf_fd(2, BRED "SEGFAULT\n" CRESET);
+	exit(131);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 13:38:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:59:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "builtins.h"
 # include "command_line.h"
 # include "dlst.h"
+# include "msg.h"
 # include "parse.h"
 # include "typedef.h"
 # include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
@@ -107,10 +108,10 @@ extern int		g_var;
 //* 								KEYWORD									*//
 //* 																		*//
 //* *********************************************************************** *//
-# define KEYWORD_LIST                                     \
-	"if,then,else,elif,fi,case,esac,while,until,for,in," \
-	"do,done"
 # define OPEN_KEYWORD "if,while,until"
+# define KEYWORD_LIST \
+	"if,then,else,elif,fi,case,esac,while,until,for,in, \
+	do,done"
 
 //* *********************************************************************** *//
 //* 																		*//
@@ -125,13 +126,13 @@ extern int		g_var;
 //* 							BUILTIN COMMAND								*//
 //* 																		*//
 //* *********************************************************************** *//
-# define BUILTIN_LIST                                                   \
-	"alias,bg,bind,break,builtin,caller,cd,command,compgen,complete,"  \
-	"compopt,continue,declare,dirs,disown,echo,enable,eval,exec,exit," \
-	"export,fc,fg,getopts,hash,help,history,jobs,kill,let,local,"      \
-	"logout,mapfile,popd,printf,pushd,pwd,read,readarray,readonly,"    \
-	"return,set,shift,shopt,source,suspend,test,times,trap,type,"      \
-	"typeset,ulimit,umask,unalias,unset,wait"
+# define BUILTIN_LIST \
+	"alias,bg,bind,break,builtin,caller,cd,command,compgen,complete,  \
+	compopt,continue,declare,dirs,disown,echo,enable,eval,exec,exit, \
+	export,fc,fg,getopts,hash,help,history,jobs,kill,let,local,      \
+	logout,mapfile,popd,printf,pushd,pwd,read,readarray,readonly,   \
+	return,set,shift,shopt,source,suspend,test,times,trap,type,      \
+	typeset,ulimit,umask,unalias,unset,wait"
 
 //* *********************************************************************** *//
 //* 																		*//
@@ -162,7 +163,6 @@ int				check_commands(char **str, t_cli *cli);
 int				check_if_pipe(char **str);
 int				check_char(char *str, char c);
 int				check_if_alpha(char *str);
-char			*check_path(char *str, t_lst *mnsh);
 int				check_if_path(char **envp);
 
 //* FREE */
@@ -185,8 +185,6 @@ void			insert_env_front(t_env **head, char *key, char *value);
 void			insert_env_after(t_env *prev_node, char *key, char *value);
 void			insert_env_end(t_env **head, char *key, char *value);
 char			*ft_join(char *s1, char *s2);
-void			print_tab(char **src);
-void			print_tab(char **src);
 int				exec_pipe(t_cli *cli);
 void			handle_sig(int check);
 void			show_token(char **commands, t_com **com);
@@ -195,6 +193,7 @@ char			**cpy(char **src, char **dest);
 int				ft_cpy(char **dest, char **src);
 void			print_list(char *string, t_env *env);
 int				count_pipe(char **str);
+int				get_env_size(t_env *head);
 
 //* INIT */
 t_env			*init_stack(t_env *env, char **str);
@@ -221,7 +220,7 @@ void			sig_command_is_running(int signum);
 void			ft_redirection(char **str, t_cli *cli);
 void			sig_ctrl_back(int signum);
 void			heredoc_handler(int signum);
-int delete (t_lst *mnsh, int len);
+int				delete(t_lst *mnsh, int len);
 void			historyze(t_cli *cli);
 
 /*LST*/
@@ -238,7 +237,7 @@ t_com			*get_last_command(t_com *com);
 t_token			*get_redirection(t_token *head, int start);
 
 /*PARSING*/
-int			parsing_organiser(t_cli *cli);
+int				parsing_organiser(t_cli *cli);
 char			*get_token_from_index(t_token *head, int index);
 int				get_type_from_token(t_token *head, char *token);
 void			delete_node_token(t_token **head, t_token *del_node);
@@ -303,7 +302,7 @@ char			*variable_from_token(char *token);
 char			*key_from_token(char *token);
 int				get_nbargs(char **str);
 int				check_if_builtin(char *str);
-int				is_error_path(char *str, char **path, t_lst *mnsh,
+int				ft_is_error_path(char *str, char **path, t_lst *mnsh,
 					char *full_path);
 t_token_type	token_type_rediscovery(t_token *token, t_cli *cli);
 void			split_variable(t_cli *cli);
@@ -355,5 +354,11 @@ int				check_number_of_infile(t_cli *cli, t_com *com);
 int				handle_infile(t_redirection *red, t_cli *cli);
 int				handle_outfile(t_redirection *red, t_cli *cli);
 int				check_error(t_cli **cli);
+int				ret_code(t_lst *mnsh, int ret);
+void			handle_seg(int signum);
+void			redirection_pipe(t_cli *cli);
+void			redirection_fd(t_cli *cli);
+void			redirection_parent(t_cli *cli);
+void			redirection_error(t_cli *cli);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:11:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:31:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,26 @@ t_redi_type	redirection_census(char *token)
 	return (-1);
 }
 
+void	handle_redir(t_token *tmp, t_com *com, int *i)
+{
+	t_redi_type	type;
+
+	type = redirection_census(tmp->token);
+	if (type >= 0)
+	{
+		tmp = tmp->next;
+		if (tmp)
+			insert_redirection_end(&com->redirection, ft_strdup(tmp->token),
+				type, *i);
+	}
+	(*i)++;
+}
+
 void	create_redirection(t_cli *cli)
 {
-	t_token		*tmp;
-	t_redi_type	type;
-	t_com		*com;
-	int			i;
+	t_token	*tmp;
+	t_com	*com;
+	int		i;
 
 	if (!cli || !cli->token || !cli->com)
 		return ;
@@ -43,17 +57,7 @@ void	create_redirection(t_cli *cli)
 	while (tmp)
 	{
 		if (tmp->type == REDIRECTION_OPERATOR)
-		{
-			type = redirection_census(tmp->token);
-			if (type >= 0)
-			{
-				tmp = tmp->next;
-				if (tmp)
-					insert_redirection_end(&com->redirection,
-						ft_strdup(tmp->token), type, i);
-				i++;
-			}
-		}
+			handle_redir(tmp, com, &i);
 		else if (tmp->type == CONTROLE_OPERATOR)
 		{
 			com = com->next;

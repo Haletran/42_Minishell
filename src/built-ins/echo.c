@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 23:41:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:02:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,34 @@
 
 int	handle_n_option(char **str, int *i, int *flag)
 {
-    int	check;
+	int	check;
 
-    while (str[*i] && !ft_strncmp(str[*i], "-n", 2))
-    {
-        check = 1;
-        while (str[*i][check] == 'n')
-            check++;
-        if (str[*i][check] == '\0')
-        {
-            (*flag)++;
-            (*i)++;
-        }
-        else
-            break;
-    }
-    return (SUCCESS);
+	while (str[*i] && !ft_strncmp(str[*i], "-n", 2))
+	{
+		check = 1;
+		while (str[*i][check] == 'n')
+			check++;
+		if (str[*i][check] == '\0')
+		{
+			(*flag)++;
+			(*i)++;
+		}
+		else
+			break ;
+	}
+	return (SUCCESS);
+}
+
+void	echo_print(char **str, int i)
+{
+	while (str[i])
+	{
+		if (str[i + 1] == NULL)
+			ft_printf_fd(STDOUT_FILENO, "%s", str[i]);
+		else
+			ft_printf_fd(STDOUT_FILENO, "%s ", str[i]);
+		i++;
+	}
 }
 
 int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)
@@ -47,14 +59,7 @@ int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)
 		ft_exitcode(cli, 0);
 	}
 	handle_n_option(str, &i, &flag);
-	while (str[i])
-	{
-		if (str[i + 1] == NULL)
-			ft_printf_fd(STDOUT_FILENO, "%s", str[i]);
-		else
-			ft_printf_fd(STDOUT_FILENO, "%s ", str[i]);
-		i++;
-	}
+	echo_print(str, i);
 	mnsh->exit_code = 0;
 	if (flag == 0)
 		ft_printf_fd(STDOUT_FILENO, "\n");

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 15:56:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:32:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	remove_quotes(t_cli *cli)
 	}
 }
 
-int glue_quotes(t_cli *cli)
+int	glue_quotes(t_cli *cli)
 {
 	t_token	*tmp;
 
@@ -111,5 +111,17 @@ void	concat_no_space(t_cli *cli)
 		}
 		else
 			tmp = tmp->next;
+	}
+}
+
+void	delete_n_token(t_token **head, int n)
+{
+	t_token	*tmp;
+
+	tmp = *head;
+	while (tmp != NULL && n != 0)
+	{
+		delete_node_token(head, tmp);
+		n--;
 	}
 }

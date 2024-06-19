@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 15:47:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:35:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,6 @@ void	free_tab(char **str)
 	}
 	free(str);
 	str = NULL;
-}
-
-void	free_list(t_env **lst)
-{
-	t_env	*tmp;
-	t_env	*next;
-
-	tmp = *lst;
-	while (tmp)
-	{
-		next = tmp->next;
-		free(tmp->key);
-		free(tmp->value);
-		free(tmp);
-		tmp = next;
-	}
-	*lst = NULL;
 }
 
 void	freeway(t_cli *cli)

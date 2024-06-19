@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 13:35:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:07:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void			parameter_expansion(t_cli *cli);
 
 t_token_type	add_flag(t_cli *cli, t_token_type type);
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli);
-t_token_type	token_type_discovery(char *token, t_cli *cli);
 void			split_into_token(t_cli *cli);
 
 //****************************************************************************/

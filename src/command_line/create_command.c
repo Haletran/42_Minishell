@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 15:57:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:34:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*return_path(char *str, t_cli **cli)
 			break ;
 		full_path = free_char(full_path);
 	}
-	if (is_error_path(str, (*cli)->path, (*cli)->mnsh,
+	if (ft_is_error_path(str, (*cli)->path, (*cli)->mnsh,
 			full_path) == EXIT_FAILURE)
 	{
 		full_path = free_char(full_path);
@@ -72,10 +72,8 @@ char	**cpy_env(t_cli *cli)
 	char	**result;
 	int		j;
 
-	j = 0;
+	j = get_env_size(cli->mnsh->env_var_lst);
 	tmp = cli->mnsh->env_var_lst;
-	while (tmp && ++j)
-		tmp = tmp->next;
 	result = ft_calloc((j + 1), sizeof(char *));
 	if (!result)
 		return (NULL);
@@ -142,16 +140,4 @@ int	get_nb_args(t_token *head)
 		tmp = tmp->next;
 	}
 	return (nb_args);
-}
-
-void	delete_n_token(t_token **head, int n)
-{
-	t_token	*tmp;
-
-	tmp = *head;
-	while (tmp != NULL && n != 0)
-	{
-		delete_node_token(head, tmp);
-		n--;
-	}
 }

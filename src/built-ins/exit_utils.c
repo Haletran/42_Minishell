@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlst_command_get.c                                 :+:      :+:    :+:   */
+/*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:59:22 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/06/18 23:38:15 by ygaiffie          #+#    #+#             */
+/*   Updated: 2024/06/19 08:59:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_com	*get_last_command(t_com *com)
+int	ft_exit_process(int exit_code, t_cli *cli)
 {
-	t_com	*tmp;
-
-	tmp = com;
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
+	ft_printf_fd(1, EXIT_MSG);
+	freeway(cli);
+	return (exit_code);
 }

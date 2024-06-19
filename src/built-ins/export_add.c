@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/13 11:39:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:03:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,8 @@ int	add_var(t_lst *mnsh, char **str, int i)
 	return (SUCCESS);
 }
 
-int	add_back(t_lst *mnsh, char **str, int i)
+void	env_dup(t_env *env, char *value, char *to_keep, char **tmp)
 {
-	t_env	*env;
-	char	*value;
-	char	*to_keep;
-	char	**tmp;
-
-	tmp = ft_split(str[i], '+');
-	to_keep = ft_strtrim(tmp[1], "=");
-	env = mnsh->env_var_lst;
-	if (check_valid_identifier(tmp) == ERROR)
-		return (ERROR);
-	if (not_existing(mnsh, tmp) == ERROR)
-		return (ERROR);
 	while (env)
 	{
 		if (!ft_strcmp(env->key, tmp[0]))
@@ -89,6 +77,24 @@ int	add_back(t_lst *mnsh, char **str, int i)
 		}
 		env = env->next;
 	}
+}
+
+int	add_back(t_lst *mnsh, char **str, int i)
+{
+	t_env	*env;
+	char	*value;
+	char	*to_keep;
+	char	**tmp;
+
+	value = NULL;
+	tmp = ft_split(str[i], '+');
+	to_keep = ft_strtrim(tmp[1], "=");
+	env = mnsh->env_var_lst;
+	if (check_valid_identifier(tmp) == ERROR)
+		return (ERROR);
+	if (not_existing(mnsh, tmp) == ERROR)
+		return (ERROR);
+	env_dup(env, value, to_keep, tmp);
 	free_tab(tmp);
 	to_keep = free_char(to_keep);
 	return (SUCCESS);

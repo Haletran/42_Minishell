@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:55:55 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/11 10:02:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:35:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,25 @@ int	ft_isthis(char *this, char c)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
+{
+	(void)path;
+	if (full_path == NULL)
+	{
+		free_char(full_path);
+		mnsh->exit_code = 127;
+		return (EXIT_FAILURE);
+	}
+	if (access(full_path, F_OK | R_OK) == -1)
+	{
+		if (check_if_builtin(str) == SUCCESS)
+			return (EXIT_SUCCESS);
+		ft_printf_fd(2, "%s : command not found\n", str);
+		free_char(full_path);
+		mnsh->exit_code = 127;
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
 }

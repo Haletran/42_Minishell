@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 15:57:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:31:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 	value = free_char(value);
 }
 
-// LEAKS
 char	*get_parameter_value(t_cli *cli, char *key)
 {
 	char	*value;
@@ -44,6 +43,7 @@ char	*get_parameter_value(t_cli *cli, char *key)
 		value = ft_strdup("$");
 	return (value);
 }
+
 int	variable_len(char *token)
 {
 	int	i;

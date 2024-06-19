@@ -6,11 +6,38 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/22 10:53:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:57:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	get_env_size(t_env *head)
+{
+	int	size;
+
+	size = 0;
+	while (head)
+	{
+		size++;
+		head = head->next;
+	}
+	return (size);
+}
+
+int	find_in_env(char *str, t_cli *cli)
+{
+	t_cli	*tmp;
+
+	tmp = cli;
+	while (tmp->mnsh->env_var_lst)
+	{
+		if (!ft_strcmp(str, tmp->mnsh->env_var_lst->key))
+			return (SUCCESS);
+		tmp->mnsh->env_var_lst = tmp->mnsh->env_var_lst->next;
+	}
+	return (ERROR);
+}
 
 char	*get_value_from_key(t_env *head, char *key)
 {

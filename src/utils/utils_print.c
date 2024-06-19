@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   utils_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 17:28:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 16:13:46 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/06/19 08:35:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,18 @@ void	print_list_export(t_env *current)
 	}
 }
 
-void	*ft_lst_new_2(char *index)
+void	print_error(int i, char *str)
 {
-	t_env	*new;
-	char	**tmp;
-
-	new = malloc(sizeof(t_env));
-	if (!new)
-		return (NULL);
-	tmp = ft_split(index, '=');
-	new->key = ft_strdup(tmp[0]);
-	new->value = ft_strdup(tmp[1]);
-	new->next = NULL;
-	free_tab(tmp);
-	return (new);
-}
-
-void	*ft_lstadd_back_2(t_env *lst, char *value)
-{
-	t_env	*head;
-
-	head = lst;
-	if (lst == NULL)
-	{
-		lst = ft_lst_new_2(value);
-		return (lst);
-	}
-	while (lst->next != NULL)
-		lst = lst->next;
-	lst->next = ft_lst_new_2(value);
-	lst = head;
-	return (lst);
+	if (i == NOT_FOUND)
+		ft_printf_fd(2, "minishell: %s: command not found\n", str);
+	else if (i == FORK_FAILED)
+		ft_printf_fd(2, CRESET "fork failed\n");
+	else if (i == NO_FILE)
+		ft_printf_fd(2, "%s: No such file or directory\n", str);
+	else if (i == IS_DIRECTORY)
+		ft_printf_fd(2, "minishell: %s: Is a directory\n", str);
+	else if (i == PERMISSION_DENIED)
+		ft_printf_fd(2, "minishell: %s: Permission denied\n", str);
+	else if (i == -50)
+		ft_printf_fd(2, "minishell: quotes not closed\n");
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 14:06:49 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:03:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
@@ -78,7 +78,7 @@ int	handle_arguments(char **str, t_lst *lst)
 {
 	if (get_nbargs(str) > 2)
 	{
-		ft_printf_fd(2, "cd : too many arguments\n");
+		ft_printf_fd(2, CD_TOO_MANY);
 		lst->exit_code = 1;
 		return (ERROR);
 	}
@@ -99,10 +99,8 @@ int	ft_cd(char **str, t_lst *lst)
 		lst->home_path = get_env("HOME", lst);
 		if (!lst->home_path)
 		{
-			ft_printf_fd(2, "minishell : cd : HOME not set\n");
-			old_path = free_char(old_path);
-			lst->exit_code = 1;
-			return (1);
+			ft_printf_fd(2, CD_HOME_NOT);
+			return (return_process(1, old_path, lst));
 		}
 		chdir(lst->home_path);
 	}
@@ -110,15 +108,5 @@ int	ft_cd(char **str, t_lst *lst)
 		cd_old_path(lst);
 	else
 		valid = chdir(str[1]);
-	if (valid)
-	{
-		perror(str[1]);
-		lst->exit_code = 1;
-		old_path = free_char(old_path);
-		return (1);
-	}
-	update_path(lst, old_path);
-	old_path = free_char(old_path);
-	lst->exit_code = 0;
-	return (0);
+	return (cd_valid(valid, str, old_path, lst));
 }

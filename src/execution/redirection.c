@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection_out.c                                      :+:      :+:    :+:   */
+/*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 14:21:24 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/03 13:04:53 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/06/19 08:37:54 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/06/19 08:41:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	handle_error(int fd, t_cli *cli)
 	return (SUCCESS);
 }
 
-int	handle_outfile(t_redirection *red, t_cli *cli)
+int	open_file(t_redirection *red)
 {
 	int	fd;
 
@@ -73,6 +73,14 @@ int	handle_outfile(t_redirection *red, t_cli *cli)
 		else
 			fd = open(red->file, O_RDWR | O_CREAT, 0640);
 	}
+	return (fd);
+}
+
+int	handle_outfile(t_redirection *red, t_cli *cli)
+{
+	int	fd;
+
+	fd = open_file(red);
 	if (fd == -1 && cli->mnsh->file_check == 0)
 	{
 		if (handle_error(fd, cli) == ERROR)

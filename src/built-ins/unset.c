@@ -6,11 +6,18 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 21:32:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:04:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_env	*freed_key_value(t_env *env)
+{
+	env->key = free_char(env->key);
+	env->value = free_char(env->value);
+	return (env->next);
+}
 
 void	delete_var(t_lst *mnsh, char *str)
 {
@@ -25,9 +32,7 @@ void	delete_var(t_lst *mnsh, char *str)
 		if (!ft_strncmp(env->key, str, ft_strlen(str))
 			&& ft_strlen(env->key) == ft_strlen(str))
 		{
-			env->key = free_char(env->key);
-			env->value = free_char(env->value);
-			temp = env->next;
+			temp = freed_key_value(env);
 			free(env);
 			if (prev)
 				prev->next = temp;

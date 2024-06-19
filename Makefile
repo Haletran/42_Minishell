@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/06 18:54:32 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/19 09:29:08 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,14 @@ SRCS	= src/main.c \
 		  src/debug.c \
 		  src/built-ins/echo.c \
 		  src/built-ins/cd.c \
-		  src/utils/utils.c \
-		  src/utils/utils2.c \
+		  src/built-ins/cd_utils.c \
 		  src/built-ins/env.c \
 		  src/built-ins/export.c \
+		  src/built-ins/export_utils.c \
 		  src/built-ins/export_add.c \
 		  src/built-ins/export_chk.c \
 		  src/built-ins/exit.c \
+		  src/built-ins/exit_utils.c \
 		  src/built-ins/unset.c \
 		  src/built-ins/pwd.c \
 		  src/built-ins/heredoc.c \
@@ -66,30 +67,34 @@ SRCS	= src/main.c \
 		  src/dlst/dlst_variable_get.c \
 		  src/dlst/dlst_variable_set.c \
 		  src/dlst/dlst_command_set.c \
+		  src/dlst/dlst_command_insert.c \
 		  src/dlst/dlst_command_get.c \
 		  src/dlst/dlst_env_set.c \
 		  src/dlst/dlst_env_get.c \
 		  src/dlst/dlst_redir_get.c \
 		  src/dlst/dlst_redir_set.c \
+		  src/execution/child.c \
+		  src/execution/child_utils.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
+		  src/execution/exec_args.c	\
 		  src/execution/redirection.c \
 		  src/execution/exec_utils.c \
 		  src/execution/exec.c \
+		  src/parse/census_utils.c \
+		  src/parse/cleaning_utils.c \
+		  src/parse/token_type.c \
 		  src/parse/init.c \
 		  src/parse/init_array.c \
 		  src/parse/organizer.c \
 		  src/syntax_rules/ruler.c \
 		  src/syntax_rules/control_rules.c \
 		  src/syntax_rules/redirect_rules.c \
+		  src/utils/utils_another.c \
+		  src/utils/utils_get.c \
 		  src/utils/free.c \
-		  src/utils/lst_utils.c \
-		  src/utils/utils3.c \
-		  src/utils/utils4.c \
-		  src/utils/ft_is.c \
-		  src/execution/child.c \
-		  src/utils/parse_utils.c \
-		  src/utils/parse_utils2.c 
+		  src/utils/utils_print.c \
+		  src/utils/ft_is.c 
 
 DEBUG := 0
 SRC_DIR := src

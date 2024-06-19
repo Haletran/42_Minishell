@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 16:11:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 08:38:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,6 @@ void	sig_ctrl_back(int signum)
 	ft_putstr_fd("Quit (core dumped)\n", 1);
 	rl_replace_line("", 1);
 	rl_redisplay();
-}
-
-void	handle_seg(int signum)
-{
-	(void)signum;
-	ft_printf_fd(2, BRED "SEGFAULT\n" CRESET);
-	exit(131);
 }
 
 /**

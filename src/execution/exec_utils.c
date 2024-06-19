@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 15:46:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:22:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,132 +104,6 @@ int	ft_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 	return (EXIT_SUCCESS);
 }
 
-int	get_nb_commands(t_com *com)
-{
-	int	nb_commands;
-
-	nb_commands = 0;
-	while (com)
-	{
-		nb_commands++;
-		com = com->next;
-	}
-	return (nb_commands);
-}
-
-char	*check_parsing(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_strncmp(str, "./", 2))
-		{
-			if (access(str, F_OK) == -1)
-			{
-				print_error(NO_FILE, str);
-				exit(127);
-			}
-			else if (access(str, X_OK) == -1)
-			{
-				ft_printf_fd(2, "%s: Permission denied\n", str);
-				exit(126);
-			}
-			else
-			{
-				str = ft_strrchr(str, '/');
-				str = ft_strtrim(str, "/");
-			}
-		}
-		i++;
-	}
-	return (str);
-}
-
-int	find_in_env(char *str, t_cli *cli)
-{
-	t_cli	*tmp;
-
-	tmp = cli;
-	while (tmp->mnsh->env_var_lst)
-	{
-		if (!ft_strcmp(str, tmp->mnsh->env_var_lst->key))
-			return (SUCCESS);
-		tmp->mnsh->env_var_lst = tmp->mnsh->env_var_lst->next;
-	}
-	return (ERROR);
-}
-
-int	parsing_check(t_cli *cli)
-{
-	if (!ft_strncmp(cli->com->command[0], "./", 2))
-	{
-		if (opendir(cli->com->command[0]) == NULL)
-		{
-			if (access(cli->com->command[0], F_OK | R_OK) != -1)
-			{
-				cli->com->env_path = free_char(cli->com->env_path);
-				cli->com->env_path = ft_strdup(cli->com->command[0]);
-				free_tab(cli->com->command);
-				cli->com->command = ft_calloc(2, ft_strlen(cli->com->env_path));
-				cli->com->command[0] = check_parsing(cli->com->env_path);
-				cli->com->command[1] = NULL;
-				return (SUCCESS);
-			}
-			{
-				if (errno == EACCES)
-				{
-					print_error(PERMISSION_DENIED, cli->com->command[0]);
-					cli->mnsh->exit_code = 126;
-				}
-				else
-				{
-					print_error(NO_FILE, cli->com->command[0]);
-					cli->mnsh->exit_code = 127;
-				}
-				return (ERROR);
-			}
-		}
-		else
-		{
-			print_error(IS_DIRECTORY, cli->com->command[0]);
-			cli->mnsh->exit_code = 126;
-			return (ERROR);
-		}
-	}
-	else if (!ft_strncmp(cli->com->command[0], "/", 1))
-	{
-		if (opendir(cli->com->command[0]) == NULL)
-		{
-			if (access(cli->com->command[0], F_OK | R_OK) == -1)
-			{
-				if (errno == EACCES)
-				{
-					print_error(PERMISSION_DENIED, cli->com->command[0]);
-					cli->mnsh->exit_code = 126;
-				}
-				else
-				{
-					print_error(NO_FILE, cli->com->command[0]);
-					cli->mnsh->exit_code = 127;
-				}
-				return (ERROR);
-			}
-			cli->com->env_path = ft_strdup(cli->com->command[0]);
-			cli->com->command[0] = ft_strdup(ft_strcpy(cli->com->command[0],
-						cli->com->env_path));
-		}
-		else
-		{
-			print_error(IS_DIRECTORY, cli->com->command[0]);
-			cli->mnsh->exit_code = 126;
-			return (ERROR);
-		}
-	}
-	return (SUCCESS);
-}
-
 int	check_if_forked(t_cli *cli)
 {
 	if (cli->com->type == COMMAND)
@@ -240,9 +114,6 @@ int	check_if_forked(t_cli *cli)
 		else if (!ft_strncmp(cli->com->command[0], "unset", 5)
 			&& ft_strlen(cli->com->command[0]) == 5)
 			return (SUCCESS);
-		/* 		else if (!ft_strncmp(cli->com->command[0], "exit", 4)
-					&& ft_strlen(cli->com->command[0]) == 4)
-					return (SUCCESS); */
 		else if (!ft_strncmp(cli->com->command[0], "cd", 2)
 			&& ft_strlen(cli->com->command[0]) == 2)
 			return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/17 16:12:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 09:02:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ long long	ft_strtoll_check(const char *str)
 			flag++;
 			break ;
 		}
-		result = result * 10 + (str[i] - '0');
-		i++;
+		result = result * 10 + (str[i++] - '0');
 	}
 	return (flag);
 }
@@ -94,25 +93,19 @@ int	ft_exit(char *code, t_cli *cli)
 	{
 		if (cli->mnsh->outfile_check == 1)
 			backup = 0;
-		ft_printf_fd(1, "exit\n");
-		freeway(cli);
-		exit(backup);
+		exit(ft_exit_process(backup, cli));
 	}
 	exit_code = ft_strtoll(code);
 	if (ft_strtoll_check(code) > 0 || check_code(code) == ERROR)
 	{
-		ft_printf_fd(1, "exit\n");
-		ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+		ft_printf_fd(2, EXIT_NUM_REQ,
 			code);
-		freeway(cli);
-		exit(2);
+		exit(ft_exit_process(2, cli));
 	}
 	if (cli->com->command[2])
 	{
-		ft_printf_fd(1, "exit\n");
-		ft_printf_fd(2, "minishell: exit: too many arguments\n");
-		freeway(cli);
-		exit(1);
+		ft_printf_fd(2, EXIT_TOO_MANY);
+		exit(ft_exit_process(1, cli));
 	}
 	ft_printf_fd(1, "exit\n");
 	freeway(cli);
