@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:08:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:24:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	main_loop(t_cli *cli, int count)
 			piping(cli, count);
 		}
 		cli->mnsh->heredoc_pipe = 0;
+		cli->mnsh->outfile_check = 0;
+		cli->mnsh->infile_check = 0;
 	}
 }
 
@@ -63,21 +65,13 @@ static void	loop_commands(t_cli *cli, int *count)
 	t_com	*head;
 
 	head = cli->com;
+	if (!cli->com->command)
+		handle_redirection(&cli);
 	while (cli->com)
 	{
-		if (parsing_check(cli) == ERROR)
-		{
-			close(cli->mnsh->backup[0]);
-			close(cli->mnsh->backup[1]);
+		if (check_before_exec(&cli, count) == ERROR)
 			break ;
-		}
-		if (handle_redirection(&cli) == ERROR)
-			if (!cli->com->next)
-				break ;
-		check_error(&cli);
 		main_loop(cli, *count);
-		cli->mnsh->outfile_check = 0;
-		cli->mnsh->infile_check = 0;
 		cli->mnsh->file_check = 0;
 		if (!cli->com->next)
 			break ;

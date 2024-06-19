@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/18 15:51:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:12:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ int	init_data_parsing(t_cli **cli)
 	(*cli)->heredoc = 0;
 	(*cli)->mnsh->ctrl_c = 0;
 	(*cli)->mnsh->outfile_check = 0;
+	(*cli)->rules_flag = 0;
 	return (SUCCESS);
 }

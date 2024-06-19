@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:55:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:33:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,26 @@ t_token_type	add_flag(t_cli *cli, t_token_type type)
 	return (type);
 }
 
-int	command_census(t_token *tok, t_cli *cli)
+int    command_census(t_token *tok, t_cli *cli)
 {
-	(void)cli;
-	if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR)
-		return (COMMAND);
-	else if (tok->prev->type == DELIMITER)
-		return (COMMAND);
-	else if (tok->prev->type == 13)
-	{
-		if (tok->prev->prev->prev == NULL)
-			return (COMMAND);
-		else if (tok->prev->prev->prev->type == CONTROLE_OPERATOR)
-			return (COMMAND);
-	}
-	if (tok->prev != NULL)
-		if (tok->prev->type == COMMAND && tok->prev->token[0] == 0)
-			return (COMMAND);
-	return (ARGUMENT);
+    (void)cli;
+    if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR)
+        return (COMMAND);
+    else if (tok->prev->type == DELIMITER)
+        return (COMMAND);
+    else if (tok->prev->type == 13)
+    {
+        if (tok->prev->prev->token[0] == '<')
+            return (COMMAND);
+        else if (tok->prev->prev->prev == NULL)
+            return (COMMAND);
+        else if (tok->prev->prev->prev->type == CONTROLE_OPERATOR)
+            return (COMMAND);
+    }
+    if (tok->prev != NULL)
+        if (tok->prev->type == COMMAND && tok->prev->token[0] == 0)
+            return (COMMAND);
+    return (ARGUMENT);
 }
 
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)

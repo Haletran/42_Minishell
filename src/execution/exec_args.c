@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:44:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:52:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:25:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ static void	update_command(t_cli *cli)
 
 int	parsing_check(t_cli *cli)
 {
+	if (cli->com->command == NULL)
+		return (ERROR);
 	if (!ft_strncmp(cli->com->command[0], "./", 2))
 	{
 		if (check_path(cli) == SUCCESS)

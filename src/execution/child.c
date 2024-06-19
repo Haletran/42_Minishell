@@ -6,11 +6,18 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:06:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:31:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int redir(t_cli **cli)
+{
+	if (handle_redirection(cli) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
+}
 
 int	check_error(t_cli **cli)
 {
@@ -21,6 +28,12 @@ int	check_error(t_cli **cli)
 		return (ERROR);
 	if (check_if_path_needed(tmp->command) == NOT_FOUND)
 	{
+		if (!tmp->env_path)
+		{
+			(*cli)->mnsh->exit_code = 127;
+			print_error(NOT_FOUND, tmp->command[0]);
+			return (ERROR);
+		}
 		if (access(tmp->env_path, F_OK) == -1)
 		{
 			(*cli)->mnsh->exit_code = 127;
@@ -49,7 +62,8 @@ void	piping(t_cli *cli, int count)
 	fork_error(pid);
 	if (pid == 0)
 	{
-		redirection_error(cli);
+		if (redir(&cli) == ERROR)
+			redirection_error(cli);
 		redirection_fd(cli);
 		redirection_pipe(cli);
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
@@ -75,6 +89,8 @@ void	execute_last_command(t_cli *cli)
 		fork_error(pid);
 		if (pid == 0)
 		{
+			if (redir(&cli) == ERROR)
+				redirection_error(cli);
 			redirection_fd(cli);
 			if (check_commands(cli->com->command, cli) == NOT_FOUND)
 			{

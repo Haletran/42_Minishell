@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:06:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:47:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int				check_if_pipe(char **str);
 int				check_char(char *str, char c);
 int				check_if_alpha(char *str);
 int				check_if_path(char **envp);
+int				check_before_exec(t_cli **cli, int *count);
 
 //* FREE */
 char			*free_char(char *str);

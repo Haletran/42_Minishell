@@ -6,11 +6,26 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:04:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:11:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+void print_dlst_redirection(t_redirection *redir)
+{
+	t_redirection	*tmp;
+	
+	tmp = redir;
+	while (tmp)
+	{
+		printf("file: %s\n", tmp->file);
+		printf("type: %d\n", tmp->type);
+		printf("index: %d\n", tmp->index);
+		tmp = tmp->next;
+	}
+}
+
 
 int	check_if_path(char **envp)
 {
@@ -34,9 +49,9 @@ int	check_if_path(char **envp)
 void	render_prompt(t_cli *cli)
 {
 	handle_sig(0);
-	if (parsing_organiser(cli) == SUCCESS)
-		if (cli->rules_flag == 0)
-			exec_pipe(cli);
+	parsing_organiser(cli);
+	if (cli->rules_flag == 0)
+		exec_pipe(cli);
 	free_command_line(cli);
 }
 

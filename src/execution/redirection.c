@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:37:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:41:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:29:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,9 @@ int	handle_outfile(t_redirection *red, t_cli *cli)
 		if (handle_error(fd, cli) == ERROR)
 			return (ERROR);
 	}
-	if (!red->next)
-	{
-		cli->mnsh->outfile_fd = dup(fd);
-		cli->mnsh->outfile_check = 1;
-	}
+	dup2(fd, STDOUT_FILENO);
 	close(fd);
+	cli->mnsh->outfile_check = 1;
 	return (SUCCESS);
 }
 
@@ -105,11 +102,8 @@ int	handle_infile(t_redirection *red, t_cli *cli)
 		if (handle_error(fd, cli) == ERROR)
 			return (ERROR);
 	}
-	if (!red->next)
-	{
-		cli->mnsh->infile_fd = dup(fd);
-		cli->mnsh->infile_check = 1;
-	}
+	dup2(fd, STDIN_FILENO);
 	close(fd);
+	cli->mnsh->infile_check = 1;
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:31:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:42:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	create_redirection(t_cli *cli)
 	t_com	*com;
 	int		i;
 
-	if (!cli || !cli->token || !cli->com)
+	if (!cli || !cli->token)
 		return ;
 	tmp = cli->token;
+	if (!cli->com)
+		cli->com = ft_calloc(1, sizeof(t_com));
 	com = cli->com;
 	i = 0;
 	cli->com->redirection = NULL;
