@@ -2,8 +2,8 @@
 
 As beautiful as a shell..
 
-![87%](https://progress-bar.dev/85)
-![Progress](https://progress-bar.dev/385/?title=Tester&scale=423&width=100)
+![87%](https://progress-bar.dev/93)
+![Progress](https://progress-bar.dev/425/?title=Tester&scale=473&width=100)
 
 ## TO_FIX
 - Syntax error if ;; or other behind command
