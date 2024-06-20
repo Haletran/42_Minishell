@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/19 22:28:12 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/19 12:25:29 by ygaiffie         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 DEBUG := 0
 
@@ -68,7 +68,7 @@ SRCS	= src/main.c \
 		  src/dlst/dlst_token_set.c \
 		  src/dlst/dlst_variable_get.c \
 		  src/dlst/dlst_variable_set.c \
-		  src/dlst/dlst_command_set.c \
+		  src/dlst/dlst_command_del.c \
 		  src/dlst/dlst_command_insert.c \
 		  src/dlst/dlst_command_get.c \
 		  src/dlst/dlst_env_set.c \

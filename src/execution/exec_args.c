@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:44:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 22:30:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:17:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*check_parsing(char *str)
 	return (str);
 }
 
-static int	check_path(t_cli *cli)
+int	check_path_parsing(t_cli *cli)
 {
 	if (opendir(cli->com->command[0]) == NULL)
 	{
@@ -64,7 +64,7 @@ static int	check_path(t_cli *cli)
 	return (ERROR);
 }
 
-static void	update_command(t_cli *cli)
+void	update_command(t_cli *cli)
 {
 	cli->com->env_path = free_char(cli->com->env_path);
 	cli->com->env_path = ft_strdup(cli->com->command[0]);
@@ -80,7 +80,7 @@ int	parsing_check(t_cli *cli)
 		return (ERROR);
 	if (!ft_strncmp(cli->com->command[0], "./", 2))
 	{
-		if (check_path(cli) == SUCCESS)
+		if (check_path_parsing(cli) == SUCCESS)
 		{
 			update_command(cli);
 			return (SUCCESS);
@@ -90,7 +90,7 @@ int	parsing_check(t_cli *cli)
 	}
 	else if (!ft_strncmp(cli->com->command[0], "/", 1))
 	{
-		if (check_path(cli) == SUCCESS)
+		if (check_path_parsing(cli) == SUCCESS)
 		{
 			cli->com->env_path = ft_strdup(cli->com->command[0]);
 			cli->com->command[0] = ft_strdup(ft_strcpy(cli->com->command[0],

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   msg.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 01:23:53 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 09:20:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 10:57:20 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef MSG_H
 # define MSG_H
@@ -22,7 +22,8 @@
 # define EXIT_TOO_MANY "exit : too many arguments\n"
 # define EXIT_NUM_REQ "exit : %s: numeric argument required\n"
 # define EXPORT_NOT_VALID "minishell: export: '%s': not a valid identifier\n"
-# define HEREDOC_SYNT "minishell: syntax error near unexpected\
+# define HEREDOC_SYNT \
+	"minishell: syntax error near unexpected\
   token `newline'\n"
 # define HEREDOC_MAX "minishell: maximum here-document count exceeded\n"
 # define HEREDOC_EOF \

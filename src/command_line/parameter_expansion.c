@@ -1,25 +1,37 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parameter_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:31:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 10:59:22 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
 void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
 {
 	char	*new_token;
+	char	*residual;
 
-	new_token = ft_substr(tmp->token, 0, str_token_len);
-	new_token = ft_strjoin_f(new_token, value);
-	free_char(tmp->token);
-	tmp->token = new_token;
+	residual = NULL;
+	if (str_token_len != -1)
+	{
+		new_token = ft_substr(tmp->token, 0, str_token_len);
+		new_token = ft_strjoin_f(new_token, value);
+		free_char(tmp->token);
+		tmp->token = new_token;
+	}
+	else
+	{
+		residual = ft_substr(tmp->token, 0, ft_strlen_endc(tmp->token, '$'));
+		tmp->token = free_char(tmp->token);
+		tmp->token = ft_strdup(residual);
+		residual = free_char(residual);
+	}
 	key = free_char(key);
 	value = free_char(value);
 }
@@ -32,15 +44,14 @@ char	*get_parameter_value(t_cli *cli, char *key)
 	pid = getpid();
 	if (key[0] == '?')
 		return (ft_itoa(cli->mnsh->exit_code));
-	if (key[0] == '$')
+	else if (key[0] == '$')
 		return (ft_itoa(pid));
-	value = ft_strdup(get_value_from_key(cli->mnsh->env_var_lst, key));
-	if (value == NULL)
-		value = ft_strdup(get_variable_from_key(cli->variable, key));
+	else
+		value = ft_strdup(get_value_from_key(cli->mnsh->env_var_lst, key));
 	if (key[0] > 0 && value == NULL)
 		value = ft_strdup("");
 	else if (value == NULL)
-		value = ft_strdup("$");
+		value = ft_strdup("");
 	return (value);
 }
 
@@ -55,7 +66,7 @@ int	variable_len(char *token)
 		i++;
 	while (token[i + j] != 0)
 	{
-		if (ft_isthis("'\"", token[i + j]) > 0)
+		if (ft_isthis("'\"\0", token[i + j]) > 0)
 			return (j);
 		j++;
 	}
@@ -95,9 +106,10 @@ void	parameter_expansion(t_cli *cli)
 			return ;
 		else
 			value = get_parameter_value(cli, key);
-		if (value == NULL)
-			value = ft_strdup(tmp->token);
-		replacement(tmp, value, key, i);
+		if (value[0] != 0)
+			replacement(tmp, value, key, i);
+		else if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
+			replacement(tmp, value, key, -1);
 		tmp = tmp->next;
 	}
 }

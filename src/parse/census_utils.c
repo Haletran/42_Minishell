@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   census_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 22:33:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:07:27 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -39,26 +39,33 @@ t_token_type	add_flag(t_cli *cli, t_token_type type)
 	return (type);
 }
 
-int    command_census(t_token *tok, t_cli *cli)
+int	get_last_token_command(t_token *tok)
 {
-    (void)cli;
-    if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR)
-        return (COMMAND);
-    else if (tok->prev->type == DELIMITER)
-        return (COMMAND);
-    else if (tok->prev->type == 13)
-    {
-        if (tok->prev->prev->token[0] == '<' || tok->prev->prev->token[0] == '>')
-            return (COMMAND);
-        else if (tok->prev->prev->prev == NULL)
-            return (COMMAND);
-        else if (tok->prev->prev->prev->type == CONTROLE_OPERATOR)
-            return (COMMAND);
-    }
-    if (tok->prev != NULL)
-        if (tok->prev->type == COMMAND && tok->prev->token[0] == 0)
-            return (COMMAND);
-    return (ARGUMENT);
+	while (tok->prev != NULL)
+	{
+		tok = tok->prev;
+		if (tok->type == COMMAND)
+			return (1);
+		if (tok->type == CONTROLE_OPERATOR)
+			break ;
+	}
+	return (0);
+}
+
+int	command_census(t_token *tok, t_cli *cli)
+{
+	(void)cli;
+	if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR)
+		return (COMMAND);
+	else if (tok->prev->type == DELIMITER)
+		return (COMMAND);
+	else if (tok->prev->type == 13)
+		if (get_last_token_command(tok) == 0)
+			return (COMMAND);
+	if (tok->prev != NULL)
+		if (tok->prev->type == COMMAND && tok->prev->token[0] == 0)
+			return (COMMAND);
+	return (ARGUMENT);
 }
 
 t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)

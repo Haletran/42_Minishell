@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:38:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:15:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			g_var = 0;
 
-static void	sig_ctrl_c(int signum)
+void	sig_ctrl_c(int signum)
 {
 	(void)signum;
 	ft_putstr_fd("\n", 1);
