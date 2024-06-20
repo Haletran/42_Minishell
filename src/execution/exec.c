@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/20 11:17:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:48:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,16 @@
 
 void	main_loop(t_cli *cli, int count)
 {
-	if (cli->com->type == COMMAND)
+	if (!cli->com->next)
+		execute_last_command(cli);
+	else
 	{
-		if (!cli->com->next)
-			execute_last_command(cli);
-		else
-		{
-			pipe(cli->mnsh->fd);
-			piping(cli, count);
-		}
-		cli->mnsh->heredoc_pipe = 0;
-		cli->mnsh->outfile_check = 0;
-		cli->mnsh->infile_check = 0;
+		pipe(cli->mnsh->fd);
+		piping(cli, count);
 	}
+	cli->mnsh->heredoc_pipe = 0;
+	cli->mnsh->outfile_check = 0;
+	cli->mnsh->infile_check = 0;
 }
 
 int	get_nb_pipes(t_token *token)
@@ -52,10 +49,13 @@ void	handle_heredoc(t_cli *cli, int *heredoc)
 		cli->mnsh->heredoc_backup_fd = open("/tmp/.heredoc", O_RDONLY);
 		cli->mnsh->heredoc_pipe = 1;
 		*heredoc = 1;
+		close(cli->mnsh->backup[0]);
+		close(cli->mnsh->backup[1]);
 	}
 	else
 	{
-		delete_file("/tmp/.heredoc", cli);
+		heredoc_close_fd(cli);
+		unlink("/tmp/.heredoc");
 		exit(SUCCESS);
 	}
 }
@@ -65,13 +65,15 @@ void	loop_commands(t_cli *cli, int *count)
 	t_com	*head;
 
 	head = cli->com;
+	//debug(cli, "loop_commands");
 	if (!cli->com->command)
 		handle_redirection(&cli);
 	while (cli->com)
 	{
 		if (check_before_exec(&cli, count) == ERROR)
 			break ;
-		main_loop(cli, *count);
+		if (cli->com->type == COMMAND) 
+			main_loop(cli, *count);
 		cli->mnsh->file_check = 0;
 		if (!cli->com->next)
 			break ;
@@ -99,10 +101,11 @@ int	exec_pipe(t_cli *cli)
 	while (waitpid(-1, NULL, 0) > 0)
 		;
 	if (heredoc == 1)
-		delete_file("/tmp/.heredoc", cli);
+		unlink("/tmp/.heredoc");
 	dup2(cli->mnsh->backup[0], STDIN_FILENO);
 	close(cli->mnsh->backup[0]);
 	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
 	close(cli->mnsh->backup[1]);
+	g_var = 0;
 	return (SUCCESS);
 }

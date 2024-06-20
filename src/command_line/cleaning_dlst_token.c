@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:32:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:46:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	glue_quotes(t_cli *cli)
 	tmp = cli->token;
 	while (tmp != NULL)
 	{
+		if (!tmp->next)
+			break ;
 		if ((tmp->type == IMMUTABLE && tmp->next->type == IMMUTABLE)
 			|| (tmp->type == FREEZE && tmp->next->type == FREEZE))
 		{

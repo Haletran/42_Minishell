@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/20 11:18:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:00:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		check_error(t_cli **cli);
 void	fork_error(pid_t pid);
 void	piping(t_cli *cli, int count);
 void	execute_last_command(t_cli *cli);
+int		redir(t_cli **cli);
 
 //****************************************************************************/
 //* exec_args.c

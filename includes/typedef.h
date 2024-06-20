@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/20 10:57:43 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:55:49 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,7 +30,8 @@ typedef enum s_token_type
 	IMMUTABLE,
 	BUILTIN,
 	KEYWORD,
-	REDIRECTION_ARGUMENT
+	REDIRECTION_ARGUMENT,
+	SPACE_HOLDER
 }							t_token_type;
 
 typedef enum s_redi_type

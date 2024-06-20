@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:35:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:44:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ void	free_command_line(t_cli *cli)
 	cli->input = free_char(cli->input);
 	free_tab(cli->mnsh->env_var);
 	cli->mnsh->env_var = NULL;
+	if (cli->flag_dquote == 1 || cli->flag_quote == 1)
+	{
+		cli->flag_dquote = 0;
+		cli->flag_quote = 0;
+		ft_printf_fd(2, "minishell: quotes not closed\n");
+		cli->mnsh->exit_code = 2;
+	}
 	cli->n_dquote = 0;
 	cli->n_quote = 0;
 	cli->n_token = 0;

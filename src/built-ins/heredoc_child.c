@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:14:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:19:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:11:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*handle_eof(char *input, int line_count, t_com *com, t_cli *cli)
 char	*handle_sigint(char *input, t_cli *cli)
 {
 	input = free_char(input);
+	heredoc_close_fd(cli);
 	ft_exitcode(cli, 130);
 	return (input);
 }

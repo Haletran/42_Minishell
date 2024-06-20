@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:02:05 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 12:09:18 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:54:10 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,6 +33,7 @@ void	redirect_rules(t_cli *cli, t_token *token);
 //****************************************************************************/
 //* ruler.c
 
+t_token	*next_selector(t_token *token);
 void	rulers(t_cli *cli);
 void	syntax_error(t_cli *cli, char *token);
 void	process_error(t_cli *cli, char *token);

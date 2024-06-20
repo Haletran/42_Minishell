@@ -6,11 +6,18 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:12:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:16:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:03:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void heredoc_close_fd(t_cli *cli)
+{
+	close(cli->mnsh->heredoc_fd);
+	close(cli->mnsh->backup[0]);
+	close(cli->mnsh->backup[1]);
+}
 
 int	check_number_of_heredoc(t_com *com)
 {

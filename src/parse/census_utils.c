@@ -6,7 +6,7 @@
 /*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/20 11:07:27 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:35:34 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -81,6 +81,13 @@ t_token_type	quote_n_heredoc_census(char *token, t_cli *cli)
 	if (token[0] == '<' && token[1] == '<')
 		return (add_flag(cli, HEREDOC));
 	if (cli->heredoc == 1 && ft_isthis(" \t\n", token[0]) == 0)
-		return (add_flag(cli, DELIMITER));
+	{
+		if (ft_lencmparray(token, cli->control) > 0)
+			return (CONTROLE_OPERATOR);
+		else if (ft_lencmparray(token, cli->redirect) > 0)
+			return (REDIRECTION_OPERATOR);
+		else
+			return (add_flag(cli, DELIMITER));
+	}
 	return (REDIRECTION_OPERATOR);
 }

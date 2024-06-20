@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:36:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:51:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	delete_file(char *name, t_cli *cli)
 		exit(1);
 	else if (pid == 0)
 	{
-		execve("/bin/rm", (char *[]){"rm", "-rf", name, NULL},
-			cli->mnsh->env_var);
+		close(cli->mnsh->backup[0]);
+		close(cli->mnsh->backup[1]);
 		close(cli->mnsh->heredoc_fd);
 		close(cli->mnsh->heredoc_backup_fd);
+		execve("/bin/rm", (char *[]){"rm", "-rf", name, NULL},
+			cli->mnsh->env_var);
 		exit(1);
 	}
 }

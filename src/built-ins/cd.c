@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:03:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:50:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_cd(char **str, t_lst *lst)
 	valid = 0;
 	old_path = ft_strdup(search_path("PWD", lst));
 	if (handle_arguments(str, lst) == ERROR)
-		exit(1);
+		return (1);
 	else if (!str[1] || !ft_strncmp(str[1], "--", -1))
 	{
 		lst->home_path = get_env("HOME", lst);

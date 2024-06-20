@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:16:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:10:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	create_heredoc_file(t_cli **cli)
 	{
 		ft_printf_fd(2, HEREDOC_CREATE, strerror(errno), "/tmp/.heredoc");
 		(*cli)->mnsh->exit_code = 1;
+		close((*cli)->mnsh->heredoc_fd);
 		return (ERROR);
 	}
 	return (SUCCESS);

@@ -1,16 +1,36 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ruler.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:16:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:13:56 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
+
+t_token	*next_selector(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	if (tmp->next == NULL)
+		return (tmp);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		if (tmp->type == SPACE_HOLDER)
+			tmp = tmp->next;
+		else
+		{
+			return (tmp);
+		}
+	}
+	return (tmp);
+}
 
 void	rulers(t_cli *cli)
 {
@@ -20,8 +40,7 @@ void	rulers(t_cli *cli)
 	tmp = cli->token;
 	while (tmp)
 	{
-		if ((tmp->type == REDIRECTION_OPERATOR || tmp->type == HEREDOC)
-			&& cli->rules_flag == 0)
+		if ((tmp->type == 2 || tmp->type == 8) && cli->rules_flag == 0)
 			redirect_rules(cli, tmp);
 		else if (tmp->type == CONTROLE_OPERATOR && cli->rules_flag == 0)
 			control_rules(cli, tmp);
@@ -52,8 +71,9 @@ void	syntax_error(t_cli *cli, char *token)
 void	process_error(t_cli *cli, char *token)
 {
 	ft_printf_fd(2,
-		"minishell: bash reserved keyword: no \
-		implementation required for `%s'\n", token);
+					"minishell: bash reserved keyword: no \
+		implementation required for `%s'\n",
+					token);
 	cli->mnsh->exit_code = 2;
 	cli->rules_flag = 1;
 }
