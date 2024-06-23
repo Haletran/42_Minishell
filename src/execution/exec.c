@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/20 16:48:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:34:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	loop_commands(t_cli *cli, int *count)
 	t_com	*head;
 
 	head = cli->com;
-	//debug(cli, "loop_commands");
 	if (!cli->com->command)
 		handle_redirection(&cli);
 	while (cli->com)
@@ -98,14 +97,10 @@ int	exec_pipe(t_cli *cli)
 	if (cli->mnsh->nb_heredoc > 0)
 		handle_heredoc(cli, &heredoc);
 	loop_commands(cli, &count);
-	while (waitpid(-1, NULL, 0) > 0)
-		;
+	redirect_std(cli);
+	wait_process();
 	if (heredoc == 1)
 		unlink("/tmp/.heredoc");
-	dup2(cli->mnsh->backup[0], STDIN_FILENO);
-	close(cli->mnsh->backup[0]);
-	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
-	close(cli->mnsh->backup[1]);
 	g_var = 0;
 	return (SUCCESS);
 }

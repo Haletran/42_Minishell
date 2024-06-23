@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/20 13:00:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/23 20:31:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,9 @@ void	sig_ctrl_back(int signum);
 void	handle_sig(int check);
 
 //****************************************************************************/
+//* exec_helpers.c
+
+void	redirect_std(t_cli *cli);
+void	wait_process(void);
 
 #endif

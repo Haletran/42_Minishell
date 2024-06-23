@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/20 12:58:16 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/23 20:27:35 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS	= src/main.c \
 		  src/execution/signal.c \
 		  src/execution/check.c \
 		  src/execution/exec_args.c	\
+		  src/execution/exec_helpers.c \
 		  src/execution/redirection.c \
 		  src/execution/exec_utils.c \
 		  src/execution/exec.c \
