@@ -7,9 +7,8 @@ As beautiful as a shell..
 
 ## TO_FIX
 - Syntax error if ;; or other behind command
-- SIGSEV if not closed quotes/dquotes
 - leaks if path command like /usr/bin/ls
-- cat | ls (not giving the prompt back)
+- heredoc fds leaks
 
 # LEAKS
 
