@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/23 20:33:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:18:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,15 @@ void wait_process(void)
 {
 	while (waitpid(-1, NULL, 0) > 0)
 		;
+}
+
+void reset_redir_values(t_cli *cli)
+{
+	if (cli->mnsh->heredoc_pipe == 1)
+	{
+		close(cli->mnsh->heredoc_backup_fd);
+		cli->mnsh->heredoc_pipe = 0;
+	}
+	cli->mnsh->outfile_check = 0;
+	cli->mnsh->infile_check = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:02:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:12:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ int	ft_exit(char *code, t_cli *cli)
 
 int	ft_exitcode(t_cli *cli, long int exit_code)
 {
+	// might have to delete later
+	close(cli->mnsh->backup[1]);
+	close(cli->mnsh->backup[0]);
 	freeway(cli);
 	if (!exit_code)
 		exit(0);
