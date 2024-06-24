@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:12:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/23 20:51:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:41:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void heredoc_close_fd(t_cli *cli)
+void	heredoc_close_fd(t_cli *cli)
 {
 	close(cli->mnsh->heredoc_fd);
 	close(cli->mnsh->backup[0]);

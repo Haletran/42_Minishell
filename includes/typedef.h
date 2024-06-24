@@ -6,11 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/23 20:34:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:39:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef TYPEDEF_H
+#ifndef TYPEDEF_H
 # define TYPEDEF_H
 
 # include "minishell.h"

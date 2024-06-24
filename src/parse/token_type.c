@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/20 16:47:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:42:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_lenstrtype(char *token, t_cli *cli)
 t_token_type	token_type_discovery(char *token, t_cli *cli)
 {
 	if (ft_isthis("\"'<", token[0]) > 0 || cli->flag_quote & 1
-			|| cli->flag_dquote & 1)
+		|| cli->flag_dquote & 1)
 	{
 		return (quote_n_heredoc_census(token, cli));
 	}

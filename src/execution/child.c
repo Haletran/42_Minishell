@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 12:19:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:41:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int redir(t_cli **cli)
+int	redir(t_cli **cli)
 {
 	if (handle_redirection(cli) == ERROR)
 		return (ERROR);

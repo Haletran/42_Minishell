@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/23 21:19:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:39:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	handle_sig(int check);
 
 void	redirect_std(t_cli *cli);
 void	wait_process(void);
-void    reset_redir_values(t_cli *cli);
+void	reset_redir_values(t_cli *cli);
 
 #endif
