@@ -7,24 +7,10 @@ As beautiful as a shell..
 
 ## TO_FIX
 - Syntax error if ;; or other behind command
-- leaks if path command like /usr/bin/ls
-- heredoc fds leaks
+- no error if heredoc without delimiter
 
 # LEAKS
 
-```
-[~] MINISHELL > export test=/usr/bin/ls
-[~] MINISHELL > $test
-==264994== 12 bytes in 1 blocks are definitely lost in loss record 3 of 64
-==264994==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==264994==    by 0x115BE1: ft_strdup (in /data/MINISH/minishell)
-==264994==    by 0x10E4EE: fill_command (create_command.c:57)
-==264994==    by 0x10E861: create_command (create_command.c:114)
-==264994==    by 0x11346C: parsing_organiser (organizer.c:27)
-==264994==    by 0x10A3AB: render_prompt (main.c:37)
-==264994==    by 0x10A4D7: main (main.c:57)
-==264994== 
-```
 
 
 
