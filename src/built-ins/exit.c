@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/23 21:12:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:49:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ long long	ft_strtoll_check(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result > (9223372036854775807 - (str[i] - '0')) / 10)
-		{
-			flag++;
-			break ;
-		}
+			if (!(str[0] == '-' && result == 922337203685477580 && (str[i]
+						- '0') == 8))
+				return (++flag);
 		result = result * 10 + (str[i++] - '0');
 	}
 	return (flag);
@@ -80,7 +79,7 @@ long long	ft_strtoll(const char *str)
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return (sign * result);
+	return (result * sign);
 }
 
 int	ft_exit(char *code, t_cli *cli)
@@ -96,10 +95,9 @@ int	ft_exit(char *code, t_cli *cli)
 		exit(ft_exit_process(backup, cli));
 	}
 	exit_code = ft_strtoll(code);
-	if (ft_strtoll_check(code) > 0 || check_code(code) == ERROR)
+	if (check_code(code) == ERROR || ft_strtoll_check(code) > 0)
 	{
-		ft_printf_fd(2, EXIT_NUM_REQ,
-			code);
+		ft_printf_fd(2, EXIT_NUM_REQ, code);
 		exit(ft_exit_process(2, cli));
 	}
 	if (cli->com->command[2])
@@ -114,7 +112,6 @@ int	ft_exit(char *code, t_cli *cli)
 
 int	ft_exitcode(t_cli *cli, long int exit_code)
 {
-	// might have to delete later
 	close(cli->mnsh->backup[1]);
 	close(cli->mnsh->backup[0]);
 	freeway(cli);
