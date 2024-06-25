@@ -56,6 +56,7 @@ if [[ $1 == "syntax" ]]; then
 	)
 fi
 
+
 if [[ $1 == "mandatory" || $1 == "" ]]; then
 	test_lists=(
 		"redirects"
@@ -169,7 +170,7 @@ for testfile in ${test_lists[*]}; do
 		BASH_OUTPUT=$(echo -e "$teste" | bash 2> /dev/null)
 		BASH_EXIT_CODE=$(echo $?)
 		BASH_OUTFILES=$(cp ./outfiles/* ./bash_outfiles &>/dev/null)
-		BASH_ERROR_MSG=$(trap "" PIPE && echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$')
+		BASH_ERROR_MSG=$(trap "" PIPE && echo "$teste" | bash 2>&1 > /dev/null | grep -o '[^:]*$' | sed "s# \`$teste'##")
 
 		OUTFILES_DIFF=$(diff --brief ./mini_outfiles ./bash_outfiles)
 

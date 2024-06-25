@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 13:12:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:40:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	exec_pipe(t_cli *cli)
 	count = 0;
 	handle_sig(2);
 	heredoc = 0;
+	check_er(cli);
 	cli->mnsh->pipe_count = get_nb_pipes(cli->token);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);

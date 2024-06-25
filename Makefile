@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/23 20:27:35 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/25 22:20:32 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,8 +138,8 @@ redirects: all
 syntax: all
 	@-cd tester/minishell_tester/src/ && ./tester syntax
 
-extras: all
-	@-cd tester/minishell_tester/src/ && ./tester extras
+command: all
+	@-cd tester/minishell_tester/src/ && ./tester command
 
 var: all
 	@-cd tester/minishell_tester/src/ && ./tester var

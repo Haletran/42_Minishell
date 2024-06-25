@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:39:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:19:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		get_nb_pipes(t_token *token);
 void	handle_heredoc(t_cli *cli, int *heredoc);
 void	loop_commands(t_cli *cli, int *count);
 int		exec_pipe(t_cli *cli);
+int     check_er(t_cli *cli);
 
 //****************************************************************************/
 //* redirection.c

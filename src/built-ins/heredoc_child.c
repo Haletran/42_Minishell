@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:14:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 13:00:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:01:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	child_process(t_cli *cli, t_com *com)
 
 	input = NULL;
 	line_count = 0;
-	handle_sig(1);
 	while (1)
 	{
 		input = readline("> ");

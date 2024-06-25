@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 13:05:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 13:36:11 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_heredoc(t_cli *cli)
 	t_com	*tmp;
 
 	tmp = cli->com;
+	handle_sig(1);
 	if (check_heredoc_error(cli) == ERROR)
 		return (ERROR, cli->mnsh->exit_code = 1);
 	while (tmp)
