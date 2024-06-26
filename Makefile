@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/26 13:34:51 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/26 14:09:42 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCS	= src/main.c \
 		  src/execution/exec_args.c	\
 		  src/execution/exec_helpers.c \
 		  src/execution/redirection.c \
+		  src/execution/redirection_not_fork.c \
 		  src/execution/exec_utils.c \
 		  src/execution/exec.c \
 		  src/parse/census_utils.c \

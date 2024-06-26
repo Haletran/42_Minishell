@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/19 12:12:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:56:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int	init_data_parsing(t_cli **cli)
 	(*cli)->mnsh->ctrl_c = 0;
 	(*cli)->mnsh->outfile_check = 0;
 	(*cli)->rules_flag = 0;
+	(*cli)->mnsh->not_fork = 0;
 	return (SUCCESS);
 }

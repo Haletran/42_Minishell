@@ -1,48 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection.c                                      :+:      :+:    :+:   */
+/*   redirection_not_fork.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:37:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 14:05:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:30:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	handle_redirection(t_cli **cli)
+int	nf_handle_error(int fd, t_cli *cli)
 {
-	t_redirection	*red;
-
-	red = (*cli)->com->redirection;
-	(*cli)->mnsh->file_check = 0;
-	while (red)
-	{
-		if (red->type == IN)
-		{
-			if (handle_infile(red, (*cli)) == ERROR)
-				return (ERROR);
-		}
-		else if (red->type == OUT || red->type == APPEND_OUT)
-		{
-			if (handle_outfile(red, (*cli)) == ERROR)
-				return (ERROR);
-		}
-		red = red->next;
-	}
-	return (SUCCESS);
-}
-
-int	handle_error(int fd, t_cli *cli)
-{
-	(void)fd;
 	if (errno == ENOENT)
 	{
 		cli->mnsh->file_check = 1;
 		ft_printf_fd(2, "minishell: No such file or directory\n");
 		cli->mnsh->exit_code = 1;
+		close(fd);
 		return (ERROR);
 	}
 	else
@@ -50,12 +27,13 @@ int	handle_error(int fd, t_cli *cli)
 		cli->mnsh->file_check = 1;
 		ft_printf_fd(2, "minishell: Permission denied\n");
 		cli->mnsh->exit_code = 1;
+		close(fd);
 		return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-int	open_file(t_redirection *red)
+int	nf_open_file(t_redirection *red)
 {
 	int	fd;
 
@@ -76,34 +54,57 @@ int	open_file(t_redirection *red)
 	return (fd);
 }
 
-int	handle_outfile(t_redirection *red, t_cli *cli)
+int	nf_handle_outfile(t_redirection *red, t_cli *cli)
 {
 	int	fd;
 
 	fd = open_file(red);
 	if (fd == -1 && cli->mnsh->file_check == 0)
 	{
-		if (handle_error(fd, cli) == ERROR)
+		if (nf_handle_error(fd, cli) == ERROR)
 			return (ERROR);
 	}
-	dup2(fd, STDOUT_FILENO);
 	close(fd);
 	cli->mnsh->outfile_check = 1;
 	return (SUCCESS);
 }
 
-int	handle_infile(t_redirection *red, t_cli *cli)
+int	nf_handle_infile(t_redirection *red, t_cli *cli)
 {
 	int	fd;
 
 	fd = open(red->file, O_RDONLY, 0640);
 	if (fd == -1 && cli->mnsh->file_check == 0)
 	{
-		if (handle_error(fd, cli) == ERROR)
+		if (nf_handle_error(fd, cli) == ERROR)
 			return (ERROR);
 	}
-	dup2(fd, STDIN_FILENO);
 	close(fd);
 	cli->mnsh->infile_check = 1;
+	return (SUCCESS);
+}
+
+int	nf_handle_redirection(t_cli **cli)
+{
+	t_redirection	*red;
+
+	red = (*cli)->com->redirection;
+	(*cli)->mnsh->file_check = 0;
+	while (red)
+	{
+		if (red->type == IN)
+		{
+			if (nf_handle_infile(red, (*cli)) == ERROR)
+				return (ERROR);
+		}
+		else if (red->type == OUT || red->type == APPEND_OUT)
+		{
+			if (nf_handle_outfile(red, (*cli)) == ERROR)
+				return (ERROR);
+		}
+		red = red->next;
+	}
+	close((*cli)->mnsh->backup[0]);
+	close((*cli)->mnsh->backup[1]);
 	return (SUCCESS);
 }

@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 12:12:11 by ygaiffie         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:56:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -65,7 +65,6 @@ typedef struct s_lst
 	int						backup[2];
 	int						*pid;
 	int						fd[2];
-	int						prev_fd[2];
 	int						file_fd[2];
 	int						pipe_count;
 	int						history_fd;
@@ -81,6 +80,7 @@ typedef struct s_lst
 	int						syntax_error;
 	int						nb_commands;
 	int						dollar;
+	int						not_fork;
 	int						ctrl_c;
 	int						file_check;
 	int						flag_d;
