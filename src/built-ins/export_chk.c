@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 10:22:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:24:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	not_existing(t_lst *mnsh, char **str)
 	t_env	*env;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str) == ERROR)
+	if (check_valid_identifier(str[1]) == ERROR)
 		return (ERROR);
 	if (already_exist(mnsh, str, 0) == 1)
 		return (SUCCESS);
@@ -61,7 +61,7 @@ int	check_valid_key(char **str)
 	int	i;
 	int	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
 	if (!ft_strncmp(str[0], "export", ft_strlen(str[0]))
 		&& get_nbargs(str) == 2)
@@ -84,31 +84,31 @@ int	check_if_var_exist(t_env *env, char *str)
 	return (SUCCESS);
 }
 
-int	check_valid_identifier(char **str)
+int	check_valid_identifier(char *str)
 {
-	char	**tmp;
-	int		i;
+	char **tmp;
 	int		j;
 
-	i = 0;
-	if (!str[0])
-		return (ERROR);
-	while (str[i])
+	j = 0;
+	tmp = ft_split(str, '=');
+	if (!tmp[0])
+		return (free_tab(tmp), ERROR);
+	while(tmp[0][j])
 	{
-		tmp = ft_split(str[i], '=');
-		if (!tmp[0])
-			return (free_tab(tmp), ERROR);
-		j = 0;
-		while (i == 0 && tmp[0][++j])
-			if (!ft_isalnum(tmp[0][j]) || tmp[0][j] == '-')
-				if (tmp[0][j] != '+')
-					return (free_tab(tmp), ERROR);
-		if (i == 1 && tmp[0] && ft_strlen(tmp[0]) == 0)
-			return (free_tab(tmp), ERROR);
-		free_tab(tmp);
-		i++;
+		if (!ft_isalpha(tmp[0][j]))
+			if (tmp[0][j] != '+' && tmp[0][j] != '_')
+				return (free_tab(tmp), ERROR);
+		j++;
 	}
-	if (check_valid_key(str) == ERROR)
-		return (ERROR);
+	j = 0;
+	if (!tmp[1])
+		return (free_tab(tmp), SUCCESS);
+	while (tmp[1][j])
+	{
+		if (!ft_isprint(tmp[1][j]))
+			return (free_tab(tmp), ERROR);
+		j++;
+	}
+	free_tab(tmp);
 	return (SUCCESS);
 }

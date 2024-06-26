@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:02:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:35:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	echo_print(char **str, int i)
 	while (str[i])
 	{
 		if (str[i + 1] == NULL)
-			ft_printf_fd(STDOUT_FILENO, "%s", str[i]);
+			ft_printf("%s", str[i]);
 		else
-			ft_printf_fd(STDOUT_FILENO, "%s ", str[i]);
+			ft_printf("%s ", str[i]);
 		i++;
 	}
 }
@@ -62,7 +62,7 @@ int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)
 	echo_print(str, i);
 	mnsh->exit_code = 0;
 	if (flag == 0)
-		ft_printf_fd(STDOUT_FILENO, "\n");
+		ft_printf("\n");
 	ft_exitcode(cli, 0);
 	return (1);
 }

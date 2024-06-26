@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:03:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:08:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	t_env	*env;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str) == ERROR)
+	if (check_valid_identifier(str[i]) == ERROR)
 		return (ERROR);
 	if (check_if_var_exist(env, str[i]))
 		return (ERROR);
@@ -36,10 +36,10 @@ int	add_var(t_lst *mnsh, char **str, int i)
 	t_env	*env;
 	char	**tmp;
 
-	tmp = ft_split(str[i], '=');
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(tmp) == ERROR)
+	if (check_valid_identifier(str[i]) == ERROR)
 		return (ERROR);
+	tmp = ft_split(str[i], '=');
 	while (env->next)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
@@ -90,7 +90,7 @@ int	add_back(t_lst *mnsh, char **str, int i)
 	tmp = ft_split(str[i], '+');
 	to_keep = ft_strtrim(tmp[1], "=");
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(tmp) == ERROR)
+	if (check_valid_identifier(str[i]) == ERROR)
 		return (ERROR);
 	if (not_existing(mnsh, tmp) == ERROR)
 		return (ERROR);
