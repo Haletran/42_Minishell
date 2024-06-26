@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:14:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/25 13:01:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:38:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*handle_eof(char *input, int line_count, t_com *com, t_cli *cli)
 {
 	ft_printf_fd(2, HEREDOC_EOF, line_count, com->command[1]);
 	input = free_char(input);
+	heredoc_close_fd(cli);
 	ft_exitcode(cli, 0);
 	return (input);
 }

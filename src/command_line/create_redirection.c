@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:43:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:29:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ void	create_redirection(t_cli *cli)
 	cli->com->redirection = NULL;
 	while (tmp)
 	{
+		if (com->type == HEREDOC)
+			if (com->next)
+				com = com->next;
 		if (tmp->type == REDIRECTION_OPERATOR)
 			handle_redir(tmp, com, &i);
 		else if (tmp->type == CONTROLE_OPERATOR)

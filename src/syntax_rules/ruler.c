@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/25 22:14:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:31:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	rulers(t_cli *cli)
 			process_error(cli, tmp->token);
 		else if (ft_isthis(tmp->token, '*') != 0)
 			syntax_error(cli, tmp->token);
+/* 		else if (tmp->type == HEREDOC && tmp->next->type != DELIMITER)
+			syntax_error(cli, tmp->token); */
 		tmp = tmp->next;
 	}
 }
@@ -60,7 +62,7 @@ void	syntax_error(t_cli *cli, char *token)
 	else
 	{
 		ft_printf_fd(2, "minishell: syntax error near unexpected token `%s'\n",
-			token, token);
+			token);
 		cli->mnsh->exit_code = 2;
 	}
 	cli->rules_flag = 1;

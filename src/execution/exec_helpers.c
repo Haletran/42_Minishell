@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/25 22:28:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:50:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	reset_redir_values(t_cli *cli)
 
 int check_er(t_cli *cli)
 {
+	if (!cli->com->command)
+		return (SUCCESS);
 	if (ft_isthis(cli->com->command[0], '.') != 0 && ft_strlen(cli->com->command[0]) == 1)
 	{
 		ft_printf_fd(2, "minishell: %s: filename argument required\n", cli->com->command[0]);

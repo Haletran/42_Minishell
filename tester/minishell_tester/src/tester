@@ -1,6 +1,7 @@
 #!/bin/bash
 
 MINISHELL_PATH="../../../minishell"
+PRINT="true"
 
 # Run a specific test if the file name was specified
 
@@ -151,8 +152,10 @@ REMOVE_EXIT="grep -v ^exit$"
 
 for testfile in ${test_lists[*]}; do
 
-	printf $RED
-	echo ———————————— $testfile
+	if [[ $PRINT == "true" ]]; then
+		printf $RED
+		echo ———————————— $testfile
+	fi
 
 	while read teste; do
 		((i++))
@@ -176,36 +179,46 @@ for testfile in ${test_lists[*]}; do
 
 		echo -e "$teste" | $MINISHELL_PATH 2> /dev/null 1>/dev/null
 		MINI_EXIT_CODE=$(echo $?)
-		printf $YELLOW
-		printf "Test %3s: " $i
+		if [[ $PRINT == "true" ]]; then
+			printf $YELLOW
+			printf "Test %3s: " $i
+		fi
 		if [[ "$MINI_OUTPUT" == "$BASH_OUTPUT" && "$MINI_EXIT_CODE" == "$BASH_EXIT_CODE" && -z "$OUTFILES_DIFF" ]]; then
-			printf ✅
+			if [[ $PRINT == "true" ]]; then
+				printf ✅
+			fi
 			((ok++))
 			if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
-				printf "⚠️ "
+				if [[ $PRINT == "true" ]]; then
+					printf "⚠️ "
+				fi
 			fi
 		else
-			printf ❌
+			if [[ $PRINT == "true" ]]; then
+				printf ❌
+			fi
 		fi
-		printf "$GREY $teste \n$END"
-		if [ "$OUTFILES_DIFF" ]; then
-			echo "$OUTFILES_DIFF"
-			echo mini outfiles:
-			cat ./mini_outfiles/*
-			echo bash outfiles:
-			cat ./bash_outfiles/*
-		fi
-		if [ "$MINI_OUTPUT" != "$BASH_OUTPUT" ]; then
-			echo mini output = \($MINI_OUTPUT\)
-			echo bash output = \($BASH_OUTPUT\)
-		fi
-		if [ "$MINI_EXIT_CODE" != "$BASH_EXIT_CODE" ]; then
-			echo mini exit code = $MINI_EXIT_CODE
-			echo bash exit code = $BASH_EXIT_CODE
-		fi
-		if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
-			echo mini error = \($MINI_ERROR_MSG\)
-			echo bash error = \($BASH_ERROR_MSG\)
+		if [[ $PRINT == "true" ]]; then
+			printf "$GREY $teste \n$END"
+			if [ "$OUTFILES_DIFF" ]; then
+				echo "$OUTFILES_DIFF"
+				echo mini outfiles:
+				cat ./mini_outfiles/*
+				echo bash outfiles:
+				cat ./bash_outfiles/*
+			fi
+			if [ "$MINI_OUTPUT" != "$BASH_OUTPUT" ]; then
+				echo mini output = \($MINI_OUTPUT\)
+				echo bash output = \($BASH_OUTPUT\)
+			fi
+			if [ "$MINI_EXIT_CODE" != "$BASH_EXIT_CODE" ]; then
+				echo mini exit code = $MINI_EXIT_CODE
+				echo bash exit code = $BASH_EXIT_CODE
+			fi
+			if [ "$MINI_ERROR_MSG" != "$BASH_ERROR_MSG" ]; then
+				echo mini error = \($MINI_ERROR_MSG\)
+				echo bash error = \($BASH_ERROR_MSG\)
+			fi
 		fi
 	done < $testfile
 done

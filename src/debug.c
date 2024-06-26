@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 13:37:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/20 11:14:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:15:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,22 @@ void	print_all_token(t_token *token)
 	token = head;
 }
 
+void print_dlst_redirection(t_redirection *tmp)
+{
+	t_redirection	*head;
+	char			*type[] = {"IN", "OUT", "AND_OUT", "APPEND_OUT"};
+
+	head = tmp;
+	while (tmp)
+	{
+		ft_printf(WHT "\nType: " BHGRN " %s" CRESET, type[tmp->type]);
+		ft_printf(WHT " | Index:" BHGRN " %i \n\n" CRESET, tmp->index);
+		tmp = tmp->next;
+	}
+	tmp = head;
+
+}
+
 void	print_all_com(t_com *com)
 {
 	t_com	*head;
@@ -77,6 +93,8 @@ void	print_all_com(t_com *com)
 				head->command[i]);
 		ft_printf(WHT "\n\nPipe:" BHGRN " %i" CRESET, head->pipe);
 		ft_printf(WHT "| Path:" BHGRN " \"%s\"\n\n" CRESET, head->env_path);
+		print_dlst_redirection(head->redirection);
+		ft_printf("-----------------------------\n");
 		head = head->next;
 	}
 	ft_printf(BHRED "\nEND PRINT ALL COMMANDS\n\n" CRESET);
