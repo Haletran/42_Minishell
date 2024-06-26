@@ -10,7 +10,14 @@
       "minishell.h": "c",
       "stat.h": "c",
       "system_error": "c",
-      "algorithm": "c"
+      "algorithm": "c",
+      "array": "c",
+      "deque": "c",
+      "string": "c",
+      "unordered_map": "c",
+      "vector": "c",
+      "string_view": "c",
+      "initializer_list": "c"
     },
 	"functionHeaderExtension.headerFilePath": "/data/Minishell/includes/minishell.h",
 	"workbench.colorCustomizations": {

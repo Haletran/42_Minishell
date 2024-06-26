@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 01:23:53 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:00:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:24:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 # define EXIT_NUM_REQ "exit : %s: numeric argument required\n"
 # define EXPORT_NOT_VALID "minishell: export: '%s': not a valid identifier\n"
 # define HEREDOC_SYNT \
-	"minishell: syntax error near unexpected\
-  token `newline'\n"
+	"minishell: syntax error near unexpected token `newline'\n"
 # define HEREDOC_MAX "minishell: maximum here-document count exceeded\n"
 # define HEREDOC_EOF \
-	"warning: here-document at line %d delimited by\
-  end-of-file (wanted '%s')\n"
+	"warning: here-document at line %d delimited by end-of-file (wanted '%s')\n"
 # define HEREDOC_CREATE "minishell: %s: %s\n"
 # define CHECK_ER_ARG_REQ "minishell: %s: filename argument required\n"
 # define CHECK_ER_USAGE "%s: usage: %s filename [arguments]\n"

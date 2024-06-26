@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:43:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:29:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,7 @@ int	exec_pipe(t_cli *cli)
 	if (heredoc == 1)
 		unlink("/tmp/.heredoc");
 	g_var = 0;
+	close(cli->mnsh->heredoc_fd);
+	close(cli->mnsh->heredoc_backup_fd);
 	return (SUCCESS);
 }
