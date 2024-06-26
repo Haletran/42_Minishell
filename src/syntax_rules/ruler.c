@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:48:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:03:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	rulers(t_cli *cli)
 			redirect_rules(cli, tmp);
 		else if (tmp->type == CONTROLE_OPERATOR && cli->rules_flag == 0)
 			control_rules(cli, tmp);
-		else if (tmp->type == KEYWORD && cli->rules_flag == 0)
-			process_error(cli, tmp->token);
-		else if (ft_isthis(tmp->token, '*') != 0 && tmp->type != 10 && tmp->type != 7)
+		else if (ft_isthis(tmp->token, '*') != 0 && tmp->type != 10
+			&& tmp->type != 7)
 			syntax_error(cli, tmp->token);
 		tmp = tmp->next;
 	}
@@ -56,24 +55,13 @@ void	syntax_error(t_cli *cli, char *token)
 {
 	if (ft_isthis(token, '*') != 0)
 	{
-		ft_printf_fd(2, "minishell: %s: ambiguous redirect\n", token);
+		ft_printf_fd(2, SYNTAX_AMB, token);
 		cli->mnsh->exit_code = 1;
 	}
 	else
 	{
-		ft_printf_fd(2, "minishell: syntax error near unexpected token `%s'\n",
-			token, token);
+		ft_printf_fd(2, SYNTAX_UNEXP, token, token);
 		cli->mnsh->exit_code = 2;
 	}
-	cli->rules_flag = 1;
-}
-
-void	process_error(t_cli *cli, char *token)
-{
-	ft_printf_fd(2,
-					"minishell: bash reserved keyword: no \
-		implementation required for `%s'\n",
-					token);
-	cli->mnsh->exit_code = 2;
 	cli->rules_flag = 1;
 }

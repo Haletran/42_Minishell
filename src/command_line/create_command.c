@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 11:29:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:39:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 		tmp = tmp->next;
 	}
 	com->command[i] = NULL;
-	if (com->type == HEREDOC || com->type == REDIRECTION_OPERATOR )
+	if (com->type == HEREDOC || com->type == REDIRECTION_OPERATOR)
 		com->env_path = NULL;
 	else
 		com->env_path = return_path(com->command[0], &cli);

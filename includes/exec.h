@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 14:08:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:37:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		get_nb_pipes(t_token *token);
 void	handle_heredoc(t_cli *cli, int *heredoc);
 void	loop_commands(t_cli *cli, int *count);
 int		exec_pipe(t_cli *cli);
-int     check_er(t_cli *cli);
+int		check_er(t_cli *cli);
 
 //****************************************************************************/
 //* redirection.c
@@ -77,7 +77,7 @@ int		handle_error(int fd, t_cli *cli);
 int		open_file(t_redirection *red);
 int		handle_outfile(t_redirection *red, t_cli *cli);
 int		handle_infile(t_redirection *red, t_cli *cli);
-int     nf_handle_redirection(t_cli **cli);
+int		nf_handle_redirection(t_cli **cli);
 
 //****************************************************************************/
 //* signal.c

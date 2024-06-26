@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 14:26:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:43:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_commands(char **str, t_cli *cli)
 	return (NOT_FOUND);
 }
 
-int check_redir_not_fork(t_cli *cli, int *ret)
+int	check_redir_not_fork(t_cli *cli, int *ret)
 {
 	if (nf_handle_redirection(&cli) == ERROR)
 	{
@@ -47,7 +47,7 @@ int check_redir_not_fork(t_cli *cli, int *ret)
 
 int	check_if_fork(char **str, t_lst *mnsh, t_cli *cli)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (cli->mnsh->pipe_count == 0)

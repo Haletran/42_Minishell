@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 11:49:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:07:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ int	ft_heredoc(t_cli *cli)
 		tmp = tmp->next;
 	}
 	cli->mnsh->exit_code = get_exit_code(cli->mnsh);
-	close(cli->mnsh->heredoc_fd);
-	return (SUCCESS);
+	return (SUCCESS, close(cli->mnsh->heredoc_fd));
 }

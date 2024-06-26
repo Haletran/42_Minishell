@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:24:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:09:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ int	check_if_var_exist(t_env *env, char *str)
 
 int	check_valid_identifier(char *str)
 {
-	char **tmp;
+	char	**tmp;
 	int		j;
 
 	j = 0;
 	tmp = ft_split(str, '=');
 	if (!tmp[0])
 		return (free_tab(tmp), ERROR);
-	while(tmp[0][j])
+	while (tmp[0][j])
 	{
 		if (!ft_isalpha(tmp[0][j]))
 			if (tmp[0][j] != '+' && tmp[0][j] != '_')

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 11:50:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:13:53 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,29 @@ void	reset_redir_values(t_cli *cli)
 	cli->mnsh->infile_check = 0;
 }
 
-int check_er(t_cli *cli)
+int	check_er(t_cli *cli)
 {
+	char	**tmp;
+
+	tmp = cli->com->command;
 	if (!cli->com->command)
 		return (SUCCESS);
-	if (ft_isthis(cli->com->command[0], '.') != 0 && ft_strlen(cli->com->command[0]) == 1)
+	if (ft_isthis(tmp[0], '.') != 0 && ft_strlen(tmp[0]) == 1)
 	{
-		ft_printf_fd(2, "minishell: %s: filename argument required\n", cli->com->command[0]);
-		ft_printf_fd(2, "%s: usage: %s filename [arguments]\n", cli->com->command[0], cli->com->command[0]);
+		ft_printf_fd(2, "CHECK_ER_ARG_REQ\n", tmp[0]);
+		ft_printf_fd(2, "CHECK_ER_USAGE", tmp[0], tmp[0]);
 		cli->mnsh->exit_code = 2;
 		return (ERROR);
 	}
-	else if (!ft_strncmp(cli->com->command[0], "..", 2) && ft_strlen(cli->com->command[0]) == 2)
+	else if (!ft_strncmp(tmp[0], "..", 2) && ft_strlen(tmp[0]) == 2)
 	{
-		ft_printf_fd(2, "minishell: %s: command not found\n", cli->com->command[0]);
+		ft_printf_fd(2, "CHECK_ER_CMD_NOT_FOUND", tmp[0]);
 		cli->mnsh->exit_code = 127;
 		return (ERROR);
 	}
-	else if (!ft_strncmp(cli->com->command[0], "../", 3) && ft_strlen(cli->com->command[0]) == 3)
+	else if (!ft_strncmp(tmp[0], "../", 3) && ft_strlen(tmp[0]) == 3)
 	{
-		ft_printf_fd(2, "minishell: %s: Is a directory\n", cli->com->command[0]);
+		ft_printf_fd(2, "CHECK_ER_IS_DIR", tmp[0]);
 		cli->mnsh->exit_code = 126;
 		return (ERROR);
 	}

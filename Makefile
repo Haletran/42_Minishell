@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/26 14:09:42 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/26 16:10:25 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ endif
 
 
 SRCS	= src/main.c \
-		  src/debug.c \
 		  src/built-ins/echo.c \
 		  src/built-ins/cd.c \
 		  src/built-ins/cd_utils.c \
