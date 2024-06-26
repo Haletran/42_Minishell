@@ -1,115 +1,64 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parameter_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:30:42 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
-void	replacement(t_token *tmp, char *value, char *key, int str_token_len)
+void	replacement(t_p_exp *exp)
 {
 	char	*new_token;
-	char	*residual;
+	char	*r;
 
-	residual = NULL;
-	if (str_token_len != -1)
+	r = NULL;
+	if (exp->value[0] != 0)
 	{
-		new_token = ft_substr(tmp->token, 0, str_token_len);
-		new_token = ft_strjoin_f(new_token, value);
-		free_char(tmp->token);
-		tmp->token = new_token;
+		new_token = ft_substr(exp->tmp->token, 0, exp->d_pos);
+		new_token = ft_strjoin_f(new_token, exp->value);
+		free_char(exp->tmp->token);
+		exp->tmp->token = new_token;
 	}
-	else
+	else if (exp->tmp->type != IMMUTABLE && exp->tmp->type != FREEZE)
 	{
-		residual = ft_substr(tmp->token, 0, ft_strlen_endc(tmp->token, '$'));
-		tmp->token = free_char(tmp->token);
-		tmp->token = ft_strdup(residual);
-		residual = free_char(residual);
+		r = ft_substr(exp->tmp->token, 0, ft_strlen_endc(exp->tmp->token, '$'));
+		exp->tmp->token = free_char(exp->tmp->token);
+		exp->tmp->token = ft_strdup(r);
+		r = free_char(r);
 	}
-	key = free_char(key);
-	value = free_char(value);
-}
-
-char	*get_parameter_value(t_cli *cli, char *key)
-{
-	char	*value;
-	pid_t	pid;
-
-	pid = getpid();
-	if (key[0] == '?')
-		return (ft_itoa(cli->mnsh->exit_code));
-	else if (key[0] == '$')
-		return (ft_itoa(pid));
-	else
-		value = ft_strdup(get_value_from_key(cli->mnsh->env_var_lst, key));
-	if (key[0] > 0 && value == NULL)
-		value = ft_strdup("");
-	else if (value == NULL)
-		value = ft_strdup("");
-	return (value);
-}
-
-int	variable_len(char *token)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (token[i] && token[i] != '$')
-		i++;
-	while (token[i + j] != 0)
-	{
-		if (ft_isthis("'\"\0", token[i + j]) > 0)
-			return (j);
-		j++;
-	}
-	return (j);
-}
-
-int	dollar_position(char *token)
-{
-	int	i;
-
-	i = 0;
-	while (token[i] != 0 && token[i] != '$')
-		i++;
-	if (token[i] == 0)
-		return (-1);
-	return (i);
+	exp->key = free_char(exp->key);
+	exp->value = free_char(exp->value);
 }
 
 void	parameter_expansion(t_cli *cli)
 {
-	t_token	*tmp;
-	char	*key;
-	char	*value;
-	int		i;
+	t_p_exp	exp;
 
-	tmp = cli->token;
-	while (tmp && (cli->flag_quote == 0))
+	init_exp(&exp, cli->token, cli);
+	while (exp.tmp)
 	{
-		i = dollar_position(tmp->token);
-		if (i == -1 || tmp->type == IMMUTABLE)
+		exp.d_count = -1;
+		while (exp.tmp && exp.d_count != 0)
 		{
-			tmp = tmp->next;
-			continue ;
+			exp.d_count = dollar_count(exp.tmp->token);
+			exp.d_pos = parse_var_tok(exp.tmp->token, exp.tmp->next, &exp);
+			if (exp.d_pos == -1 || exp.tmp->type == IMMUTABLE)
+				break ;
+			exp.key = ft_substr(exp.tmp->token, exp.d_pos + 1,
+					var_len(exp.tmp->token) - 1);
+			if (exp.key == NULL)
+				return ;
+			exp.value = get_parameter_value(cli, exp.key);
+			replacement(&exp);
+			exp.d_count--;
 		}
-		key = ft_substr(tmp->token, i + 1, variable_len(tmp->token) - 1);
-		if (key == NULL)
-			return ;
-		else
-			value = get_parameter_value(cli, key);
-		if (value[0] != 0)
-			replacement(tmp, value, key, i);
-		else if (tmp->type != FREEZE && tmp->type != IMMUTABLE)
-			replacement(tmp, value, key, -1);
-		tmp = tmp->next;
+		if (exp.tmp != NULL)
+			exp.tmp = exp.tmp->next;
 	}
 }

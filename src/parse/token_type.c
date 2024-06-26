@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   token_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:42:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:43:51 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -43,7 +43,7 @@ int	ft_lenstrtype(char *token, t_cli *cli)
 t_token_type	token_type_discovery(char *token, t_cli *cli)
 {
 	if (ft_isthis("\"'<", token[0]) > 0 || cli->flag_quote & 1
-		|| cli->flag_dquote & 1)
+			|| cli->flag_dquote & 1)
 	{
 		return (quote_n_heredoc_census(token, cli));
 	}
@@ -75,12 +75,12 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 		return (HEREDOC);
 	if (tok->type == DELIMITER)
 		return (DELIMITER);
-	if (ft_lencmparray(tok->token, cli->redirect) > 0)
+	// if (ft_lencmparray(tok->token, cli->redirect) > 0)
+	if (tok->type == REDIRECTION_OPERATOR)
 		return (REDIRECTION_OPERATOR);
-	if (ft_lencmparray(tok->token, cli->control) > 0)
+	// if (ft_lencmparray(tok->token, cli->control) > 0)
+	if (tok->type == CONTROLE_OPERATOR)
 		return (CONTROLE_OPERATOR);
-	if (ft_lencmparray(tok->token, cli->bracket) > 0)
-		return (BRACKET);
 	if (tok->prev != NULL)
 		if (tok->prev->type == REDIRECTION_OPERATOR)
 			return (REDIRECTION_ARGUMENT);

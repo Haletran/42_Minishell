@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_line.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:31:38 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef COMMAND_LINE_H
 # define COMMAND_LINE_H
@@ -48,13 +48,18 @@ void		exit_input(t_cli *cli);
 void		input_reader(t_cli *cli);
 
 //****************************************************************************/
+//* parameter_expansion_utils.c
+
+int			dollar_count(char *token);
+void		init_exp(t_p_exp *exp, t_token *tmp, t_cli *cli);
+char		*get_parameter_value(t_cli *cli, char *key);
+int			var_len(char *token);
+int			parse_var_tok(char *token, t_token *next_token, t_p_exp *exp);
+
+//****************************************************************************/
 //* parameter_expansion.c
 
-void		replacement(t_token *tmp, char *value, char *key,
-				int str_token_len);
-char		*get_parameter_value(t_cli *cli, char *key);
-int			variable_len(char *token);
-int			dollar_position(char *token);
+void		replacement(t_p_exp *exp);
 void		parameter_expansion(t_cli *cli);
 
 //****************************************************************************/

@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils_get.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:35:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:07:00 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -21,6 +21,25 @@ int	get_exit_code(t_lst *mnsh)
 	else if (WIFSTOPPED(mnsh->exit_code))
 		return (mnsh->exit_code = WSTOPSIG(mnsh->exit_code));
 	return (0);
+}
+
+int	get_var_len(char *token)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 1;
+	while (token[i] && token[i] != '$')
+		i++;
+	if (token[i] == 0)
+		return (0);
+	if (ft_isthis("@#!0-*?$", token[i + 1]) != 0)
+		return (2);
+	while (token[i + j] != 0 && (ft_isalnum(token[i + j]) != 0 || token[i
+			+ j] == '_'))
+		j++;
+	return (j);
 }
 
 char	*get_env(char *str, t_lst *mnsh)
@@ -60,6 +79,8 @@ int	get_position_of_next_meta(char *input)
 	int	minus_position;
 
 	i = 0;
+	if (input[i] == '$')
+		return (get_var_len(input));
 	minus_position = -1;
 	while (input[i])
 	{

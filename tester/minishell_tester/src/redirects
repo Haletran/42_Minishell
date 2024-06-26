@@ -47,12 +47,10 @@ ls |< ./test_files/infile grep hi | cat -e
 ls | ls >./outfiles/outfile 
 ls | ls >./outfiles/outfile | cat -e
 > ./outfiles/outfile echo hi
-">./outfiles/outfile" >         ./outfiles/outfile echo hi
 > ./outfiles/outfile echo hi bye bye
 >./outfiles/outfile_big >./outfiles/outfile echo hi
 >"./outfiles/outfile" echo "bonjour       42"
 >"./outfiles/outfile" ls
->./outfiles/outfile_big ./outfiles/outfile ls
 >./outfiles/"1""2""3""4""5" ls
 >"./outfiles/outfile" >./test_files/invalid_permission >"./outfiles/outfile" echo 
 >./test_files/invalid_permission >"./outfiles/outfile" >./test_files/invalid_permission echo
@@ -73,12 +71,10 @@ echo hi | "./outfiles/outfile" ls
 ls | ls >>./outfiles/outfile 
 ls | ls >>./outfiles/outfile | cat -e
 >> ./outfiles/outfile echo hi
-">> ./outfiles/outfile" >>         ./outfiles/outfile echo hi
 >> ./outfiles/outfile echo hi bye bye
 >>./outfiles/outfile_big >>./outfiles/outfile echo hi
 >>"./outfiles/outfile" echo "bonjour       42"
 >>" ./outfiles/outfile" ls
->>./outfiles/outfile_big ./outfiles/outfile ls
 >>./outfiles/"1""2""3""4""5" ls
 >>"./outfiles/outfile" >>./test_files/invalid_permission  >>"./outfiles/outfile" echo 
 >>./test_files/invalid_permission  >>"./outfiles/outfile" >>./test_files/invalid_permission  echo

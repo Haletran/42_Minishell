@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   typedef.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 17:39:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:12:11 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
@@ -112,6 +112,7 @@ typedef struct s_variable
 {
 	char					*key;
 	char					*variable;
+	int						d_pos;
 	int						index;
 	struct s_variable		*next;
 	struct s_variable		*prev;
@@ -125,6 +126,19 @@ typedef struct s_token
 	struct s_token			*next;
 	struct s_token			*prev;
 }							t_token;
+typedef struct s_p_exp
+{
+	struct s_cli			*cli;
+	t_token					*tmp;
+	t_variable				*var;
+	char					*key;
+	char					*value;
+	int						var_flag;
+	int						d_count;
+	int						d_pos;
+	int						key_len;
+
+}							t_p_exp;
 
 typedef struct s_cli
 {

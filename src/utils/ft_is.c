@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_is.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ygaiffie <ygaiffie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:55:55 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:35:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:22:55 by ygaiffie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../../includes/minishell.h"
 
@@ -69,10 +69,10 @@ int	ft_isthis(char *this, char c)
 int	ft_is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 {
 	(void)path;
+	(void)mnsh;
 	if (full_path == NULL)
 	{
 		free_char(full_path);
-		mnsh->exit_code = 127;
 		return (EXIT_FAILURE);
 	}
 	if (access(full_path, F_OK | R_OK) == -1)
@@ -81,7 +81,6 @@ int	ft_is_error_path(char *str, char **path, t_lst *mnsh, char *full_path)
 			return (EXIT_SUCCESS);
 		ft_printf_fd(2, "%s : command not found\n", str);
 		free_char(full_path);
-		mnsh->exit_code = 127;
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

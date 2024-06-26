@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/20 11:14:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:35:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ extern int	g_var;
 //* 							META-CHARACTERS								*//
 //* 																		*//
 //* *********************************************************************** *//
-# define META_LIST ";|&<> \t\n'\"{}[]()"
+# define META_LIST ";|&<> \t\n'\"{}[]()$"
 # define PIPE "|"
 # define AND "&"
 # define SEMICOLON ";"
