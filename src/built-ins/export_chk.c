@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:09:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:17:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	not_existing(t_lst *mnsh, char **str)
 		return (ERROR);
 	if (already_exist(mnsh, str, 0) == 1)
 		return (SUCCESS);
-	while (env->next)
+	while (env)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[0]);

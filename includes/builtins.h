@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:50:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:05:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:06:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ long long	ft_strtoll_check(const char *str);
 long long	ft_strtoll(const char *str);
 int			ft_exit(char *code, t_cli *cli);
 int			ft_exitcode(t_cli *cli, long int exit_code);
+void		ft_main_exit(t_cli *cli, long long exit_code);
 
 //****************************************************************************/
 //* export_add.c

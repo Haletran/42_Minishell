@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 09:00:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:20:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,17 @@ int	add_back(t_lst *mnsh, char **str, int i)
 	char	**tmp;
 
 	value = NULL;
-	tmp = ft_split(str[i], '+');
-	to_keep = ft_strtrim(tmp[1], "=");
 	env = mnsh->env_var_lst;
 	if (check_valid_identifier(str[i]) == ERROR)
 		return (ERROR);
+	tmp = ft_split(str[i], '+');
+	to_keep = ft_strtrim(tmp[1], "=");
 	if (not_existing(mnsh, tmp) == ERROR)
+	{
+		free_tab(tmp);
+		to_keep = free_char(to_keep);
 		return (ERROR);
+	}
 	env_dup(env, value, to_keep, tmp);
 	free_tab(tmp);
 	to_keep = free_char(to_keep);

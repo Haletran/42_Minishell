@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 20:40:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:50:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	main_loop(t_cli *cli, int count)
 		signal(BUILTINS_FREE, SIG_DFL);
 		reset_redir_values(cli);
 	}
+	else if (cli->com->type == HEREDOC)
+		heredoc_redirection(cli);
 }
 
 int	get_nb_pipes(t_token *token)
@@ -61,6 +63,27 @@ void	handle_heredoc(t_cli *cli, int *heredoc)
 		exit(SUCCESS);
 	}
 }
+
+void print_all_com(t_com *com)
+{
+	t_com	*tmp;
+
+	tmp = com;
+	while (tmp)
+	{
+		ft_printf_fd(1, "index: %d\n", tmp->index);
+		if (tmp->command)
+			ft_printf_fd(1, "command: %s\n", tmp->command[0]);
+		if (tmp->env_path)
+			ft_printf_fd(1, "env_path: %s\n", tmp->env_path);
+		if (tmp->type == HEREDOC)
+			ft_printf_fd(1, "type: HEREDOC\n");
+		if (tmp->type == COMMAND)
+			ft_printf_fd(1, "type: COMMAND\n");
+		tmp = tmp->next;
+	}
+}
+
 
 void	loop_commands(t_cli *cli, int *count)
 {

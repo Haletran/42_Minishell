@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 20:42:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:49:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,20 @@ int	check_er(t_cli *cli)
 		return (ERROR);
 	}
 	return (SUCCESS);
+}
+
+void heredoc_redirection(t_cli *cli)
+{
+	if (cli->com->next)
+	{
+		if (cli->com->index + 1 == cli->com->next->index)
+			cli->mnsh->heredoc_pipe  = 1;
+		else
+		{
+			pipe(cli->mnsh->fd);
+			redirection_parent(cli);
+			close(cli->mnsh->heredoc_backup_fd);
+			cli->mnsh->heredoc_pipe  = 0;
+		}
+	}
 }

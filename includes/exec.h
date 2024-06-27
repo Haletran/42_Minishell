@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:32:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:55:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		open_file(t_redirection *red);
 int		handle_outfile(t_redirection *red, t_cli *cli);
 int		handle_infile(t_redirection *red, t_cli *cli);
 int		nf_handle_redirection(t_cli **cli);
+void    heredoc_redirection(t_cli *cli);
+int     check_redir_not_fork(t_cli *cli, int *ret);
 
 //****************************************************************************/
 //* signal.c

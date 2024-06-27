@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 18:58:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:09:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,8 @@ int	ft_exit(char *code, t_cli *cli)
 		cli->mnsh->exit_code = 1;
 		return (1);
 	}
-	ft_printf_fd(1, "exit\n");
-	freeway(cli);
-	exit(exit_code % 256);
+	ft_main_exit(cli, exit_code);
+	return (0);
 }
 
 int	ft_exitcode(t_cli *cli, long int exit_code)

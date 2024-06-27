@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/27 19:46:09 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/27 22:09:22 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NC				:= \033[0m
 
 NAME := minishell
 CC := clang
-CFLAGS := -Wextra -Wall -Werror -g
+CFLAGS := -Wextra -Wall -Werror -gdwarf-2
 
 SRCS	= src/main.c \
 		  src/built-ins/echo.c \
@@ -103,7 +103,7 @@ $(OBJS_DIR)/%.o: %.c
 $(LIBFT_TARGET):
 	make -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT_TARGET) init $(OBJS) 
+$(NAME): init $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
 	
 clean:
@@ -113,7 +113,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf tester/src/__pycache__
-	make -C $(LIBFT_DIR) fclean
+# make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
 	rm -rf outfile
 	rm -rf infile

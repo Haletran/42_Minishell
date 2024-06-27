@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 20:22:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:39:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	create_command(t_cli *cli)
 {
 	t_token	*tmp;
 	t_com	*com;
+	int index = 0;
 
 	tmp = cli->token;
 	cli->mnsh->env_var = cpy_env(cli);
@@ -106,13 +107,16 @@ void	create_command(t_cli *cli)
 		if (tmp->type == COMMAND || tmp->type == BUILTIN
 			|| tmp->type == HEREDOC)
 		{
-			insert_com_end(&cli->com, tmp->type, tmp->index);
+			insert_com_end(&cli->com, tmp->type, index);
 			com = cli->com;
 			while (com->next != NULL)
 				com = com->next;
 			fill_command(cli, tmp, com);
 			com->redirection = NULL;
+			index++;
 		}
+		else if (tmp->type == CONTROLE_OPERATOR)
+			index++;
 		tmp = tmp->next;
 	}
 	create_redirection(cli);
