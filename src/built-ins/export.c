@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 22:18:01 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:17:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ char	*expand_var(t_lst *mnsh, char *str)
 	char	**tmp;
 
 	env = mnsh->env_var_lst;
-	tmp = ft_calloc(2, sizeof(char *));
-	tmp = ft_split(str, '$');
 	if (!str)
 		return (NULL);
+	tmp = ft_split(str, '$');
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(tmp[0]))
