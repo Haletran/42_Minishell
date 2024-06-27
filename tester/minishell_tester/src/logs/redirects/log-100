@@ -1,44 +1,44 @@
-==38205== Memcheck, a memory error detector
-==38205== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==38205== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==38205== Command: ../../../minishell -c echo\ \<"./test_files/infile"\ "bonjour\ \ \ \ \ \ \ 42"
-==38205== Parent PID: 37046
-==38205== 
-==38206== 
-==38206== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==38206== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-100
-==38206==    <inherited from parent>
-==38206== 
-==38206== 
-==38206== HEAP SUMMARY:
-==38206==     in use at exit: 4,016 bytes in 1 blocks
-==38206==   total heap usage: 454 allocs, 453 frees, 14,136 bytes allocated
-==38206== 
-==38206== LEAK SUMMARY:
-==38206==    definitely lost: 0 bytes in 0 blocks
-==38206==    indirectly lost: 0 bytes in 0 blocks
-==38206==      possibly lost: 0 bytes in 0 blocks
-==38206==    still reachable: 0 bytes in 0 blocks
-==38206==         suppressed: 4,016 bytes in 1 blocks
-==38206== 
-==38206== For lists of detected and suppressed errors, rerun with: -s
-==38206== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==38205== 
-==38205== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==38205== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-100
-==38205==    <inherited from parent>
-==38205== 
-==38205== 
-==38205== HEAP SUMMARY:
-==38205==     in use at exit: 4,016 bytes in 1 blocks
-==38205==   total heap usage: 454 allocs, 453 frees, 14,136 bytes allocated
-==38205== 
-==38205== LEAK SUMMARY:
-==38205==    definitely lost: 0 bytes in 0 blocks
-==38205==    indirectly lost: 0 bytes in 0 blocks
-==38205==      possibly lost: 0 bytes in 0 blocks
-==38205==    still reachable: 0 bytes in 0 blocks
-==38205==         suppressed: 4,016 bytes in 1 blocks
-==38205== 
-==38205== For lists of detected and suppressed errors, rerun with: -s
-==38205== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==27186== Memcheck, a memory error detector
+==27186== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==27186== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==27186== Command: ../../../minishell -c echo\ \<"./test_files/infile"\ "bonjour\ \ \ \ \ \ \ 42"
+==27186== Parent PID: 26418
+==27186== 
+==27187== 
+==27187== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==27187== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-100
+==27187==    <inherited from parent>
+==27187== 
+==27187== 
+==27187== HEAP SUMMARY:
+==27187==     in use at exit: 4,016 bytes in 1 blocks
+==27187==   total heap usage: 710 allocs, 709 frees, 21,664 bytes allocated
+==27187== 
+==27187== LEAK SUMMARY:
+==27187==    definitely lost: 0 bytes in 0 blocks
+==27187==    indirectly lost: 0 bytes in 0 blocks
+==27187==      possibly lost: 0 bytes in 0 blocks
+==27187==    still reachable: 0 bytes in 0 blocks
+==27187==         suppressed: 4,016 bytes in 1 blocks
+==27187== 
+==27187== For lists of detected and suppressed errors, rerun with: -s
+==27187== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==27186== 
+==27186== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==27186== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-100
+==27186==    <inherited from parent>
+==27186== 
+==27186== 
+==27186== HEAP SUMMARY:
+==27186==     in use at exit: 4,016 bytes in 1 blocks
+==27186==   total heap usage: 710 allocs, 709 frees, 21,664 bytes allocated
+==27186== 
+==27186== LEAK SUMMARY:
+==27186==    definitely lost: 0 bytes in 0 blocks
+==27186==    indirectly lost: 0 bytes in 0 blocks
+==27186==      possibly lost: 0 bytes in 0 blocks
+==27186==    still reachable: 0 bytes in 0 blocks
+==27186==         suppressed: 4,016 bytes in 1 blocks
+==27186== 
+==27186== For lists of detected and suppressed errors, rerun with: -s
+==27186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

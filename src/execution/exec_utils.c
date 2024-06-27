@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:30:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 09:22:01 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:11:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	check_if_builtin(char *str)
 {
 	if (!ft_strncmp(str, "pwd", 3) && ft_strlen(str) == 3)
 		return (SUCCESS);
-	else if ((!ft_strncmp(str, "echo", 4) && ft_strlen(str) == 4)
-		|| (!ft_strncmp(str, "e\"ch\"o", 5) && ft_strlen(str) == 6))
+	else if ((!ft_strncmp(str, "echo", 4) && ft_strlen(str) == 4))
 		return (SUCCESS);
 	else if (!ft_strncmp(str, "cd", 2) && ft_strlen(str) == 2)
 		return (SUCCESS);

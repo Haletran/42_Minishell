@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:37:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:51:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	echo_print(char **str, int i)
 	while (str[i])
 	{
 		if (str[i + 1] == NULL)
-			ft_printf("%s", str[i]);
+			ft_printf_fd(1, "%s", str[i]);
 		else
-			ft_printf("%s ", str[i]);
+			ft_printf_fd(1, "%s ", str[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:49:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:22:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	redirection_pipe(t_cli *cli);
 void	redirection_fd(t_cli *cli);
 void	redirection_parent(t_cli *cli);
 void	redirection_error(t_cli *cli);
-int		check_before_exec(t_cli **cli, int *count);
+int		check_before_exec(t_cli **cli);
 
 //****************************************************************************/
 //* child.c

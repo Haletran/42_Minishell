@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dlst_command_set.c                                 :+:      :+:    :+:   */
+/*   dlst_command_del.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:57:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:42:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	delete_all_nodes_redi(t_redirection **head)
 	}
 }
 
-void	delete_node_com(t_com **head, t_com *del_node)
+void	*delete_node_com(t_com **head, t_com *del_node)
 {
 	if (*head == NULL || del_node == NULL)
-		return ;
+		return (NULL);
 	if (*head == del_node)
 		*head = del_node->next;
 	if (del_node->next != NULL)
@@ -58,6 +58,7 @@ void	delete_node_com(t_com **head, t_com *del_node)
 	if (del_node->env_path != NULL)
 		del_node->env_path = free_char(del_node->env_path);
 	free(del_node);
+	return (NULL);
 }
 
 void	delete_all_nodes_com(t_com **head)

@@ -1,26 +1,26 @@
-==38212== Memcheck, a memory error detector
-==38212== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==38212== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==38212== Command: /usr/bin/cat
-==38212== Parent PID: 38211
-==38212== 
-==38212== 
-==38212== FILE DESCRIPTORS: 2 open (0 std) at==38211== 
-==38211== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==38211== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-101
-==38211==    <inherited from parent>
-==38211== 
-==38211== 
-==38211== HEAP SUMMARY:
-==38211==     in use at exit: 4,016 bytes in 1 blocks
-==38211==   total heap usage: 433 allocs, 432 frees, 13,938 bytes allocated
-==38211== 
-==38211== LEAK SUMMARY:
-==38211==    definitely lost: 0 bytes in 0 blocks
-==38211==    indirectly lost: 0 bytes in 0 blocks
-==38211==      possibly lost: 0 bytes in 0 blocks
-==38211==    still reachable: 0 bytes in 0 blocks
-==38211==         suppressed: 4,016 bytes in 1 blocks
-==38211== 
-==38211== For lists of detected and suppressed errors, rerun with: -s
-==38211== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==27193== Memcheck, a memory error detector
+==27193== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==27193== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==27193== Command: /usr/bin/cat
+==27193== Parent PID: 27192
+==27193== 
+==27193== 
+==27193== FILE DESCRIPTORS: 2 open (0 std) at==27192== 
+==27192== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==27192== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-101
+==27192==    <inherited from parent>
+==27192== 
+==27192== 
+==27192== HEAP SUMMARY:
+==27192==     in use at exit: 4,016 bytes in 1 blocks
+==27192==   total heap usage: 689 allocs, 688 frees, 21,461 bytes allocated
+==27192== 
+==27192== LEAK SUMMARY:
+==27192==    definitely lost: 0 bytes in 0 blocks
+==27192==    indirectly lost: 0 bytes in 0 blocks
+==27192==      possibly lost: 0 bytes in 0 blocks
+==27192==    still reachable: 0 bytes in 0 blocks
+==27192==         suppressed: 4,016 bytes in 1 blocks
+==27192== 
+==27192== For lists of detected and suppressed errors, rerun with: -s
+==27192== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

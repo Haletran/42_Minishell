@@ -1,85 +1,86 @@
-==39093== Memcheck, a memory error detector
-==39093== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==39093== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==39093== Command: /usr/bin/ls
-==39093== Parent PID: 39091
-==39093== 
-==39093== 
-==39093====39091== 
-==39091== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==39091== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/pipes/log-5
-==39091==    <inherited from parent>
-==39091== 
-==39091== 
-==39091== HEAP SUMMARY:
-==39091==     in use at exit: 4,016 bytes in 1 blocks
-==39091==   total heap usage: 417 allocs, 416 frees, 13,598 bytes allocated
-==39091== 
-==39091== LEAK SUMMARY:
-==39091==    definitely lost: 0 bytes in 0 blocks
-==39091==    indirectly lost: 0 bytes in 0 blocks
-==39091==      possibly lost: 0 bytes in 0 blocks
-==39091==    still reachable: 0 bytes in 0 blocks
-==39091==         suppressed: 4,016 bytes in 1 blocks
-==39091== 
-==39091== For lists of detected and suppressed errors, rerun with: -s
-==39091== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 56 bytes in 1 blocks are still reachable in loss record 2 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x115DB8: ??? (in /usr/bin/ls)
-==39093==    by 0x115DE9: ??? (in /usr/bin/ls)
-==39093==    by 0x10D132: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 128 bytes in 1 blocks are still reachable in loss record 3 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x1138F9: ??? (in /usr/bin/ls)
-==39093==    by 0x10D236: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 270 bytes in 29 blocks are still reachable in loss record 4 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x11665E: ??? (in /usr/bin/ls)
-==39093==    by 0x116C9F: ??? (in /usr/bin/ls)
-==39093==    by 0x11A20E: ??? (in /usr/bin/ls)
-==39093==    by 0x10D33F: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 648 bytes in 1 blocks are still reachable in loss record 5 of 8
-==39093==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x116412: ??? (in /usr/bin/ls)
-==39093==    by 0x119ABF: ??? (in /usr/bin/ls)
-==39093==    by 0x10D33F: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 696 bytes in 1 blocks are still reachable in loss record 6 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x115EBB: ??? (in /usr/bin/ls)
-==39093==    by 0x11A067: ??? (in /usr/bin/ls)
-==39093==    by 0x10D33F: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 3,024 bytes in 1 blocks are still reachable in loss record 7 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x116236: ??? (in /usr/bin/ls)
-==39093==    by 0x119ABF: ??? (in /usr/bin/ls)
-==39093==    by 0x10D33F: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== 20,000 bytes in 1 blocks are still reachable in loss record 8 of 8
-==39093==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==39093==    by 0x115DB8: ??? (in /usr/bin/ls)
-==39093==    by 0x10D2A0: ??? (in /usr/bin/ls)
-==39093==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
-==39093== 
-==39093== LEAK SUMMARY:
-==39093==    definitely lost: 0 bytes in 0 blocks
-==39093==    indirectly lost: 0 bytes in 0 blocks
-==39093==      possibly lost: 0 bytes in 0 blocks
-==39093==    still reachable: 24,878 bytes in 36 blocks
-==39093==         suppressed: 0 bytes in 0 blocks
-==39093== 
-==39093== For lists of detected and suppressed errors, rerun with: -s
-==39093== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==28044== Memcheck, a memory error detector
+==28044== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==28044== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==28044== Command: /usr/bin/ls
+==28044== Parent PID: 28041
+==28044== 
+==28044== 
+==28044====28041== 
+==28041== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==28041== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/pipes/log-5
+==28041==    <inherited from parent>
+==28041== 
+==28041== 
+==28041== HEAP SUMMARY:
+==28041==     in use at exit: 4,016 bytes in 1 blocks
+==28041==   total heap usage: 683 allocs, 682 frees, 21,318 bytes allocated
+==28041== 
+==28041== LEAK SUMMARY:
+==28041==    definitely lost: 0 bytes in 0 blocks
+==28041==    indirectly lost: 0 bytes in 0 blocks
+==28041==      possibly lost: 0 bytes in 0 blocks
+==28041==    still reachable: 0 bytes in 0 blocks
+==28041==         suppressed: 4,016 bytes in 1 blocks
+==28041== 
+==28041== For lists of detected and suppressed errors, rerun with: -s
+==28041== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+    by 0x10E4D9: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 56 bytes in 1 blocks are still reachable in loss record 2 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x115DB8: ??? (in /usr/bin/ls)
+==28044==    by 0x115DE9: ??? (in /usr/bin/ls)
+==28044==    by 0x10D132: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 128 bytes in 1 blocks are still reachable in loss record 3 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x1138F9: ??? (in /usr/bin/ls)
+==28044==    by 0x10D236: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 270 bytes in 29 blocks are still reachable in loss record 4 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x11665E: ??? (in /usr/bin/ls)
+==28044==    by 0x116C9F: ??? (in /usr/bin/ls)
+==28044==    by 0x11A20E: ??? (in /usr/bin/ls)
+==28044==    by 0x10D33F: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 648 bytes in 1 blocks are still reachable in loss record 5 of 8
+==28044==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x116412: ??? (in /usr/bin/ls)
+==28044==    by 0x119ABF: ??? (in /usr/bin/ls)
+==28044==    by 0x10D33F: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 696 bytes in 1 blocks are still reachable in loss record 6 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x115EBB: ??? (in /usr/bin/ls)
+==28044==    by 0x11A067: ??? (in /usr/bin/ls)
+==28044==    by 0x10D33F: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 3,024 bytes in 1 blocks are still reachable in loss record 7 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x116236: ??? (in /usr/bin/ls)
+==28044==    by 0x119ABF: ??? (in /usr/bin/ls)
+==28044==    by 0x10D33F: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== 20,000 bytes in 1 blocks are still reachable in loss record 8 of 8
+==28044==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28044==    by 0x115DB8: ??? (in /usr/bin/ls)
+==28044==    by 0x10D2A0: ??? (in /usr/bin/ls)
+==28044==    by 0x48CCD8F: (below main) (libc_start_call_main.h:58)
+==28044== 
+==28044== LEAK SUMMARY:
+==28044==    definitely lost: 0 bytes in 0 blocks
+==28044==    indirectly lost: 0 bytes in 0 blocks
+==28044==      possibly lost: 0 bytes in 0 blocks
+==28044==    still reachable: 24,878 bytes in 36 blocks
+==28044==         suppressed: 0 bytes in 0 blocks
+==28044== 
+==28044== For lists of detected and suppressed errors, rerun with: -s
+==28044== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

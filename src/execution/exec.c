@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:52:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:57:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,19 @@ void	handle_heredoc(t_cli *cli, int *heredoc)
 	}
 }
 
+void print_dlst_com(t_com *com)
+{
+	t_com	*tmp;
+
+	tmp = com;
+	while (tmp)
+	{
+		if (tmp->command)
+			ft_printf_fd(2, "command: %s\n", tmp->command[0]);
+		tmp = tmp->next;
+	}
+}
+
 void	loop_commands(t_cli *cli, int *count)
 {
 	t_com	*head;
@@ -68,17 +81,17 @@ void	loop_commands(t_cli *cli, int *count)
 		handle_redirection(&cli);
 	while (cli->com)
 	{
-		if (check_before_exec(&cli, count) == ERROR)
-			break ;
-		if (cli->com->type == COMMAND)
+		if (check_before_exec(&cli) != ERROR)
 			main_loop(cli, *count);
 		cli->mnsh->file_check = 0;
 		if (!cli->com->next)
 			break ;
 		cli->com = cli->com->next;
+		cli->com->prev = delete_node_com(&head, cli->com->prev);
 		(*count)++;
 	}
 	cli->com = head;
+	free_command_line(cli);
 }
 
 int	exec_pipe(t_cli *cli)

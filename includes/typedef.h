@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 09:01:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:21:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_lst
 	int						not_fork;
 	int						ctrl_c;
 	int						file_check;
-	int						flag_d;
+	int						flag_fail;
 	int						bloc;
 }							t_lst;
 

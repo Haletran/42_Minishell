@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MINISHELL_PATH="../../minishell"
+MINISHELL_PATH="../../../minishell"
 
 if [ ! -x $MINISHELL_PATH ]; then
 	echo $MINISHELL_PATH does not exist.

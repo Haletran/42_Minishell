@@ -1,0 +1,25 @@
+==29313== Memcheck, a memory error detector
+==29313== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==29313== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==29313== Command: ../../../minishell -c ./'$USER'
+==29313== Parent PID: 26418
+==29313== 
+==29313== 
+==29313== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==29313== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-26
+==29313==    <inherited from parent>
+==29313== 
+==29313== 
+==29313== HEAP SUMMARY:
+==29313==     in use at exit: 4,016 bytes in 1 blocks
+==29313==   total heap usage: 680 allocs, 679 frees, 21,141 bytes allocated
+==29313== 
+==29313== LEAK SUMMARY:
+==29313==    definitely lost: 0 bytes in 0 blocks
+==29313==    indirectly lost: 0 bytes in 0 blocks
+==29313==      possibly lost: 0 bytes in 0 blocks
+==29313==    still reachable: 0 bytes in 0 blocks
+==29313==         suppressed: 4,016 bytes in 1 blocks
+==29313== 
+==29313== For lists of detected and suppressed errors, rerun with: -s
+==29313== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

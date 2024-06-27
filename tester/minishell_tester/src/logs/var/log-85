@@ -1,0 +1,44 @@
+==29707== Memcheck, a memory error detector
+==29707== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==29707== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==29707== Command: ../../../minishell -c echo\ a$"HOME"
+==29707== Parent PID: 26418
+==29707== 
+==29708== 
+==29708== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==29708== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-85
+==29708==    <inherited from parent>
+==29708== 
+==29708== 
+==29708== HEAP SUMMARY:
+==29708==     in use at exit: 4,016 bytes in 1 blocks
+==29708==   total heap usage: 673 allocs, 672 frees, 20,899 bytes allocated
+==29708== 
+==29708== LEAK SUMMARY:
+==29708==    definitely lost: 0 bytes in 0 blocks
+==29708==    indirectly lost: 0 bytes in 0 blocks
+==29708==      possibly lost: 0 bytes in 0 blocks
+==29708==    still reachable: 0 bytes in 0 blocks
+==29708==         suppressed: 4,016 bytes in 1 blocks
+==29708== 
+==29708== For lists of detected and suppressed errors, rerun with: -s
+==29708== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==29707== 
+==29707== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==29707== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-85
+==29707==    <inherited from parent>
+==29707== 
+==29707== 
+==29707== HEAP SUMMARY:
+==29707==     in use at exit: 4,016 bytes in 1 blocks
+==29707==   total heap usage: 673 allocs, 672 frees, 20,899 bytes allocated
+==29707== 
+==29707== LEAK SUMMARY:
+==29707==    definitely lost: 0 bytes in 0 blocks
+==29707==    indirectly lost: 0 bytes in 0 blocks
+==29707==      possibly lost: 0 bytes in 0 blocks
+==29707==    still reachable: 0 bytes in 0 blocks
+==29707==         suppressed: 4,016 bytes in 1 blocks
+==29707== 
+==29707== For lists of detected and suppressed errors, rerun with: -s
+==29707== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

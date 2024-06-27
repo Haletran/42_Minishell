@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:44:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:53:26 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ char	*check_parsing(char *str)
 
 int	check_path_parsing(t_cli *cli)
 {
-	if (opendir(cli->com->command[0]) == NULL)
+	DIR* dir;
+	dir = opendir(cli->com->command[0]);
+	if (dir == NULL)
 	{
 		if (access(cli->com->command[0], F_OK | R_OK) != -1)
 			return (SUCCESS);
@@ -61,6 +63,7 @@ int	check_path_parsing(t_cli *cli)
 		print_error(IS_DIRECTORY, cli->com->command[0]);
 		cli->mnsh->exit_code = 126;
 	}
+	closedir(dir);
 	return (ERROR);
 }
 

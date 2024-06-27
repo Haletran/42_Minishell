@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:03:47 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:28:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	insert_com_end(t_com **head, int type, int index);
 
 void	delete_node_redi(t_redirection **head, t_redirection *del_node);
 void	delete_all_nodes_redi(t_redirection **head);
-void	delete_node_com(t_com **head, t_com *del_node);
+void	*delete_node_com(t_com **head, t_com *del_node);
 void	delete_all_nodes_com(t_com **head);
 
 //****************************************************************************/
