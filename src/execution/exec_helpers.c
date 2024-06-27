@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 14:48:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:42:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	check_er(t_cli *cli)
 {
 	char	**tmp;
 
+	if (!cli || !cli->com || !cli->com->command)
+		return (ERROR);
 	tmp = cli->com->command;
-	if (!cli->com->command)
-		return (SUCCESS);
 	if (ft_isthis(tmp[0], '.') != 0 && ft_strlen(tmp[0]) == 1)
 	{
 		ft_printf_fd(2, CHECK_ER_ARG_REQ, tmp[0]);

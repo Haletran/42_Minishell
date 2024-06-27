@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 19:20:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:03:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	render_prompt(t_cli *cli)
 		rl_on_new_line();
 	else if (cli->rules_flag == 0)
 		exec_pipe(cli);
+	cli->input = free_char(cli->input);
 	free_command_line(cli);
 }
 

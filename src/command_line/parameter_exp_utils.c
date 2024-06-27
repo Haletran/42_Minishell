@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:29:52 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:38:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:05:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_parameter_value(t_cli *cli, char *key)
 	char	*value;
 	pid_t	pid;
 
-	pid = getpid();
+	pid = 98234;
 	if (key[0] == '?')
 		return (ft_itoa(cli->mnsh->exit_code));
 	else if (key[0] == '$')

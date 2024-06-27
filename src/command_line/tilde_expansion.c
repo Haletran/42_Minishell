@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 19:18:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:25:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	tilde_expansion(t_cli *cli)
 {
 	t_token	*tmp;
 
-	
 	tmp = cli->token;
 	while (tmp)
 	{

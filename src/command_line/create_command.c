@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:39:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:22:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	com->command = ft_calloc(arr_size + 1, sizeof(char *));
 	while (i != arr_size)
 	{
-		if (tmp->token != NULL)
+		if (tmp->token != NULL || !tmp->token)
 			if (tmp->type != 2 && tmp->type != 13)
 				com->command[i++] = ft_strdup(tmp->token);
 		tmp = tmp->next;

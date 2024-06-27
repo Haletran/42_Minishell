@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 19:02:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 20:40:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	main_loop(t_cli *cli, int count)
 {
-	if (sigpipe_checker(cli->com->next) == ERROR)
-		signal(BUILTINS_FREE, SIG_IGN);
 	if (cli->com->type == COMMAND)
 	{
 		if (!cli->com->next || cli->com->next->type == HEREDOC)
 			execute_last_command(cli);
 		else
 		{
+			if (sigpipe_checker(cli->com->next) == ERROR)
+				signal(BUILTINS_FREE, SIG_IGN);
 			pipe(cli->mnsh->fd);
 			piping(cli, count);
 		}
+		signal(BUILTINS_FREE, SIG_DFL);
 		reset_redir_values(cli);
 	}
 }
@@ -91,7 +92,8 @@ int	exec_pipe(t_cli *cli)
 	count = 0;
 	handle_sig(2);
 	heredoc = 0;
-	check_er(cli);
+	if (check_er(cli) == ERROR)
+		return (ERROR);
 	cli->mnsh->pipe_count = get_nb_pipes(cli->token);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);
