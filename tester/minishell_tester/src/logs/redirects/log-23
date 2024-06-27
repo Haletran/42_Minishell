@@ -1,44 +1,44 @@
-==624834== Memcheck, a memory error detector
-==624834== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==624834== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==624834== Command: ../../../minishell -c \<missing\ cat
-==624834== Parent PID: 624579
-==624834== 
-==624845== 
-==624845== FILE DESCRIPTORS: 3 open (2 std) at exit.
-==624845== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-23
-==624845==    <inherited from parent>
-==624845== 
-==624845== 
-==624845== HEAP SUMMARY:
-==624845==     in use at exit: 4,016 bytes in 1 blocks
-==624845==   total heap usage: 631 allocs, 630 frees, 20,178 bytes allocated
-==624845== 
-==624845== LEAK SUMMARY:
-==624845==    definitely lost: 0 bytes in 0 blocks
-==624845==    indirectly lost: 0 bytes in 0 blocks
-==624845==      possibly lost: 0 bytes in 0 blocks
-==624845==    still reachable: 0 bytes in 0 blocks
-==624845==         suppressed: 4,016 bytes in 1 blocks
-==624845== 
-==624845== For lists of detected and suppressed errors, rerun with: -s
-==624845== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==624834== 
-==624834== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==624834== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-23
-==624834==    <inherited from parent>
-==624834== 
-==624834== 
-==624834== HEAP SUMMARY:
-==624834==     in use at exit: 4,016 bytes in 1 blocks
-==624834==   total heap usage: 631 allocs, 630 frees, 20,178 bytes allocated
-==624834== 
-==624834== LEAK SUMMARY:
-==624834==    definitely lost: 0 bytes in 0 blocks
-==624834==    indirectly lost: 0 bytes in 0 blocks
-==624834==      possibly lost: 0 bytes in 0 blocks
-==624834==    still reachable: 0 bytes in 0 blocks
-==624834==         suppressed: 4,016 bytes in 1 blocks
-==624834== 
-==624834== For lists of detected and suppressed errors, rerun with: -s
-==624834== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==691049== Memcheck, a memory error detector
+==691049== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==691049== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==691049== Command: ../../../minishell -c \<missing\ cat
+==691049== Parent PID: 690815
+==691049== 
+==691050== 
+==691050== FILE DESCRIPTORS: 3 open (2 std) at exit.
+==691050== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-23
+==691050==    <inherited from parent>
+==691050== 
+==691050== 
+==691050== HEAP SUMMARY:
+==691050==     in use at exit: 4,016 bytes in 1 blocks
+==691050==   total heap usage: 640 allocs, 639 frees, 20,146 bytes allocated
+==691050== 
+==691050== LEAK SUMMARY:
+==691050==    definitely lost: 0 bytes in 0 blocks
+==691050==    indirectly lost: 0 bytes in 0 blocks
+==691050==      possibly lost: 0 bytes in 0 blocks
+==691050==    still reachable: 0 bytes in 0 blocks
+==691050==         suppressed: 4,016 bytes in 1 blocks
+==691050== 
+==691050== For lists of detected and suppressed errors, rerun with: -s
+==691050== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==691049== 
+==691049== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==691049== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-23
+==691049==    <inherited from parent>
+==691049== 
+==691049== 
+==691049== HEAP SUMMARY:
+==691049==     in use at exit: 4,016 bytes in 1 blocks
+==691049==   total heap usage: 640 allocs, 639 frees, 20,146 bytes allocated
+==691049== 
+==691049== LEAK SUMMARY:
+==691049==    definitely lost: 0 bytes in 0 blocks
+==691049==    indirectly lost: 0 bytes in 0 blocks
+==691049==      possibly lost: 0 bytes in 0 blocks
+==691049==    still reachable: 0 bytes in 0 blocks
+==691049==         suppressed: 4,016 bytes in 1 blocks
+==691049== 
+==691049== For lists of detected and suppressed errors, rerun with: -s
+==691049== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:03:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 17:10:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:03:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	handle_sig(int check)
 	}
 	else if (check == 2)
 	{
-		signal(BUILTINS_FREE, SIG_IGN);
 		signal(CTRL_C, sig_command_is_running);
 		signal(CTRL_BACKSLACH, sig_ctrl_back);
 	}

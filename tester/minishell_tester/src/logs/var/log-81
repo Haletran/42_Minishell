@@ -1,44 +1,44 @@
-==628725== Memcheck, a memory error detector
-==628725== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628725== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628725== Command: ../../../minishell -c echo\ "xd"\ $USER\ "$USER"\ '''"'$USER'"'
-==628725== Parent PID: 624579
-==628725== 
-==628727== 
-==628727== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628727== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-81
-==628727==    <inherited from parent>
-==628727== 
-==628727== 
-==628727== HEAP SUMMARY:
-==628727==     in use at exit: 4,016 bytes in 1 blocks
-==628727==   total heap usage: 698 allocs, 697 frees, 21,051 bytes allocated
-==628727== 
-==628727== LEAK SUMMARY:
-==628727==    definitely lost: 0 bytes in 0 blocks
-==628727==    indirectly lost: 0 bytes in 0 blocks
-==628727==      possibly lost: 0 bytes in 0 blocks
-==628727==    still reachable: 0 bytes in 0 blocks
-==628727==         suppressed: 4,016 bytes in 1 blocks
-==628727== 
-==628727== For lists of detected and suppressed errors, rerun with: -s
-==628727== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==628725== 
-==628725== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628725== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-81
-==628725==    <inherited from parent>
-==628725== 
-==628725== 
-==628725== HEAP SUMMARY:
-==628725==     in use at exit: 4,016 bytes in 1 blocks
-==628725==   total heap usage: 698 allocs, 697 frees, 21,051 bytes allocated
-==628725== 
-==628725== LEAK SUMMARY:
-==628725==    definitely lost: 0 bytes in 0 blocks
-==628725==    indirectly lost: 0 bytes in 0 blocks
-==628725==      possibly lost: 0 bytes in 0 blocks
-==628725==    still reachable: 0 bytes in 0 blocks
-==628725==         suppressed: 4,016 bytes in 1 blocks
-==628725== 
-==628725== For lists of detected and suppressed errors, rerun with: -s
-==628725== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==696104== Memcheck, a memory error detector
+==696104== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==696104== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==696104== Command: ../../../minishell -c echo\ "xd"\ $USER\ "$USER"\ '''"'$USER'"'
+==696104== Parent PID: 690815
+==696104== 
+==696105== 
+==696105== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==696105== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-81
+==696105==    <inherited from parent>
+==696105== 
+==696105== 
+==696105== HEAP SUMMARY:
+==696105==     in use at exit: 4,016 bytes in 1 blocks
+==696105==   total heap usage: 707 allocs, 706 frees, 21,019 bytes allocated
+==696105== 
+==696105== LEAK SUMMARY:
+==696105==    definitely lost: 0 bytes in 0 blocks
+==696105==    indirectly lost: 0 bytes in 0 blocks
+==696105==      possibly lost: 0 bytes in 0 blocks
+==696105==    still reachable: 0 bytes in 0 blocks
+==696105==         suppressed: 4,016 bytes in 1 blocks
+==696105== 
+==696105== For lists of detected and suppressed errors, rerun with: -s
+==696105== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==696104== 
+==696104== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==696104== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-81
+==696104==    <inherited from parent>
+==696104== 
+==696104== 
+==696104== HEAP SUMMARY:
+==696104==     in use at exit: 4,016 bytes in 1 blocks
+==696104==   total heap usage: 707 allocs, 706 frees, 21,019 bytes allocated
+==696104== 
+==696104== LEAK SUMMARY:
+==696104==    definitely lost: 0 bytes in 0 blocks
+==696104==    indirectly lost: 0 bytes in 0 blocks
+==696104==      possibly lost: 0 bytes in 0 blocks
+==696104==    still reachable: 0 bytes in 0 blocks
+==696104==         suppressed: 4,016 bytes in 1 blocks
+==696104== 
+==696104== For lists of detected and suppressed errors, rerun with: -s
+==696104== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,25 +1,25 @@
-==628013== Memcheck, a memory error detector
-==628013== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628013== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628013== Command: ../../../minishell -c exit\ "---------------100"
-==628013== Parent PID: 624579
-==628013== 
-==628013== 
-==628013== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628013== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-71
-==628013==    <inherited from parent>
-==628013== 
-==628013== 
-==628013== HEAP SUMMARY:
-==628013==     in use at exit: 4,016 bytes in 1 blocks
-==628013==   total heap usage: 655 allocs, 654 frees, 20,617 bytes allocated
-==628013== 
-==628013== LEAK SUMMARY:
-==628013==    definitely lost: 0 bytes in 0 blocks
-==628013==    indirectly lost: 0 bytes in 0 blocks
-==628013==      possibly lost: 0 bytes in 0 blocks
-==628013==    still reachable: 0 bytes in 0 blocks
-==628013==         suppressed: 4,016 bytes in 1 blocks
-==628013== 
-==628013== For lists of detected and suppressed errors, rerun with: -s
-==628013== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==695037== Memcheck, a memory error detector
+==695037== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==695037== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==695037== Command: ../../../minishell -c exit\ "---------------100"
+==695037== Parent PID: 690815
+==695037== 
+==695037== 
+==695037== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==695037== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/builtins/log-71
+==695037==    <inherited from parent>
+==695037== 
+==695037== 
+==695037== HEAP SUMMARY:
+==695037==     in use at exit: 4,016 bytes in 1 blocks
+==695037==   total heap usage: 664 allocs, 663 frees, 20,585 bytes allocated
+==695037== 
+==695037== LEAK SUMMARY:
+==695037==    definitely lost: 0 bytes in 0 blocks
+==695037==    indirectly lost: 0 bytes in 0 blocks
+==695037==      possibly lost: 0 bytes in 0 blocks
+==695037==    still reachable: 0 bytes in 0 blocks
+==695037==         suppressed: 4,016 bytes in 1 blocks
+==695037== 
+==695037== For lists of detected and suppressed errors, rerun with: -s
+==695037== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

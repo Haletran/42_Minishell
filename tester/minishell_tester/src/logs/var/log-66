@@ -1,71 +1,161 @@
-==628609== Memcheck, a memory error detector
-==628609== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628609== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628609== Command: /usr/bin/cat
-==628609== Parent PID: 628606
-==628609== ==628607== 
-==628607== FILE DESCRIPTORS: 4 open (2 std) at exit.
-==628607== Open file descriptor 4: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-66
-==628607==    <inherited from parent>
-==628607== 
-==628607== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-66
-==628607==    <inherited from parent>
-==628607== 
-==628607== 
-==628607== HEAP SUMMARY:
-==628607==     in use at exit: 21,206 bytes in 34 blocks
-==628607==   total heap usage: 88 allocs, 54 frees, 1,089,489 bytes allocated
-==628607== 
-==628607== 56 bytes in 1 blocks are still reachable in loss record 1 of 6
-==628607==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==628607==    by 0x115DB8: ??? (in /usr/bin/ls)
-==628607==    by 0x115DE9: ??? (in /usr/bin/ls)
-==628607==    by 0x10D528: ??? (i==628606== 
-==628606== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628606== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-66
-==628606==    <inherited from parent>
-==628606== 
-==628606== 
-==628606== HEAP SUMMARY:
-==628606==     in use at exit: 4,016 bytes in 1 blocks
-==628606==   total heap usage: 715 allocs, 714 frees, 21,835 bytes allocated
-==628606== 
-==628606== LEAK SUMMARY:
-==628606==    definitely lost: 0 bytes in 0 blocks
-==628606==    indirectly lost: 0 bytes in 0 blocks
-==628606==      possibly lost: 0 bytes in 0 blocks
-==628606==    still reachable: 0 bytes in 0 blocks
-==628606==         suppressed: 4,016 bytes in 1 blocks
-==628606== 
-==628606== For lists of detected and suppressed errors, rerun with: -s
-==628606== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-locks are still reachable in loss record 4 of 6
-==628607==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==628607==    by 0x11665E: ??? (in /usr/bin/ls)
-==628607==    by 0x116C9F: ??? (in /usr/bin/ls)
-==628607==    by 0x11A20E: ??? (in /usr/bin/ls)
-==628607==    by 0x10D33F: ??? (in /usr/bin/ls)
-==628607==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
-==628607== 
-==628607== 696 bytes in 1 blocks are still reachable in loss record 5 of 6
-==628607==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==628607==    by 0x115EBB: ??? (in /usr/bin/ls)
-==628607==    by 0x11A067: ??? (in /usr/bin/ls)
-==628607==    by 0x10D33F: ??? (in /usr/bin/ls)
-==628607==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
-==628607== 
-==628607== 20,000 bytes in 1 blocks are still reachable in loss record 6 of 6
-==628607==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==628607==    by 0x115DB8: ??? (in /usr/bin/ls)
-==628607==    by 0x10D2A0: ??? (in /usr/bin/ls)
-==628607==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
-==628607== 
-==628607== LEAK SUMMARY:
-==628607==    definitely lost: 0 bytes in 0 blocks
-==628607==    indirectly lost: 0 bytes in 0 blocks
-==628607==      possibly lost: 0 bytes in 0 blocks
-==628607==    still reachable: 21,206 bytes in 34 blocks
-==628607==         suppressed: 0 bytes in 0 blocks
-==628607== 
-==628607== For lists of detected and suppressed errors, rerun with: -s
-==628607== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==695924== Memcheck, a memory error detector
+==695924== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==695924== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==695924== Command: /usr/bin/cat
+==695924== Parent PID: 695921
+==695924== ==695922== 
+==695922== Process terminating with default action of signal 13 (SIGPIPE)
+==695922==    at 0x49B8887: write (write.c:26)
+==695922==    by 0x492EEEC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1180)
+==695922==    by 0x49309E0: new_do_write (fileops.c:448)
+==695922==    by 0x49309E0: _IO_new_do_write (fileops.c:425)
+==695922==    by 0x49309E0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:422)
+==695922==    by 0x492E4D7: _IO_file_sync@@GLIBC_2.2.5 (fileops.c:798)
+==695922==    by 0x49231A9: fflush (iofflush.c:40)
+==695922==    by 0x113968: ??? (in /usr/bin/ls)
+==695922==    by 0x113A94: ??? (in /usr/bin/ls)
+==695922==    by 0x48E9494: __run_exit_handlers (exit.c:113)
+==695922==    by 0x48E960F: exit (exit.c:143)
+==695922==    by 0x48CDD96: (below main) (libc_start_call_main.h:74)
+==695922== 
+==695922== FILE DESCRIPTORS: 5 open (3 std) at exit.
+==695922== Open file d==695921== 
+==695921== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==695921== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-66
+==695921==    <inherited from parent>
+==695921== 
+==695921== 
+==695921== HEAP SUMMARY:
+==695921==     in use at exit: 4,016 bytes in 1 blocks
+==695921==   total heap usage: 724 allocs, 723 frees, 21,803 bytes allocated
+==695921== 
+==695921== LEAK SUMMARY:
+==695921==    definitely lost: 0 bytes in 0 blocks
+==695921==    indirectly lost: 0 bytes in 0 blocks
+==695921==      possibly lost: 0 bytes in 0 blocks
+==695921==    still reachable: 0 bytes in 0 blocks
+==695921==         suppressed: 4,016 bytes in 1 blocks
+==695921== 
+==695921== For lists of detected and suppressed errors, rerun with: -s
+==695921== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 12 bytes in 1 blocks are still reachable in loss record 2 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x494C58E: strdup (strdup.c:42)
+==695922==    by 0x48DC31A: _nl_load_locale_from_archive (loadarchive.c:464)
+==695922==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==695922==    by 0x48DA856: setlocale (setlocale.c:337)
+==695922==    by 0x48DA856: setlocale (setlocale.c:217)
+==695922==    by 0x10CDD0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 12 bytes in 1 blocks are still reachable in loss record 3 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x48DA6EB: new_composite_name (setlocale.c:165)
+==695922==    by 0x48DABAA: setlocale (setlocale.c:375)
+==695922==    by 0x48DABAA: setlocale (setlocale.c:217)
+==695922==    by 0x10CDD0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 34 bytes in 1 blocks are still reachable in loss record 4 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x48DE5DE: set_binding_values.part.0 (bindtextdom.c:203)
+==695922==    by 0x48DE89B: set_binding_values (bindtextdom.c:322)
+==695922==    by 0x48DE89B: bindtextdomain (bindtextdom.c:320)
+==695922==    by 0x10CDDF: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 56 bytes in 1 blocks are still reachable in loss record 5 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x115DB8: ??? (in /usr/bin/ls)
+==695922==    by 0x115DE9: ??? (in /usr/bin/ls)
+==695922==    by 0x10D528: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 56 bytes in 1 blocks are still reachable in loss record 6 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x115DB8: ??? (in /usr/bin/ls)
+==695922==    by 0x115DE9: ??? (in /usr/bin/ls)
+==695922==    by 0x10D132: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 120 bytes in 1 blocks are still reachable in loss record 7 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x48DC2FF: _nl_load_locale_from_archive (loadarchive.c:460)
+==695922==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==695922==    by 0x48DA856: setlocale (setlocale.c:337)
+==695922==    by 0x48DA856: setlocale (setlocale.c:217)
+==695922==    by 0x10CDD0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 128 bytes in 1 blocks are still reachable in loss record 8 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x1138F9: ??? (in /usr/bin/ls)
+==695922==    by 0x10D236: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 144 bytes in 12 blocks are still reachable in loss record 9 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x494C58E: strdup (strdup.c:42)
+==695922==    by 0x48DAC84: setlocale (setlocale.c:366)
+==695922==    by 0x48DAC84: setlocale (setlocale.c:217)
+==695922==    by 0x10CDD0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 270 bytes in 29 blocks are still reachable in loss record 10 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x11665E: ??? (in /usr/bin/ls)
+==695922==    by 0x116C9F: ??? (in /usr/bin/ls)
+==695922==    by 0x11A20E: ??? (in /usr/bin/ls)
+==695922==    by 0x10D33F: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 696 bytes in 1 blocks are still reachable in loss record 11 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x115EBB: ??? (in /usr/bin/ls)
+==695922==    by 0x11A067: ??? (in /usr/bin/ls)
+==695922==    by 0x10D33F: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 3,728 bytes in 12 blocks are still reachable in loss record 12 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x48DB96E: _nl_intern_locale_data (loadlocale.c:97)
+==695922==    by 0x48DC370: _nl_load_locale_from_archive (loadarchive.c:477)
+==695922==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==695922==    by 0x48DA856: setlocale (setlocale.c:337)
+==695922==    by 0x48DA856: setlocale (setlocale.c:217)
+==695922==    by 0x10CDD0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 4,096 bytes in 1 blocks are still reachable in loss record 13 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x4922BA3: _IO_file_doallocate (filedoalloc.c:101)
+==695922==    by 0x4931CDF: _IO_doallocbuf (genops.c:347)
+==695922==    by 0x4930F5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==695922==    by 0x492F6D4: _IO_new_file_xsputn (fileops.c:1243)
+==695922==    by 0x492F6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==695922==    by 0x492E288: fwrite_unlocked (iofwrite_u.c:42)
+==695922==    by 0x1180CE: ??? (in /usr/bin/ls)
+==695922==    by 0x118210: ??? (in /usr/bin/ls)
+==695922==    by 0x11EF12: ??? (in /usr/bin/ls)
+==695922==    by 0x119A71: ??? (in /usr/bin/ls)
+==695922==    by 0x10D33F: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== 20,000 bytes in 1 blocks are still reachable in loss record 14 of 14
+==695922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==695922==    by 0x115DB8: ??? (in /usr/bin/ls)
+==695922==    by 0x10D2A0: ??? (in /usr/bin/ls)
+==695922==    by 0x48CDD8F: (below main) (libc_start_call_main.h:58)
+==695922== 
+==695922== LEAK SUMMARY:
+==695922==    definitely lost: 0 bytes in 0 blocks
+==695922==    indirectly lost: 0 bytes in 0 blocks
+==695922==      possibly lost: 0 bytes in 0 blocks
+==695922==    still reachable: 29,362 bytes in 64 blocks
+==695922==         suppressed: 0 bytes in 0 blocks
+==695922== 
+==695922== For lists of detected and suppressed errors, rerun with: -s
+==695922== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 17:05:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:15:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	main_loop(t_cli *cli, int count)
 {
+	if (sigpipe_checker(cli->com->next) == ERROR)
+		signal(BUILTINS_FREE, SIG_IGN);
 	if (cli->com->type == COMMAND)
 	{
 		if (!cli->com->next || cli->com->next->type == HEREDOC)

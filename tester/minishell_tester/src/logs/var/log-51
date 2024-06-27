@@ -1,44 +1,44 @@
-==628490== Memcheck, a memory error detector
-==628490== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628490== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628490== Command: ../../../minishell -c echo\ '"'$USER'"q'
-==628490== Parent PID: 624579
-==628490== 
-==628491== 
-==628491== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628491== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-51
-==628491==    <inherited from parent>
-==628491== 
-==628491== 
-==628491== HEAP SUMMARY:
-==628491==     in use at exit: 4,016 bytes in 1 blocks
-==628491==   total heap usage: 655 allocs, 654 frees, 20,449 bytes allocated
-==628491== 
-==628491== LEAK SUMMARY:
-==628491==    definitely lost: 0 bytes in 0 blocks
-==628491==    indirectly lost: 0 bytes in 0 blocks
-==628491==      possibly lost: 0 bytes in 0 blocks
-==628491==    still reachable: 0 bytes in 0 blocks
-==628491==         suppressed: 4,016 bytes in 1 blocks
-==628491== 
-==628491== For lists of detected and suppressed errors, rerun with: -s
-==628491== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==628490== 
-==628490== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628490== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-51
-==628490==    <inherited from parent>
-==628490== 
-==628490== 
-==628490== HEAP SUMMARY:
-==628490==     in use at exit: 4,016 bytes in 1 blocks
-==628490==   total heap usage: 655 allocs, 654 frees, 20,449 bytes allocated
-==628490== 
-==628490== LEAK SUMMARY:
-==628490==    definitely lost: 0 bytes in 0 blocks
-==628490==    indirectly lost: 0 bytes in 0 blocks
-==628490==      possibly lost: 0 bytes in 0 blocks
-==628490==    still reachable: 0 bytes in 0 blocks
-==628490==         suppressed: 4,016 bytes in 1 blocks
-==628490== 
-==628490== For lists of detected and suppressed errors, rerun with: -s
-==628490== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==695715== Memcheck, a memory error detector
+==695715== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==695715== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==695715== Command: ../../../minishell -c echo\ '"'$USER'"q'
+==695715== Parent PID: 690815
+==695715== 
+==695716== 
+==695716== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==695716== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-51
+==695716==    <inherited from parent>
+==695716== 
+==695716== 
+==695716== HEAP SUMMARY:
+==695716==     in use at exit: 4,016 bytes in 1 blocks
+==695716==   total heap usage: 664 allocs, 663 frees, 20,417 bytes allocated
+==695716== 
+==695716== LEAK SUMMARY:
+==695716==    definitely lost: 0 bytes in 0 blocks
+==695716==    indirectly lost: 0 bytes in 0 blocks
+==695716==      possibly lost: 0 bytes in 0 blocks
+==695716==    still reachable: 0 bytes in 0 blocks
+==695716==         suppressed: 4,016 bytes in 1 blocks
+==695716== 
+==695716== For lists of detected and suppressed errors, rerun with: -s
+==695716== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==695715== 
+==695715== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==695715== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-51
+==695715==    <inherited from parent>
+==695715== 
+==695715== 
+==695715== HEAP SUMMARY:
+==695715==     in use at exit: 4,016 bytes in 1 blocks
+==695715==   total heap usage: 664 allocs, 663 frees, 20,417 bytes allocated
+==695715== 
+==695715== LEAK SUMMARY:
+==695715==    definitely lost: 0 bytes in 0 blocks
+==695715==    indirectly lost: 0 bytes in 0 blocks
+==695715==      possibly lost: 0 bytes in 0 blocks
+==695715==    still reachable: 0 bytes in 0 blocks
+==695715==         suppressed: 4,016 bytes in 1 blocks
+==695715== 
+==695715== For lists of detected and suppressed errors, rerun with: -s
+==695715== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

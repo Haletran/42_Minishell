@@ -1,259 +1,258 @@
-==624822== Memcheck, a memory error detector
-==624822== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==624822== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==624822== Command: /usr/bin/grep hello
-==624822== Parent PID: 624811
-==624==62482==624822== 
-==624822== FILE DESCRIPTORS: 3 open==624811== 
-==624811== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==624811== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-21
-==624811==    <inherited from parent>
-==624811== 
-==624811== 
-==624811== HEAP SUMMARY:
-==624811==     in use at exit: 4,016 bytes in 1 blocks
-==624811==   total heap usage: 679 allocs, 678 frees, 21,264 bytes allocated
-==624811== 
-==624811== LEAK SUMMARY:
-==624811==    definitely lost: 0 bytes in 0 blocks
-==624811==    indirectly lost: 0 bytes in 0 blocks
-==624811==      possibly lost: 0 bytes in 0 blocks
-==624811==    still reachable: 0 bytes in 0 blocks
-==624811==         suppressed: 4,016 bytes in 1 blocks
-==624811== 
-==624811== For lists of detected and suppressed errors, rerun with: -s
-==624811== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-nternal.c:1690)
-==624822==    by 0x49E9262: re_acquire_state_context (regex_internal.c:1562)
-==624822==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
-==624822==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 4 bytes in 1 blocks are indirectly lost in loss record 2 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49E2622: re_node_set_alloc (regex_internal.c:973)
-==624822==    by 0x49E2622: register_state (regex_internal.c:1583)
-==624822==    by 0x49E9445: create_cd_newstate (regex_internal.c:1746)
-==624822==    by 0x49E9445: re_acquire_state_context (regex_internal.c:1562)
-==624822==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
-==624822==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 6 bytes in 1 blocks are still reachable in loss record 3 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x12751E: ??? (in /usr/bin/grep)
-==624822==    by 0x10E638: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 16 bytes in 1 blocks are still reachable in loss record 4 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11CA44: ??? (in /usr/bin/grep)
-==624822==    by 0x1217DF: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 16 bytes in 1 blocks are indirectly lost in loss record 5 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49E2713: register_state (regex_internal.c:1598)
-==624822==    by 0x49E9445: create_cd_newstate (regex_internal.c:1746)
-==624822==    by 0x49E9445: re_acquire_state_context (regex_internal.c:1562)
-==624822==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
-==624822==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 24 bytes in 1 blocks are indirectly lost in loss record 6 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F2545: analyze (regcomp.c:1169)
-==624822==    by 0x49F2545: re_compile_internal (regcomp.c:795)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 24 bytes in 6 blocks are indirectly lost in loss record 7 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49E76FF: re_node_set_alloc (regex_internal.c:973)
-==624822==    by 0x49E76FF: calc_eclosure_iter (regcomp.c:1699)
-==624822==    by 0x49F2D13: calc_eclosure (regcomp.c:1677)
-==624822==    by 0x49F2D13: analyze (regcomp.c:1204)
-==624822==    by 0x49F2D13: re_compile_internal (regcomp.c:795)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 52 bytes in 1 blocks are still reachable in loss record 8 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x120F88: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 52 bytes in 1 blocks are still reachable in loss record 9 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x121718: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 72 bytes in 1 blocks are still reachable in loss record 10 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x119049: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 72 bytes in 1 blocks are still reachable in loss record 11 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11CB35: ??? (in /usr/bin/grep)
-==624822==    by 0x1217DF: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 88 bytes in 1 blocks are indirectly lost in loss record 12 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49E922B: create_cd_newstate (regex_internal.c:1687)
-==624822==    by 0x49E922B: re_acquire_state_context (regex_internal.c:1562)
-==624822==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
-==624822==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 96 bytes in 1 blocks are indirectly lost in loss record 13 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F226A: init_dfa (regcomp.c:859)
-==624822==    by 0x49F226A: re_compile_internal (regcomp.c:758)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 96 bytes in 1 blocks are indirectly lost in loss record 14 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F2566: analyze (regcomp.c:1171)
-==624822==    by 0x49F2566: re_compile_internal (regcomp.c:795)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 96 bytes in 1 blocks are indirectly lost in loss record 15 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F2575: analyze (regcomp.c:1172)
-==624822==    by 0x49F2575: re_compile_internal (regcomp.c:795)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 120 bytes in 1 blocks are still reachable in loss record 16 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x112379: ??? (in /usr/bin/grep)
-==624822==    by 0x10E668: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 128 bytes in 1 blocks are still reachable in loss record 17 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11C235: ??? (in /usr/bin/grep)
-==624822==    by 0x11A4F5: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 128 bytes in 1 blocks are possibly lost in loss record 18 of 26
-==624822==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11940F: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 128 bytes in 1 blocks are indirectly lost in loss record 19 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F2297: init_dfa (regcomp.c:866)
-==624822==    by 0x49F2297: re_compile_internal (regcomp.c:758)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 312 bytes in 1 blocks are still reachable in loss record 20 of 26
-==624822==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x12091D: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 768 bytes in 6 blocks are still reachable in loss record 21 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11C558: ??? (in /usr/bin/grep)
-==624822==    by 0x120D01: ??? (in /usr/bin/grep)
-==624822==    by 0x1199E1: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 800 (224 direct, 576 indirect) bytes in 1 blocks are definitely lost in loss record 22 of 26
-==624822==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x49F3529: re_compile_internal (regcomp.c:750)
-==624822==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
-==624822==    by 0x1111B1: ??? (in /usr/bin/grep)
-==624822==    by 0x119469: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 2,336 bytes in 1 blocks are still reachable in loss record 23 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x11905F: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 2,472 bytes in 1 blocks are still reachable in loss record 24 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x116B9A: ??? (in /usr/bin/grep)
-==624822==    by 0x1195DF: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 4,064 bytes in 1 blocks are still reachable in loss record 25 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x1274EC: ??? (in /usr/bin/grep)
-==624822==    by 0x116BCC: ??? (in /usr/bin/grep)
-==624822==    by 0x118B04: ??? (in /usr/bin/grep)
-==624822==    by 0x11968A: ??? (in /usr/bin/grep)
-==624822==    by 0x10E34A: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== 102,408 bytes in 1 blocks are still reachable in loss record 26 of 26
-==624822==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624822==    by 0x1274EC: ??? (in /usr/bin/grep)
-==624822==    by 0x10E42F: ??? (in /usr/bin/grep)
-==624822==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
-==624822== 
-==624822== LEAK SUMMARY:
-==624822==    definitely lost: 224 bytes in 1 blocks
-==624822==    indirectly lost: 576 bytes in 15 blocks
-==624822==      possibly lost: 128 bytes in 1 blocks
-==624822==    still reachable: 112,878 bytes in 19 blocks
-==624822==         suppressed: 0 bytes in 0 blocks
-==624822== 
-==624822== For lists of detected and suppressed errors, rerun with: -s
-==624822== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==691027== Memcheck, a memory error detector
+==691027== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==691027== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==691027== Command: /usr/bin/grep hello
+==691027== Parent PID: 691025
+==691==69102==691027== 
+==691027== FILE DESCRIPTORS: 3 open==691025== 
+==691025== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==691025== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-21
+==691025==    <inherited from parent>
+==691025== 
+==691025== 
+==691025== HEAP SUMMARY:
+==691025==     in use at exit: 4,016 bytes in 1 blocks
+==691025==   total heap usage: 688 allocs, 687 frees, 21,232 bytes allocated
+==691025== 
+==691025== LEAK SUMMARY:
+==691025==    definitely lost: 0 bytes in 0 blocks
+==691025==    indirectly lost: 0 bytes in 0 blocks
+==691025==      possibly lost: 0 bytes in 0 blocks
+==691025==    still reachable: 0 bytes in 0 blocks
+==691025==         suppressed: 4,016 bytes in 1 blocks
+==691025== 
+==691025== For lists of detected and suppressed errors, rerun with: -s
+==691025== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+0x49E9262: re_acquire_state_context (regex_internal.c:1562)
+==691027==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
+==691027==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 4 bytes in 1 blocks are indirectly lost in loss record 2 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49E2622: re_node_set_alloc (regex_internal.c:973)
+==691027==    by 0x49E2622: register_state (regex_internal.c:1583)
+==691027==    by 0x49E9445: create_cd_newstate (regex_internal.c:1746)
+==691027==    by 0x49E9445: re_acquire_state_context (regex_internal.c:1562)
+==691027==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
+==691027==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 6 bytes in 1 blocks are still reachable in loss record 3 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x12751E: ??? (in /usr/bin/grep)
+==691027==    by 0x10E638: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 16 bytes in 1 blocks are still reachable in loss record 4 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11CA44: ??? (in /usr/bin/grep)
+==691027==    by 0x1217DF: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 16 bytes in 1 blocks are indirectly lost in loss record 5 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49E2713: register_state (regex_internal.c:1598)
+==691027==    by 0x49E9445: create_cd_newstate (regex_internal.c:1746)
+==691027==    by 0x49E9445: re_acquire_state_context (regex_internal.c:1562)
+==691027==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
+==691027==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 24 bytes in 1 blocks are indirectly lost in loss record 6 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F2545: analyze (regcomp.c:1169)
+==691027==    by 0x49F2545: re_compile_internal (regcomp.c:795)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 24 bytes in 6 blocks are indirectly lost in loss record 7 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49E76FF: re_node_set_alloc (regex_internal.c:973)
+==691027==    by 0x49E76FF: calc_eclosure_iter (regcomp.c:1699)
+==691027==    by 0x49F2D13: calc_eclosure (regcomp.c:1677)
+==691027==    by 0x49F2D13: analyze (regcomp.c:1204)
+==691027==    by 0x49F2D13: re_compile_internal (regcomp.c:795)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 52 bytes in 1 blocks are still reachable in loss record 8 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x120F88: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 52 bytes in 1 blocks are still reachable in loss record 9 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x121718: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 72 bytes in 1 blocks are still reachable in loss record 10 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x119049: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 72 bytes in 1 blocks are still reachable in loss record 11 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11CB35: ??? (in /usr/bin/grep)
+==691027==    by 0x1217DF: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 88 bytes in 1 blocks are indirectly lost in loss record 12 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49E922B: create_cd_newstate (regex_internal.c:1687)
+==691027==    by 0x49E922B: re_acquire_state_context (regex_internal.c:1562)
+==691027==    by 0x49F31B1: create_initial_state (regcomp.c:1050)
+==691027==    by 0x49F31B1: re_compile_internal (regcomp.c:806)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 96 bytes in 1 blocks are indirectly lost in loss record 13 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F226A: init_dfa (regcomp.c:859)
+==691027==    by 0x49F226A: re_compile_internal (regcomp.c:758)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 96 bytes in 1 blocks are indirectly lost in loss record 14 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F2566: analyze (regcomp.c:1171)
+==691027==    by 0x49F2566: re_compile_internal (regcomp.c:795)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 96 bytes in 1 blocks are indirectly lost in loss record 15 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F2575: analyze (regcomp.c:1172)
+==691027==    by 0x49F2575: re_compile_internal (regcomp.c:795)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 120 bytes in 1 blocks are still reachable in loss record 16 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x112379: ??? (in /usr/bin/grep)
+==691027==    by 0x10E668: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 128 bytes in 1 blocks are still reachable in loss record 17 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11C235: ??? (in /usr/bin/grep)
+==691027==    by 0x11A4F5: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 128 bytes in 1 blocks are possibly lost in loss record 18 of 26
+==691027==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11940F: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 128 bytes in 1 blocks are indirectly lost in loss record 19 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F2297: init_dfa (regcomp.c:866)
+==691027==    by 0x49F2297: re_compile_internal (regcomp.c:758)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 312 bytes in 1 blocks are still reachable in loss record 20 of 26
+==691027==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x12091D: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 768 bytes in 6 blocks are still reachable in loss record 21 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11C558: ??? (in /usr/bin/grep)
+==691027==    by 0x120D01: ??? (in /usr/bin/grep)
+==691027==    by 0x1199E1: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 800 (224 direct, 576 indirect) bytes in 1 blocks are definitely lost in loss record 22 of 26
+==691027==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x49F3529: re_compile_internal (regcomp.c:750)
+==691027==    by 0x49F382E: re_compile_pattern (regcomp.c:230)
+==691027==    by 0x1111B1: ??? (in /usr/bin/grep)
+==691027==    by 0x119469: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 2,336 bytes in 1 blocks are still reachable in loss record 23 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x11905F: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 2,472 bytes in 1 blocks are still reachable in loss record 24 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x116B9A: ??? (in /usr/bin/grep)
+==691027==    by 0x1195DF: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 4,064 bytes in 1 blocks are still reachable in loss record 25 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x1274EC: ??? (in /usr/bin/grep)
+==691027==    by 0x116BCC: ??? (in /usr/bin/grep)
+==691027==    by 0x118B04: ??? (in /usr/bin/grep)
+==691027==    by 0x11968A: ??? (in /usr/bin/grep)
+==691027==    by 0x10E34A: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== 102,408 bytes in 1 blocks are still reachable in loss record 26 of 26
+==691027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691027==    by 0x1274EC: ??? (in /usr/bin/grep)
+==691027==    by 0x10E42F: ??? (in /usr/bin/grep)
+==691027==    by 0x4917D8F: (below main) (libc_start_call_main.h:58)
+==691027== 
+==691027== LEAK SUMMARY:
+==691027==    definitely lost: 224 bytes in 1 blocks
+==691027==    indirectly lost: 576 bytes in 15 blocks
+==691027==      possibly lost: 128 bytes in 1 blocks
+==691027==    still reachable: 112,878 bytes in 19 blocks
+==691027==         suppressed: 0 bytes in 0 blocks
+==691027== 
+==691027== For lists of detected and suppressed errors, rerun with: -s
+==691027== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

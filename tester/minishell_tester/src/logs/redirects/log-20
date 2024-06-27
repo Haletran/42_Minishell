@@ -1,42 +1,106 @@
-==624805== Memcheck, a memory error detector
-==624805== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==624805== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==624805== Command: /usr/bin/cat
-==624805== Parent PID: 624804
-==624805== 
-==624805== 
-==624805== FILE DESCRIPTORS: 3 open (1 std) at exit.
-==624805== Open file descriptor 4: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
-==624805==    <inherited from parent>
-==624805== 
-==624805== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
-==624805==    <inherited from parent>
-==624805== 
-==624805== 
-==624805== HEAP SUMMARY:
-==624805==     in use at exit: 1,052,671 bytes in 1 blocks
-==624805==   total heap usage: 48 allocs, 47 frees, 1,066,584 bytes allocated
-==624805== 
-==624805== 1,052,671 bytes in 1 blocks are still reachable in loss record 1 of 1
-==624805==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==624805==    by 0x10B477: ??? (in /usr/bin/cat)
-==624805==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
-==6248==624804== 
-==624804== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==624804== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
-==624804==    <inherited from parent>
-==624804== 
-==624804== 
-==624804== HEAP SUMMARY:
-==624804==     in use at exit: 4,016 bytes in 1 blocks
-==624804==   total heap usage: 679 allocs, 678 frees, 21,240 bytes allocated
-==624804== 
-==624804== LEAK SUMMARY:
-==624804==    definitely lost: 0 bytes in 0 blocks
-==624804==    indirectly lost: 0 bytes in 0 blocks
-==624804==      possibly lost: 0 bytes in 0 blocks
-==624804==    still reachable: 0 bytes in 0 blocks
-==624804==         suppressed: 4,016 bytes in 1 blocks
-==624804== 
-==624804== For lists of detected and suppressed errors, rerun with: -s
-==624804== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==691010== Memcheck, a memory error detector
+==691010== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==691010== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==691010== Command: /usr/bin/cat
+==691010== Parent PID: 691008
+==691010== 
+==691010== 
+==691010== Process terminating with default action of signal 13 (SIGPIPE)
+==691010==    at 0x498C887: write (write.c:26)
+==691010==    by 0x10DAE7: ??? (in /usr/bin/cat)
+==691010==    by 0x10B4C3: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== FILE DESCRIPTORS: 5 open (3 std) at exit.
+==691010== Open file descriptor 4: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
+==691010==    <inherited from parent>
+==691010== 
+==691010== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
+==691010==    <inherited from parent>
+==691010== 
+==691010== 
+==691010== HEAP SUMMARY:
+==691010==     in use at exit: 139,227 bytes in 30 blocks
+==691010==   total heap usage: 31 allocs, 1 frees, 139,232 bytes allocated
+==691010== 
+==691010== 10 bytes in 1 blocks are st==691008== 
+==691008== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==691008== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-20
+==691008==    <inherited from parent>
+==691008== 
+==691008== 
+==691008== HEAP SUMMARY:
+==691008==     in use at exit: 4,016 bytes in 1 blocks
+==691008==   total heap usage: 688 allocs, 687 frees, 21,208 bytes allocated
+==691008== 
+==691008== LEAK SUMMARY:
+==691008==    definitely lost: 0 bytes in 0 blocks
+==691008==    indirectly lost: 0 bytes in 0 blocks
+==691008==      possibly lost: 0 bytes in 0 blocks
+==691008==    still reachable: 0 bytes in 0 blocks
+==691008==         suppressed: 4,016 bytes in 1 blocks
+==691008== 
+==691008== For lists of detected and suppressed errors, rerun with: -s
+==691008== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+)
+==691010==    by 0x48AE856: setlocale (setlocale.c:217)
+==691010==    by 0x10A769: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 12 bytes in 1 blocks are still reachable in loss record 3 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x48AE6EB: new_composite_name (setlocale.c:165)
+==691010==    by 0x48AEBAA: setlocale (setlocale.c:375)
+==691010==    by 0x48AEBAA: setlocale (setlocale.c:217)
+==691010==    by 0x10A769: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 34 bytes in 1 blocks are still reachable in loss record 4 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x48B25DE: set_binding_values.part.0 (bindtextdom.c:203)
+==691010==    by 0x48B289B: set_binding_values (bindtextdom.c:322)
+==691010==    by 0x48B289B: bindtextdomain (bindtextdom.c:320)
+==691010==    by 0x10A778: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 120 bytes in 1 blocks are still reachable in loss record 5 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x48B02FF: _nl_load_locale_from_archive (loadarchive.c:460)
+==691010==    by 0x48AF0DF: _nl_find_locale (findlocale.c:152)
+==691010==    by 0x48AE856: setlocale (setlocale.c:337)
+==691010==    by 0x48AE856: setlocale (setlocale.c:217)
+==691010==    by 0x10A769: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 144 bytes in 12 blocks are still reachable in loss record 6 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x492058E: strdup (strdup.c:42)
+==691010==    by 0x48AEC84: setlocale (setlocale.c:366)
+==691010==    by 0x48AEC84: setlocale (setlocale.c:217)
+==691010==    by 0x10A769: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 3,728 bytes in 12 blocks are still reachable in loss record 7 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x48AF96E: _nl_intern_locale_data (loadlocale.c:97)
+==691010==    by 0x48B0370: _nl_load_locale_from_archive (loadarchive.c:477)
+==691010==    by 0x48AF0DF: _nl_find_locale (findlocale.c:152)
+==691010==    by 0x48AE856: setlocale (setlocale.c:337)
+==691010==    by 0x48AE856: setlocale (setlocale.c:217)
+==691010==    by 0x10A769: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== 135,167 bytes in 1 blocks are still reachable in loss record 8 of 8
+==691010==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==691010==    by 0x10B477: ??? (in /usr/bin/cat)
+==691010==    by 0x48A1D8F: (below main) (libc_start_call_main.h:58)
+==691010== 
+==691010== LEAK SUMMARY:
+==691010==    definitely lost: 0 bytes in 0 blocks
+==691010==    indirectly lost: 0 bytes in 0 blocks
+==691010==      possibly lost: 0 bytes in 0 blocks
+==691010==    still reachable: 139,227 bytes in 30 blocks
+==691010==         suppressed: 0 bytes in 0 blocks
+==691010== 
+==691010== For lists of detected and suppressed errors, rerun with: -s
+==691010== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

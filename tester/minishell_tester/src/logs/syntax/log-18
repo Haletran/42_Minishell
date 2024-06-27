@@ -1,25 +1,25 @@
-==628980== Memcheck, a memory error detector
-==628980== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628980== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628980== Command: ../../../minishell -c Lorem\ ipsum\ dolor\ sit\ amet,\ consectetur\ adipiscing\ elit.\ Morbi\ imperdiet\ orci\ nec\ quam\ lobortis\ scelerisque.\ Morbi\ scelerisque\ leo\ molestie\ justo\ semper\ condimentum.\ Proin\ hendrerit\ ut\ nulla\ in\ mattis.\ Curabitur\ velit\ turpis,\ congue\ ut\ aliquam\ id,\ condimentum\ at\ dolor.\ Quisque\ ultricies\ neque\ in\ tellus\ pretium,\ vitae\ porta\ ipsum\ vestibulum.\ Vivamus\ cursus\ volutpat\ diam,\ at\ interdum\ erat\ fringilla\ ac.\ In\ nisl\ quam,\ ultrices\ vitae\ cursus\ ut,\ aliquam\ sed\ lacus.\ Suspendisse\ ac\ turpis\ fermentum,\ pulvinar\ risus\ quis,\ molestie\ elit.\ Mauris\ faucibus\ eget\ est\ vitae\ efficitur.\ Mauris\ feugiat\ enim\ in\ posuere\ auctor.\ Morbi\ lorem\ lorem,\ pellentesque\ et\ viverra\ vitae,\ ullamcorper\ a\ mauris.\ Cras\ blandit\ pulvinar\ accumsan.\ Pellentesque\ habitant\ morbi\ tristique\ senectus\ et\ netus\ et\ malesuada\ fames\ ac\ turpis\ egestas.\ Aenean\ id\ hendrerit\ elit.\ Lorem\ ipsum\ dolor\ sit\ amet,\ consectetur\ adipiscing\ elit.\ Morbi\ imperdiet\ orci\ nec\ quam\ lobortis\ scelerisque.\ Morbi\ scelerisque\ leo\ molestie\ justo\ semper\ condimentum.\ Proin\ hendrerit\ ut\ nulla\ in\ mattis.\ Curabitur\ velit\ turpis,\ congue\ ut\ aliquam\ id,\ condimentum\ at\ dolor.\ Quisque\ ultricies\ neque\ in\ tellus\ pretium,\ vitae\ porta\ ipsum\ vestibulum.\ Vivamus\ cursus\ volutpat\ diam,\ at\ interdum\ erat\ fringilla\ ac.\ In\ nisl\ quam,\ ultrices\ vitae\ cursus\ ut,\ aliquam\ sed\ lacus.\ Suspendisse\ ac\ turpis\ fermentum,\ pulvinar\ risus\ quis,\ molestie\ elit.\ Mauris\ faucibus\ eget\ est\ vitae\ efficitur.\ Mauris\ feugiat\ enim\ in\ posuere\ auctor.\ Morbi\ lorem\ lorem,\ pellentesque\ et\ viverra\ vitae,\ ullamcorper\ a\ mauris.\ Cras\ blandit\ pulvinar\ accumsan.\ Pellentesque\ habitant\ morbi\ tristique\ senectus\ et\ netus\ et\ malesuada\ fames\ ac\ turpis\ egestas.\ Aenean\ id\ hendrerit\ elit.
-==628980== Parent PID: 624579
-==628980== 
-==628980== 
-==628980== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628980== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/syntax/log-18
-==628980==    <inherited from parent>
-==628980== 
-==628980== 
-==628980== HEAP SUMMARY:
-==628980==     in use at exit: 4,016 bytes in 1 blocks
-==628980==   total heap usage: 2,309 allocs, 2,308 frees, 51,778 bytes allocated
-==628980== 
-==628980== LEAK SUMMARY:
-==628980==    definitely lost: 0 bytes in 0 blocks
-==628980==    indirectly lost: 0 bytes in 0 blocks
-==628980==      possibly lost: 0 bytes in 0 blocks
-==628980==    still reachable: 0 bytes in 0 blocks
-==628980==         suppressed: 4,016 bytes in 1 blocks
-==628980== 
-==628980== For lists of detected and suppressed errors, rerun with: -s
-==628980== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==696458== Memcheck, a memory error detector
+==696458== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==696458== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==696458== Command: ../../../minishell -c Lorem\ ipsum\ dolor\ sit\ amet,\ consectetur\ adipiscing\ elit.\ Morbi\ imperdiet\ orci\ nec\ quam\ lobortis\ scelerisque.\ Morbi\ scelerisque\ leo\ molestie\ justo\ semper\ condimentum.\ Proin\ hendrerit\ ut\ nulla\ in\ mattis.\ Curabitur\ velit\ turpis,\ congue\ ut\ aliquam\ id,\ condimentum\ at\ dolor.\ Quisque\ ultricies\ neque\ in\ tellus\ pretium,\ vitae\ porta\ ipsum\ vestibulum.\ Vivamus\ cursus\ volutpat\ diam,\ at\ interdum\ erat\ fringilla\ ac.\ In\ nisl\ quam,\ ultrices\ vitae\ cursus\ ut,\ aliquam\ sed\ lacus.\ Suspendisse\ ac\ turpis\ fermentum,\ pulvinar\ risus\ quis,\ molestie\ elit.\ Mauris\ faucibus\ eget\ est\ vitae\ efficitur.\ Mauris\ feugiat\ enim\ in\ posuere\ auctor.\ Morbi\ lorem\ lorem,\ pellentesque\ et\ viverra\ vitae,\ ullamcorper\ a\ mauris.\ Cras\ blandit\ pulvinar\ accumsan.\ Pellentesque\ habitant\ morbi\ tristique\ senectus\ et\ netus\ et\ malesuada\ fames\ ac\ turpis\ egestas.\ Aenean\ id\ hendrerit\ elit.\ Lorem\ ipsum\ dolor\ sit\ amet,\ consectetur\ adipiscing\ elit.\ Morbi\ imperdiet\ orci\ nec\ quam\ lobortis\ scelerisque.\ Morbi\ scelerisque\ leo\ molestie\ justo\ semper\ condimentum.\ Proin\ hendrerit\ ut\ nulla\ in\ mattis.\ Curabitur\ velit\ turpis,\ congue\ ut\ aliquam\ id,\ condimentum\ at\ dolor.\ Quisque\ ultricies\ neque\ in\ tellus\ pretium,\ vitae\ porta\ ipsum\ vestibulum.\ Vivamus\ cursus\ volutpat\ diam,\ at\ interdum\ erat\ fringilla\ ac.\ In\ nisl\ quam,\ ultrices\ vitae\ cursus\ ut,\ aliquam\ sed\ lacus.\ Suspendisse\ ac\ turpis\ fermentum,\ pulvinar\ risus\ quis,\ molestie\ elit.\ Mauris\ faucibus\ eget\ est\ vitae\ efficitur.\ Mauris\ feugiat\ enim\ in\ posuere\ auctor.\ Morbi\ lorem\ lorem,\ pellentesque\ et\ viverra\ vitae,\ ullamcorper\ a\ mauris.\ Cras\ blandit\ pulvinar\ accumsan.\ Pellentesque\ habitant\ morbi\ tristique\ senectus\ et\ netus\ et\ malesuada\ fames\ ac\ turpis\ egestas.\ Aenean\ id\ hendrerit\ elit.
+==696458== Parent PID: 690815
+==696458== 
+==696458== 
+==696458== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==696458== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/syntax/log-18
+==696458==    <inherited from parent>
+==696458== 
+==696458== 
+==696458== HEAP SUMMARY:
+==696458==     in use at exit: 4,016 bytes in 1 blocks
+==696458==   total heap usage: 2,318 allocs, 2,317 frees, 51,746 bytes allocated
+==696458== 
+==696458== LEAK SUMMARY:
+==696458==    definitely lost: 0 bytes in 0 blocks
+==696458==    indirectly lost: 0 bytes in 0 blocks
+==696458==      possibly lost: 0 bytes in 0 blocks
+==696458==    still reachable: 0 bytes in 0 blocks
+==696458==         suppressed: 4,016 bytes in 1 blocks
+==696458== 
+==696458== For lists of detected and suppressed errors, rerun with: -s
+==696458== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

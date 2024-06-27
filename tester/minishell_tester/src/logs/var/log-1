@@ -1,25 +1,25 @@
-==628189== Memcheck, a memory error detector
-==628189== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==628189== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==628189== Command: ../../../minishell -c $?
-==628189== Parent PID: 624579
-==628189== 
-==628189== 
-==628189== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==628189== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/var/log-1
-==628189==    <inherited from parent>
-==628189== 
-==628189== 
-==628189== HEAP SUMMARY:
-==628189==     in use at exit: 4,016 bytes in 1 blocks
-==628189==   total heap usage: 646 allocs, 645 frees, 20,234 bytes allocated
-==628189== 
-==628189== LEAK SUMMARY:
-==628189==    definitely lost: 0 bytes in 0 blocks
-==628189==    indirectly lost: 0 bytes in 0 blocks
-==628189==      possibly lost: 0 bytes in 0 blocks
-==628189==    still reachable: 0 bytes in 0 blocks
-==628189==         suppressed: 4,016 bytes in 1 blocks
-==628189== 
-==628189== For lists of detected and suppressed errors, rerun with: -s
-==628189== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==695288== Memcheck, a memory error detector
+==695288== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==695288== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==695288== Command: ../../../minishell -c $?
+==695288== Parent PID: 690815
+==695288== 
+==695288== 
+==695288== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==695288== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/var/log-1
+==695288==    <inherited from parent>
+==695288== 
+==695288== 
+==695288== HEAP SUMMARY:
+==695288==     in use at exit: 4,016 bytes in 1 blocks
+==695288==   total heap usage: 655 allocs, 654 frees, 20,202 bytes allocated
+==695288== 
+==695288== LEAK SUMMARY:
+==695288==    definitely lost: 0 bytes in 0 blocks
+==695288==    indirectly lost: 0 bytes in 0 blocks
+==695288==      possibly lost: 0 bytes in 0 blocks
+==695288==    still reachable: 0 bytes in 0 blocks
+==695288==         suppressed: 4,016 bytes in 1 blocks
+==695288== 
+==695288== For lists of detected and suppressed errors, rerun with: -s
+==695288== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -1,43 +1,44 @@
-==624853== Memcheck, a memory error detector
-==624853== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==624853== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==624853== Command: /usr/bin/cat
-==624853== Parent PID: 624850
-==624853== 
-==624853== 
-==624853== FILE DESCRIPTORS: 2 open (0 std) at exit.
-==624853== Open file descriptor 4: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
-==624853==    <inherited from parent>
-==624853== 
-==624853== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
-==624853==    <inherited from parent>
-==624853== 
-==624853== 
-==624853== HEAP SUMMARY:
-==624853==     in use at exit: 0 bytes in 0 blocks
-==624853==   total heap usage: 31 allocs, 31 frees, 139,232 bytes allocated
-==624853== 
-==624853== All heap blocks were freed -- no leaks are possible
-==624853== 
-==624853== For lists of detected and suppressed errors, rerun with: -s
-==624853== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-624852== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==624850== 
-==624850== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==624850== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
-==624850==    <inherited from parent>
-==624850== 
-==624850== 
-==624850== HEAP SUMMARY:
-==624850==     in use at exit: 4,016 bytes in 1 blocks
-==624850==   total heap usage: 666 allocs, 665 frees, 20,944 bytes allocated
-==624850== 
-==624850== LEAK SUMMARY:
-==624850==    definitely lost: 0 bytes in 0 blocks
-==624850==    indirectly lost: 0 bytes in 0 blocks
-==624850==      possibly lost: 0 bytes in 0 blocks
-==624850==    still reachable: 0 bytes in 0 blocks
-==624850==         suppressed: 4,016 bytes in 1 blocks
-==624850== 
-==624850== For lists of detected and suppressed errors, rerun with: -s
-==624850== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==691057== Memcheck, a memory error detector
+==691057== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==691057== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==691057== Command: /usr/bin/cat
+==691057== Parent PID: 691055
+==691057== 
+==691057== 
+==691057== FILE DESCRIPTORS: 2 open (0 std) at exit.
+==691057== Open file descriptor 4: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
+==691057==    <inherited from parent>
+==691057== 
+==691057== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
+==691057==    <inherited from parent>
+==691057== 
+==691057== 
+==691057== HEAP SUMMARY:
+==691057==     in use at exit: 0 bytes in 0 blocks
+==691057==   total heap usage: 31 allocs, 31 frees, 139,232 bytes allocated
+==691057== 
+==691057== All heap blocks were freed -- no leaks are possible
+==691057== 
+==691057== For lists of detected and suppressed errors, rerun with: -s
+==691057== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+pressed errors, rerun with: -s
+==691056== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==691055== 
+==691055== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==691055== Open file descriptor 3: /tmp/42_Minishell/tester/minishell_tester/src/logs/redirects/log-24
+==691055==    <inherited from parent>
+==691055== 
+==691055== 
+==691055== HEAP SUMMARY:
+==691055==     in use at exit: 4,016 bytes in 1 blocks
+==691055==   total heap usage: 675 allocs, 674 frees, 20,912 bytes allocated
+==691055== 
+==691055== LEAK SUMMARY:
+==691055==    definitely lost: 0 bytes in 0 blocks
+==691055==    indirectly lost: 0 bytes in 0 blocks
+==691055==      possibly lost: 0 bytes in 0 blocks
+==691055==    still reachable: 0 bytes in 0 blocks
+==691055==         suppressed: 4,016 bytes in 1 blocks
+==691055== 
+==691055== For lists of detected and suppressed errors, rerun with: -s
+==691055== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
