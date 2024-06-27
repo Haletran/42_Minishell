@@ -6,11 +6,9 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/27 09:04:46 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/27 18:20:41 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-DEBUG := 0
 
 ifndef VERBOSE
 MAKEFLAGS += --no-print-directory --silent
@@ -27,17 +25,7 @@ NC				:= \033[0m
 
 NAME := minishell
 CC := clang
-CFLAGS := -Wextra -Wall -Werror -gdwarf-4
-DEBUG_FLAGS := -fsanitize=address
-
-ifdef DEBUG
-    ifeq ($(DEBUG), 1)
-        CFLAGS += -D DEBUG=$(DEBUG)
-    else ifeq ($(DEBUG), 2)
-        CFLAGS += $(DEBUG_FLAGS)
-    endif
-endif
-
+CFLAGS := -Wextra -Wall -Werror
 
 SRCS	= src/main.c \
 		  src/built-ins/echo.c \
@@ -99,14 +87,13 @@ SRCS	= src/main.c \
 		  src/utils/utils_print.c \
 		  src/utils/ft_is.c 
 
-DEBUG := 0
 SRC_DIR := src
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBFT_DIR = libft
 LIBFT_TARGET = $(LIBFT_DIR)/libft.a
 
-all: $(NAME)
+all: $(NAME) 
 	@echo "\n\t$(BGREEN)$(NAME) = COMPILATION FINISHED !$(NC)\n"
 
 $(OBJS_DIR)/%.o: %.c
@@ -116,40 +103,9 @@ $(OBJS_DIR)/%.o: %.c
 $(LIBFT_TARGET):
 	make -C $(LIBFT_DIR)
 
-$(NAME): init $(OBJS) 
+$(NAME): $(LIBFT_TARGET) init $(OBJS) 
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_TARGET) -lreadline
-
-gdb: 
-	gdb --tui ./$(NAME)
-
-norm:
-	@printf "\n$(PROJECT_NAME)[ Norm check : ]\n"
-	@norminette $(SRCS) includes libft src | grep -v "Notice: GLOBAL_VAR_DETECTED"
 	
-tester: all
-	@-cd tester/minishell_tester/src/ && ./tester mandatory
-
-builtins: all
-	@-cd tester/minishell_tester/src/ && ./tester builtins
-
-redirects: all
-	@-cd tester/minishell_tester/src/ && ./tester redirects
-
-syntax: all
-	@-cd tester/minishell_tester/src/ && ./tester syntax
-
-command: all
-	@-cd tester/minishell_tester/src/ && ./tester command
-
-var: all
-	@-cd tester/minishell_tester/src/ && ./tester var
-
-pipes: all
-	@-cd tester/minishell_tester/src/ && ./tester pipes
-
-vtester: all
-	@-cd tester/minishell_tester/src/ && ./vtester mandatory
-
 clean:
 	rm -rf $(OBJS_DIR)
 	make -C $(LIBFT_DIR) clean
@@ -157,7 +113,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	rm -rf tester/src/__pycache__
-#make -C $(LIBFT_DIR) fclean
+	make -C $(LIBFT_DIR) fclean
 	rm -rf minishell-tester
 	rm -rf outfile
 	rm -rf infile
@@ -172,4 +128,4 @@ init:
 
 re: fclean all
 
-.PHONY: all clean fclean re norm checker
+.PHONY: all clean fclean re

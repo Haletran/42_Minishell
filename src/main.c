@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 13:33:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:34:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	main(int ac, char **av, char **envp)
 			ft_printf_fd(2, "minishell: %s: invalid option\n", av[1]);
 		exit(2);
 	}
+	title_screen("MINISHELL", GRN);
+	ft_printf_fd(1, "[ Developed by ] ygaiffie & bapasqui\n\n");
 	if (!envp || !*envp || check_if_path(envp) == 0)
 		exit_error(1, "Error: No environment variable found", NULL, DEBUG_MODE);
 	cli = NULL;

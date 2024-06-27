@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:44:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 17:58:57 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:32:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ char	*check_parsing(char *str, t_cli *cli)
 
 int	check_path_parsing(t_cli *cli)
 {
-	DIR* dir;
+	DIR	*dir;
+
 	dir = opendir(cli->com->command[0]);
 	if (dir == NULL)
 	{
@@ -98,8 +99,7 @@ int	parsing_check(t_cli *cli)
 				return (ERROR);
 			return (SUCCESS);
 		}
-		else
-			return (ERROR);
+		return (ERROR);
 	}
 	else if (!ft_strncmp(cli->com->command[0], "/", 1))
 	{

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 12:21:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:22:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ typedef struct s_lst
 	int						fd[2];
 	int						file_fd[2];
 	int						pipe_count;
-	int						history_fd;
-	int						check_if_freed;
 	int						exit_code;
 	int						nb_heredoc;
 	int						nb_infile;
@@ -79,12 +77,10 @@ typedef struct s_lst
 	int						heredoc_pipe;
 	int						syntax_error;
 	int						nb_commands;
-	int						dollar;
 	int						not_fork;
 	int						ctrl_c;
 	int						file_check;
 	int						flag_fail;
-	int						bloc;
 }							t_lst;
 
 typedef struct s_redirection

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 17:45:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:21:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ extern int	g_var;
 # define IS_DIRECTORY -30
 # define PERMISSION_DENIED -40
 
-# ifndef DEBUG
-#  define DEBUG 1
-# endif
-
 //* *********************************************************************** *//
 //* 																		*//
 //* 							META-CHARACTERS								*//
@@ -73,8 +69,6 @@ extern int	g_var;
 # define GREATER_THAN ">"
 # define LESS_THAN "<"
 # define SPACE_META " "
-//# define TAB "\t"
-//# define NEWLINE "\n"
 
 //* *********************************************************************** *//
 //* 																		*//

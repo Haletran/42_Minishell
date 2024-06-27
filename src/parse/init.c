@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/27 09:03:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:22:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,6 @@ int	first_allocation(t_cli **cli, char **envp)
 	if (!(*cli)->mnsh)
 		return (return_error(ERROR, "mnsh: Alloc ", NULL, DEBUG_MODE));
 	return (SUCCESS);
-}
-
-void	init_fd_history(t_cli **cli)
-{
-	if (access(".mini_history", F_OK) != -1)
-	{
-		(*cli)->mnsh->history_fd = open(".mini_history", O_RDWR | O_APPEND,
-				0640);
-		historyze(*cli);
-	}
-	else
-	{
-		display_info("History : Dont exist\n", DEBUG_MODE);
-		(*cli)->mnsh->history_fd = open(".mini_history",
-				O_RDWR | O_CREAT | O_TRUNC, 0640);
-	}
 }
 
 t_env	*init_stack(t_env *env, char **str)

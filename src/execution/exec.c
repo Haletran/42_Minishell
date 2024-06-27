@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 18:15:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:31:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,6 @@ void	handle_heredoc(t_cli *cli, int *heredoc)
 		heredoc_close_fd(cli);
 		unlink("/tmp/.heredoc");
 		exit(SUCCESS);
-	}
-}
-
-void print_dlst_com(t_com *com)
-{
-	t_com	*tmp;
-
-	tmp = com;
-	while (tmp)
-	{
-		if (tmp->command)
-			ft_printf_fd(2, "command: %s\n", tmp->command[0]);
-		tmp = tmp->next;
 	}
 }
 

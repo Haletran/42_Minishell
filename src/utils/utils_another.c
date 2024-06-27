@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/20 13:51:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:24:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,6 @@ t_env	*sort_in_ascii(t_env *list)
 		current = current->next;
 	}
 	return (list);
-}
-
-void	historyze(t_cli *cli)
-{
-	char	*line;
-	int		fd;
-	char	*h_line;
-
-	fd = dup(cli->mnsh->history_fd);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		h_line = ft_substr(line, 0, ft_strlen(line) - 1);
-		if (!h_line)
-		{
-			free(line);
-			freeway(cli);
-		}
-		add_history(h_line);
-		free(line);
-		free(h_line);
-	}
-	close(fd);
 }
 
 int	ret_code(t_lst *mnsh, int ret)
