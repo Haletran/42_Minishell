@@ -1,44 +1,44 @@
-==28624== Memcheck, a memory error detector
-==28624== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==28624== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==28624== Command: ../../../minishell -c echo\ "hello\ world"
-==28624== Parent PID: 26418
-==28624== 
-==28625== 
-==28625== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==28625== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-2
-==28625==    <inherited from parent>
-==28625== 
-==28625== 
-==28625== HEAP SUMMARY:
-==28625==     in use at exit: 4,016 bytes in 1 blocks
-==28625==   total heap usage: 669 allocs, 668 frees, 20,947 bytes allocated
-==28625== 
-==28625== LEAK SUMMARY:
-==28625==    definitely lost: 0 bytes in 0 blocks
-==28625==    indirectly lost: 0 bytes in 0 blocks
-==28625==      possibly lost: 0 bytes in 0 blocks
-==28625==    still reachable: 0 bytes in 0 blocks
-==28625==         suppressed: 4,016 bytes in 1 blocks
-==28625== 
-==28625== For lists of detected and suppressed errors, rerun with: -s
-==28625== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==28624== 
-==28624== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==28624== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-2
-==28624==    <inherited from parent>
-==28624== 
-==28624== 
-==28624== HEAP SUMMARY:
-==28624==     in use at exit: 4,016 bytes in 1 blocks
-==28624==   total heap usage: 669 allocs, 668 frees, 20,947 bytes allocated
-==28624== 
-==28624== LEAK SUMMARY:
-==28624==    definitely lost: 0 bytes in 0 blocks
-==28624==    indirectly lost: 0 bytes in 0 blocks
-==28624==      possibly lost: 0 bytes in 0 blocks
-==28624==    still reachable: 0 bytes in 0 blocks
-==28624==         suppressed: 4,016 bytes in 1 blocks
-==28624== 
-==28624== For lists of detected and suppressed errors, rerun with: -s
-==28624== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==627607== Memcheck, a memory error detector
+==627607== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==627607== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==627607== Command: ../../../minishell -c echo\ "hello\ world"
+==627607== Parent PID: 624579
+==627607== 
+==627608== 
+==627608== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==627608== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-2
+==627608==    <inherited from parent>
+==627608== 
+==627608== 
+==627608== HEAP SUMMARY:
+==627608==     in use at exit: 4,016 bytes in 1 blocks
+==627608==   total heap usage: 641 allocs, 640 frees, 20,324 bytes allocated
+==627608== 
+==627608== LEAK SUMMARY:
+==627608==    definitely lost: 0 bytes in 0 blocks
+==627608==    indirectly lost: 0 bytes in 0 blocks
+==627608==      possibly lost: 0 bytes in 0 blocks
+==627608==    still reachable: 0 bytes in 0 blocks
+==627608==         suppressed: 4,016 bytes in 1 blocks
+==627608== 
+==627608== For lists of detected and suppressed errors, rerun with: -s
+==627608== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==627607== 
+==627607== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==627607== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-2
+==627607==    <inherited from parent>
+==627607== 
+==627607== 
+==627607== HEAP SUMMARY:
+==627607==     in use at exit: 4,016 bytes in 1 blocks
+==627607==   total heap usage: 641 allocs, 640 frees, 20,324 bytes allocated
+==627607== 
+==627607== LEAK SUMMARY:
+==627607==    definitely lost: 0 bytes in 0 blocks
+==627607==    indirectly lost: 0 bytes in 0 blocks
+==627607==      possibly lost: 0 bytes in 0 blocks
+==627607==    still reachable: 0 bytes in 0 blocks
+==627607==         suppressed: 4,016 bytes in 1 blocks
+==627607== 
+==627607== For lists of detected and suppressed errors, rerun with: -s
+==627607== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 01:23:53 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:24:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:08:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define CHECK_ER_CMD_NOT_FOUND "minishell: %s: command not found\n"
 # define CHECK_ER_IS_DIR "minishell: %s: Is a directory\n"
 # define SYNTAX_AMB "minishell: %s: ambiguous redirect\n"
+# define BUILTINS_FREE SIGPIPE
 # define SYNTAX_UNEXP "minishell: syntax error near unexpected token `%s'\n"
 
 #endif

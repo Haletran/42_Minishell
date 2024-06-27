@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 09:02:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:45:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,10 @@ void		print_type(t_token *token);
 void		print_type_com(t_com *com);
 int			check_number_of_heredoc(t_com *com);
 void		delete_file(char *str, t_cli *cli);
-char		*check_parsing(char *str);
+char		*check_parsing(char *str, t_cli *cli);
 int			parsing_check(t_cli *cli);
 int			check_redirection(t_cli *cli);
 int			ft_exitcode(t_cli *cli, long int exit_code);
-void		close_fds(void);
 int			get_nb_commands(t_com *com);
 void		print_error(int i, char *str);
 int			gate_or(int i);

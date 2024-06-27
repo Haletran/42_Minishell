@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:44:53 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 12:53:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:58:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*check_parsing(char *str)
+char	*check_parsing(char *str, t_cli *cli)
 {
 	int	i;
 
@@ -24,12 +24,14 @@ char	*check_parsing(char *str)
 			if (access(str, F_OK) == -1)
 			{
 				print_error(NO_FILE, str);
-				exit(127);
+				cli->mnsh->exit_code = 127;
+				return (NULL);
 			}
 			else if (access(str, X_OK) == -1)
 			{
 				ft_printf_fd(2, "%s: Permission denied\n", str);
-				exit(126);
+				cli->mnsh->exit_code = 126;
+				return (NULL);
 			}
 			else
 				str = ft_strtrim(ft_strrchr(str, '/'), "/");
@@ -67,14 +69,21 @@ int	check_path_parsing(t_cli *cli)
 	return (ERROR);
 }
 
-void	update_command(t_cli *cli)
+int	update_command(t_cli *cli)
 {
 	cli->com->env_path = free_char(cli->com->env_path);
 	cli->com->env_path = ft_strdup(cli->com->command[0]);
 	free_tab(cli->com->command);
 	cli->com->command = ft_calloc(2, ft_strlen(cli->com->env_path));
-	cli->com->command[0] = check_parsing(cli->com->env_path);
+	cli->com->command[0] = check_parsing(cli->com->env_path, cli);
+	if (cli->com->command[0] == NULL)
+	{
+		free_tab(cli->com->command);
+		cli->com->command = NULL;
+		return (ERROR);
+	}
 	cli->com->command[1] = NULL;
+	return (SUCCESS);
 }
 
 int	parsing_check(t_cli *cli)
@@ -85,7 +94,8 @@ int	parsing_check(t_cli *cli)
 	{
 		if (check_path_parsing(cli) == SUCCESS)
 		{
-			update_command(cli);
+			if (update_command(cli) == ERROR)
+				return (ERROR);
 			return (SUCCESS);
 		}
 		else

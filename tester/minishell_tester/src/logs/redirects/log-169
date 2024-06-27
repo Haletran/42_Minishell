@@ -1,44 +1,44 @@
-==27792== Memcheck, a memory error detector
-==27792== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==27792== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==27792== Command: ../../../minishell -c cat\ \<minishell.h\>./outfiles/outfile
-==27792== Parent PID: 26418
-==27792== 
-==27793== 
-==27793== FILE DESCRIPTORS: 3 open (2 std) at exit.
-==27793== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-169
-==27793==    <inherited from parent>
-==27793== 
-==27793== 
-==27793== HEAP SUMMARY:
-==27793==     in use at exit: 4,016 bytes in 1 blocks
-==27793==   total heap usage: 667 allocs, 666 frees, 21,093 bytes allocated
-==27793== 
-==27793== LEAK SUMMARY:
-==27793==    definitely lost: 0 bytes in 0 blocks
-==27793==    indirectly lost: 0 bytes in 0 blocks
-==27793==      possibly lost: 0 bytes in 0 blocks
-==27793==    still reachable: 0 bytes in 0 blocks
-==27793==         suppressed: 4,016 bytes in 1 blocks
-==27793== 
-==27793== For lists of detected and suppressed errors, rerun with: -s
-==27793== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==27792== 
-==27792== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==27792== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-169
-==27792==    <inherited from parent>
-==27792== 
-==27792== 
-==27792== HEAP SUMMARY:
-==27792==     in use at exit: 4,016 bytes in 1 blocks
-==27792==   total heap usage: 667 allocs, 666 frees, 21,093 bytes allocated
-==27792== 
-==27792== LEAK SUMMARY:
-==27792==    definitely lost: 0 bytes in 0 blocks
-==27792==    indirectly lost: 0 bytes in 0 blocks
-==27792==      possibly lost: 0 bytes in 0 blocks
-==27792==    still reachable: 0 bytes in 0 blocks
-==27792==         suppressed: 4,016 bytes in 1 blocks
-==27792== 
-==27792== For lists of detected and suppressed errors, rerun with: -s
-==27792== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==626414== Memcheck, a memory error detector
+==626414== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==626414== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==626414== Command: ../../../minishell -c cat\ \<minishell.h\>./outfiles/outfile
+==626414== Parent PID: 624579
+==626414== 
+==626415== 
+==626415== FILE DESCRIPTORS: 3 open (2 std) at exit.
+==626415== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-169
+==626415==    <inherited from parent>
+==626415== 
+==626415== 
+==626415== HEAP SUMMARY:
+==626415==     in use at exit: 4,016 bytes in 1 blocks
+==626415==   total heap usage: 639 allocs, 638 frees, 20,470 bytes allocated
+==626415== 
+==626415== LEAK SUMMARY:
+==626415==    definitely lost: 0 bytes in 0 blocks
+==626415==    indirectly lost: 0 bytes in 0 blocks
+==626415==      possibly lost: 0 bytes in 0 blocks
+==626415==    still reachable: 0 bytes in 0 blocks
+==626415==         suppressed: 4,016 bytes in 1 blocks
+==626415== 
+==626415== For lists of detected and suppressed errors, rerun with: -s
+==626415== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==626414== 
+==626414== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==626414== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-169
+==626414==    <inherited from parent>
+==626414== 
+==626414== 
+==626414== HEAP SUMMARY:
+==626414==     in use at exit: 4,016 bytes in 1 blocks
+==626414==   total heap usage: 639 allocs, 638 frees, 20,470 bytes allocated
+==626414== 
+==626414== LEAK SUMMARY:
+==626414==    definitely lost: 0 bytes in 0 blocks
+==626414==    indirectly lost: 0 bytes in 0 blocks
+==626414==      possibly lost: 0 bytes in 0 blocks
+==626414==    still reachable: 0 bytes in 0 blocks
+==626414==         suppressed: 4,016 bytes in 1 blocks
+==626414== 
+==626414== For lists of detected and suppressed errors, rerun with: -s
+==626414== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

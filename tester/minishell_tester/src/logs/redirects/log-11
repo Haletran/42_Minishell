@@ -1,44 +1,44 @@
-==26504== Memcheck, a memory error detector
-==26504== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==26504== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==26504== Command: ../../../minishell -c \<"1""2""3""4""5"\ cat
-==26504== Parent PID: 26418
-==26504== 
-==26505== 
-==26505== FILE DESCRIPTORS: 3 open (2 std) at exit.
-==26505== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-11
-==26505==    <inherited from parent>
-==26505== 
-==26505== 
-==26505== HEAP SUMMARY:
-==26505==     in use at exit: 4,016 bytes in 1 blocks
-==26505==   total heap usage: 705 allocs, 704 frees, 21,349 bytes allocated
-==26505== 
-==26505== LEAK SUMMARY:
-==26505==    definitely lost: 0 bytes in 0 blocks
-==26505==    indirectly lost: 0 bytes in 0 blocks
-==26505==      possibly lost: 0 bytes in 0 blocks
-==26505==    still reachable: 0 bytes in 0 blocks
-==26505==         suppressed: 4,016 bytes in 1 blocks
-==26505== 
-==26505== For lists of detected and suppressed errors, rerun with: -s
-==26505== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==26504== 
-==26504== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==26504== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-11
-==26504==    <inherited from parent>
-==26504== 
-==26504== 
-==26504== HEAP SUMMARY:
-==26504==     in use at exit: 4,016 bytes in 1 blocks
-==26504==   total heap usage: 705 allocs, 704 frees, 21,349 bytes allocated
-==26504== 
-==26504== LEAK SUMMARY:
-==26504==    definitely lost: 0 bytes in 0 blocks
-==26504==    indirectly lost: 0 bytes in 0 blocks
-==26504==      possibly lost: 0 bytes in 0 blocks
-==26504==    still reachable: 0 bytes in 0 blocks
-==26504==         suppressed: 4,016 bytes in 1 blocks
-==26504== 
-==26504== For lists of detected and suppressed errors, rerun with: -s
-==26504== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==624712== Memcheck, a memory error detector
+==624712== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==624712== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==624712== Command: ../../../minishell -c \<"1""2""3""4""5"\ cat
+==624712== Parent PID: 624579
+==624712== 
+==624713== 
+==624713== FILE DESCRIPTORS: 3 open (2 std) at exit.
+==624713== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-11
+==624713==    <inherited from parent>
+==624713== 
+==624713== 
+==624713== HEAP SUMMARY:
+==624713==     in use at exit: 4,016 bytes in 1 blocks
+==624713==   total heap usage: 677 allocs, 676 frees, 20,726 bytes allocated
+==624713== 
+==624713== LEAK SUMMARY:
+==624713==    definitely lost: 0 bytes in 0 blocks
+==624713==    indirectly lost: 0 bytes in 0 blocks
+==624713==      possibly lost: 0 bytes in 0 blocks
+==624713==    still reachable: 0 bytes in 0 blocks
+==624713==         suppressed: 4,016 bytes in 1 blocks
+==624713== 
+==624713== For lists of detected and suppressed errors, rerun with: -s
+==624713== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==624712== 
+==624712== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==624712== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-11
+==624712==    <inherited from parent>
+==624712== 
+==624712== 
+==624712== HEAP SUMMARY:
+==624712==     in use at exit: 4,016 bytes in 1 blocks
+==624712==   total heap usage: 677 allocs, 676 frees, 20,726 bytes allocated
+==624712== 
+==624712== LEAK SUMMARY:
+==624712==    definitely lost: 0 bytes in 0 blocks
+==624712==    indirectly lost: 0 bytes in 0 blocks
+==624712==      possibly lost: 0 bytes in 0 blocks
+==624712==    still reachable: 0 bytes in 0 blocks
+==624712==         suppressed: 4,016 bytes in 1 blocks
+==624712== 
+==624712== For lists of detected and suppressed errors, rerun with: -s
+==624712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

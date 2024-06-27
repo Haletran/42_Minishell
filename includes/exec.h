@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 12:22:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:45:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 int		check_commands(char **str, t_cli *cli);
 int		check_if_fork(char **str, t_lst *mnsh, t_cli *cli);
 int		check_if_path_needed(char **str);
+int     sigpipe_checker(t_com *com);
 
 //****************************************************************************/
 //* child_utils.c
@@ -44,9 +45,9 @@ int		redir(t_cli **cli);
 //****************************************************************************/
 //* exec_args.c
 
-char	*check_parsing(char *str);
+char	*check_parsing(char *str, t_cli *cli);
 int		check_path_parsing(t_cli *cli);
-void	update_command(t_cli *cli);
+int     update_command(t_cli *cli);
 int		parsing_check(t_cli *cli);
 int		get_nb_commands(t_com *com);
 

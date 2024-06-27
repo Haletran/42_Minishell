@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 07:54:21 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 13:10:38 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:02:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int	check_commands(char **str, t_cli *cli)
 		return (ft_env(cli));
 	else if (!ft_strncmp(str[0], "exit", 4) && ft_strlen(str[0]) == 4)
 		return (ft_exit(str[1], cli));
+	else if (!ft_strncmp(str[0], "unset", 5) && ft_strlen(str[0]) == 5)
+		return (ft_unset(str, &cli->mnsh));
+	else if (!ft_strncmp(str[0], "cd", 2) && ft_strlen(str[0]) == 2)
+		return (ft_cd(str, cli->mnsh));
 	return (NOT_FOUND);
 }
 
@@ -90,4 +94,18 @@ int	check_if_path_needed(char **str)
 	else if (!ft_strncmp(str[0], "<<", 2) && ft_strlen(str[0]) == 2)
 		return (SUCCESS);
 	return (NOT_FOUND);
+}
+
+int	sigpipe_checker(t_com *com)
+{
+	if (!com)
+		return (ERROR);
+	if (check_if_path_needed(com->command) == NOT_FOUND)
+	{
+		if (!com->env_path)
+			return (ERROR);
+		if (access(com->env_path, F_OK) == -1)
+			return (ERROR);
+	}
+	return (SUCCESS);
 }

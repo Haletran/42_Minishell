@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 13:21:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:37:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	piping(t_cli *cli, int count)
 					cli->mnsh->env_var) == -1)
 				ft_exitcode(cli, cli->mnsh->exit_code);
 		}
-		if (check_if_builtin(cli->com->command[0]) == SUCCESS)
+		else if (check_if_builtin(cli->com->command[0]) == SUCCESS)
 			ft_exitcode(cli, cli->mnsh->exit_code);
 	}
 	else

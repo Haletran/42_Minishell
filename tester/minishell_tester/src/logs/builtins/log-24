@@ -1,44 +1,44 @@
-==28760== Memcheck, a memory error detector
-==28760== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==28760== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==28760== Command: ../../../minishell -c echo\ \ \ \ \ "\ \ \ \ \ \ \ \ \ \ \ n"\ \ \ \ \ \ \ "\ \ \ \ \ \ \ \ \ \ \ \ n"
-==28760== Parent PID: 26418
-==28760== 
-==28761== 
-==28761== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==28761== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-24
-==28761==    <inherited from parent>
-==28761== 
-==28761== 
-==28761== HEAP SUMMARY:
-==28761==     in use at exit: 4,016 bytes in 1 blocks
-==28761==   total heap usage: 796 allocs, 795 frees, 22,520 bytes allocated
-==28761== 
-==28761== LEAK SUMMARY:
-==28761==    definitely lost: 0 bytes in 0 blocks
-==28761==    indirectly lost: 0 bytes in 0 blocks
-==28761==      possibly lost: 0 bytes in 0 blocks
-==28761==    still reachable: 0 bytes in 0 blocks
-==28761==         suppressed: 4,016 bytes in 1 blocks
-==28761== 
-==28761== For lists of detected and suppressed errors, rerun with: -s
-==28761== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==28760== 
-==28760== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==28760== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-24
-==28760==    <inherited from parent>
-==28760== 
-==28760== 
-==28760== HEAP SUMMARY:
-==28760==     in use at exit: 4,016 bytes in 1 blocks
-==28760==   total heap usage: 796 allocs, 795 frees, 22,520 bytes allocated
-==28760== 
-==28760== LEAK SUMMARY:
-==28760==    definitely lost: 0 bytes in 0 blocks
-==28760==    indirectly lost: 0 bytes in 0 blocks
-==28760==      possibly lost: 0 bytes in 0 blocks
-==28760==    still reachable: 0 bytes in 0 blocks
-==28760==         suppressed: 4,016 bytes in 1 blocks
-==28760== 
-==28760== For lists of detected and suppressed errors, rerun with: -s
-==28760== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==627747== Memcheck, a memory error detector
+==627747== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==627747== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==627747== Command: ../../../minishell -c echo\ \ \ \ \ "\ \ \ \ \ \ \ \ \ \ \ n"\ \ \ \ \ \ \ "\ \ \ \ \ \ \ \ \ \ \ \ n"
+==627747== Parent PID: 624579
+==627747== 
+==627748== 
+==627748== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==627748== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-24
+==627748==    <inherited from parent>
+==627748== 
+==627748== 
+==627748== HEAP SUMMARY:
+==627748==     in use at exit: 4,016 bytes in 1 blocks
+==627748==   total heap usage: 768 allocs, 767 frees, 21,897 bytes allocated
+==627748== 
+==627748== LEAK SUMMARY:
+==627748==    definitely lost: 0 bytes in 0 blocks
+==627748==    indirectly lost: 0 bytes in 0 blocks
+==627748==      possibly lost: 0 bytes in 0 blocks
+==627748==    still reachable: 0 bytes in 0 blocks
+==627748==         suppressed: 4,016 bytes in 1 blocks
+==627748== 
+==627748== For lists of detected and suppressed errors, rerun with: -s
+==627748== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==627747== 
+==627747== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==627747== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/builtins/log-24
+==627747==    <inherited from parent>
+==627747== 
+==627747== 
+==627747== HEAP SUMMARY:
+==627747==     in use at exit: 4,016 bytes in 1 blocks
+==627747==   total heap usage: 768 allocs, 767 frees, 21,897 bytes allocated
+==627747== 
+==627747== LEAK SUMMARY:
+==627747==    definitely lost: 0 bytes in 0 blocks
+==627747==    indirectly lost: 0 bytes in 0 blocks
+==627747==      possibly lost: 0 bytes in 0 blocks
+==627747==    still reachable: 0 bytes in 0 blocks
+==627747==         suppressed: 4,016 bytes in 1 blocks
+==627747== 
+==627747== For lists of detected and suppressed errors, rerun with: -s
+==627747== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

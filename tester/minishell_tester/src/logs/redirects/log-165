@@ -1,63 +1,63 @@
-==27764== Memcheck, a memory error detector
-==27764== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==27764== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==27764== Command: ../../../minishell -c echo\ hi\ \>\>./test_files/invalid_permission\ |\ echo\ bye
-==27764== Parent PID: 26418
-==27764== 
-==27765== 
-==27765== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==27765== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
-==27765==    <inherited from parent>
-==27765== 
-==27765== 
-==27765== HEAP SUMMARY:
-==27765==     in use at exit: 4,016 bytes in 1 blocks
-==27765==   total heap usage: 708 allocs, 707 frees, 22,010 bytes allocated
-==27765== 
-==27765== LEAK SUMMARY:
-==27765==    definitely lost: 0 bytes in 0 blocks
-==27765==    indirectly lost: 0 bytes in 0 blocks
-==27765==      possibly lost: 0 bytes in 0 blocks
-==27765==    still reachable: 0 bytes in 0 blocks
-==27765==         suppressed: 4,016 bytes in 1 blocks
-==27765== 
-==27765== For lists of detected and suppressed errors, rerun with: -s
-==27765== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==27766== 
-==27766== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==27766== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
-==27766==    <inherited from parent>
-==27766== 
-==27766== 
-==27766== HEAP SUMMARY:
-==27766==     in use at exit: 4,016 bytes in 1 blocks
-==27766==   total heap usage: 708 allocs, 707 frees, 22,010 bytes allocated
-==27766== 
-==27766== LEAK SUMMARY:
-==27766==    definitely lost: 0 bytes in 0 blocks
-==27766==    indirectly lost: 0 bytes in 0 blocks
-==27766==      possibly lost: 0 bytes in 0 blocks
-==27766==    still reachable: 0 bytes in 0 blocks
-==27766==         suppressed: 4,016 bytes in 1 blocks
-==27766== 
-==27766== For lists of detected and suppressed errors, rerun with: -s
-==27766== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==27764== 
-==27764== FILE DESCRIPTORS: 4 open (3 std) at exit.
-==27764== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
-==27764==    <inherited from parent>
-==27764== 
-==27764== 
-==27764== HEAP SUMMARY:
-==27764==     in use at exit: 4,016 bytes in 1 blocks
-==27764==   total heap usage: 708 allocs, 707 frees, 22,010 bytes allocated
-==27764== 
-==27764== LEAK SUMMARY:
-==27764==    definitely lost: 0 bytes in 0 blocks
-==27764==    indirectly lost: 0 bytes in 0 blocks
-==27764==      possibly lost: 0 bytes in 0 blocks
-==27764==    still reachable: 0 bytes in 0 blocks
-==27764==         suppressed: 4,016 bytes in 1 blocks
-==27764== 
-==27764== For lists of detected and suppressed errors, rerun with: -s
-==27764== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==626376== Memcheck, a memory error detector
+==626376== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==626376== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==626376== Command: ../../../minishell -c echo\ hi\ \>\>./test_files/invalid_permission\ |\ echo\ bye
+==626376== Parent PID: 624579
+==626376== 
+==626377== 
+==626377== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==626377== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
+==626377==    <inherited from parent>
+==626377== 
+==626377== 
+==626377== HEAP SUMMARY:
+==626377==     in use at exit: 4,016 bytes in 1 blocks
+==626377==   total heap usage: 680 allocs, 679 frees, 21,387 bytes allocated
+==626377== 
+==626377== LEAK SUMMARY:
+==626377==    definitely lost: 0 bytes in 0 blocks
+==626377==    indirectly lost: 0 bytes in 0 blocks
+==626377==      possibly lost: 0 bytes in 0 blocks
+==626377==    still reachable: 0 bytes in 0 blocks
+==626377==         suppressed: 4,016 bytes in 1 blocks
+==626377== 
+==626377== For lists of detected and suppressed errors, rerun with: -s
+==626377== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==626378== 
+==626378== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==626378== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
+==626378==    <inherited from parent>
+==626378== 
+==626378== 
+==626378== HEAP SUMMARY:
+==626378==     in use at exit: 4,016 bytes in 1 blocks
+==626378==   total heap usage: 680 allocs, 679 frees, 21,387 bytes allocated
+==626378== 
+==626378== LEAK SUMMARY:
+==626378==    definitely lost: 0 bytes in 0 blocks
+==626378==    indirectly lost: 0 bytes in 0 blocks
+==626378==      possibly lost: 0 bytes in 0 blocks
+==626378==    still reachable: 0 bytes in 0 blocks
+==626378==         suppressed: 4,016 bytes in 1 blocks
+==626378== 
+==626378== For lists of detected and suppressed errors, rerun with: -s
+==626378== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==626376== 
+==626376== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==626376== Open file descriptor 3: /sgoinfre/goinfre/Perso/bapasqui/Core/42_Minishell/tester/minishell_tester/src/logs/redirects/log-165
+==626376==    <inherited from parent>
+==626376== 
+==626376== 
+==626376== HEAP SUMMARY:
+==626376==     in use at exit: 4,016 bytes in 1 blocks
+==626376==   total heap usage: 680 allocs, 679 frees, 21,387 bytes allocated
+==626376== 
+==626376== LEAK SUMMARY:
+==626376==    definitely lost: 0 bytes in 0 blocks
+==626376==    indirectly lost: 0 bytes in 0 blocks
+==626376==      possibly lost: 0 bytes in 0 blocks
+==626376==    still reachable: 0 bytes in 0 blocks
+==626376==         suppressed: 4,016 bytes in 1 blocks
+==626376== 
+==626376== For lists of detected and suppressed errors, rerun with: -s
+==626376== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
