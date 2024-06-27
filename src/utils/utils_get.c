@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:22 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:08:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:03:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	get_exit_code(t_lst *mnsh)
 {
+	if (mnsh->exit_code == 1)
+		return (1);
 	if (WIFEXITED(mnsh->exit_code))
 		return (mnsh->exit_code = WEXITSTATUS(mnsh->exit_code));
 	else if (WIFSIGNALED(mnsh->exit_code))

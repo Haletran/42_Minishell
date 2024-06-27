@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:28:43 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/12 12:00:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:21:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	pwd(t_lst *mnsh, t_cli *cli)
 
 	path = search_path("PWD", mnsh);
 	ft_printf_fd(1, "%s\n", path);
+	path = free_char(path);
 	ft_exitcode(cli, 0);
 	return (0);
 }

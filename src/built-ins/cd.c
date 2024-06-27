@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 11:46:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:22:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ char	*search_path(char *str, t_lst *lst)
 		env = env->next;
 	}
 	if (!env)
-		return (ft_strdup(getcwd(NULL, 1024)));
-	return (env->value);
+		return (getcwd(NULL, 1024));
+	return (ft_strdup(env->value));
 }
 
 int	handle_arguments(char **str, t_lst *lst)
@@ -91,7 +91,7 @@ int	ft_cd(char **str, t_lst *lst)
 	char	*old_path;
 
 	valid = 0;
-	old_path = ft_strdup(search_path("PWD", lst));
+	old_path = search_path("PWD", lst);
 	if (handle_arguments(str, lst) == ERROR)
 	{
 		old_path = free_char(old_path);
