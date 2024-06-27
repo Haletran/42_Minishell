@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 13:56:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:01:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ typedef struct s_p_exp
 
 typedef struct s_cli
 {
+	char					*av;
+	int						process_com;
 	char					*input;
 	t_token					*token;
 	t_com					*com;

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:39:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:04:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,18 @@ int	main(int ac, char **av, char **envp)
 {
 	t_cli	*cli;
 
-	(void)ac;
-	if (av[1] && !ft_strncmp(av[1], "1", 1) && ft_strlen(av[1]) == 1)
-		title_screen("Minishell", HGRN);
+	if (ac == 2)
+	{
+		if (av[1] && !ft_strncmp(av[1], "-c", 2))
+			ft_printf_fd(2, "minishell: -c: option requires an argument\n");
+		else if (av[1] && ft_strncmp(av[1], "-c", 2))
+			ft_printf_fd(2, "minishell: %s: invalid option\n", av[1]);
+		exit(2);
+	}
 	if (!envp || !*envp || check_if_path(envp) == 0)
 		exit_error(1, "Error: No environment variable found", NULL, DEBUG_MODE);
 	cli = NULL;
-	init_organizer(&cli, envp);
+	init_organizer(&cli, envp, av);
 	while (1)
 		render_prompt(cli);
 	return (cli->mnsh->exit_code);

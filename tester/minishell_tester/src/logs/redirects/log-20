@@ -1,0 +1,108 @@
+==37187== Memcheck, a memory error detector
+==37187== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==37187== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==37187== Command: /usr/bin/cat
+==37187== Parent PID: 37186
+==37187== 
+==37187== 
+==37187== Process terminating with default action of signal 13 (SIGPIPE)
+==37187==    at 0x4974887: write (write.c:26)
+==37187==    by 0x10DAE7: ??? (in /usr/bin/cat)
+==37187==    by 0x10B4C3: ??? (in /usr/bin/cat)
+==37187==    by 0x4889D8F: (below main) (libc_start_call_main.h:58)
+==37187== 
+==37187== FILE DESCRIPTORS: 5 open (3 std) at exit.
+==37187== Open file descriptor 4: /data/tester/tester/minishell_tester/src/logs/redirects/log-20
+==37187==    <inherited from parent>
+==37187== 
+==37187== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-20
+==37187==    <inherited from parent>
+==37187== 
+==37187== 
+==37187== HEAP SUMMARY:
+==37187==     in use at exit: 135,211 bytes in 3 blocks
+==37187==   total heap usage: 3 allocs, 0 frees, 135,211 bytes allocated
+==37187== 
+==37187== 10 bytes in 1 blocks are still reachable in loss record 1 of 3
+==37187==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37187==    by 0x490858E: strdup (strdup.c:42)
+==37187==    by 0x489DD57: __textdomain (textdomain.c:94)
+==37187==    by 0x489DD57: textdomain (textdomain.c:64)
+==37187==    by 0x10A780: ??? (in /usr/bin/cat)
+==37187==    by 0x4889D8F: (below main) (libc_start_call_main.h:58)
+==37187== 
+==37187== 34 bytes in 1 blocks are still reachable in loss record 2 of 3
+==37187==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37187==    by 0x489A5DE: set_binding_values.part.0 (bindtextdom.c:203)
+==37187==    by 0x489A89B: set_binding_values (bindtextdom.c:322)
+==37187==    by 0x489A89B: bindtextdomain (bindtextdom.c:320)
+==37187==    by 0x10A778: ??? (in /usr/bin/cat)
+==37187==    by 0x4889D8F: (below main) (libc_start_call_main.h:58)
+==37187== 
+==37187== 135,167 bytes in 1 blocks are still reachable in loss record 3 of 3
+==37187==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37187==    by 0x10B477: ??? (in /usr/bin/cat)
+==37187==    by 0x4889D8F: (below main) (libc_start_call_main.h:58)
+==37187== 
+==37187== LEAK SUMMARY:
+==37187==    definitely lost: 0 bytes in 0 blocks
+==37187==    indirectly lost: 0 bytes in 0 blocks
+==37187==      possibly lost: 0 bytes in 0 blocks
+==37187==    still reachable: 135,211 bytes in 3 blocks
+==37187==         suppressed: 0 bytes in 0 blocks
+==37187== 
+==37187== For lists of detected and suppressed errors, rerun with: -s
+==37187== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+by 0x10D4F8: create_redirection (create_redirection.c:81)
+==37188==    by 0x10E927: create_command (create_command.c:118)
+==37188==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==37188==    by 0x10A3BB: render_prompt (main.c:37)
+==37188==    by 0x10A53E: main (main.c:62)
+==37188== 
+==37188== 40 bytes in 1 blocks are still reachable in loss record 5 of 7
+==37188==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37188==    by 0x1106BA: insert_redirection_end (dlst_redir_set.c:83)
+==37188==    by 0x10D370: handle_redir (create_redirection.c:39)
+==37188==    by 0x10D3FE: redirect_attr (create_redirection.c:56)
+==37188==    by 0x10D4F8: create_redirection (create_redirection.c:81)
+==37188==    by 0x10E927: create_command (create_command.c:118)
+==37188==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==37188==    by 0x10A3BB: render_prompt (main.c:37)
+==37188==    by 0x10A53E: main (main.c:62)
+==37188== 
+==37188== 56 bytes in 1 blocks are still reachable in loss record 6 of 7
+==37188==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37188==    by 0x10FC96: insert_com_end (dlst_command_insert.c:50)
+==37188==    by 0x10E8C4: create_command (create_command.c:109)
+==37188==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==37188==    by 0x10A3BB: render_prompt (main.c:37)
+==37188==    by 0x10A53E: main (main.c:62)
+==37188== 
+==37188== LEAK SUMMARY:
+==37188==    definitely lost: 0 bytes in 0 blocks
+==37188==    indirectly lost: 0 bytes in 0 blocks
+==37188==      possibly lost: 0 bytes in 0 blocks
+==37188==    still reachable: 149 bytes in 6 blocks
+==37188==         suppressed: 4,016 bytes in 1 blocks
+==37188== 
+==37188== For lists of detected and suppressed errors, rerun with: -s
+==37188== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==37186== 
+==37186== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==37186== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-20
+==37186==    <inherited from parent>
+==37186== 
+==37186== 
+==37186== HEAP SUMMARY:
+==37186==     in use at exit: 4,016 bytes in 1 blocks
+==37186==   total heap usage: 441 allocs, 440 frees, 14,128 bytes allocated
+==37186== 
+==37186== LEAK SUMMARY:
+==37186==    definitely lost: 0 bytes in 0 blocks
+==37186==    indirectly lost: 0 bytes in 0 blocks
+==37186==      possibly lost: 0 bytes in 0 blocks
+==37186==    still reachable: 0 bytes in 0 blocks
+==37186==         suppressed: 4,016 bytes in 1 blocks
+==37186== 
+==37186== For lists of detected and suppressed errors, rerun with: -s
+==37186== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

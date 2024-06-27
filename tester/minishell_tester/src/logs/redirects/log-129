@@ -1,0 +1,27 @@
+==38592== Memcheck, a memory error detector
+==38592== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==38592== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==38592== Command: /usr/bin/cat
+==38592== Parent PID: 38591
+==38592== 
+==38592== 
+==38592== FILE DESCRIPTORS: 2 open (0 std) at exit.
+===38591== 
+==38591== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==38591== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-129
+==38591==    <inherited from parent>
+==38591== 
+==38591== 
+==38591== HEAP SUMMARY:
+==38591==     in use at exit: 4,016 bytes in 1 blocks
+==38591==   total heap usage: 426 allocs, 425 frees, 13,855 bytes allocated
+==38591== 
+==38591== LEAK SUMMARY:
+==38591==    definitely lost: 0 bytes in 0 blocks
+==38591==    indirectly lost: 0 bytes in 0 blocks
+==38591==      possibly lost: 0 bytes in 0 blocks
+==38591==    still reachable: 0 bytes in 0 blocks
+==38591==         suppressed: 4,016 bytes in 1 blocks
+==38591== 
+==38591== For lists of detected and suppressed errors, rerun with: -s
+==38591== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

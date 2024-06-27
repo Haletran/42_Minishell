@@ -1,0 +1,100 @@
+==38618== Memcheck, a memory error detector
+==38618== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==38618== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==38618== Command: ../../../minishell -c echo\ hi\ |\ echo\ bye\ \>./outfiles/outfile01\ \>./outfiles/outfile02
+==38618== Parent PID: 37046
+==38618== 
+==38619== 
+==38619== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==38619== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-133
+==38619==    <inherited from parent>
+==38619== 
+==38619== 
+==38619== HEAP SUMMARY:
+==38619==     in use at exit: 4,016 bytes in 1 blocks
+==38619==   total heap usage: 453 allocs, 452 frees, 14,492 bytes allocated
+==38619== 
+==38619== LEAK SUMMARY:
+==38619==    definitely lost: 0 bytes in 0 blocks
+==38619==    indirectly lost: 0 bytes in 0 blocks
+==38619==      possibly lost: 0 bytes in 0 blocks
+==38619==    still reachable: 0 bytes in 0 blocks
+==38619==         suppressed: 4,016 bytes in 1 blocks
+==38619== 
+==38619== For lists of detected and suppressed errors, rerun with: -s
+==38619== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==38620== 
+==38620== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==38620== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-133
+==38620==    <inherited from parent>
+==38620== 
+==38620== 
+==38620== HEAP SUMMARY:
+==38620==     in use at exit: 4,118 bytes in 6 blocks
+==38620==   total heap usage: 453 allocs, 447 frees, 14,492 bytes allocated
+==38620== 
+==38620== 8 bytes in 2 blocks are still reachable in loss record 1 of 5
+==38620==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==38620==    by 0x116BB1: ft_strdup (in /data/tester/minishell)
+==38620==    by 0x10E55E: fill_command (create_command.c:56)
+==38620==    by 0x10E901: create_command (create_command.c:113)
+==38620==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==38620==    by 0x10A3BB: render_prompt (main.c:37)
+==38620==    by 0x10A53E: main (main.c:62)
+==38620== 
+==38620== 14 bytes in 1 blocks are still reachable in loss record 2 of 5
+==38620==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==38620==    by 0x115B00: ft_calloc (in /data/tester/minishell)
+==38620==    by 0x117A2D: ft_strjoin_f (in /data/tester/minishell)
+==38620==    by 0x10E423: return_path (create_command.c:28)
+==38620==    by 0x10E5E3: fill_command (create_command.c:63)
+==38620==    by 0x10E901: create_command (create_command.c:113)
+==38620==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==38620==    by 0x10A3BB: render_prompt (main.c:37)
+==38620==    by 0x10A53E: main (main.c:62)
+==38620== 
+==38620== 24 bytes in 1 blocks are still reachable in loss record 3 of 5
+==38620==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==38620==    by 0x115B00: ft_calloc (in /data/tester/minishell)
+==38620==    by 0x10E512: fill_command (create_command.c:51)
+==38620==    by 0x10E901: create_command (create_command.c:113)
+==38620==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==38620==    by 0x10A3BB: render_prompt (main.c:37)
+==38620==    by 0x10A53E: main (main.c:62)
+==38620== 
+==38620== 56 bytes in 1 blocks are still reachable in loss record 4 of 5
+==38620==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==38620==    by 0x10FC96: insert_com_end (dlst_command_insert.c:50)
+==38620==    by 0x10E8C4: create_command (create_command.c:109)
+==38620==    by 0x1141B5: parsing_organiser (organizer.c:35)
+==38620==    by 0x10A3BB: render_prompt (main.c:37)
+==38620==    by 0x10A53E: main (main.c:62)
+==38620== 
+==38620== LEAK SUMMARY:
+==38620==    definitely lost: 0 bytes in 0 blocks
+==38620==    indirectly lost: 0 bytes in 0 blocks
+==38620==      possibly lost: 0 bytes in 0 blocks
+==38620==    still reachable: 102 bytes in 5 blocks
+==38620==         suppressed: 4,016 bytes in 1 blocks
+==38620== 
+==38620== For lists of detected and suppressed errors, rerun with: -s
+==38620== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==38618== 
+==38618== FILE DESCRIPTORS: 4 open (3 std) at exit.
+==38618== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/redirects/log-133
+==38618==    <inherited from parent>
+==38618== 
+==38618== 
+==38618== HEAP SUMMARY:
+==38618==     in use at exit: 4,016 bytes in 1 blocks
+==38618==   total heap usage: 453 allocs, 452 frees, 14,492 bytes allocated
+==38618== 
+==38618== LEAK SUMMARY:
+==38618==    definitely lost: 0 bytes in 0 blocks
+==38618==    indirectly lost: 0 bytes in 0 blocks
+==38618==      possibly lost: 0 bytes in 0 blocks
+==38618==    still reachable: 0 bytes in 0 blocks
+==38618==         suppressed: 4,016 bytes in 1 blocks
+==38618== 
+==38618== For lists of detected and suppressed errors, rerun with: -s
+==38618== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

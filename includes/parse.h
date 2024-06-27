@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:14:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/21 12:46:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:01:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				parsing_organiser(t_cli *cli);
 //****************************************************************************/
 //* init.c
 
-void			init_organizer(t_cli **cli, char **envp);
+void			init_organizer(t_cli **cli, char **envp, char **av);
 int				first_allocation(t_cli **cli, char **envp);
 void			init_fd_history(t_cli **cli);
 t_env			*init_stack(t_env *env, char **str);

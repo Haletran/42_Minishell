@@ -1,0 +1,114 @@
+==39542== Memcheck, a memory error detector
+==39542== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==39542== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==39542== Command: /usr/bin/ls
+==39542== Parent PID: 39098
+==39542== 
+==39553== 
+==39553== Process terminating with default action of signal 13 (SIGPIPE)
+==39553==    at 0x49A0887: write (write.c:26)
+==39553==    by 0x4916EEC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1180)
+==39553==    by 0x49189E0: new_do_write (fileops.c:448)
+==39553==    by 0x49189E0: _IO_new_do_write (fileops.c:425)
+==39553==    by 0x49189E0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:422)
+==39553==    by 0x49164D7: _IO_file_sync@@GLIBC_2.2.5 (fileops.c:798)
+==39553==    by 0x490B1A9: fflush (iofflush.c:40)
+==39553==    by 0x113968: ??? (in /usr/bin/ls)
+==39553==    by 0x113A94: ??? (in /usr/bin/ls)
+==39553==    by 0x48D1494: __run_exit_handlers (exit.c:113)
+==39553==    by 0x48D160F: exit (exit.c:143)
+==39553==    by 0x48B5D96: (below main) (libc_start_call_main.h:74)
+==39553== 
+==39553== FILE DESCRIPTORS: 5 open (3 std) at exit.
+==39553== Open file descriptor 4: /data/tester/tester/minishell_tester/src/logs/pipes/log-6
+==39553==    <inherited from parent>
+==39553== 
+==39553== Open file descriptor 3: /data/tester/tester/minishell_tester/src/logs/pipes/log-6
+==39553==    <inherited from parent>
+==39553== 
+==39553== 
+==39553== HEAP SUMMARY:
+==39553==     in use at exit: 25,346 bytes in 37 blocks
+==39553==   total heap usage: 43 allocs, 6 frees, 59,812 bytes allocated
+==39553== 
+==39553== 10 bytes in 1 blocks are still reachable in loss record 1 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x493458E: strdup (strdup.c:42)
+==39553==    by 0x48C9D57: __textdomain (textdomain.c:94)
+==39553==    by 0x48C9D57: textdomain (textdomain.c:64)
+==39553==    by 0x10CDE7: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 34 bytes in 1 blocks are still reachable in loss record 2 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x48C65DE: set_binding_values.part.0 (bindtextdom.c:203)
+==39553==    by 0x48C689B: set_binding_values (bindtextdom.c:322)
+==39553==    by 0x48C689B: bindtextdomain (bindtextdom.c:320)
+==39553==    by 0x10CDDF: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 56 bytes in 1 blocks are still reachable in loss record 3 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x115DB8: ??? (in /usr/bin/ls)
+==39553==    by 0x115DE9: ??? (in /usr/bin/ls)
+==39553==    by 0x10D528: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 56 bytes in 1 blocks are still reachable in loss record 4 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x115DB8: ??? (in /usr/bin/ls)
+==39553==    by 0x115DE9: ??? (in /usr/bin/ls)
+==39553==    by 0x10D132: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 128 bytes in 1 blocks are still reachable in loss record 5 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x1138F9: ??? (in /usr/bin/ls)
+==39553==    by 0x10D236: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 270 bytes in 29 blocks are still reachable in loss record 6 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x11665E: ??? (in /usr/bin/ls)
+==39553==    by 0x116C9F: ??? (in /usr/bin/ls)
+==39553==    by 0x11A20E: ??? (in /usr/bin/ls)
+==39553==    by 0x10D33F: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 696 bytes in 1 blocks are still reachable in loss record 7 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x115EBB: ??? (in /usr/bin/ls)
+==39553==    by 0x11A067: ??? (in /usr/bin/ls)
+==39553==    by 0x10D33F: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 4,096 bytes in 1 blocks are still reachable in loss record 8 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x490ABA3: _IO_file_doallocate (filedoalloc.c:101)
+==39553==    by 0x4919CDF: _IO_doallocbuf (genops.c:347)
+==39553==    by 0x4918F5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==39553==    by 0x49176D4: _IO_new_file_xsputn (fileops.c:1243)
+==39553==    by 0x49176D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==39553==    by 0x4916288: fwrite_unlocked (iofwrite_u.c:42)
+==39553==    by 0x1180CE: ??? (in /usr/bin/ls)
+==39553==    by 0x118210: ??? (in /usr/bin/ls)
+==39553==    by 0x11EF12: ??? (in /usr/bin/ls)
+==39553==    by 0x119A71: ??? (in /usr/bin/ls)
+==39553==    by 0x10D33F: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== 20,000 bytes in 1 blocks are still reachable in loss record 9 of 9
+==39553==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==39553==    by 0x115DB8: ??? (in /usr/bin/ls)
+==39553==    by 0x10D2A0: ??? (in /usr/bin/ls)
+==39553==    by 0x48B5D8F: (below main) (libc_start_call_main.h:58)
+==39553== 
+==39553== LEAK SUMMARY:
+==39553==    definitely lost: 0 bytes in 0 blocks
+==39553==    indirectly lost: 0 bytes in 0 blocks
+==39553==      possibly lost: 0 bytes in 0 blocks
+==39553==    still reachable: 25,346 bytes in 37 blocks
+==39553==         suppressed: 0 bytes in 0 blocks
+==39553== 
+==39553== For lists of detected and suppressed errors, rerun with: -s
+==39553== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

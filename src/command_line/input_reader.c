@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:33:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:03:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	input_reader(t_cli *cli)
 {
 	char	*input_trim;
 
-	cli->input = readline(BRED "[~] " CRESET "MINISHELL > ");
+	if (cli->av != NULL)
+		cli->input = ft_strdup(cli->av);
+	else
+		cli->input = readline(BRED "[~] " CRESET "MINISHELL > ");
 	if (g_var == 2)
 	{
 		cli->mnsh->exit_code = 130;

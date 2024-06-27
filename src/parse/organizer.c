@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:51:31 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:38:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:03:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,17 @@
 
 int	parsing_organiser(t_cli *cli)
 {
+	int	err;
+
+	if (cli->process_com == 1)
+	{
+		err = cli->mnsh->exit_code;
+		freeway(cli);
+		exit(err);
+	}
 	input_reader(cli);
+	if (cli->av != NULL)
+		cli->process_com = 1;
 	split_into_token(cli);
 	rulers(cli);
 	tilde_expansion(cli);

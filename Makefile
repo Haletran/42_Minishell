@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 18:18:39 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/26 16:10:25 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/27 09:04:46 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,6 @@ SRCS	= src/main.c \
 		  src/command_line/input_reader.c \
 		  src/command_line/tilde_expansion.c \
 		  src/command_line/parameter_expansion.c \
-		  src/command_line/varloc_creation.c \
 		  src/command_line/create_command.c \
 		  src/command_line/parameter_exp_utils.c \
 		  src/dlst/dlst_token_get.c \
@@ -147,6 +146,9 @@ var: all
 
 pipes: all
 	@-cd tester/minishell_tester/src/ && ./tester pipes
+
+vtester: all
+	@-cd tester/minishell_tester/src/ && ./vtester mandatory
 
 clean:
 	rm -rf $(OBJS_DIR)

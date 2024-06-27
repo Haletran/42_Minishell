@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:18:10 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 15:37:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:02:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "syntax_rules.h"
 # include "typedef.h"
 # include "utils.h"
-# include <curses.h> // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <dirent.h> // opendir, readdir, closedir
 # include <errno.h>  // strerror, perror
 # include <fcntl.h>  // open
@@ -32,7 +31,6 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>    // sigaction
-# include <stdio.h>     // printf
 # include <stdlib.h>    // malloc, free
 # include <string.h>    // strerror
 # include <sys/ioctl.h> // ioctl
@@ -40,7 +38,6 @@
 # include <sys/types.h> // wait, waitpid, wait3, wait4, signal, sigemptyset,
 # include <sys/wait.h>
 # include <term.h>
-# include <termios.h> // tcsetattr, tcgetattr
 # include <unistd.h>  // write, access, close, fork, execve, dup, dup2, pipe
 
 extern int	g_var;
@@ -84,7 +81,7 @@ extern int	g_var;
 //* 						REDIRECTION OPERATOR							*//
 //* 																		*//
 //* *********************************************************************** *//
-# define REDICRECT_OPERAT_LIST "<<,<&,<←,<>,>>,>|,>&,<,>"
+# define REDICRECT_OPERAT_LIST "<<,<&,<←,>>,>|,>&,<,>"
 # define DOUBLE_GREATER_THAN ">>"
 # define GREATER_THAN_AND ">&"
 # define LESS_THAN_GREATER_THAN "<>"

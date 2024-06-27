@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/26 13:56:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:03:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	init_organizer(t_cli **cli, char **envp)
+void	init_organizer(t_cli **cli, char **envp, char **av)
 {
 	int	err;
 
@@ -20,6 +20,15 @@ void	init_organizer(t_cli **cli, char **envp)
 	err = first_allocation(cli, envp);
 	if (err == ERROR)
 		freeway(*cli);
+	if (av[1] != NULL && ft_strcmp(av[1], "-c") == 0)
+	{
+		(*cli)->av = ft_strdup(av[2]);
+		if (!(*cli)->av)
+		{
+			freeway(*cli);
+			exit_error(1, "Error: Malloc failed", NULL, DEBUG_MODE);
+		}
+	}
 	err = init_array_env(cli, envp);
 	if (err == ERROR)
 		freeway(*cli);

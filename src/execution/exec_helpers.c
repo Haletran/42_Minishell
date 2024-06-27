@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:14:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:57:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ int	check_er(t_cli *cli)
 		return (SUCCESS);
 	if (ft_isthis(tmp[0], '.') != 0 && ft_strlen(tmp[0]) == 1)
 	{
-		ft_printf_fd(2, "CHECK_ER_ARG_REQ\n", tmp[0]);
-		ft_printf_fd(2, "CHECK_ER_USAGE", tmp[0], tmp[0]);
+		ft_printf_fd(2, CHECK_ER_ARG_REQ, tmp[0]);
+		ft_printf_fd(2, CHECK_ER_USAGE, tmp[0], tmp[0]);
 		cli->mnsh->exit_code = 2;
 		return (ERROR);
 	}
 	else if (!ft_strncmp(tmp[0], "..", 2) && ft_strlen(tmp[0]) == 2)
 	{
-		ft_printf_fd(2, "CHECK_ER_CMD_NOT_FOUND", tmp[0]);
+		ft_printf_fd(2, CHECK_ER_CMD_NOT_FOUND, tmp[0]);
 		cli->mnsh->exit_code = 127;
 		return (ERROR);
 	}
 	else if (!ft_strncmp(tmp[0], "../", 3) && ft_strlen(tmp[0]) == 3)
 	{
-		ft_printf_fd(2, "CHECK_ER_IS_DIR", tmp[0]);
+		ft_printf_fd(2, CHECK_ER_IS_DIR, tmp[0]);
 		cli->mnsh->exit_code = 126;
 		return (ERROR);
 	}
