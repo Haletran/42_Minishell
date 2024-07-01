@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 17:48:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:13:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,27 @@ void	exit_input(t_cli *cli)
 	ft_exitcode(cli, code);
 }
 
-void	input_reader(t_cli *cli)
+static char *swap_trim(char *input)
 {
 	char	*input_trim;
 
+	if (ft_strlen(input) != 0)
+	{
+		input_trim = ft_strtrim(input, " ");
+		if (!input_trim)
+			return (NULL);
+		input = free_char(input);
+		input = ft_strdup(input_trim);
+		if (!input)
+			return (NULL);
+		input_trim = free_char(input_trim);
+	}
+	return (input);
+
+}
+
+void	input_reader(t_cli *cli)
+{
 	if (cli->av != NULL)
 		cli->input = ft_strdup(cli->av);
 	else
@@ -41,15 +58,9 @@ void	input_reader(t_cli *cli)
 	}
 	if (!cli->input)
 		exit_input(cli);
-	if (ft_strlen(cli->input) != 0)
-	{
-		if (cli->input)
-			add_history(cli->input);
-		input_trim = ft_strtrim(cli->input, " ");
-		cli->input = free_char(cli->input);
-		cli->input = ft_strdup(input_trim);
-		input_trim = free_char(input_trim);
-	}
+	cli->input = swap_trim(cli->input);
 	if (!cli->input)
 		exit_input(cli);
+	if (cli->input[0])
+		add_history(cli->input);
 }

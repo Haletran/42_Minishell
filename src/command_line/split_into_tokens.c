@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:01:11 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 17:39:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:18:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	split_into_token(t_cli *cli)
 
 	cli->n_token = get_last_index(cli->token) + 1;
 	i = 0;
-	while (cli->input[i] != 0)
+	while (i < (int)ft_strlen(cli->input) && cli->input[i] != 0)
 	{
 		if (ft_isthis("\n\t", cli->input[i]))
 			i++;
