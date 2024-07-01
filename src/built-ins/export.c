@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 09:15:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:40:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int	ft_export(t_lst *mnsh, char **str)
 	int	err;
 
 	i = 0;
+	if (!mnsh->env_var_lst)
+		return (ERROR);
 	if (!str[1])
 	{
-		if (!mnsh->env_var_lst)
-			return (ERROR);
 		cpy_process(mnsh);
 		return (SUCCESS);
 	}
