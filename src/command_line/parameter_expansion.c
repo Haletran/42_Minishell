@@ -6,18 +6,19 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:37:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:22:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	replacement(t_p_exp *exp)
+void	replacement(t_cli *cli, t_p_exp *exp)
 {
 	char	*new_token;
 	char	*r;
 
 	r = NULL;
+	exp->value = get_parameter_value(cli, exp->key);
 	if (exp->value[0] != 0)
 	{
 		new_token = ft_substr(exp->tmp->token, 0, exp->d_pos);
@@ -32,6 +33,7 @@ void	replacement(t_p_exp *exp)
 		exp->tmp->token = ft_strdup(r);
 		r = free_char(r);
 	}
+	exp->d_count--;
 	exp->key = free_char(exp->key);
 	exp->value = free_char(exp->value);
 }
@@ -54,11 +56,10 @@ void	parameter_expansion(t_cli *cli)
 					var_len(exp.tmp->token) - 1);
 			if (exp.key == NULL)
 				return ;
-			exp.value = get_parameter_value(cli, exp.key);
-			replacement(&exp);
-			exp.d_count--;
+			replacement(cli, &exp);
 		}
-		if (exp.tmp != NULL)
-			exp.tmp = exp.tmp->next;
+		exp.tmp = delete_token_empty(cli, exp.tmp);
+		if (exp.tmp == NULL)
+			break ;
 	}
 }

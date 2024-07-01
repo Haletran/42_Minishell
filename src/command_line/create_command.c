@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 22:39:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:53:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 		tmp = tmp->next;
 	}
 	com->command[i] = NULL;
-	if (com->type == HEREDOC || com->type == REDIRECTION_OPERATOR)
+	if (com->type == HEREDOC || com->type == REDIRECTION_OPERATOR
+		|| com->command[0][0] == 0)
 		com->env_path = NULL;
 	else
 		com->env_path = return_path(com->command[0], &cli);
@@ -96,8 +97,9 @@ void	create_command(t_cli *cli)
 {
 	t_token	*tmp;
 	t_com	*com;
-	int index = 0;
+	int		index;
 
+	index = 0;
 	tmp = cli->token;
 	cli->mnsh->env_var = cpy_env(cli);
 	find_path(cli->mnsh->env_var_lst, cli->mnsh);

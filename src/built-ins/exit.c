@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 11:11:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:53:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ int	ft_exit(char *code, t_cli *cli)
 		exit(ft_exit_process(backup, cli));
 	}
 	exit_code = ft_strtoll(code);
-	if (check_code(code) == ERROR || ft_strtoll_check(code) > 0)
+	if (code[0] == '\0' || check_code(code) == ERROR
+		|| ft_strtoll_check(code) > 0)
 	{
 		ft_printf_fd(2, EXIT_NUM_REQ, code);
 		exit(ft_exit_process(2, cli));

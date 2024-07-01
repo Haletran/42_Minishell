@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:06:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	remove_quotes(t_cli *cli)
 	tmp = cli->token;
 	while (tmp != NULL)
 	{
+		if (replace_empty_quote(cli, tmp) == 1)
+		{
+			tmp = tmp->next;
+			delete_node_token(&cli->token, tmp->prev);
+		}
 		if ((tmp->type == QUOTE || tmp->type == DQUOTE) && tmp->prev != NULL)
 		{
 			tmp = tmp->prev;
@@ -71,19 +76,26 @@ void	cleaning_token_list(t_cli *cli)
 	i = -1;
 	tmp = cli->token;
 	concat_no_space(cli);
-	while ((++i != cli->n_token) && (tmp != NULL))
+	while ((tmp != NULL) && (++i != cli->n_token))
 	{
-		if (tmp->next != NULL && ft_strcmp(tmp->token, " ") == 0
+		if (tmp->next != NULL && tmp->type == SPACE_HOLDER
 			&& tmp->type != IMMUTABLE && tmp->type != FREEZE)
 		{
 			tmp = tmp->next;
 			delete_node_token(&cli->token, tmp->prev);
 		}
-		else if ((ft_strcmp(tmp->token, "\n") == 0 || ft_strcmp(tmp->token,
-					" ") == 0) && tmp->type != IMMUTABLE && tmp->type != FREEZE)
-			replace_last_space(tmp);
+		else if (tmp->type == SPACE_HOLDER && tmp->type != IMMUTABLE
+			&& tmp->type != FREEZE)
+		{
+			tmp = tmp->prev;
+			delete_node_token(&cli->token, tmp->next);
+		}
 		else
+		{
+			if (tmp == NULL)
+				break ;
 			tmp = tmp->next;
+		}
 	}
 	reindex_token_list(cli);
 }
@@ -100,10 +112,9 @@ void	concat_no_space(t_cli *cli)
 		if (ft_strcmp(tmp->token, " ") != 0 && tmp->next != NULL
 			&& ft_strcmp(tmp->next->token, " ") != 0)
 		{
-			if ((tmp->type == COMMAND || tmp->type == ARGUMENT
-					|| tmp->type == BUILTIN) && (tmp->next->type == COMMAND
-					|| tmp->next->type == ARGUMENT
-					|| tmp->next->type == BUILTIN))
+			if ((tmp->type == 0 || tmp->type == ARGUMENT || tmp->type == 11)
+				&& (tmp->next->type == 0 || tmp->next->type == 3
+					|| tmp->next->type == 11))
 			{
 				tmp->token = ft_strjoin_f(tmp->token, tmp->next->token);
 				delete_node_token(&cli->token, tmp->next);

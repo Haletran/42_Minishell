@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 23:38:15 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 11:14:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_exit_process(int exit_code, t_cli *cli)
 	return (exit_code);
 }
 
-void ft_main_exit(t_cli *cli, long long exit_code)
+void	ft_main_exit(t_cli *cli, long long exit_code)
 {
 	if (cli->mnsh->outfile_check == 0)
 		ft_printf_fd(1, "exit\n");

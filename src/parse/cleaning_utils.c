@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:29:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:41:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:14:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,55 @@ void	reindex_token_list(t_cli *cli)
 	cli->n_token = i;
 }
 
-void	replace_last_space(t_token *tok)
+// void	replace_last_space(t_token *tok)
+// {
+// 	if (tok->next == NULL)
+// 	{
+// 		if (ft_strcmp(tok->token, " ") == 0)
+// 		{
+// 			free_char(tok->token);
+// 			tok->token = ft_strdup(" ");
+// 		}
+// 	}
+// }
+
+int	replace_empty_quote(t_cli *cli, t_token *tok)
 {
 	if (tok->next == NULL)
+		return (0);
+	if ((tok->type == QUOTE && tok->next->type == QUOTE) || (tok->type == DQUOTE
+			&& tok->next->type == DQUOTE))
 	{
-		if (ft_strcmp(tok->token, " ") == 0)
+		tok = tok->next;
+		free_char(tok->token);
+		tok->token = ft_strdup("");
+		tok->type = token_type_rediscovery(tok, cli);
+		return (1);
+	}
+	return (0);
+}
+
+t_token	*delete_token_empty(t_cli *cli, t_token *tok)
+{
+	if (ft_strcmp(tok->token, "") == 0)
+	{
+		if (tok->next == NULL && tok->prev == NULL)
 		{
-			free_char(tok->token);
-			tok->token = ft_strdup("");
+			delete_node_token(&cli->token, tok);
+			return (NULL);
+		}
+		else if (tok->prev == NULL)
+		{
+			tok = tok->next;
+			delete_node_token(&cli->token, tok->prev);
+			return (tok);
+		}
+		else if (tok->next == NULL)
+		{
+			tok = tok->prev;
+			delete_node_token(&cli->token, tok->next);
+			return (tok);
 		}
 	}
+	return (tok->next);
 }

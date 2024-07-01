@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:37:20 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:54:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			parse_var_tok(char *token, t_token *next_token, t_p_exp *exp);
 //****************************************************************************/
 //* parameter_expansion.c
 
-void		replacement(t_p_exp *exp);
+void		replacement(t_cli *cli, t_p_exp *exp);
 void		parameter_expansion(t_cli *cli);
 
 //****************************************************************************/

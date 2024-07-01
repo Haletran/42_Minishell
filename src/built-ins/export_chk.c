@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 11:58:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 15:14:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,22 +91,22 @@ int	check_valid_identifier(char *str, int value)
 
 	j = 0;
 	tmp = ft_split(str, '=');
-    if (!tmp[0])
-    {	
-        free_tab(tmp);
+	if (!tmp[0])
+	{
+		free_tab(tmp);
 		if (value == 1)
 			return (SUCCESS);
-        return (ERROR);
-    }
+		return (ERROR);
+	}
 	if (!ft_isalpha(tmp[0][0]) && tmp[0][0] != '_')
 		return (free_tab(tmp), ERROR);
 	while (tmp[0][j])
 	{
 		if (tmp[0][j] == '-')
 			return (free_tab(tmp), ERROR);
-	    if (!ft_isalnum(tmp[0][j]))
-	        return (free_tab(tmp), ERROR);
-	    j++;
+		if (!ft_isalnum(tmp[0][j]))
+			return (free_tab(tmp), ERROR);
+		j++;
 	}
 	j = 0;
 	if (!tmp[1])
@@ -120,4 +120,3 @@ int	check_valid_identifier(char *str, int value)
 	free_tab(tmp);
 	return (SUCCESS);
 }
-

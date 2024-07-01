@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:14:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:23:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:53:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_token_type	quote_n_heredoc_census(char *token, t_cli *cli);
 
 void			reindex_token_list(t_cli *cli);
 void			replace_last_space(t_token *tok);
+int				replace_empty_quote(t_cli *cli, t_token *tok);
+t_token			*delete_token_empty(t_cli *cli, t_token *tok);
 
 //****************************************************************************/
 //* organizer.c
