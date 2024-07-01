@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 20:13:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:44:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	input_reader(t_cli *cli)
 	cli->input = swap_trim(cli->input);
 	if (!cli->input)
 		exit_input(cli);
-	if (cli->input[0])
+	if (cli->input)
 		add_history(cli->input);
 }
