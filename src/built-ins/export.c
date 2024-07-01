@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 23:33:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 09:15:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 	char	**tmp;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[i]) == ERROR)
+	if (check_valid_identifier(str[i], 0) == ERROR)
 		return (ERROR);
 	tmp = ft_split(str[i], '=');
 	while (env)

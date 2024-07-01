@@ -1,14 +1,16 @@
 {
-   readline
+   <Readline>
    Memcheck:Leak
+   match-leak-kinds: reachable
    ...
    fun:readline
    ...
 }
-
 {
-   readline
+   <Readline/AddHistory>
    Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
    ...
    fun:add_history
    ...

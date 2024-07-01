@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/18 15:55:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:42:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	print_dlst_token(t_token *head)
 		tmp = tmp->next;
 	}
 	ft_printf_fd(1, "token: %s\n", tmp->token);
-	ft_printf_fd(1, "type: %s\n", tmp->type);
 	ft_printf("index: %d\n", tmp->index);
 }
 

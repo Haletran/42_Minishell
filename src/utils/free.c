@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:30:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 20:33:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:27:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	freeway(t_cli *cli)
 	delete_all_nodes_variable(&cli->variable);
 	free_command_line(cli);
 	rl_clear_history();
-	free_char(cli->av);
+	cli->av = free_char(cli->av);
 	free_tab(cli->redirect);
 	free_tab(cli->control);
 	free_tab(cli->keyword);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:10:30 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 11:51:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:04:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_echo(char **str, t_lst *mnsh, t_cli *cli)
 	echo_print(str, i);
 	mnsh->exit_code = 0;
 	if (flag == 0)
-		ft_printf("\n");
+		ft_printf_fd(1, "\n");
 	ft_exitcode(cli, 0);
 	return (1);
 }

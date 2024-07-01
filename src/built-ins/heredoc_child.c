@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:14:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 19:08:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:29:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	child_process(t_cli *cli, t_com *com)
 	input = free_char(input);
 	cli->mnsh->heredoc_pipe = 2;
 	ft_exitcode(cli, 0);
+	input = free_char(input);
 }

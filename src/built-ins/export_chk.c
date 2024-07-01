@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 23:26:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:13:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	not_existing(t_lst *mnsh, char **str)
 	t_env	*env;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[1]) == ERROR)
+	if (check_valid_identifier(str[1], 1) == ERROR)
 		return (ERROR);
 	if (already_exist(mnsh, str, 0) == 1)
 		return (SUCCESS);
@@ -84,21 +84,29 @@ int	check_if_var_exist(t_env *env, char *str)
 	return (SUCCESS);
 }
 
-int	check_valid_identifier(char *str)
+int	check_valid_identifier(char *str, int value)
 {
 	char	**tmp;
 	int		j;
 
 	j = 0;
 	tmp = ft_split(str, '=');
-	if (!tmp[0])
-		return (free_tab(tmp), ERROR);
+    if (!tmp[0])
+    {	
+        free_tab(tmp);
+		if (value == 1)
+			return (SUCCESS);
+        return (ERROR);
+    }
+	if (!ft_isalpha(tmp[0][0]) && tmp[0][0] != '_')
+		return (ERROR);
 	while (tmp[0][j])
 	{
-		if (!ft_isalpha(tmp[0][j]))
-			if (tmp[0][j] != '+' && tmp[0][j] != '_')
-				return (free_tab(tmp), ERROR);
-		j++;
+		if (tmp[0][j] == '-')
+			return (ERROR);
+	    if (!ft_isalnum(tmp[0][j]))
+	        return (ERROR);
+	    j++;
 	}
 	j = 0;
 	if (!tmp[1])
@@ -112,3 +120,4 @@ int	check_valid_identifier(char *str)
 	free_tab(tmp);
 	return (SUCCESS);
 }
+
