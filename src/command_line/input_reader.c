@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/27 20:39:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:48:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	input_reader(t_cli *cli)
 		exit_input(cli);
 	if (ft_strlen(cli->input) != 0)
 	{
+		if (cli->input)
+			add_history(cli->input);
 		input_trim = ft_strtrim(cli->input, " ");
 		cli->input = free_char(cli->input);
 		cli->input = ft_strdup(input_trim);
@@ -50,6 +52,4 @@ void	input_reader(t_cli *cli)
 	}
 	if (!cli->input)
 		exit_input(cli);
-	if (cli->input[0])
-		add_history(cli->input);
 }
