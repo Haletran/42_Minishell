@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/05/16 15:33:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:14:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	delete_node_token(t_token **head, t_token *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	free(del_node->token);
-	del_node->token = NULL;
+	del_node->token = free_char(del_node->token);
 	free(del_node);
 	del_node = NULL;
 }

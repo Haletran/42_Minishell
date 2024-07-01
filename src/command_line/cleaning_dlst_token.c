@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 15:06:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:16:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	cleaning_token_list(t_cli *cli)
 			&& tmp->type != FREEZE)
 		{
 			tmp = tmp->prev;
-			delete_node_token(&cli->token, tmp->next);
+			if (tmp)
+				delete_node_token(&cli->token, tmp->next);
 		}
 		else
 		{
