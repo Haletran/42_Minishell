@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 14:23:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:01:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	cd_old_path(t_lst *lst)
+int		cd_old_path(t_lst *lst)
 {
 	t_env	*env;
 
@@ -25,6 +25,9 @@ void	cd_old_path(t_lst *lst)
 	}
 	if (env && env->value)
 		chdir(env->value);
+	else
+		return (10);
+	return (SUCCESS);
 }
 
 void	update_path(t_lst *lst, char *old_path)
@@ -108,7 +111,7 @@ int	ft_cd(char **str, t_lst *lst)
 		chdir(lst->home_path);
 	}
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
-		cd_old_path(lst);
+		valid = cd_old_path(lst);
 	else
 		valid = chdir(str[1]);
 	return (cd_valid(valid, str, old_path, lst));
