@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 13:34:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:29:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	cleaning_token_list(t_cli *cli)
 	i = -1;
 	tmp = cli->token;
 	concat_no_space(cli);
+	//debug(cli, "BEFORE CLEANING");
 	while ((tmp != NULL) && (++i != cli->n_token))
 	{
 		if (tmp->next != NULL && tmp->type == SPACE_HOLDER
@@ -84,9 +85,12 @@ void	cleaning_token_list(t_cli *cli)
 			tmp = tmp->next;
 			delete_node_token(&cli->token, tmp->prev);
 		}
-		else if (tmp->next == NULL && tmp->type == SPACE_HOLDER && tmp->type != IMMUTABLE
-			&& tmp->type != FREEZE)
+		else if (tmp->next == NULL && tmp->type == SPACE_HOLDER
+			&& tmp->type != IMMUTABLE && tmp->type != FREEZE)
+		{
 			delete_node_token(&cli->token, tmp);
+			tmp = NULL;
+		}
 		else
 			tmp = tmp->next;
 	}
