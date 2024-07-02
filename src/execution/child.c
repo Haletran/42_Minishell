@@ -6,17 +6,11 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 20:42:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:37:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	cleanup(t_cli *cli)
-{
-	close(cli->mnsh->fd[1]);
-	close(cli->mnsh->fd[0]);
-}
 
 int	redir(t_cli **cli)
 {
@@ -72,7 +66,8 @@ void	piping(t_cli *cli, int count)
 			redirection_error(cli);
 		redirection_fd(cli);
 		redirection_pipe(cli);
-		cleanup(cli);
+		close(cli->mnsh->fd[1]);
+		close(cli->mnsh->fd[0]);
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
 			if (execve(cli->com->env_path, cli->com->command,

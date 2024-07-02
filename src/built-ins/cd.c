@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:28:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:35:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int		cd_old_path(t_lst *lst)
+int	cd_old_path(t_lst *lst)
 {
 	t_env	*env;
 

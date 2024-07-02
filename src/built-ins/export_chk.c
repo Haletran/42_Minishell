@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 12:42:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:00:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	not_existing(t_lst *mnsh, char **str)
 	t_env	*env;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[1], 1) == ERROR)
-		return (ERROR);
 	if (already_exist(mnsh, str, 0) == 1)
 		return (SUCCESS);
 	while (env->next)
@@ -108,13 +106,7 @@ int	check_valid_identifier(char *str, int value)
 		j++;
 	}
 	j = 0;
-	if (!tmp[1])
-		return (free_tab(tmp), SUCCESS);
-	while (tmp[1][j])
-	{
-		if (!ft_isprint(tmp[1][j]))
-			return (free_tab(tmp), ERROR);
-		j++;
-	}
+	if (check_valid_value(tmp, j) == ERROR)
+		return (free_tab(tmp), ERROR);
 	return (free_tab(tmp), SUCCESS);
 }

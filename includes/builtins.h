@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:50:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:27:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:40:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			cd_valid(int valid, char *old_path, t_lst *lst);
 //****************************************************************************/
 //* cd.c
 
-int         cd_old_path(t_lst *lst);
+int			cd_old_path(t_lst *lst);
 void		update_path(t_lst *lst, char *old_path);
 char		*search_path(char *str, t_lst *lst);
 int			handle_arguments(char **str, t_lst *lst);
@@ -74,6 +74,7 @@ int			already_exist(t_lst *mnsh, char **str, int i);
 int			check_valid_key(char **str);
 int			check_if_var_exist(t_env *env, char *str);
 int			check_valid_identifier(char *str, int value);
+int			check_valid_value(char **tmp, int j);
 
 //****************************************************************************/
 //* export_utils.c

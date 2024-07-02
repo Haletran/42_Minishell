@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:50:50 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:29:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:33:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	cleaning_token_list(t_cli *cli)
 	i = -1;
 	tmp = cli->token;
 	concat_no_space(cli);
-	//debug(cli, "BEFORE CLEANING");
 	while ((tmp != NULL) && (++i != cli->n_token))
 	{
 		if (tmp->next != NULL && tmp->type == SPACE_HOLDER

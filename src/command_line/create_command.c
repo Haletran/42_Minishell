@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 11:01:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:01:51 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,33 +93,34 @@ char	**cpy_env(t_cli *cli)
 	return (result);
 }
 
+void	init_ccs(t_ccs *ccs, t_cli *cli)
+{
+	ccs->index = 0;
+	ccs->tmp = cli->token;
+}
+
 void	create_command(t_cli *cli)
 {
-	t_token	*tmp;
-	t_com	*com;
-	int		index;
+	t_ccs	ccs;
 
-	index = 0;
-	tmp = cli->token;
+	init_ccs(&ccs, cli);
 	cli->mnsh->env_var = cpy_env(cli);
 	find_path(cli->mnsh->env_var_lst, cli->mnsh);
 	cli->path = ft_split(cli->mnsh->env_path, ':');
-	while (tmp != NULL)
+	while (ccs.tmp != NULL)
 	{
-		if (tmp->type == COMMAND || tmp->type == BUILTIN
-			|| tmp->type == HEREDOC)
+		if (ccs.tmp->type == COMMAND || ccs.tmp->type == HEREDOC)
 		{
-			insert_com_end(&cli->com, tmp->type, index);
-			com = cli->com;
-			while (com->next != NULL)
-				com = com->next;
-			fill_command(cli, tmp, com);
-			com->redirection = NULL;
-			index++;
+			insert_com_end(&cli->com, ccs.tmp->type, ccs.index++);
+			ccs.com = cli->com;
+			while (ccs.com->next != NULL)
+				ccs.com = ccs.com->next;
+			fill_command(cli, ccs.tmp, ccs.com);
+			ccs.com->redirection = NULL;
 		}
-		else if (tmp->type == CONTROLE_OPERATOR)
-			index++;
-		tmp = tmp->next;
+		else if (ccs.tmp->type == CONTROLE_OPERATOR)
+			ccs.index++;
+		ccs.tmp = ccs.tmp->next;
 	}
 	create_redirection(cli);
 	free_tab(cli->path);

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:08:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 14:47:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:58:57 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,14 @@ typedef struct s_p_exp
 	int						d_count;
 	int						d_pos;
 	int						key_len;
-
 }							t_p_exp;
+
+typedef struct s_ccs
+{
+	t_token					*tmp;
+	t_com					*com;
+	int						index;
+}							t_ccs;
 
 typedef struct s_cli
 {
