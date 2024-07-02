@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 16:00:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:16:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[i]);
 	env->next->value = NULL;
+	env->next->prev = env;
 	env->next->print = 1;
 	env->next->next = NULL;
 	return (SUCCESS);
@@ -53,30 +54,35 @@ int	add_var(t_lst *mnsh, char **str, int i)
 	}
 	env->next->value = ft_strdup(tmp[1]);
 	env->next->next = NULL;
+	env->next->prev = env;
 	free_tab(tmp);
 	return (SUCCESS);
 }
 
 void	env_dup(t_env *env, char *value, char *to_keep, char **tmp)
 {
-	while (env)
-	{
-		if (!ft_strcmp(env->key, tmp[0]))
-		{
-			if (!env->value)
-			{
-				env->value = ft_strdup(to_keep);
-				break ;
-			}
-			value = ft_strdup(env->value);
-			env->value = free_char(env->value);
-			env->value = ft_strjoin(value, to_keep);
-			env->print = 0;
-			value = free_char(value);
-			break ;
-		}
-		env = env->next;
-	}
+    t_env *prev = NULL;
+    while (env)
+    {
+        if (!ft_strcmp(env->key, tmp[0]))
+        {
+            if (!env->value)
+            {
+                env->value = ft_strdup(to_keep);
+                break ;
+            }
+            value = ft_strdup(env->value);
+            env->value = free_char(env->value);
+            env->value = ft_strjoin(value, to_keep);
+            env->print = 0;
+            value = free_char(value);
+            if (prev)
+                env->prev = prev;
+            break ;
+        }
+        prev = env;
+        env = env->next;
+    }
 }
 
 int	add_back(t_lst *mnsh, char **str, int i)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:12:03 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:35:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:12:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,28 @@ t_env	*freed_key_value(t_env *env)
 	return (env->next);
 }
 
+int	check_if_env_found(t_env *env, char *str)
+{
+	if (!ft_strncmp(env->key, str, ft_strlen(str))
+		&& ft_strlen(env->key) == ft_strlen(str))
+		return (1);
+	return (0);
+}
+
 void	delete_var(t_lst *mnsh, char *str)
 {
-	t_env	*env;
+	t_env	*tmp;
 
-	env = mnsh->env_var_lst;
-	while (env)
+	tmp = mnsh->env_var_lst;
+	while (tmp->next != NULL && check_if_env_found(tmp, str) == 0)
+		tmp = tmp->next;
+	if (check_if_env_found(tmp, str) == 1)
 	{
-		if (!ft_strncmp(env->key, str, ft_strlen(str))
-			&& ft_strlen(env->key) == ft_strlen(str))
-		{
-			env = env->next;
-			if (!env)
-				break ;
-			delete_node_env(&mnsh->env_var_lst, env->prev);
-		}
-		else
-		{
-			if (env->next)
-				env = env->next;
-			else
-				break ;
-		}
+		delete_node_env(&mnsh->env_var_lst, tmp);
+		tmp = NULL;
 	}
+	else
+		return ;
 }
 
 int	ft_unset(char **str, t_lst **mnsh)
@@ -57,3 +56,4 @@ int	ft_unset(char **str, t_lst **mnsh)
 	(*mnsh)->exit_code = 0;
 	return (0);
 }
+

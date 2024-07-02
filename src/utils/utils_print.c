@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 15:09:25 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 13:12:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:20:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	print_list_env(char *string, t_lst *mnsh)
 		if (current->print == 0 || current->value)
 			ft_printf_fd(1, "%s%s%s\n", current->key, string, current->value);
 		current = current->next;
+		if (!current)
+			break ;
 	}
 }
 

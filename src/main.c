@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 16:28:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:37:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	render_prompt(t_cli *cli)
 	else if (cli->rules_flag == 0)
 		exec_pipe(cli);
 	cli->input = free_char(cli->input);
+	g_var = 0;
 	free_command_line(cli);
 }
 
@@ -55,8 +56,8 @@ int	main(int ac, char **av, char **envp)
 			ft_printf_fd(2, "minishell: %s: invalid option\n", av[1]);
 		exit(2);
 	}
-	title_screen("MINISHELL", GRN);
-	ft_printf(BBLU"[ Developed by ]"CRESET" ygaiffie & bapasqui\n\n");
+	//title_screen("MINISHELL", GRN);
+	//ft_printf(BBLU"[ Developed by ]"CRESET" ygaiffie & bapasqui\n\n");
 	if (!envp || !*envp || check_if_path(envp) == 0)
 		exit_error(1, "Error: No environment variable found", NULL, DEBUG_MODE);
 	cli = NULL;

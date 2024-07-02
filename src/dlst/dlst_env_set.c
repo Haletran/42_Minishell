@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:27:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 12:59:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:02:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	delete_node_env(t_env **head, t_env *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	del_node->key = free_char(del_node->key);
-	del_node->value = free_char(del_node->value);
+	free(del_node->key);
+	del_node->key = NULL;
+	free(del_node->value);
+	del_node->value = NULL;
 	free(del_node);
 	del_node = NULL;
 }
