@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:29:52 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 21:05:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:14:11 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ void	init_exp(t_p_exp *exp, t_token *tmp, t_cli *cli)
 char	*get_parameter_value(t_cli *cli, char *key)
 {
 	char	*value;
-	pid_t	pid;
+	char	*pid;
 
-	pid = 98234;
 	if (key[0] == '?')
 		return (ft_itoa(cli->mnsh->exit_code));
 	else if (key[0] == '$')
-		return (ft_itoa(pid));
+	{
+		pid = ft_strdup(get_env("SYSTEMD_EXEC_PID", cli->mnsh));
+		if (!pid)
+			return (ft_itoa(0));
+		return (pid);
+	}
 	else
 		value = ft_strdup(get_value_from_key(cli->mnsh->env_var_lst, key));
 	if (key[0] > 0 && value == NULL)

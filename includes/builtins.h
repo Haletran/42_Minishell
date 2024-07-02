@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:50:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:57:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:27:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 //* cd_utils.c
 
 int			return_process(int exit_code, char *old_path, t_lst *lst);
-int			cd_valid(int valid, char **str, char *old_path, t_lst *lst);
+int			cd_valid(int valid, char *old_path, t_lst *lst);
 
 //****************************************************************************/
 //* cd.c

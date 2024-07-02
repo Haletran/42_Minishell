@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:10:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:01:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:28:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,11 @@ int	ft_cd(char **str, t_lst *lst)
 			ft_printf_fd(2, CD_HOME_NOT);
 			return (return_process(1, old_path, lst));
 		}
-		chdir(lst->home_path);
+		valid = chdir(lst->home_path);
 	}
 	else if (!ft_strncmp(str[1], "-", 1) && ft_strlen(str[1]) == 1)
 		valid = cd_old_path(lst);
 	else
 		valid = chdir(str[1]);
-	return (cd_valid(valid, str, old_path, lst));
+	return (cd_valid(valid, old_path, lst));
 }
