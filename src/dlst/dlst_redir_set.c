@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 08:59:08 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/19 08:59:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:35:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	delete_node_redirection(t_redirection **head, t_redirection *del_node)
 		del_node->next->prev = del_node->prev;
 	if (del_node->prev != NULL)
 		del_node->prev->next = del_node->next;
-	free(del_node->file);
+	del_node->file = free_char(del_node->file);
 	free(del_node);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:19:09 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 20:19:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:31:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **envp)
 		exit(2);
 	}
 	//title_screen("MINISHELL", GRN);
-	//ft_printf("\033[1;36m[ Developed by ]\033[0m ygaiffie & bapasqui\033[0m\n\n");
+	//ft_printf("[ Developed by ] ygaiffie & bapasqui\n\n");
 	if (!envp || !*envp || check_if_path(envp) == 0)
 		exit_error(1, "Error: No environment variable found", NULL, DEBUG_MODE);
 	cli = NULL;

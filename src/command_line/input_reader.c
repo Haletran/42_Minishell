@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:52:52 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 20:44:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:00:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	exit_input(t_cli *cli)
 	ft_exitcode(cli, code);
 }
 
-static char *swap_trim(char *input)
+static char	*swap_trim(char *input)
 {
 	char	*input_trim;
 
@@ -41,7 +41,6 @@ static char *swap_trim(char *input)
 		input_trim = free_char(input_trim);
 	}
 	return (input);
-
 }
 
 void	input_reader(t_cli *cli)

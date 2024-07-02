@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:29:56 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 15:14:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:24:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ void	reindex_token_list(t_cli *cli)
 	}
 	cli->n_token = i;
 }
-
-// void	replace_last_space(t_token *tok)
-// {
-// 	if (tok->next == NULL)
-// 	{
-// 		if (ft_strcmp(tok->token, " ") == 0)
-// 		{
-// 			free_char(tok->token);
-// 			tok->token = ft_strdup(" ");
-// 		}
-// 	}
-// }
 
 int	replace_empty_quote(t_cli *cli, t_token *tok)
 {

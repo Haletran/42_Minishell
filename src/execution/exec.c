@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 20:29:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:01:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,6 @@ void	handle_heredoc(t_cli *cli, int *heredoc)
 		heredoc_close_fd(cli);
 		unlink("/tmp/.heredoc");
 		exit(SUCCESS);
-	}
-}
-
-void	print_all_com(t_com *com)
-{
-	t_com	*tmp;
-
-	tmp = com;
-	while (tmp)
-	{
-		ft_printf_fd(1, "index: %d\n", tmp->index);
-		if (tmp->command)
-			ft_printf_fd(1, "command: %s\n", tmp->command[0]);
-		if (tmp->env_path)
-			ft_printf_fd(1, "env_path: %s\n", tmp->env_path);
-		if (tmp->type == HEREDOC)
-			ft_printf_fd(1, "type: HEREDOC\n");
-		if (tmp->type == COMMAND)
-			ft_printf_fd(1, "type: COMMAND\n");
-		tmp = tmp->next;
 	}
 }
 
