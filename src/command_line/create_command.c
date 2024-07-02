@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 16:01:51 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:26:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,6 @@ char	**cpy_env(t_cli *cli)
 	}
 	result[i] = NULL;
 	return (result);
-}
-
-void	init_ccs(t_ccs *ccs, t_cli *cli)
-{
-	ccs->index = 0;
-	ccs->tmp = cli->token;
 }
 
 void	create_command(t_cli *cli)

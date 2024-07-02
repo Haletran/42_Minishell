@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:28:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 15:43:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:27:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,10 @@ void	create_redirection(t_cli *cli)
 	com = cli->com;
 	cli->com->redirection = NULL;
 	redirect_attr(com, tmp);
+}
+
+void	init_ccs(t_ccs *ccs, t_cli *cli)
+{
+	ccs->index = 0;
+	ccs->tmp = cli->token;
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:12:17 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:40:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:27:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_env	*sort_in_ascii(t_env *list);
 void	historyze(t_cli *cli);
 int		ret_code(t_lst *mnsh, int ret);
 void	handle_seg(int signum);
+void	init_ccs(t_ccs *ccs, t_cli *cli);
 
 //****************************************************************************/
 //* utils_get.c

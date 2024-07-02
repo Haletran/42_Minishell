@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:53:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:28:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_valid_value(char **tmp, int j)
 {
-	//ft_printf_fd(1, "tmp[1] = %s\n", tmp[1]);
 	if (!tmp[1])
 		return (SUCCESS);
 	while (tmp[1][j])
