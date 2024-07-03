@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_chk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 19:09:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:42:41 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ int	not_existing(t_lst *mnsh, char **str)
 		env = env->next;
 	env->next = ft_calloc(1, sizeof(t_env));
 	env->next->key = ft_strdup(str[0]);
-	if (!ft_strncmp(str[2], "$", 1))
+	if (str[2] && !ft_strncmp(str[2], "$", 1))
 	{
 		env->next->value = expand_var(mnsh, ft_strdup(str[2]));
+		env->next->prev = env;
 		env->next->next = NULL;
 		return (SUCCESS);
 	}
 	env->next->value = ft_strdup(str[2]);
+	env->next->prev = env;
 	env->next->next = NULL;
 	return (SUCCESS);
 }

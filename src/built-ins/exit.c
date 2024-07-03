@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 09:16:58 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 14:53:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:11:48 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int	ft_exit(char *code, t_cli *cli)
 
 int	ft_exitcode(t_cli *cli, long int exit_code)
 {
-	close(cli->mnsh->backup[1]);
-	close(cli->mnsh->backup[0]);
+	//close(cli->mnsh->backup[1]);
+	//close(cli->mnsh->backup[0]);
 	freeway(cli);
 	if (!exit_code)
 		exit(0);

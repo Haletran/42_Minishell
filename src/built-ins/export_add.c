@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 19:16:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:31:38 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	add_var(t_lst *mnsh, char **str, int i)
 
 void	env_dup(t_env *env, char *value, char *to_keep, char **tmp)
 {
-    t_env *prev = NULL;
     while (env)
     {
         if (!ft_strcmp(env->key, tmp[0]))
@@ -76,11 +75,8 @@ void	env_dup(t_env *env, char *value, char *to_keep, char **tmp)
             env->value = ft_strjoin(value, to_keep);
             env->print = 0;
             value = free_char(value);
-            if (prev)
-                env->prev = prev;
             break ;
         }
-        prev = env;
         env = env->next;
     }
 }
