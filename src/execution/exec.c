@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 19:14:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:54:57 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,11 @@ int	exec_pipe(t_cli *cli)
 	count = 0;
 	handle_sig(2);
 	heredoc = 0;
-	if (check_er(cli) == ERROR)
-		if (!cli->com->redirection)
-			return (ERROR);
+    if (check_er(cli) == ERROR)
+	{
+        if (!cli->com || !cli->com->redirection)
+        	return (ERROR);
+	}
 	cli->mnsh->pipe_count = get_nb_pipes(cli->token);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);
 	cli->mnsh->backup[0] = dup(STDIN_FILENO);
@@ -105,12 +107,7 @@ int	exec_pipe(t_cli *cli)
 		handle_heredoc(cli, &heredoc);
 	if (g_var == 0)
 		loop_commands(cli, &count);
-	redirect_std(cli);
+	redirect_std(cli, heredoc);
 	wait_process();
-	if (heredoc == 1)
-	{
-		unlink("/tmp/.heredoc");
-		close(cli->mnsh->heredoc_fd);
-	}
 	return (SUCCESS);
 }

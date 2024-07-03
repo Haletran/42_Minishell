@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 14:53:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:53:35 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	handle_sig(int check);
 //****************************************************************************/
 //* exec_helpers.c
 
-void	redirect_std(t_cli *cli);
+void	redirect_std(t_cli *cli, int heredoc);
 void	wait_process(void);
 void	reset_redir_values(t_cli *cli);
 

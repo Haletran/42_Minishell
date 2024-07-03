@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exec_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 16:35:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:53:08 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	redirect_std(t_cli *cli)
+void	redirect_std(t_cli *cli, int heredoc)
 {
 	dup2(cli->mnsh->backup[0], STDIN_FILENO);
 	close(cli->mnsh->backup[0]);
 	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
 	close(cli->mnsh->backup[1]);
+	if (heredoc == 1)
+	{
+		unlink("/tmp/.heredoc");
+		close(cli->mnsh->heredoc_fd);
+	}
 }
 
 void	wait_process(void)
