@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/07 17:36:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:45:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_env	*init_stack(t_env *env, char **str)
 			free_char(key);
 		if (!value)
 			return (NULL);
-		insert_env_end(&env, ft_strdup(key), ft_strdup(value));
+		insert_env_end(&env, ft_strdup(key), ft_strdup(value), 0);
 		if ((!env) || (!env->key) || (!env->value))
 			return (NULL);
 		key = free_char(key);
