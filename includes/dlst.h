@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:03:47 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/27 13:28:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:22:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	delete_node_env(t_env **head, t_env *del_node);
 void	delete_all_nodes_env(t_env **head);
 void	insert_env_front(t_env **head, char *key, char *value);
 void	insert_env_after(t_env *prev_node, char *key, char *value);
-void	insert_env_end(t_env **head, char *key, char *value);
+void	insert_env_end(t_env **head, char *key, char *value, int print);
 
 //****************************************************************************/
 //* dlst_redir_get.c

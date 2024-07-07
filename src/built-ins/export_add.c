@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 16:59:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:28:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	env = mnsh->env_var_lst;
 	if (check_identifier(str[i], 0) == ERROR || check_var_found(env, str[i]))
 		return (ERROR);
-	insert_env_end(&env, ft_strdup(str[i]), NULL);
+	insert_env_end(&env, ft_strdup(str[i]), NULL, 1);
 	if ((!env) || (!env->key))
 		return (ERROR);
 	return (SUCCESS);
@@ -40,7 +40,7 @@ int	add_var(t_lst *mnsh, char **str, int i)
 	value = ft_strdup(ft_strchr(str[i++], '=') + 1);
 	if (!value)
 		return (free_char(key), ERROR);
-	insert_env_end(&env, ft_strdup(key), ft_strdup(value));
+	insert_env_end(&env, ft_strdup(key), ft_strdup(value), 0);
 	key = free_char(key);
 	value = free_char(value);
 	while (env->next != NULL)
