@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 02:15:28 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/27 18:22:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 13:18:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	first_allocation(t_cli **cli, char **envp)
 
 t_env	*init_stack(t_env *env, char **str)
 {
-	char	**tmp;
+	char	*key;
+	char	*value;
 	int		i;
 
 	i = 0;
@@ -62,16 +63,17 @@ t_env	*init_stack(t_env *env, char **str)
 		return (NULL);
 	while (str[i])
 	{
-		tmp = ft_split(str[i], '=');
-		if (!tmp)
+		key = ft_substr(str[i], 0, ft_strlen_endc(str[i], '='));
+		if (!key)
 			return (NULL);
-		insert_env_end(&env, ft_strdup(tmp[0]), ft_strdup(tmp[1]));
-		if (!env)
+		value = ft_strdup(ft_strchr(str[i++], '=') + 1);
+			if(!value)
+				return (NULL);
+		insert_env_end(&env, ft_strdup(key), ft_strdup(value));
+		if ((!env) || (!env->key) || (!env->value))
 			return (NULL);
-		if (!env->key || !env->value)
-			return (NULL);
-		i++;
-		free_tab(tmp);
+		key = free_char(key);
+		value = free_char(value);
 	}
 	return (env);
 }
