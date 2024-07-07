@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 14:17:32 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 09:20:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:25:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ int	init_array(t_cli **cli)
 	(*cli)->keyword = ft_split(KEYWORD_LIST, ',');
 	if (!(*cli)->keyword)
 		return (return_error(ERROR, "Keyword: Alloc ", NULL, DEBUG_MODE));
-	(*cli)->bracket = ft_split(BRACKET_LIST, ',');
-	if (!(*cli)->bracket)
-		return (return_error(ERROR, "bracket: Alloc ", NULL, DEBUG_MODE));
 	(*cli)->builtin = ft_split(BUILTIN_LIST, ',');
 	if (!(*cli)->builtin)
 		return (return_error(ERROR, "builtin: Alloc ", NULL, DEBUG_MODE));

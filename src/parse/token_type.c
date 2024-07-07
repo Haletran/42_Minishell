@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:04:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:26:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	ft_lenstrtype(char *token, t_cli *cli)
 	i = 0;
 	i += ft_lencmparray(token, cli->redirect);
 	i += ft_lencmparray(token, cli->control);
-	i += ft_lencmparray(token, cli->bracket);
 	i += ft_lencmparray(token, cli->keyword);
 	i += ft_lencmparray(token, cli->spe_param);
 	return (i);
@@ -55,8 +54,6 @@ t_token_type	token_type_discovery(char *token, t_cli *cli)
 		return (REDIRECTION_OPERATOR);
 	if (ft_lencmparray(token, cli->control) > 0)
 		return (CONTROLE_OPERATOR);
-	if (ft_lencmparray(token, cli->bracket) > 0)
-		return (BRACKET);
 	if (cli->token == NULL || ft_iscontrol(get_token_from_index(cli->token,
 				get_last_index(cli->token)), cli) > 0)
 		return (COMMAND);

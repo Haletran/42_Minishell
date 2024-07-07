@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 17:00:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:24:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 	if (check_identifier(str[i], 0) == ERROR)
 		return (ERROR);
 	tmp = ft_split(str[i], '=');
+	if (!tmp[1])
+		return (free_tab(tmp), SUCCESS);
 	while (env)
 	{
 		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
