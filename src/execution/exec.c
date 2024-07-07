@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/03 16:54:57 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:29:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ int	exec_pipe(t_cli *cli)
 	count = 0;
 	handle_sig(2);
 	heredoc = 0;
-    if (check_er(cli) == ERROR)
+	if (check_er(cli) == ERROR)
 	{
-        if (!cli->com || !cli->com->redirection)
-        	return (ERROR);
+		if (!cli->com || !cli->com->redirection)
+			return (ERROR);
 	}
 	cli->mnsh->pipe_count = get_nb_pipes(cli->token);
 	cli->mnsh->nb_heredoc = check_number_of_heredoc(cli->com);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/03 16:31:38 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:25:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,24 @@ int	add_var(t_lst *mnsh, char **str, int i)
 
 void	env_dup(t_env *env, char *value, char *to_keep, char **tmp)
 {
-    while (env)
-    {
-        if (!ft_strcmp(env->key, tmp[0]))
-        {
-            if (!env->value)
-            {
-                env->value = ft_strdup(to_keep);
-                break ;
-            }
-            value = ft_strdup(env->value);
-            env->value = free_char(env->value);
-            env->value = ft_strjoin(value, to_keep);
-            env->print = 0;
-            value = free_char(value);
-            break ;
-        }
-        env = env->next;
-    }
+	while (env)
+	{
+		if (!ft_strcmp(env->key, tmp[0]))
+		{
+			if (!env->value)
+			{
+				env->value = ft_strdup(to_keep);
+				break ;
+			}
+			value = ft_strdup(env->value);
+			env->value = free_char(env->value);
+			env->value = ft_strjoin(value, to_keep);
+			env->print = 0;
+			value = free_char(value);
+			break ;
+		}
+		env = env->next;
+	}
 }
 
 int	add_back(t_lst *mnsh, char **str, int i)
