@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/03 16:54:54 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:00:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	replace_var(t_lst *mnsh, char **str, int i)
 	char	**tmp;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[i], 0) == ERROR)
+	if (check_identifier(str[i], 0) == ERROR)
 		return (ERROR);
 	tmp = ft_split(str[i], '=');
 	while (env)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:06:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 15:38:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:59:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,36 @@ int	add_var_no_input(t_lst *mnsh, char **str, int i)
 	t_env	*env;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[i], 0) == ERROR)
+	if (check_identifier(str[i], 0) == ERROR || check_var_found(env, str[i]))
 		return (ERROR);
-	if (check_if_var_exist(env, str[i]))
+	insert_env_end(&env, ft_strdup(str[i]), NULL);
+	if ((!env) || (!env->key))
 		return (ERROR);
-	while (env->next)
-		env = env->next;
-	env->next = ft_calloc(1, sizeof(t_env));
-	env->next->key = ft_strdup(str[i]);
-	env->next->value = NULL;
-	env->next->prev = env;
-	env->next->print = 1;
-	env->next->next = NULL;
 	return (SUCCESS);
 }
 
 int	add_var(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
-	char	**tmp;
+	char	*key;
+	char	*value;
 
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[i], 0) == ERROR)
+	if (check_identifier(str[i], 0) == ERROR)
 		return (ERROR);
-	tmp = ft_split(str[i], '=');
-	while (env->next)
+	key = ft_substr(str[i], 0, ft_strlen_endc(str[i], '='));
+	if (!key)
+		return (ERROR);
+	value = ft_strdup(ft_strchr(str[i++], '=') + 1);
+	if (!value)
+		return (free_char(key), ERROR);
+	insert_env_end(&env, ft_strdup(key), ft_strdup(value));
+	key = free_char(key);
+	value = free_char(value);
+	while (env->next != NULL)
 		env = env->next;
-	env->next = ft_calloc(1, sizeof(t_env));
-	env->next->key = ft_strdup(tmp[0]);
-	if (!ft_strncmp(tmp[1], "$", 1))
-	{
-		env->next->value = expand_var(mnsh, ft_strdup(tmp[1]));
-		env->next->next = NULL;
-		free_tab(tmp);
-		return (SUCCESS);
-	}
-	env->next->value = ft_strdup(tmp[1]);
-	env->next->next = NULL;
-	env->next->prev = env;
-	free_tab(tmp);
+	if ((!env) || (!env->key) || (!env->value))
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -90,7 +81,7 @@ int	add_back(t_lst *mnsh, char **str, int i)
 
 	value = NULL;
 	env = mnsh->env_var_lst;
-	if (check_valid_identifier(str[i], 1) == ERROR)
+	if (check_identifier(str[i], 1) == ERROR)
 		return (ERROR);
 	tmp = ft_split(str[i], '+');
 	to_keep = ft_strtrim(tmp[1], "=");

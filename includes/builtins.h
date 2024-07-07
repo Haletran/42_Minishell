@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:50:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:40:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:59:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int			add_back(t_lst *mnsh, char **str, int i);
 int			not_existing(t_lst *mnsh, char **str);
 int			already_exist(t_lst *mnsh, char **str, int i);
 int			check_valid_key(char **str);
-int			check_if_var_exist(t_env *env, char *str);
-int			check_valid_identifier(char *str, int value);
+int			check_var_found(t_env *env, char *str);
+int			check_identifier(char *str, int value);
 int			check_valid_value(char **tmp, int j);
 
 //****************************************************************************/

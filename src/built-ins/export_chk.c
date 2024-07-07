@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_chk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 12:07:51 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/03 16:42:41 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 16:59:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	check_valid_key(char **str)
 	return (SUCCESS);
 }
 
-int	check_if_var_exist(t_env *env, char *str)
+int	check_var_found(t_env *env, char *str)
 {
 	while (env)
 	{
@@ -84,7 +84,7 @@ int	check_if_var_exist(t_env *env, char *str)
 	return (SUCCESS);
 }
 
-int	check_valid_identifier(char *str, int value)
+int	check_identifier(char *str, int value)
 {
 	char	**tmp;
 	int		j;
