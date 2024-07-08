@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 18:24:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:43:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,22 @@ char	*expand_var(t_lst *mnsh, char *str)
 int	replace_var(t_lst *mnsh, char **str, int i)
 {
 	t_env	*env;
-	char	**tmp;
+	t_env	*tmp;
+	char	*key;
 
+	tmp = NULL;
 	env = mnsh->env_var_lst;
 	if (check_identifier(str[i], 0) == ERROR)
 		return (ERROR);
-	tmp = ft_split(str[i], '=');
-	if (!tmp[1])
-		return (free_tab(tmp), SUCCESS);
-	while (env)
-	{
-		if (!ft_strncmp(env->key, tmp[0], ft_strlen(str[i]))
-			&& ft_strlen(env->key) == ft_strlen(tmp[0]))
-		{
-			free(env->value);
-			chk_tmp(env, tmp);
-			free_tab(tmp);
-			return (SUCCESS);
-		}
-		env = env->next;
-	}
-	free_tab(tmp);
+	key = ft_substr(str[i], 0, ft_strlen_endc(str[i], '='));
+	tmp = get_env_var(env, key);
+	key = free_char(key);
+	if (tmp == NULL)
+		return (ERROR);
+	tmp->value = free_char(tmp->value);
+	tmp->value = ft_strdup(ft_strchr(str[i], '=') + 1);
+	if (tmp->value == NULL)
+		return (ERROR);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 08:40:58 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 13:48:26 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:38:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	gt_rules(t_cli *cli, t_token *token)
 	t_token	*tmp;
 
 	tmp = next_selector(token);
-	if (ft_strcmp(token->token, GREATER_THAN) == 0)
+	if (token == NULL || tmp == NULL)
+		syntax_error(cli, "newline");
+	else if (ft_strcmp(token->token, GREATER_THAN) == 0)
 	{
 		if (token->index == get_last_index(cli->token))
 			syntax_error(cli, "newline");
@@ -26,7 +28,7 @@ void	gt_rules(t_cli *cli, t_token *token)
 		else if (ft_strchr(tmp->token, '*') != 0)
 			syntax_error(cli, tmp->token);
 	}
-	if (ft_strcmp(token->token, DOUBLE_GREATER_THAN) == 0)
+	else if (ft_strcmp(token->token, DOUBLE_GREATER_THAN) == 0)
 	{
 		if (token->index == get_last_index(cli->token))
 			syntax_error(cli, "newline");
@@ -42,7 +44,9 @@ void	lt_rules(t_cli *cli, t_token *token)
 	t_token	*tmp;
 
 	tmp = next_selector(token);
-	if (ft_strcmp(token->token, LESS_THAN) == 0)
+	if (token == NULL || tmp == NULL)
+		syntax_error(cli, "newline");
+	else if (ft_strcmp(token->token, LESS_THAN) == 0)
 	{
 		if (token->index == get_last_index(cli->token))
 			syntax_error(cli, "newline");
@@ -51,7 +55,7 @@ void	lt_rules(t_cli *cli, t_token *token)
 		else if (ft_strchr(tmp->token, '*') != 0)
 			syntax_error(cli, tmp->token);
 	}
-	if (ft_strcmp(token->token, DOUBLE_LESS_THAN) == 0)
+	else if (ft_strcmp(token->token, DOUBLE_LESS_THAN) == 0)
 	{
 		if (token->index == get_last_index(cli->token))
 			syntax_error(cli, "newline");

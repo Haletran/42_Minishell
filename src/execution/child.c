@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:47:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:37:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:01:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	piping(t_cli *cli, int count)
 			redirection_error(cli);
 		redirection_fd(cli);
 		redirection_pipe(cli);
-		close(cli->mnsh->fd[1]);
 		close(cli->mnsh->fd[0]);
+		close(cli->mnsh->fd[1]);
 		if (check_commands(cli->com->command, cli) == NOT_FOUND)
 		{
 			if (execve(cli->com->env_path, cli->com->command,

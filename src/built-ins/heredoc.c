@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 11:55:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:15:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_heredoc(t_cli *cli)
 	t_com	*tmp;
 
 	tmp = cli->com;
-	handle_sig(1);
 	if (check_heredoc_error(cli) == ERROR)
 		return (ERROR, cli->mnsh->exit_code = 1);
 	while (tmp)
@@ -42,6 +41,8 @@ int	ft_heredoc(t_cli *cli)
 			if (cli->mnsh->nb_heredoc - 1 == 0)
 				if (create_heredoc_file(&cli) == ERROR)
 					return (ERROR);
+			if (g_var == 1)
+				return (SUCCESS);
 			pid = fork();
 			fork_error(pid);
 			if (pid == 0)

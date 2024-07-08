@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:12:28 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/26 16:51:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:12:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	heredoc_close_fd(t_cli *cli)
 {
-	close(cli->mnsh->heredoc_fd);
+	if (cli->mnsh->heredoc_fd != -1)
+		close(cli->mnsh->heredoc_fd);
 	close(cli->mnsh->backup[0]);
 	close(cli->mnsh->backup[1]);
 }

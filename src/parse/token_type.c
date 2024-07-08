@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:12:18 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/07 18:26:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:39:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ t_token_type	token_type_rediscovery(t_token *tok, t_cli *cli)
 		return (IMMUTABLE);
 	if (tok->type == HEREDOC)
 		return (HEREDOC);
-	if (tok->type == DELIMITER)
-		return (DELIMITER);
 	if (tok->type == REDIRECTION_OPERATOR)
 		return (REDIRECTION_OPERATOR);
 	if (tok->type == CONTROLE_OPERATOR)

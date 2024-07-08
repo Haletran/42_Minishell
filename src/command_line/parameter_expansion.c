@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 09:13:23 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:06:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:38:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	replacement(t_cli *cli, t_p_exp *exp)
 		free_char(exp->tmp->token);
 		exp->tmp->token = new_token;
 	}
-	else if (exp->tmp->type != IMMUTABLE && exp->tmp->type != FREEZE)
+	else if (exp->tmp->type != IMMUTABLE)
 	{
 		r = ft_substr(exp->tmp->token, 0, ft_strlen_endc(exp->tmp->token, '$'));
 		exp->tmp->token = free_char(exp->tmp->token);
@@ -45,11 +45,9 @@ void	parameter_expansion(t_cli *cli)
 	init_exp(&exp, cli->token, cli);
 	while (exp.tmp)
 	{
-		exp.d_count = -1;
-		while (exp.tmp && exp.d_count != 0)
+		while (exp.tmp)
 		{
-			exp.d_count = dollar_count(exp.tmp->token);
-			exp.d_pos = parse_var_tok(exp.tmp->token, exp.tmp->next, &exp);
+			exp.d_pos = parse_var_tok(exp.tmp, exp.tmp->next, &exp);
 			if (exp.d_pos == -1 || exp.tmp->type == IMMUTABLE)
 				break ;
 			exp.key = ft_substr(exp.tmp->token, exp.d_pos + 1,

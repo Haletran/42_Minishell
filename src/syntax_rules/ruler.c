@@ -6,11 +6,31 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 13:01:35 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:03:42 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:37:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_token	*prev_selector(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	if (tmp->prev == NULL)
+		return (tmp);
+	tmp = tmp->prev;
+	while (tmp)
+	{
+		if (tmp->type == SPACE_HOLDER)
+			tmp = tmp->prev;
+		else
+		{
+			return (tmp);
+		}
+	}
+	return (tmp);
+}
 
 t_token	*next_selector(t_token *token)
 {

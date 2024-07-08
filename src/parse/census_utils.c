@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:18:40 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/24 17:41:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:35:09 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	command_census(t_token *tok, t_cli *cli)
 	(void)cli;
 	if (tok->prev == NULL || tok->prev->type == CONTROLE_OPERATOR)
 		return (COMMAND);
-	else if (tok->prev->type == DELIMITER)
+	else if (tok->prev->prev != NULL && tok->prev->prev->type == HEREDOC)
 		return (COMMAND);
 	else if (tok->prev->type == 13)
 		if (get_last_token_command(tok) == 0)

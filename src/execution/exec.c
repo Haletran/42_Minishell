@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 09:54:32 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 15:34:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:16:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_nb_pipes(t_token *token)
 void	handle_heredoc(t_cli *cli, int *heredoc)
 {
 	if (ft_heredoc(cli) == ERROR)
-		exit(ERROR);
+		exit (ERROR);
 	else if (cli && cli->com && cli->com->command != NULL)
 	{
 		cli->mnsh->heredoc_backup_fd = open("/tmp/.heredoc", O_RDONLY);
@@ -109,5 +109,6 @@ int	exec_pipe(t_cli *cli)
 		loop_commands(cli, &count);
 	redirect_std(cli, heredoc);
 	wait_process();
+	cli->mnsh->heredoc_pipe = 0;
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:01:45 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/02 15:33:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:05:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	delete_file(char *name, t_cli *cli)
 	{
 		close(cli->mnsh->backup[0]);
 		close(cli->mnsh->backup[1]);
-		close(cli->mnsh->heredoc_fd);
-		close(cli->mnsh->heredoc_backup_fd);
+		if (cli->mnsh->heredoc_fd != -1)
+			close(cli->mnsh->heredoc_fd);
+		if (cli->mnsh->heredoc_backup_fd != -1)
+			close(cli->mnsh->heredoc_backup_fd);
 		execve("/bin/rm", (char *[]){"rm", "-rf", name, NULL},
 			cli->mnsh->env_var);
 		exit(1);

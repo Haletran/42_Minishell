@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:14:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/01 11:56:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:34:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	child_process(t_cli *cli, t_com *com)
 
 	input = NULL;
 	line_count = 0;
+	handle_sig(1);
+	rl_clear_history();
 	while (1)
 	{
 		input = readline("> ");
@@ -58,10 +60,9 @@ void	child_process(t_cli *cli, t_com *com)
 			input = handle_eof(input, line_count, com, cli);
 		if (g_var == 1)
 			input = handle_sigint(input, cli);
-		if (!cli->mnsh->nb_heredoc - 1 && ft_strncmp(input, com->command[1],
-				ft_strlen(com->command[1])))
+		if (!cli->mnsh->nb_heredoc - 1 && ft_strcmp(input, com->command[1]))
 			write_to_heredoc(input, cli);
-		if (!ft_strncmp(input, com->command[1], ft_strlen(com->command[1])))
+		if (!ft_strcmp(input, com->command[1]))
 			input = handle_heredoc_end(input, cli);
 		input = free_char(input);
 		line_count++;

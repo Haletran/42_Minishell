@@ -6,11 +6,22 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:51:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/06/19 08:57:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:40:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+t_env	*get_env_var(t_env *env, char *key)
+{
+	while (env)
+	{
+		if (!ft_strcmp(env->key, key))
+			return (env);
+		env = env->next;
+	}
+	return (NULL);
+}
 
 int	get_env_size(t_env *head)
 {
@@ -59,19 +70,4 @@ char	*get_key_from_value(t_env *head, char *value)
 		head = head->next;
 	}
 	return (NULL);
-}
-
-void	print_dlst(t_env *head)
-{
-	t_env	*tmp;
-
-	tmp = head;
-	while (tmp->next)
-	{
-		ft_printf("key: %s\n", tmp->key);
-		ft_printf("value: %s\n", tmp->value);
-		tmp = tmp->next;
-	}
-	ft_printf_fd(1, "key: %s\n", tmp->key);
-	ft_printf_fd(1, "value: %s\n", tmp->value);
 }

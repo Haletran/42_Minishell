@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:29:52 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:14:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:35:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,22 @@ int	var_len(char *token)
 	return (j);
 }
 
-int	parse_var_tok(char *token, t_token *next_token, t_p_exp *exp)
+int	parse_var_tok(t_token *token, t_token *next_token, t_p_exp *exp)
 {
 	int	i;
 
 	i = 0;
-	while (token[i] != 0 && token[i] != '$')
+	while (token->token[i] != 0 && token->token[i] != '$')
 		i++;
-	if (token[i] != '$')
+	if (token->token[i] != '$')
 		return (-1);
-	if (token[i + 1] != 0)
+	if (token->token[i + 1] != 0)
 	{
 		exp->var_flag = 1;
 		return (i);
 	}
+	if (token->type == IMMUTABLE || token->type == FREEZE)
+		return (-1);
 	if (next_token != NULL)
 	{
 		if (next_token->type == DQUOTE || next_token->type == QUOTE)

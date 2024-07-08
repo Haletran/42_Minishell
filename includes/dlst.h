@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:03:47 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/07 17:22:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 16:38:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		get_env_size(t_env *head);
 int		find_in_env(char *str, t_cli *cli);
 char	*get_value_from_key(t_env *head, char *key);
 char	*get_key_from_value(t_env *head, char *value);
-void	print_dlst(t_env *head);
+t_env	*get_env_var(t_env *env, char *key);
 
 //****************************************************************************/
 //* dlst_env_set.c

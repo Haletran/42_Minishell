@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 20:25:55 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/03 16:53:08 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:18:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	redirect_std(t_cli *cli, int heredoc)
 {
+	if (heredoc == 1)
+	{
+		if (cli->mnsh->heredoc_fd != -1)
+			close(cli->mnsh->heredoc_fd);
+		if (cli->mnsh->heredoc_backup_fd != -1)
+			close(cli->mnsh->heredoc_backup_fd);
+		unlink("/tmp/.heredoc");
+	}
 	dup2(cli->mnsh->backup[0], STDIN_FILENO);
 	close(cli->mnsh->backup[0]);
 	dup2(cli->mnsh->backup[1], STDOUT_FILENO);
 	close(cli->mnsh->backup[1]);
-	if (heredoc == 1)
-	{
-		unlink("/tmp/.heredoc");
-		close(cli->mnsh->heredoc_fd);
-	}
 }
 
 void	wait_process(void)
@@ -81,7 +84,8 @@ void	heredoc_redirection(t_cli *cli)
 		{
 			pipe(cli->mnsh->fd);
 			redirection_parent(cli);
-			close(cli->mnsh->heredoc_backup_fd);
+			if (cli->mnsh->heredoc_backup_fd != -1)
+				close(cli->mnsh->heredoc_backup_fd);
 			cli->mnsh->heredoc_pipe = 0;
 		}
 	}

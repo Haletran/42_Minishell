@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 19:43:21 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/02 16:26:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:43:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	fill_command(t_cli *cli, t_token *tmp, t_com *com)
 	com->command = ft_calloc(arr_size + 1, sizeof(char *));
 	while (i != arr_size)
 	{
+		if (!tmp)
+			break ;
 		if (tmp->token != NULL || !tmp->token)
 			if (tmp->type != 2 && tmp->type != 13)
 				com->command[i++] = ft_strdup(tmp->token);
@@ -130,6 +132,8 @@ int	get_nb_args(t_token *head)
 	tmp = head;
 	nb_args = 0;
 	heredoc_flag = 0;
+	if (tmp->type == HEREDOC)
+		return (2);
 	while (tmp != NULL && tmp->type != CONTROLE_OPERATOR && heredoc_flag != 1)
 	{
 		if (tmp->type == DELIMITER)

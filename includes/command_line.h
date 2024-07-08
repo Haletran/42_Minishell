@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:58:46 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/01 14:54:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:34:38 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			dollar_count(char *token);
 void		init_exp(t_p_exp *exp, t_token *tmp, t_cli *cli);
 char		*get_parameter_value(t_cli *cli, char *key);
 int			var_len(char *token);
-int			parse_var_tok(char *token, t_token *next_token, t_p_exp *exp);
+int			parse_var_tok(t_token *token, t_token *next_token, t_p_exp *exp);
 
 //****************************************************************************/
 //* parameter_expansion.c
