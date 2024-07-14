@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 19:15:52 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:57:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	ft_heredoc(t_cli *cli)
 			if (g_var == 1)
 				return (SUCCESS);
 			pid = fork();
-			fork_error(pid);
-			if (pid == 0)
+			if (fork_error(pid) == 0)
 				child_process(cli, tmp);
 			cli->mnsh->nb_heredoc--;
 			waitpid(pid, &cli->mnsh->exit_code, 0);

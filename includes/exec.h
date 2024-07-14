@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:33:06 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/03 16:53:35 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/14 18:57:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		check_before_exec(t_cli **cli);
 //* child.c
 
 int		check_error(t_cli **cli);
-void	fork_error(pid_t pid);
+int		fork_error(pid_t pid);
 void	piping(t_cli *cli, int count);
 void	execute_last_command(t_cli *cli);
 int		redir(t_cli **cli);
