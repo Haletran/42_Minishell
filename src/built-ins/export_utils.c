@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 00:24:41 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/07/07 18:18:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:59:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	add_process(t_lst *mnsh, char **str, int i, int *err)
 		(*err) = add_var(mnsh, str, i);
 	else if (!ft_strchr(str[i], '=') && !already_exist(mnsh, str, i))
 		(*err) = add_var_no_input(mnsh, str, i);
-	else
+	else if (ft_strchr(str[i], '='))
 		(*err) = replace_var(mnsh, str, i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:42:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/14 18:57:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:14:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,20 @@ int	create_heredoc_file(t_cli **cli)
 	return (SUCCESS);
 }
 
-int	ft_heredoc(t_cli *cli)
+static void	heredoc_fork(t_cli *cli, t_com *tmp)
 {
 	pid_t	pid;
+
+	pid = fork();
+	fork_error(pid);
+	if (pid == 0)
+		child_process(cli, tmp);
+	cli->mnsh->nb_heredoc--;
+	waitpid(pid, &cli->mnsh->exit_code, 0);
+}
+
+int	ft_heredoc(t_cli *cli)
+{
 	t_com	*tmp;
 
 	tmp = cli->com;
@@ -43,14 +54,11 @@ int	ft_heredoc(t_cli *cli)
 					return (ERROR);
 			if (g_var == 1)
 				return (SUCCESS);
-			pid = fork();
-			if (fork_error(pid) == 0)
-				child_process(cli, tmp);
-			cli->mnsh->nb_heredoc--;
-			waitpid(pid, &cli->mnsh->exit_code, 0);
+			heredoc_fork(cli, tmp);
 		}
 		tmp = tmp->next;
 	}
 	cli->mnsh->exit_code = get_exit_code(cli->mnsh);
-	return (SUCCESS, close(cli->mnsh->heredoc_fd));
+	close(cli->mnsh->heredoc_fd);
+	return (SUCCESS);
 }

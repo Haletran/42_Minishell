@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:49:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 16:43:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/15 12:02:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	ft_export(t_lst *mnsh, char **str)
 	int	i;
 	int	err;
 
-	i = 0;
+	i = 1;
+	err = 0;
 	if (!mnsh->env_var_lst)
 		return (ERROR);
 	if (!str[1])
@@ -84,7 +85,7 @@ int	ft_export(t_lst *mnsh, char **str)
 		cpy_process(mnsh);
 		return (SUCCESS);
 	}
-	while (str[++i])
+	while (str[i])
 	{
 		add_process(mnsh, str, i, &err);
 		if (err == ERROR)
@@ -92,6 +93,7 @@ int	ft_export(t_lst *mnsh, char **str)
 			ft_printf_fd(2, EXPORT_NOT_VALID, str[i]);
 			return (ret_code(mnsh, 1));
 		}
+		i++;
 	}
 	return (ret_code(mnsh, 0));
 }
