@@ -1,5 +1,7 @@
 # Minishell
 
+==> Project made in collaboration with [@Aska](https://github.com/Askandrie)
+
 ## Project Overview
 
 Minishell is a simple shell program written in C that aims to replicate the basic functionalities of the Bash shell. This project is developed as a part of the curriculum at 42 School, adhering to the NORM V3 coding standards. Minishell provides an interactive command-line interface for users to execute various shell commands.
